@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: d5c6d6af63517ad4ca9347f904388667
+  - enabled: 1
+    path: Assets/Scenes/KillerModeScene.unity
+    guid: 7abaeb52157330c4bbc8370e149a287f
+  - enabled: 1
+    path: Assets/Scenes/HuntModeScene.unity
+    guid: 7b952a634fda25340bd77d37e4dabd13
+  - enabled: 1
+    path: Assets/Scenes/BossModeScene.unity
+    guid: b16527aa561128c468512ec4a4f38963
+  - enabled: 1
+    path: Assets/Scenes/GuardianModeScene.unity
+    guid: ec240e151b00ecf49add9c22df5607c9
+  m_configObjects: {}
