@@ -13,7 +13,7 @@ public class PowerUpButton : MonoBehaviour
     }
 
     void UpgradePower()
-    {
+    { 
         if(this.Gold.GetComponent<GoldController>().currentGold >= this.GoldNeeds)
         {
             this.Gold.GetComponent<GoldController>().currentGold -= this.GoldNeeds;
