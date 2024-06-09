@@ -7,7 +7,7 @@ const port = 8080; // 원하는 포트 번호 설정
 
 // 유니티 WebGL 빌드 파일이 위치한 디렉토리를 지정
 //const buildPath = path.join(__dirname, 'Build_WebGL');
-const buildPath = path.join(__dirname, 'bulid webgl');
+const buildPath = path.join(__dirname, 'build webgl');
 
 
 // 정적 파일 서빙 설정

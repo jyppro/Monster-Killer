@@ -19,6 +19,29 @@ public class DatabaseHandler : MonoBehaviour
     public void PostJSON() => FirebaseDatabase.PostJSON(pathInputField.text, valueInputField.text, gameObject.name,
             "DisplayInfo", "DisplayErrorObject");
 
+    public void GetJSON() => FirebaseDatabase.GetJSON(pathInputField.text, gameObject.name,
+            "DisplayData", "DisplayErrorObject");
+
+     public void PushJSON() => FirebaseDatabase.PushJSON(pathInputField.text, valueInputField.text, gameObject.name,
+            "DisplayInfo", "DisplayErrorObject");        
+            
+    public void UpdateJSON() => FirebaseDatabase.UpdateJSON(pathInputField.text, valueInputField.text,
+            gameObject.name, "DisplayInfo", "DisplayErrorObject");
+    
+    public void DeleteJSON() =>
+    FirebaseDatabase.DeleteJSON(pathInputField.text, gameObject.name, "DisplayInfo", "DisplayErrorObject");
+
+    public void ListenForValueChanged() =>
+    FirebaseDatabase.ListenForValueChanged(pathInputField.text, gameObject.name, "DisplayData", "DisplayErrorObject");
+
+    public void StopListeningForValueChanged() =>
+    FirebaseDatabase.StopListeningForValueChanged(pathInputField.text, gameObject.name, "DisplayInfo", "DisplayErrorObject");
+
+    public void DisplayData(string data)
+    {
+        statusText.text = data;
+    }
+
     public void DisplayInfo(string info)
     {
         statusText.text = info;

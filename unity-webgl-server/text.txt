@@ -1,0 +1,30 @@
+  window.unityInstance = unityInstance;
+  loadingBar.style.display = "none";
+  
+  <script>// Import the functions you need from the SDKs you need</script>
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-database-compat.js"></script>
+  <script>
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+          apiKey: "AIzaSyCQHYOxAJ6LIM17ylSnHi2FrRrvUa-n_14",
+          authDomain: "database-2fda2.firebaseapp.com",
+          databaseURL: "https://database-2fda2-default-rtdb.firebaseio.com",
+          projectId: "database-2fda2",
+          storageBucket: "database-2fda2.appspot.com",
+          messagingSenderId: "531669849508",
+          appId: "1:531669849508:web:3ade010326c93f16fd9d31",
+          measurementId: "G-JKT7RWKTTD"
+        };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  // Firebase Authentication
+  const auth = firebase.auth();
+  // Firebase Database
+  const database = firebase.database();
+</script>
