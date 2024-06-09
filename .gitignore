@@ -248,3 +248,4 @@ crashlytics-build.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,unity,node,react
 /database test/Library
+/DataBase_Test_Project/Library
