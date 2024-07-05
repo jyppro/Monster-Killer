@@ -6,13 +6,15 @@ public class PlayerHP : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI PlayerHPText; // 체력바 텍스트 UI
     private Slider PlayerhealthSlider; // 체력바 UI
-    public float playerMaxHealth = 100f; // 플레이어 최대 체력
-    public float playerCurrentHealth = 100f; // 플레이어 현재 체력
+    public float playerMaxHealth; // 플레이어 최대 체력
+    public float playerCurrentHealth; // 플레이어 현재 체력
     public GameObject GameOver;
 
     void Start()
     {
         PlayerhealthSlider = this.GetComponent<Slider>();
+        playerCurrentHealth = GameManager.Instance.GetCurrentHP(); // GameManager에서 현재 체력값 가져오기
+        playerMaxHealth = GameManager.Instance.GetMaxHP(); // GameManager에서 최대 체력값 가져오기
         UpdateHealthSlider();
     }
 

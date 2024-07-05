@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -12,6 +13,11 @@ public class GameManager : MonoBehaviour
     private float gold;
     private float maxHP;
     private float currentHP;
+
+    // 이벤트 정의: 게임 종료 시 호출될 델리게이트
+    public event Action OnGameOver;
+
+    private bool gameOver = false;
 
     private void Awake()
     {
@@ -59,4 +65,26 @@ public class GameManager : MonoBehaviour
     public void SetGold(float value) { gold = value; }
     public void SetMaxHP(float value) { maxHP = value; }
     public void SetCurrentHP(float value) { currentHP = value; }
+
+    // ----------------------------------------------------
+    
+    // 플레이어 체력이 0이 되었을 때 호출하는 예시 메서드
+    public void PlayerHealthZero()
+    {
+        if (!gameOver)
+        {
+            gameOver = true;
+            OnGameOver?.Invoke();
+        }
+    }
+
+    // 타이머 시간이 0이 되었을 때 호출하는 예시 메서드
+    public void TimerZero()
+    {
+        if (!gameOver)
+        {
+            gameOver = true;
+            OnGameOver?.Invoke();
+        }
+    }
 }

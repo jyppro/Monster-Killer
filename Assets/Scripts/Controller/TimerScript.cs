@@ -13,7 +13,7 @@ public class TimerScript : MonoBehaviour
     private void Start()
     {
         GameOver = GameObject.Find("GameOverPage");
-        GameOver.SetActive(false);
+        // GameOver.SetActive(false);
         currentTime = maxTime;
         isTimerRunning = true;
         UpdateTimerText();

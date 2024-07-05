@@ -11,7 +11,7 @@ public class TimeIncreaseButton : MonoBehaviour
     void Start()
     {
         this.Timer = GameObject.Find("Timer");
-        this.Gold = GameObject.Find("GoldText");
+        this.Gold = GameObject.Find("GoldText"); // 골드 데이터로 수정 필요
         GetComponent<UnityEngine.UI.Button>().onClick.AddListener(UpgradeTime);
     }
 
@@ -20,7 +20,7 @@ public class TimeIncreaseButton : MonoBehaviour
         if(this.Gold.GetComponent<GoldController>().currentGold >= this.GoldNeeds)
         {
             this.Gold.GetComponent<GoldController>().currentGold -= this.GoldNeeds;
-            this.Timer.GetComponent<TimerScript>().IncreaseMaxTime(1f);
+            this.Timer.GetComponent<TimerScript>().IncreaseMaxTime(1f); // 타임 데이터 수정 필요
             this.Timer.GetComponent<TimerScript>().UpdateTimerText();
             this.Gold.GetComponent<GoldController>().UpdateGoldText();
         }
