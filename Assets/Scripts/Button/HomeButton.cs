@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class HomeButton : MonoBehaviour
 {
     public Image FadeOutPage;
-    float time = 0f;
-    float F_time = 1f;
+    float time = 0.0f;
+    float F_time = 1.0f;
 
     private void Start()
     {
@@ -15,16 +15,16 @@ public class HomeButton : MonoBehaviour
         GetComponent<UnityEngine.UI.Button>().onClick.AddListener(ReturnHome);
     }
     private void ReturnHome() { StartCoroutine(FadeOut()); }
-    private void PauseExit() { Time.timeScale = 1f; }
+    private void PauseExit() { Time.timeScale = 1.0f; }
     IEnumerator FadeOut()
     {
         FadeOutPage.gameObject.SetActive(true);
         Color alpha = FadeOutPage.color;
         
-        while(alpha.a < 1f)
+        while(alpha.a < 1.0f)
         {
             time += Time.deltaTime / F_time;
-            alpha.a = Mathf.Lerp(0, 1, time);
+            alpha.a = Mathf.Lerp(0.0f, 1.0f, time);
             FadeOutPage.color = alpha;
             yield return null;
         }

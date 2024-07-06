@@ -1,19 +1,30 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class TimerScript : MonoBehaviour
 {
-    public float maxTime = 60f; // 초기 제한시간
+    public float maxTime; // 초기 제한시간
     public float currentTime;
     public bool isTimerRunning = false;
     [SerializeField] private TextMeshProUGUI TimeText;
     GameObject GameOver;
+    public GoldController Gold;
 
     private void Start()
     {
-        GameOver = GameObject.Find("GameOverPage");
-        // GameOver.SetActive(false);
+        if(GameOver)
+        {
+            GameOver = GameObject.Find("GameOverPage");
+            GameOver.SetActive(false);
+        }
+        else
+        {
+            return;
+        }
+        
+        this.Gold = GameObject.Find("GoldController").GetComponent<GoldController>();
+
+        maxTime = GameManager.Instance.GetTime();
         currentTime = maxTime;
         isTimerRunning = true;
         UpdateTimerText();
@@ -25,7 +36,11 @@ public class TimerScript : MonoBehaviour
         {
             currentTime -= Time.deltaTime;
             UpdateTimerText();
-            if (currentTime <= 0f) { StopTimer(); }
+            if (currentTime <= 0.0f)
+            {
+                StopTimer();
+                GameManager.Instance.SetGold(GameManager.Instance.GetGold() + this.Gold.currentGold); // 게임 인스턴스의 골드 값에 현재 골드 값을 더한다.
+            }
         }
     }
 
@@ -33,14 +48,8 @@ public class TimerScript : MonoBehaviour
     public void StopTimer()
     {
         isTimerRunning = false;
-        Time.timeScale = 0f;
+        Time.timeScale = 0.0f;
         GameOver.SetActive(true);
-    }
-
-    public void IncreaseMaxTime(float amount)
-    {
-        maxTime += amount;
-        UpdateTimerText();
     }
 
     public void UpdateTimerText()

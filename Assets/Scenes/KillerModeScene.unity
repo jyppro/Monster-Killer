@@ -556,6 +556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponPrefab: {fileID: 3787972095011550686, guid: 9b2b002c99deb3647b98423e05d7eb2b, type: 3}
+  mainCamera: {fileID: 963194227}
 --- !u!4 &55573279
 Transform:
   m_ObjectHideFlags: 0
@@ -1277,6 +1278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GoldNeeds: 10
+  IncreaseDamage: 10
   WeaponPrefab: {fileID: 3787972095011550686, guid: 9b2b002c99deb3647b98423e05d7eb2b, type: 3}
   Gold: {fileID: 0}
 --- !u!1 &367689055
@@ -1768,9 +1770,8 @@ GameObject:
   - component: {fileID: 525551260}
   - component: {fileID: 525551263}
   - component: {fileID: 525551262}
-  - component: {fileID: 525551261}
   m_Layer: 5
-  m_Name: GoldResultText
+  m_Name: GoldText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1795,20 +1796,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &525551261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525551259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1736a508794066498baaaabc333e3b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goldText: {fileID: 0}
-  currentGold: 0
 --- !u!114 &525551262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2118,6 +2105,7 @@ MonoBehaviour:
   GoldNeeds: 10
   Timer: {fileID: 0}
   Gold: {fileID: 0}
+  IncreaseTime: 1
 --- !u!1 &608498073
 GameObject:
   m_ObjectHideFlags: 0
@@ -2288,6 +2276,7 @@ MonoBehaviour:
   currentTime: 0
   isTimerRunning: 0
   TimeText: {fileID: 763722793}
+  Gold: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -3051,7 +3040,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 21, y: 4, z: 0.5}
+  m_LocalPosition: {x: 21, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3268,7 +3257,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &994797213
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3409,7 +3398,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 396319195}
   m_HandleRect: {fileID: 0}
@@ -3434,8 +3423,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerHPText: {fileID: 367689057}
-  playerMaxHealth: 100
-  playerCurrentHealth: 100
+  playerMaxHealth: 0
+  playerCurrentHealth: 0
   GameOver: {fileID: 994797212}
 --- !u!1 &1108607386
 GameObject:
@@ -3782,6 +3771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GoldNeeds: 10
+  IncreaseMaxHealth: 10
   HP: {fileID: 0}
   Gold: {fileID: 0}
 --- !u!1 &1205955004
@@ -4291,6 +4281,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401597635}
   m_CullTransparentMesh: 1
+--- !u!1 &1452909264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1452909266}
+  - component: {fileID: 1452909265}
+  m_Layer: 0
+  m_Name: GoldController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1452909265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452909264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1736a508794066498baaaabc333e3b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goldTexts: []
+  currentGold: 0
+--- !u!4 &1452909266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452909264}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 21, y: 4, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1585820715
 GameObject:
   m_ObjectHideFlags: 0
@@ -4556,7 +4592,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 988742240}
   m_HandleRect: {fileID: 0}
@@ -4799,7 +4835,6 @@ GameObject:
   - component: {fileID: 1747084242}
   - component: {fileID: 1747084244}
   - component: {fileID: 1747084243}
-  - component: {fileID: 1747084245}
   m_Layer: 5
   m_Name: GoldText
   m_TagString: Untagged
@@ -4923,20 +4958,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747084241}
   m_CullTransparentMesh: 1
---- !u!114 &1747084245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747084241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1736a508794066498baaaabc333e3b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goldText: {fileID: 0}
-  currentGold: 0
 --- !u!1 &1772889464
 GameObject:
   m_ObjectHideFlags: 0
@@ -5692,10 +5713,11 @@ SceneRoots:
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 705507995}
-  - {fileID: 55573279}
   - {fileID: 988000767}
   - {fileID: 1810094557}
   - {fileID: 1285470204}
   - {fileID: 1254966324}
   - {fileID: 1373302431}
+  - {fileID: 55573279}
   - {fileID: 102314923}
+  - {fileID: 1452909266}
