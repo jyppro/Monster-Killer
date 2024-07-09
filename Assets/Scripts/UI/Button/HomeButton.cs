@@ -11,10 +11,14 @@ public class HomeButton : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<UnityEngine.UI.Button>().onClick.AddListener(PauseExit);
-        GetComponent<UnityEngine.UI.Button>().onClick.AddListener(ReturnHome);
+        GetComponent<Button>().onClick.AddListener(PauseExit);
+        GetComponent<Button>().onClick.AddListener(ReturnHome);
     }
-    private void ReturnHome() { StartCoroutine(FadeOut()); }
+    private void ReturnHome()
+    {
+        GameManager.Instance.SaveGameData();
+        StartCoroutine(FadeOut());
+    }
     private void PauseExit() { Time.timeScale = 1.0f; }
     IEnumerator FadeOut()
     {

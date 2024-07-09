@@ -15,9 +15,9 @@ public class HealingButton : MonoBehaviour
 
     void HealHP()
     {
-        if(this.Gold.currentGold >= this.GoldNeeds)
+        if(this.Gold.PlayerGold >= this.GoldNeeds)
         {
-            this.Gold.currentGold -= this.GoldNeeds;
+            this.Gold.PlayerGold -= this.GoldNeeds;
             this.HP.playerCurrentHealth = this.HP.playerMaxHealth;
             this.HP.UpdateHealthSlider();
             this.Gold.UpdateGoldText();

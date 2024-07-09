@@ -3,13 +3,17 @@
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] private GameObject WeaponGenerator;
-    public int damage;
-    public int currentDamage = 0;
+    public int damage = 10; // 기본 데미지, 10으로 데이터 설정
+    public int currentDamage = 0; // 강화 추가 데미지
+    public int PartsDamage = 0; // 부위 별 추가 데미지
 
     public void Shoot(Vector3 dir) //인자로 3차원 벡터가 입력되고
     { GetComponent<Rigidbody>().AddForce(dir); } // 들어온 입력벡터 만큼 오브젝트에 힘이 가해진다.
     
-    void Start() { this.WeaponGenerator = GameObject.Find("WeaponGenerator"); }
+    void Start()
+    {
+        this.WeaponGenerator = GameObject.Find("WeaponGenerator");
+    }
 
     // public void ApplyDamageToMonster(float damage) // 플레이어가 몬스터에게 주는 데미지
     // {
@@ -40,18 +44,21 @@ public class WeaponController : MonoBehaviour
         if (!collision.gameObject.CompareTag("terrain"))
         {
             if (collision.gameObject.CompareTag("Head")) //몬스터의 각 파츠별 충돌 데미지
-            { damage = Random.Range(30,50); }
+            { PartsDamage += Random.Range(30,50); }
             else if (collision.gameObject.CompareTag("L_Leg"))
-            { damage = Random.Range(25,40); }
+            { PartsDamage += Random.Range(25,40); }
             else if (collision.gameObject.CompareTag("R_Leg"))
-            { damage = Random.Range(25,40); }
+            { PartsDamage += Random.Range(25,40); }
             else if (collision.gameObject.CompareTag("Body"))
-            { damage = Random.Range(20,35); }
+            { PartsDamage += Random.Range(20,35); }
             else if (collision.gameObject.CompareTag("Tail"))
-            { damage = Random.Range(10,50); }
+            { PartsDamage += Random.Range(10,50); }
             else if (collision.gameObject.CompareTag("Wing"))
-            { damage = Random.Range(40,60); }
-            damage += currentDamage;
+            { PartsDamage += Random.Range(40,60); }
+
+            damage += currentDamage; // 강화 데미지 합산
+            damage += PartsDamage; // 파츠 별 데미지 합산
+
             collision.gameObject.transform.root.GetComponent<MonsterController>().TakeDamage_M(damage);
             collision.gameObject.transform.root.GetComponent<MonsterController>().ShowDamageText(damage, collision.GetContact(0).point);
             Destroy(gameObject, 0.5f);

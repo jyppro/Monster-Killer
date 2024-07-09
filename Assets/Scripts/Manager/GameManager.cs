@@ -8,14 +8,14 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return instance; } }
 
     // 게임 데이터 변수
-    private int playerID;
-    private int stage;
-    private int rank;
-    private int power;
-    private int maxHP;
-    private int currentHP;
-    private int gold;
-    private float time;
+    [SerializeField] private int playerID;
+    [SerializeField] private int stage;
+    [SerializeField] private int rank;
+    [SerializeField] private int power;
+    [SerializeField] private int maxHP;
+    [SerializeField] private int currentHP;
+    [SerializeField] private int gold;
+    [SerializeField] private float time;
 
 
     private void Awake()
@@ -34,13 +34,13 @@ public class GameManager : MonoBehaviour
     {
         playerID = PlayerPrefs.GetInt("playerID", 1);
         stage = PlayerPrefs.GetInt("Stage", 1);
-        rank = PlayerPrefs.GetInt("rank", 1);
+        rank = PlayerPrefs.GetInt("Rank", 1);
         power = PlayerPrefs.GetInt("Power", 10);
         maxHP = PlayerPrefs.GetInt("MaxHP", 100);
         currentHP = PlayerPrefs.GetInt("CurrentHP", 100);
         gold = PlayerPrefs.GetInt("Gold", 0);
 
-        time = PlayerPrefs.GetFloat("time", 60.0f);
+        time = PlayerPrefs.GetFloat("Time", 60.0f);
     }
 
     public void SaveGameData() // 게임 데이터 저장

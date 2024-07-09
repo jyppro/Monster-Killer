@@ -93,7 +93,10 @@ public class MonsterController : MonoBehaviour
             MonsterCurrentHealth = MonsterMaxHealth;
             animator.SetBool("Death", true);
             gameObject.GetComponent<MonsterMovement>().enabled = false;
+
             GameObject.Find("GoldController").GetComponent<GoldController>().GoldSum(goldReward); // 수정 필요 -> 골드 데이터 값으로
+            GameManager.Instance.SaveGameData(); // 게임 데이터 저장
+
             MonsterAudio.clip = Clips[3]; // 몬스터 사망 효과음
             MonsterAudio.Play();
             Invoke("SpawnNextMonster", 3.0f);

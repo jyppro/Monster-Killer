@@ -15,6 +15,12 @@ public class PlayerHP : MonoBehaviour
         PlayerhealthSlider = this.GetComponent<Slider>();
         playerCurrentHealth = GameManager.Instance.GetCurrentHP(); // GameManager에서 현재 체력값 가져오기
         playerMaxHealth = GameManager.Instance.GetMaxHP(); // GameManager에서 최대 체력값 가져오기
+
+        if(playerMaxHealth != playerCurrentHealth)
+        {
+            playerCurrentHealth = playerMaxHealth;
+        }
+        
         UpdateHealthSlider();
     }
 

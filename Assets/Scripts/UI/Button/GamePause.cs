@@ -14,7 +14,7 @@ public class GamePause : MonoBehaviour
         GamePauseUI = GameObject.Find("PausePage");
         GamePauseUI.SetActive(false);
         buttonImage = GetComponent<Image>();
-        if(GetComponent<UnityEngine.UI.Button>() != null){ GetComponent<UnityEngine.UI.Button>().onClick.AddListener(TogglePause); }
+        if(GetComponent<Button>() != null) { GetComponent<Button>().onClick.AddListener(TogglePause); }
     }
     private void Update() { if (Input.GetKeyDown(KeyCode.Escape)) { TogglePause(); } }
     private void TogglePause()
