@@ -59,8 +59,20 @@ public class WeaponController : MonoBehaviour
             damage += currentDamage; // 강화 데미지 합산
             damage += PartsDamage; // 파츠 별 데미지 합산
 
-            collision.gameObject.transform.root.GetComponent<MonsterController>().TakeDamage_M(damage);
-            collision.gameObject.transform.root.GetComponent<MonsterController>().ShowDamageText(damage, collision.GetContact(0).point);
+            MonsterController monsterController = collision.gameObject.transform.root.GetComponent<MonsterController>();
+            HuntMonsterController huntMonsterController = collision.gameObject.transform.root.GetComponent<HuntMonsterController>();
+            if(monsterController)
+            {
+                monsterController.TakeDamage_M(damage);
+                monsterController.ShowDamageText(damage, collision.GetContact(0).point);
+            }
+            else if(huntMonsterController)
+            {
+                huntMonsterController.TakeDamage_M(damage);
+                huntMonsterController.ShowDamageText(damage, collision.GetContact(0).point);
+            }
+            // collision.gameObject.transform.root.GetComponent<MonsterController>().TakeDamage_M(damage);
+            //collision.gameObject.transform.root.GetComponent<MonsterController>().ShowDamageText(damage, collision.GetContact(0).point);
             Destroy(gameObject, 0.5f);
         }
         else { Destroy(gameObject); }

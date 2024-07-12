@@ -28,11 +28,12 @@ public class MonsterController : MonoBehaviour
     private Slider StageBarCopy;
     private TextMeshProUGUI textHPCopy;
     private GameObject damageTextPrefabCopy;
-    public int goldRewardCopy;
-    public int stage;
+    private int goldRewardCopy;
+    // public int stage;
     public int IncreasePower = 2;
     public int IncreaseReward = 2;
     public int IncreaseMonsterMaxHealth = 5;
+    private MonsterSpawner spawner;
 
     void Start()
     {
@@ -41,7 +42,9 @@ public class MonsterController : MonoBehaviour
         MonsterAudio = GetComponent<AudioSource>(); // 오디오 소스 연결
         MonsterAudio.clip = Clips[0]; // 몬스터 소환 효과음
         MonsterAudio.Play();
-        stage = GameManager.Instance.GetStage();
+
+
+        // stage = GameManager.Instance.GetStage();
 
         // 복사본 저장
         MonsterPowerCopy = this.MonsterPower;
@@ -53,6 +56,15 @@ public class MonsterController : MonoBehaviour
 
         UpdateHealthSlider();
         InvokeRepeating("MonsterAttack", attackInterval, attackInterval);
+
+        if(spawner != null)
+        {
+            spawner = FindObjectOfType<MonsterSpawner>();
+        }
+        else
+        {
+            return;
+        }
     }
 
     private void MonsterAttack() // 몬스터 공격 애니메이션 실행 및 플레이어에게 데미지 주기
@@ -94,12 +106,19 @@ public class MonsterController : MonoBehaviour
             animator.SetBool("Death", true);
             gameObject.GetComponent<MonsterMovement>().enabled = false;
 
+            // 하위의 모든 콜라이더를 비활성화
+            Collider[] colliders = GetComponentsInChildren<Collider>();
+            foreach (Collider col in colliders)
+            {
+                col.enabled = false;
+            }
+
             GameObject.Find("GoldController").GetComponent<GoldController>().GoldSum(goldReward); // 수정 필요 -> 골드 데이터 값으로
             GameManager.Instance.SaveGameData(); // 게임 데이터 저장
 
             MonsterAudio.clip = Clips[3]; // 몬스터 사망 효과음
             MonsterAudio.Play();
-            Invoke("SpawnNextMonster", 3.0f);
+            Invoke("SpawnNextMonster", 2.0f);
         }
         UpdateHealthSlider();
     }
@@ -116,7 +135,7 @@ public class MonsterController : MonoBehaviour
         damageTextObjects.Clear(); // 리스트 초기화
         StageBar.value += 0.33f;
 
-        GameManager.Instance.SetStage(stage + 1);
+        // GameManager.Instance.SetStage(stage + 1);
         GameManager.Instance.SaveGameData();
 
         if(StageBarCopy.value >= 1.0f) { StageBarCopy.value = 0.0f; }

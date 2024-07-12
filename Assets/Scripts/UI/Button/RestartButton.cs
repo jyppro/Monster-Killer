@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 public class RestartButton : MonoBehaviour
 {
     public Image FadeOutPage;
+    public string sceneToLoad; // 인스펙터에서 설정할 씬 이름
     float time = 0.0f;
     float F_time = 1.0f;
 
     private void Start()
     {
-        GetComponent<UnityEngine.UI.Button>().onClick.AddListener(PauseExit);
-        GetComponent<UnityEngine.UI.Button>().onClick.AddListener(GameStart);
+        GetComponent<Button>().onClick.AddListener(PauseExit);
+        GetComponent<Button>().onClick.AddListener(GameStart);
     }
     private void GameStart() { StartCoroutine(FadeOut()); }
     private void PauseExit() { Time.timeScale = 1.0f; }
@@ -29,6 +30,6 @@ public class RestartButton : MonoBehaviour
             yield return null;
         }
         // PlayerPrefs.DeleteAll(); // 이전에 획득한 정보만 삭제해야 함
-        SceneManager.LoadScene("KillerModeScene");
+        SceneManager.LoadScene(sceneToLoad);
     }
 }

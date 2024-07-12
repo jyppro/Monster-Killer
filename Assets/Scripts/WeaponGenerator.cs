@@ -7,7 +7,7 @@ public class WeaponGenerator : MonoBehaviour
     private GameObject currentWeapon; // 현재 무기
     private float delay = 0.7f;
     private bool canGenerate = true; // 생성가능 상태체크
-    Vector3 controlOffset = new (-1.0f, -0.8f, 0.0f);
+    [SerializeField] Vector3 controlOffset = new (-1.0f, -0.8f, 0.0f);
     Vector3 spawnPosition;
 
     void Start()

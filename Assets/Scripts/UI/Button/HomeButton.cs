@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class HomeButton : MonoBehaviour
 {
     public Image FadeOutPage;
+    public string sceneToLoad; // 인스펙터에서 설정할 씬 이름
     float time = 0.0f;
     float F_time = 1.0f;
 
@@ -32,6 +33,6 @@ public class HomeButton : MonoBehaviour
             FadeOutPage.color = alpha;
             yield return null;
         }
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene(sceneToLoad);
     }
 }
