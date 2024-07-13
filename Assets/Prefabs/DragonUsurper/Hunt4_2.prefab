@@ -590,10 +590,10 @@ GameObject:
   m_Component:
   - component: {fileID: 475692}
   - component: {fileID: 9576292}
-  - component: {fileID: -2219459159127724895}
   - component: {fileID: 1734803482968142742}
   - component: {fileID: -138727995674194537}
   - component: {fileID: -5608766372273633352}
+  - component: {fileID: 8441945018633143838}
   m_Layer: 0
   m_Name: Hunt4_2
   m_TagString: Monster
@@ -639,33 +639,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-2219459159127724895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 116688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbb298c636e1ddf4699673d52aac481a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 0}
-  StageBar: {fileID: 0}
-  textHP: {fileID: 0}
-  damageTextPrefab: {fileID: 0}
-  nextMonsterPrefab: {fileID: 194904, guid: 0176267642e1e5e47a262952406f45a8, type: 3}
-  Clips:
-  - {fileID: 8300000, guid: dd68c6f0dfd306c489dc7d2919167e42, type: 3}
-  - {fileID: 8300000, guid: 301a462b2ced13f44afb61acd6364a0d, type: 3}
-  - {fileID: 8300000, guid: a577c2325268be54488591a486be171a, type: 3}
-  - {fileID: 8300000, guid: 49633201f9c137a46a22d01b399b938f, type: 3}
-  goldReward: 10
-  stage: 0
-  IncreasePower: 2
-  IncreaseReward: 2
-  IncreaseMonsterMaxHealth: 5
 --- !u!114 &1734803482968142742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -798,6 +771,29 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8441945018633143838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35ea89da68b3d245a83cd4cef501544, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 0}
+  textHP: {fileID: 0}
+  damageTextPrefab: {fileID: 3433391998738348564, guid: e065d6633001a4e4b82dd454d28f03a9, type: 3}
+  Clips:
+  - {fileID: 8300000, guid: dd68c6f0dfd306c489dc7d2919167e42, type: 3}
+  - {fileID: 8300000, guid: 301a462b2ced13f44afb61acd6364a0d, type: 3}
+  - {fileID: 8300000, guid: a577c2325268be54488591a486be171a, type: 3}
+  - {fileID: 8300000, guid: 49633201f9c137a46a22d01b399b938f, type: 3}
+  MonsterMaxHealth: 2000
+  MonsterCurrentHealth: 2000
+  MonsterPower: 200
 --- !u!1 &116878
 GameObject:
   m_ObjectHideFlags: 0

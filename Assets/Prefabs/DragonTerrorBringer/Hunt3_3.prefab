@@ -2838,8 +2838,8 @@ GameObject:
   - component: {fileID: 9569754}
   - component: {fileID: -6034000777451176529}
   - component: {fileID: 5080786688364248216}
-  - component: {fileID: 7559348930703386781}
   - component: {fileID: -7885844190695362895}
+  - component: {fileID: 626518992424699120}
   m_Layer: 0
   m_Name: Hunt3_3
   m_TagString: Monster
@@ -3003,33 +3003,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7559348930703386781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbb298c636e1ddf4699673d52aac481a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 0}
-  StageBar: {fileID: 0}
-  textHP: {fileID: 0}
-  damageTextPrefab: {fileID: 0}
-  nextMonsterPrefab: {fileID: 101568, guid: f773523579b034445b2012b4a9520193, type: 3}
-  Clips:
-  - {fileID: 8300000, guid: 4abab8fa42f82594081b3013ed1040d8, type: 3}
-  - {fileID: 8300000, guid: 13af2eac59c0f8347abefca083d3c785, type: 3}
-  - {fileID: 8300000, guid: b9618b7020142fb45984dc7214513b11, type: 3}
-  - {fileID: 8300000, guid: 1d38a58a3709c5c45a53a41932a81c95, type: 3}
-  goldReward: 10
-  stage: 0
-  IncreasePower: 2
-  IncreaseReward: 2
-  IncreaseMonsterMaxHealth: 5
 --- !u!114 &-7885844190695362895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3044,6 +3017,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minMoveDelay: 1
   maxMoveDelay: 3
+--- !u!114 &626518992424699120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35ea89da68b3d245a83cd4cef501544, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 0}
+  textHP: {fileID: 0}
+  damageTextPrefab: {fileID: 3433391998738348564, guid: e065d6633001a4e4b82dd454d28f03a9, type: 3}
+  Clips:
+  - {fileID: 8300000, guid: 4abab8fa42f82594081b3013ed1040d8, type: 3}
+  - {fileID: 8300000, guid: 13af2eac59c0f8347abefca083d3c785, type: 3}
+  - {fileID: 8300000, guid: b9618b7020142fb45984dc7214513b11, type: 3}
+  - {fileID: 8300000, guid: 1d38a58a3709c5c45a53a41932a81c95, type: 3}
+  MonsterMaxHealth: 1000
+  MonsterCurrentHealth: 1000
+  MonsterPower: 100
 --- !u!1 &198178
 GameObject:
   m_ObjectHideFlags: 0

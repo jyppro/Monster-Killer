@@ -75,6 +75,7 @@ public class GoldController : MonoBehaviour
         else
         {
             Debug.LogError("골드 텍스트가 할당되지 않았습니다.");
+            return;
         }
     }
 

@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections.Generic;
 
 public class HuntMonsterController : MonoBehaviour
 {
@@ -10,14 +9,13 @@ public class HuntMonsterController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textHP; // 체력바 텍스트 UI
     [SerializeField] private GameObject damageTextPrefab; // 데미지 텍스트 UI
     [SerializeField] private AudioClip[] Clips; // 사용할 오디오 클립의 배열 <0 : 소환, 1 : 공격, 2 : 피격, 3 : 사망>
-    private List<GameObject> damageTextObjects = new List<GameObject>(); // 데미지 텍스트 리스트
+    [SerializeField] private int MonsterMaxHealth = 100; // 몬스터 최대 체력
+    [SerializeField] private int MonsterCurrentHealth = 100; // 몬스터 현재 체력
+    [SerializeField] private int MonsterPower = 5; // 몬스터 공격력
     private AudioSource MonsterAudio; // 몬스터 사운드
     private Animator animator; // 애니메이터
     private Canvas canvas; // 캔버스
     private bool isAlive = true; // 몬스터 생사 여부
-    private int MonsterMaxHealth = 100; // 몬스터 최대 체력
-    private int MonsterCurrentHealth = 100; // 몬스터 현재 체력
-    private int MonsterPower = 5; // 몬스터 공격력
     private int attackInterval = 5; // 공격 간격
     private MonsterSpawner spawner;
 
@@ -104,11 +102,19 @@ public class HuntMonsterController : MonoBehaviour
 
     public void ShowDamageText(float damage, Vector3 position) // 몬스터가 받는 데미지 보여주기
     {
-        GameObject damageTextObject = Instantiate(damageTextPrefab, position, Quaternion.identity);
+        // 월드 좌표를 화면 좌표로 변환
+        Vector3 screenPosition = Camera.main.WorldToScreenPoint(position);
+
+        // 데미지 텍스트 오브젝트 생성
+        GameObject damageTextObject = Instantiate(damageTextPrefab, canvas.transform);
+
+        // 텍스트 설정
         TextMeshProUGUI textComponent = damageTextObject.GetComponent<TextMeshProUGUI>();
         textComponent.text = "-" + damage.ToString();
-        damageTextObject.transform.SetParent(canvas.transform, false);
-        damageTextObjects.Add(damageTextObject); // 리스트에 추가
+
+        // 화면 좌표로 위치 설정
+        damageTextObject.transform.position = screenPosition;
+
         StartCoroutine(AnimateDamageText(textComponent));
     }
 
