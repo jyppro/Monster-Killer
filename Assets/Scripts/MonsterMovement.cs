@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class MonsterMovement : MonoBehaviour
 {
     private NavMeshAgent navMeshAgent;
-    private bool isMoving = false;
+    public bool isMoving = false;
     private Animator animator; // 애니메이터
 
     [SerializeField] private float minMoveDelay = 1f; // 최소 이동 딜레이
@@ -56,6 +56,20 @@ public class MonsterMovement : MonoBehaviour
         {
             // 이동이 완료되었을 때 이동 상태를 해제합니다.
             isMoving = false;
+            animator.SetBool("Move", false);
+        }
+    }
+
+    public void StopMoving()
+    {
+        // Stop the movement and set the isMoving flag to false
+        isMoving = false;
+        if (navMeshAgent != null)
+        {
+            navMeshAgent.isStopped = true;
+        }
+        if (animator != null)
+        {
             animator.SetBool("Move", false);
         }
     }

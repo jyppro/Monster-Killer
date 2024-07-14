@@ -24,13 +24,13 @@ public class GamePause : MonoBehaviour
         {
             GamePauseUI.SetActive(true);
             buttonImage.sprite = newImage;
-            Time.timeScale = 0f;
+            Time.timeScale = 0.0f;
         }
         else
         {
             GamePauseUI.SetActive(false);
             buttonImage.sprite = orignalImage;
-            Time.timeScale = 1f;
+            Time.timeScale = 1.0f;
         }
     }
 }

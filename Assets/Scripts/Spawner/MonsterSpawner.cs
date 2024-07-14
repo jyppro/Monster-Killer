@@ -10,14 +10,25 @@ public class MonsterSpawner : MonoBehaviour
     private GameObject[] monsterPrefabs; // 소환할 몬스터의 프리팹들
     private int maxMonster = 20; // 최대 소환할 몬스터 수
     private int currentMonsterCount = 0; // 현재 소환된 몬스터 수
+    public int targetKillCount = 0; // 목표 처치 마리 수 -> 스테이지 데이터에서 가져와 세팅 (ex : 20)
+    public int currentKillCount = 0; // 현재 처치 마리 수
+    [SerializeField] private GameObject ClearPage;
 
     void Start()
     {
+        if (ClearPage == null)
+        {
+            Debug.LogError("ClearPage is not assigned.");
+            return;
+        }
+        ClearPage.SetActive(false);
+
         // 현재 스테이지의 데이터를 받아 설정
         StageData stageData = GameManager.Instance.GetStageData(StageLoader.Instance.currentStageIndex);
         if (stageData != null)
         {
-            monsterPrefabs = stageData.monsterPrefabs;
+            monsterPrefabs = stageData.monsterPrefabs; // 몬스터 세팅
+            targetKillCount = stageData.targetKillCount; // 목표 처치 마리 수 세팅
         }
 
         StartCoroutine(SpawnMonsters());
@@ -27,7 +38,7 @@ public class MonsterSpawner : MonoBehaviour
     {
         while (true)
         {
-            if (currentMonsterCount < maxMonster)
+            if (currentMonsterCount < maxMonster) // 소환된 몬스터 수가 최대 마리수보다 적으면 계속 소환
             {
                 for (int i = 0; i < numberOfMonsters && currentMonsterCount < maxMonster; i++)
                 {
@@ -41,9 +52,25 @@ public class MonsterSpawner : MonoBehaviour
         }
     }
 
-    // 몬스터가 죽었을 때 호출되는 메서드
+    // 몬스터가 죽었을 때 호출
     public void MonsterDied()
     {
         currentMonsterCount--;
+        currentKillCount++;
+
+        if(currentKillCount >= maxMonster)
+        {
+            currentKillCount = maxMonster;
+            ShowClearPage();
+        }
+    }
+
+    private void ShowClearPage()
+    {
+        if (ClearPage != null)
+        {
+            ClearPage.SetActive(true);
+            Time.timeScale = 0.0f;
+        }
     }
 }

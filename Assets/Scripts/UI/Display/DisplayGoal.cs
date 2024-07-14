@@ -4,8 +4,11 @@ using TMPro;
 public class DisplayGoal : MonoBehaviour
 {
     public int StageGoal_Kill;
+    public int KillCount;
+    private MonsterSpawner spawner;
 
     [SerializeField] private TextMeshProUGUI Goal_KillText;
+    [SerializeField] private GameObject ClearPage;
 
     void Start()
     {
@@ -15,39 +18,43 @@ public class DisplayGoal : MonoBehaviour
             return;
         }
 
-        // PlayerHP = GameManager.Instance.GetMaxHP();
-
         if (Goal_KillText == null)
         {
-            Debug.LogError("TimeText is not assigned.");
+            Debug.LogError("Goal_KillText is not assigned.");
             return;
         }
 
-        // DisplayHP();
+        if (ClearPage == null)
+        {
+            Debug.LogError("ClearPage is not assigned.");
+            return;
+        }
+
+        spawner = FindObjectOfType<MonsterSpawner>();
+        ClearPage.SetActive(false);
+
+        if(spawner != null)
+        {
+            KillCount = spawner.currentKillCount;
+            StageGoal_Kill = spawner.targetKillCount;
+        }
     }
 
-    // void Update()
-    // {
-    //     // int currentHP = GameManager.Instance.GetMaxHP();
-    //     if (PlayerHP != currentHP)
-    //     {
-    //         PlayerHP = currentHP;
-    //         DisplayHP();
-    //     }
-    // }
+    void Update()
+    {
+        int currentKillCount = spawner.currentKillCount;
+        if (KillCount != currentKillCount)
+        {
+            KillCount = currentKillCount;
+            DisplayKillCount();
+        }
+    }
 
-    // public void DisplayHP()
-    // {
-    //     if (HPText != null)
-    //     {
-    //         HPText.text = "MaxHP : " + PlayerHP;
-    //     }
-    // }
-
-    // public void UpdateHP(int newHP)
-    // {
-    //     PlayerHP = newHP;
-    //     GameManager.Instance.SetMaxHP(PlayerHP);
-    //     DisplayHP();
-    // }
+    public void DisplayKillCount()
+    {
+        if (Goal_KillText != null)
+        {
+            Goal_KillText.text = KillCount + " / " + StageGoal_Kill;
+        }
+    }
 }

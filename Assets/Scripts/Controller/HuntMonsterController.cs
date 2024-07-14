@@ -18,10 +18,13 @@ public class HuntMonsterController : MonoBehaviour
     private bool isAlive = true; // 몬스터 생사 여부
     private int attackInterval = 5; // 공격 간격
     private MonsterSpawner spawner;
+    private MonsterMovement monsterMovement;
 
     void Start()
     {
         healthSlider = FindObjectOfType<Slider>(); // 씬의 존재하는 슬라이더 찾아서 넣어주기
+        monsterMovement = this.GetComponent<MonsterMovement>();
+
         if (healthSlider != null)
         {
             textHP = healthSlider.GetComponentInChildren<TextMeshProUGUI>(); // 체력바 하위의 TextMeshProUGUI 찾기
@@ -60,14 +63,6 @@ public class HuntMonsterController : MonoBehaviour
         // 체력이 전부 소진되면 몬스터 사망 처리
         if (MonsterCurrentHealth <= 0)
         {
-            isAlive = false;
-            MonsterCurrentHealth = 0;
-            animator.SetBool("Death", true);
-            gameObject.GetComponent<MonsterMovement>().enabled = false;
-
-            MonsterAudio.clip = Clips[3]; // 몬스터 사망 효과음
-            MonsterAudio.Play();
-
             OnDeath(); // 몬스터 사망 처리 함수 호출
         }
         UpdateHealthSlider();
@@ -75,6 +70,18 @@ public class HuntMonsterController : MonoBehaviour
 
     private void OnDeath()
     {
+        isAlive = false;
+        MonsterCurrentHealth = 0;
+        animator.SetBool("Death", true);
+
+        MonsterAudio.clip = Clips[3]; // 몬스터 사망 효과음
+        MonsterAudio.Play();
+
+        if(monsterMovement != null)
+        {
+            monsterMovement.StopMoving(); // Stop the movement
+        }
+
         // 하위의 모든 콜라이더를 비활성화
         Collider[] colliders = GetComponentsInChildren<Collider>();
         foreach (Collider col in colliders)
@@ -89,6 +96,7 @@ public class HuntMonsterController : MonoBehaviour
         if (spawner != null)
         {
             spawner.MonsterDied();
+            
         }
     }
 
