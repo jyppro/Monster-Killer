@@ -34,17 +34,16 @@ public class MonsterController : MonoBehaviour
     public int IncreaseReward = 2;
     public int IncreaseMonsterMaxHealth = 5;
     private MonsterSpawner spawner;
+    private MonsterMovement monsterMovement;
 
     void Start()
     {
+        monsterMovement = this.GetComponent<MonsterMovement>();
         canvas = FindObjectOfType<Canvas>(); // Canvas 연결
         animator = GetComponent<Animator>(); // 애니메이터 연결
         MonsterAudio = GetComponent<AudioSource>(); // 오디오 소스 연결
         MonsterAudio.clip = Clips[0]; // 몬스터 소환 효과음
         MonsterAudio.Play();
-
-
-        // stage = GameManager.Instance.GetStage();
 
         // 복사본 저장
         MonsterPowerCopy = this.MonsterPower;
@@ -101,26 +100,38 @@ public class MonsterController : MonoBehaviour
         // 체력이 전부 소진되면 다음 몬스터 소환
         if (MonsterCurrentHealth <= 0)
         {
-            isAlive = false;
-            MonsterCurrentHealth = MonsterMaxHealth;
-            animator.SetBool("Death", true);
-            gameObject.GetComponent<MonsterMovement>().enabled = false;
-
-            // 하위의 모든 콜라이더를 비활성화
-            Collider[] colliders = GetComponentsInChildren<Collider>();
-            foreach (Collider col in colliders)
-            {
-                col.enabled = false;
-            }
-
-            GameObject.Find("GoldController").GetComponent<GoldController>().GoldSum(goldReward); // 수정 필요 -> 골드 데이터 값으로
-            GameManager.Instance.SaveGameData(); // 게임 데이터 저장
-
-            MonsterAudio.clip = Clips[3]; // 몬스터 사망 효과음
-            MonsterAudio.Play();
+            OnDeath();
             Invoke("SpawnNextMonster", 2.0f);
         }
         UpdateHealthSlider();
+    }
+
+    private void OnDeath()
+    {
+        isAlive = false;
+        MonsterCurrentHealth = 0;
+        animator.SetBool("Death", true);
+
+        MonsterAudio.clip = Clips[3]; // 몬스터 사망 효과음
+        MonsterAudio.Play();
+
+        GameObject.Find("GoldController").GetComponent<GoldController>().GoldSum(goldReward);
+        GameManager.Instance.SaveGameData(); // 게임 데이터 저장
+
+        if(monsterMovement != null)
+        {
+            monsterMovement.StopMoving(); // Stop the movement
+        }
+
+        // 하위의 모든 콜라이더를 비활성화
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        foreach (Collider col in colliders)
+        {
+            col.enabled = false;
+        }
+
+        // 3초 뒤에 몬스터 제거
+        Destroy(gameObject, 3.0f);
     }
 
     private void SpawnNextMonster() // 다음 몬스터를 소환하는 함수
@@ -134,8 +145,6 @@ public class MonsterController : MonoBehaviour
         foreach (GameObject damageTextObject in damageTextObjects) { Destroy(damageTextObject); }
         damageTextObjects.Clear(); // 리스트 초기화
         StageBar.value += 0.33f;
-
-        // GameManager.Instance.SetStage(stage + 1);
         GameManager.Instance.SaveGameData();
 
         if(StageBarCopy.value >= 1.0f) { StageBarCopy.value = 0.0f; }

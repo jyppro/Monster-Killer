@@ -71,8 +71,7 @@ public class WeaponController : MonoBehaviour
                 huntMonsterController.TakeDamage_M(damage);
                 huntMonsterController.ShowDamageText(damage, collision.GetContact(0).point);
             }
-            // collision.gameObject.transform.root.GetComponent<MonsterController>().TakeDamage_M(damage);
-            //collision.gameObject.transform.root.GetComponent<MonsterController>().ShowDamageText(damage, collision.GetContact(0).point);
+            
             Destroy(gameObject, 0.5f);
         }
         else { Destroy(gameObject); }
