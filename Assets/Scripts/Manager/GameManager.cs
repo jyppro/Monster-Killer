@@ -5,7 +5,11 @@ public class StageData
 {
     public string stageName;
     public GameObject[] monsterPrefabs; // 여러 몬스터 프리팹을 저장
-    public int targetKillCount;
+    public int targetKillCount; // 목표 처치 마리 수
+    public float stageTime; // 스테이지 진행시간
+    public float threeStarTime; // 별 3개로 클리어할 수 있는 최소시간
+    public float twoStarTime; // 별 2개로 클리어할 수 있는 최소시간
+    public int score; // 점수
 }
 
 public class GameManager : MonoBehaviour
@@ -23,6 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int maxHP;
     [SerializeField] private int currentHP;
     [SerializeField] private int gold;
+    [SerializeField] private int sumScore; // 플레이어 스코어 총합
     [SerializeField] private float time;
 
 
@@ -55,6 +60,7 @@ public class GameManager : MonoBehaviour
         maxHP = PlayerPrefs.GetInt("MaxHP", 100);
         currentHP = PlayerPrefs.GetInt("CurrentHP", 100);
         gold = PlayerPrefs.GetInt("Gold", 0);
+        sumScore = PlayerPrefs.GetInt("SumScore", 0);
 
         time = PlayerPrefs.GetFloat("Time", 60.0f);
     }
@@ -67,6 +73,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("MaxHP", maxHP);
         PlayerPrefs.SetInt("CurrentHP", currentHP);
         PlayerPrefs.SetInt("Gold", gold);
+        PlayerPrefs.SetInt("SumScore", sumScore);
 
         PlayerPrefs.SetFloat("Time", time);
         PlayerPrefs.Save();
@@ -79,6 +86,7 @@ public class GameManager : MonoBehaviour
     public int GetMaxHP() { return maxHP; }
     public int GetCurrentHP() { return currentHP; }
     public int GetGold() { return gold; }
+    public int GetSumScore() { return sumScore; }
 
     public float GetTime() { return time; }
 
@@ -90,6 +98,7 @@ public class GameManager : MonoBehaviour
     public void SetMaxHP(int value) { maxHP = value; }
     public void SetCurrentHP(int value) { currentHP = value; }
     public void SetGold(int value) { gold = value; }
+    public void SetSumScore(int value) { sumScore = value; }
 
     public void SetTime(float value) { time = value; }
 }

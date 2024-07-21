@@ -38,6 +38,7 @@ public class DisplayGoal : MonoBehaviour
             KillCount = spawner.currentKillCount;
             StageGoal_Kill = spawner.targetKillCount;
         }
+        DisplayKillCount();
     }
 
     void Update()
