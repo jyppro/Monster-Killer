@@ -47,8 +47,11 @@ public class TimerController : MonoBehaviour
     public void StopTimer()
     {
         isTimerRunning = false;
-        Time.timeScale = 0.0f;
         GameOver.SetActive(true);
+        // Cursor.lockState = CursorLockMode.None;
+        // Cursor.visible = true;
+
+        Time.timeScale = 0.0f;
     }
 
     public void UpdateTimerText()

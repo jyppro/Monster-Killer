@@ -39,8 +39,11 @@ public class PlayerHP : MonoBehaviour
         UpdateHealthSlider();
         if (playerCurrentHealth <= 0)
         {
-             GameOver.SetActive(true);
-             Time.timeScale = 0.0f;
+            GameOver.SetActive(true);
+            // Cursor.lockState = CursorLockMode.None;
+            // Cursor.visible = true;
+
+            Time.timeScale = 0.0f;
         }
     }
 }

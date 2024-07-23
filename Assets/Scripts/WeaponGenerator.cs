@@ -7,7 +7,7 @@ public class WeaponGenerator : MonoBehaviour
     private GameObject currentWeapon; // 현재 무기
     private float delay = 0.7f;
     private bool canGenerate = true; // 생성가능 상태체크
-    [SerializeField] Vector3 controlOffset = new (-1.0f, -0.8f, 0.0f);
+    [SerializeField] Vector3 controlOffset = new Vector3(0.5f, -0.8f, 1.0f);
     Vector3 spawnPosition;
 
     void Start()
@@ -17,20 +17,23 @@ public class WeaponGenerator : MonoBehaviour
 
     void Update()
     {
-        if (currentWeapon == null && canGenerate) { GenerateWeapon(); }
+        if (currentWeapon == null && canGenerate) 
+        {
+            GenerateWeapon();
+        }
 
         if (currentWeapon != null)
         {
             // 매 프레임마다 currentWeapon의 위치를 카메라 위치로 업데이트
-            spawnPosition = mainCamera.transform.position;
-            spawnPosition += controlOffset; // 위치 조정
+            spawnPosition = mainCamera.transform.position + mainCamera.transform.rotation * controlOffset;
             currentWeapon.transform.position = spawnPosition;
+            currentWeapon.transform.rotation = mainCamera.transform.rotation;
         }
 
         if (Input.GetMouseButtonDown(0) && currentWeapon != null) // 무기 던지기
         {
             currentWeapon.GetComponent<Rigidbody>().isKinematic = false;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             Vector3 worldDir = ray.direction;
             currentWeapon.GetComponent<WeaponController>().Shoot(worldDir.normalized * 2000);
 
@@ -46,10 +49,13 @@ public class WeaponGenerator : MonoBehaviour
         currentWeapon.GetComponent<Rigidbody>().isKinematic = true;
 
         // 생성된 무기를 카메라 위치로 이동
-        Vector3 spawnPosition = mainCamera.transform.position;
-        spawnPosition += controlOffset; // 위치 조정
+        spawnPosition = mainCamera.transform.position + mainCamera.transform.rotation * controlOffset;
         currentWeapon.transform.position = spawnPosition;
+        currentWeapon.transform.rotation = mainCamera.transform.rotation;
     }
 
-    private void EnableGeneration() { canGenerate = true; }
+    private void EnableGeneration() 
+    {
+        canGenerate = true; 
+    }
 }
