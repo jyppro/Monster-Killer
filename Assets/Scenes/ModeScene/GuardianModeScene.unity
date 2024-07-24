@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 52130197}
   - component: {fileID: 52130196}
   - component: {fileID: 52130195}
-  - component: {fileID: 52130194}
+  - component: {fileID: 52130198}
   m_Layer: 5
   m_Name: StageBtn4
   m_TagString: Untagged
@@ -231,20 +231,6 @@ RectTransform:
   m_AnchoredPosition: {x: 250, y: 120}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &52130194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 52130192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a2873553e06a944a9249c743413f9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FadeOutPage: {fileID: 1766372932}
-  targetScene: GuardianStageScene
 --- !u!114 &52130195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,7 +256,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -327,6 +313,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 52130192}
   m_CullTransparentMesh: 1
+--- !u!114 &52130198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52130192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c3ef1480a5dea4ca03433222dcd73f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modeIndex: 2
+  stageIndex: 3
+  FadeOutPage: {fileID: 1766372932}
+  button: {fileID: 52130195}
+  unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
+  lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
+  buttonText: {fileID: 767484969}
 --- !u!1 &197126665
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +344,7 @@ GameObject:
   - component: {fileID: 197126670}
   - component: {fileID: 197126669}
   - component: {fileID: 197126668}
-  - component: {fileID: 197126667}
+  - component: {fileID: 197126671}
   m_Layer: 5
   m_Name: StageBtn10
   m_TagString: Untagged
@@ -367,20 +372,6 @@ RectTransform:
   m_AnchoredPosition: {x: 500, y: -120}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &197126667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 197126665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a2873553e06a944a9249c743413f9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FadeOutPage: {fileID: 1766372932}
-  targetScene: GuardianStageScene
 --- !u!114 &197126668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,7 +397,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -463,6 +454,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197126665}
   m_CullTransparentMesh: 1
+--- !u!114 &197126671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197126665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c3ef1480a5dea4ca03433222dcd73f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modeIndex: 2
+  stageIndex: 9
+  FadeOutPage: {fileID: 1766372932}
+  button: {fileID: 197126668}
+  unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
+  lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
+  buttonText: {fileID: 239130040}
 --- !u!1 &239130038
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,7 +664,7 @@ GameObject:
   - component: {fileID: 443607096}
   - component: {fileID: 443607095}
   - component: {fileID: 443607094}
-  - component: {fileID: 443607093}
+  - component: {fileID: 443607097}
   m_Layer: 5
   m_Name: StageBtn7
   m_TagString: Untagged
@@ -682,20 +692,6 @@ RectTransform:
   m_AnchoredPosition: {x: -250, y: -120}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &443607093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 443607091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a2873553e06a944a9249c743413f9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FadeOutPage: {fileID: 1766372932}
-  targetScene: GuardianStageScene
 --- !u!114 &443607094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -721,7 +717,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -778,6 +774,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 443607091}
   m_CullTransparentMesh: 1
+--- !u!114 &443607097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443607091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c3ef1480a5dea4ca03433222dcd73f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modeIndex: 2
+  stageIndex: 6
+  FadeOutPage: {fileID: 1766372932}
+  button: {fileID: 443607094}
+  unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
+  lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
+  buttonText: {fileID: 1517632796}
 --- !u!1 &494554124
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,7 +805,7 @@ GameObject:
   - component: {fileID: 494554129}
   - component: {fileID: 494554128}
   - component: {fileID: 494554127}
-  - component: {fileID: 494554126}
+  - component: {fileID: 494554130}
   m_Layer: 5
   m_Name: StageBtn1
   m_TagString: Untagged
@@ -818,20 +833,6 @@ RectTransform:
   m_AnchoredPosition: {x: -500, y: 120}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &494554126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 494554124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a2873553e06a944a9249c743413f9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FadeOutPage: {fileID: 1766372932}
-  targetScene: GuardianStageScene
 --- !u!114 &494554127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -857,7 +858,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -914,6 +915,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494554124}
   m_CullTransparentMesh: 1
+--- !u!114 &494554130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494554124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c3ef1480a5dea4ca03433222dcd73f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modeIndex: 2
+  stageIndex: 0
+  FadeOutPage: {fileID: 1766372932}
+  button: {fileID: 494554127}
+  unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
+  lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
+  buttonText: {fileID: 1288490677}
 --- !u!1 &641785905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1328,7 +1348,7 @@ GameObject:
   - component: {fileID: 866020209}
   - component: {fileID: 866020208}
   - component: {fileID: 866020207}
-  - component: {fileID: 866020206}
+  - component: {fileID: 866020210}
   m_Layer: 5
   m_Name: StageBtn9
   m_TagString: Untagged
@@ -1356,20 +1376,6 @@ RectTransform:
   m_AnchoredPosition: {x: 250, y: -120}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &866020206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 866020204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a2873553e06a944a9249c743413f9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FadeOutPage: {fileID: 1766372932}
-  targetScene: GuardianStageScene
 --- !u!114 &866020207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1395,7 +1401,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1452,6 +1458,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 866020204}
   m_CullTransparentMesh: 1
+--- !u!114 &866020210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866020204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c3ef1480a5dea4ca03433222dcd73f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modeIndex: 2
+  stageIndex: 8
+  FadeOutPage: {fileID: 1766372932}
+  button: {fileID: 866020207}
+  unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
+  lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
+  buttonText: {fileID: 1285239671}
 --- !u!1 &873681675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1464,7 +1489,7 @@ GameObject:
   - component: {fileID: 873681680}
   - component: {fileID: 873681679}
   - component: {fileID: 873681678}
-  - component: {fileID: 873681677}
+  - component: {fileID: 873681681}
   m_Layer: 5
   m_Name: StageBtn6
   m_TagString: Untagged
@@ -1492,20 +1517,6 @@ RectTransform:
   m_AnchoredPosition: {x: -500, y: -120}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &873681677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 873681675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a2873553e06a944a9249c743413f9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FadeOutPage: {fileID: 1766372932}
-  targetScene: GuardianStageScene
 --- !u!114 &873681678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1531,7 +1542,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1588,6 +1599,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 873681675}
   m_CullTransparentMesh: 1
+--- !u!114 &873681681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873681675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c3ef1480a5dea4ca03433222dcd73f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modeIndex: 2
+  stageIndex: 5
+  FadeOutPage: {fileID: 1766372932}
+  button: {fileID: 873681678}
+  unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
+  lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
+  buttonText: {fileID: 2126592822}
 --- !u!1 &880493973
 GameObject:
   m_ObjectHideFlags: 0
@@ -2303,7 +2333,7 @@ GameObject:
   - component: {fileID: 1340124941}
   - component: {fileID: 1340124940}
   - component: {fileID: 1340124939}
-  - component: {fileID: 1340124938}
+  - component: {fileID: 1340124942}
   m_Layer: 5
   m_Name: StageBtn8
   m_TagString: Untagged
@@ -2331,20 +2361,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -120}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1340124938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1340124936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a2873553e06a944a9249c743413f9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FadeOutPage: {fileID: 1766372932}
-  targetScene: GuardianStageScene
 --- !u!114 &1340124939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2370,7 +2386,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2427,6 +2443,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1340124936}
   m_CullTransparentMesh: 1
+--- !u!114 &1340124942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340124936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c3ef1480a5dea4ca03433222dcd73f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modeIndex: 2
+  stageIndex: 7
+  FadeOutPage: {fileID: 1766372932}
+  button: {fileID: 1340124939}
+  unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
+  lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
+  buttonText: {fileID: 997975502}
 --- !u!1 &1515285698
 GameObject:
   m_ObjectHideFlags: 0
@@ -2439,7 +2474,7 @@ GameObject:
   - component: {fileID: 1515285703}
   - component: {fileID: 1515285702}
   - component: {fileID: 1515285701}
-  - component: {fileID: 1515285700}
+  - component: {fileID: 1515285704}
   m_Layer: 5
   m_Name: StageBtn5
   m_TagString: Untagged
@@ -2467,20 +2502,6 @@ RectTransform:
   m_AnchoredPosition: {x: 500, y: 120}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1515285700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1515285698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a2873553e06a944a9249c743413f9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FadeOutPage: {fileID: 1766372932}
-  targetScene: GuardianStageScene
 --- !u!114 &1515285701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2506,7 +2527,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2563,6 +2584,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515285698}
   m_CullTransparentMesh: 1
+--- !u!114 &1515285704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515285698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c3ef1480a5dea4ca03433222dcd73f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modeIndex: 2
+  stageIndex: 4
+  FadeOutPage: {fileID: 1766372932}
+  button: {fileID: 1515285701}
+  unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
+  lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
+  buttonText: {fileID: 1207776640}
 --- !u!1 &1517632794
 GameObject:
   m_ObjectHideFlags: 0
@@ -3024,7 +3064,7 @@ GameObject:
   - component: {fileID: 2089135199}
   - component: {fileID: 2089135198}
   - component: {fileID: 2089135197}
-  - component: {fileID: 2089135196}
+  - component: {fileID: 2089135200}
   m_Layer: 5
   m_Name: StageBtn3
   m_TagString: Untagged
@@ -3052,20 +3092,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 120}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2089135196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2089135194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a2873553e06a944a9249c743413f9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FadeOutPage: {fileID: 1766372932}
-  targetScene: GuardianStageScene
 --- !u!114 &2089135197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3091,7 +3117,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3148,6 +3174,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2089135194}
   m_CullTransparentMesh: 1
+--- !u!114 &2089135200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089135194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c3ef1480a5dea4ca03433222dcd73f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modeIndex: 2
+  stageIndex: 2
+  FadeOutPage: {fileID: 1766372932}
+  button: {fileID: 2089135197}
+  unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
+  lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
+  buttonText: {fileID: 761524810}
 --- !u!1 &2123334296
 GameObject:
   m_ObjectHideFlags: 0
@@ -3160,7 +3205,7 @@ GameObject:
   - component: {fileID: 2123334301}
   - component: {fileID: 2123334300}
   - component: {fileID: 2123334299}
-  - component: {fileID: 2123334298}
+  - component: {fileID: 2123334302}
   m_Layer: 5
   m_Name: StageBtn2
   m_TagString: Untagged
@@ -3188,20 +3233,6 @@ RectTransform:
   m_AnchoredPosition: {x: -250, y: 120}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2123334298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123334296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a2873553e06a944a9249c743413f9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FadeOutPage: {fileID: 1766372932}
-  targetScene: GuardianStageScene
 --- !u!114 &2123334299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3227,7 +3258,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3284,6 +3315,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2123334296}
   m_CullTransparentMesh: 1
+--- !u!114 &2123334302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123334296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c3ef1480a5dea4ca03433222dcd73f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modeIndex: 2
+  stageIndex: 1
+  FadeOutPage: {fileID: 1766372932}
+  button: {fileID: 2123334299}
+  unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
+  lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
+  buttonText: {fileID: 641785907}
 --- !u!1 &2126592820
 GameObject:
   m_ObjectHideFlags: 0

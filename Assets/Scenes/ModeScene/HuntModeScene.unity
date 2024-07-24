@@ -770,7 +770,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -839,8 +839,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c3ef1480a5dea4ca03433222dcd73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modeIndex: 0
   stageIndex: 7
   FadeOutPage: {fileID: 1718129749}
+  button: {fileID: 607309888}
+  unlockedSprite: {fileID: 21300010, guid: e14bbe2e2c7636d469e52ddb56b46f0c, type: 3}
+  lockedSprite: {fileID: 21300068, guid: e94582a58ac4ac74e9174df5c4a2a31d, type: 3}
+  buttonText: {fileID: 114363928}
 --- !u!1 &608130760
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,6 +992,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6721602027593258867, guid: 12e4722473d60e24086e473637584d6b, type: 3}
+      propertyPath: stagesCleared.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8573995776463078684, guid: 12e4722473d60e24086e473637584d6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -167.25
@@ -1097,7 +1106,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1166,8 +1175,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c3ef1480a5dea4ca03433222dcd73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modeIndex: 0
   stageIndex: 2
   FadeOutPage: {fileID: 1718129749}
+  button: {fileID: 1036823452}
+  unlockedSprite: {fileID: 21300010, guid: e14bbe2e2c7636d469e52ddb56b46f0c, type: 3}
+  lockedSprite: {fileID: 21300068, guid: e94582a58ac4ac74e9174df5c4a2a31d, type: 3}
+  buttonText: {fileID: 2129939120}
 --- !u!1 &1046160619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,7 +1247,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1302,8 +1316,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c3ef1480a5dea4ca03433222dcd73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modeIndex: 0
   stageIndex: 8
   FadeOutPage: {fileID: 1718129749}
+  button: {fileID: 1046160622}
+  unlockedSprite: {fileID: 21300010, guid: e14bbe2e2c7636d469e52ddb56b46f0c, type: 3}
+  lockedSprite: {fileID: 21300068, guid: e94582a58ac4ac74e9174df5c4a2a31d, type: 3}
+  buttonText: {fileID: 1329425743}
 --- !u!1 &1116686265
 GameObject:
   m_ObjectHideFlags: 0
@@ -1908,7 +1927,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1977,8 +1996,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c3ef1480a5dea4ca03433222dcd73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modeIndex: 0
   stageIndex: 3
   FadeOutPage: {fileID: 1718129749}
+  button: {fileID: 1524269869}
+  unlockedSprite: {fileID: 21300010, guid: e14bbe2e2c7636d469e52ddb56b46f0c, type: 3}
+  lockedSprite: {fileID: 21300068, guid: e94582a58ac4ac74e9174df5c4a2a31d, type: 3}
+  buttonText: {fileID: 567101622}
 --- !u!1 &1542722324
 GameObject:
   m_ObjectHideFlags: 0
@@ -2044,7 +2068,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2113,8 +2137,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c3ef1480a5dea4ca03433222dcd73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modeIndex: 0
   stageIndex: 5
   FadeOutPage: {fileID: 1718129749}
+  button: {fileID: 1542722327}
+  unlockedSprite: {fileID: 21300010, guid: e14bbe2e2c7636d469e52ddb56b46f0c, type: 3}
+  lockedSprite: {fileID: 21300068, guid: e94582a58ac4ac74e9174df5c4a2a31d, type: 3}
+  buttonText: {fileID: 1777702193}
 --- !u!1 &1683289596
 GameObject:
   m_ObjectHideFlags: 0
@@ -2180,7 +2209,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2249,8 +2278,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c3ef1480a5dea4ca03433222dcd73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modeIndex: 0
   stageIndex: 4
   FadeOutPage: {fileID: 1718129749}
+  button: {fileID: 1683289599}
+  unlockedSprite: {fileID: 21300010, guid: e14bbe2e2c7636d469e52ddb56b46f0c, type: 3}
+  lockedSprite: {fileID: 21300068, guid: e94582a58ac4ac74e9174df5c4a2a31d, type: 3}
+  buttonText: {fileID: 1468948617}
 --- !u!1 &1718129747
 GameObject:
   m_ObjectHideFlags: 0
@@ -2391,7 +2425,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2460,8 +2494,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c3ef1480a5dea4ca03433222dcd73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modeIndex: 0
   stageIndex: 6
   FadeOutPage: {fileID: 1718129749}
+  button: {fileID: 1733985903}
+  unlockedSprite: {fileID: 21300010, guid: e14bbe2e2c7636d469e52ddb56b46f0c, type: 3}
+  lockedSprite: {fileID: 21300068, guid: e94582a58ac4ac74e9174df5c4a2a31d, type: 3}
+  buttonText: {fileID: 4294389}
 --- !u!1 &1777702191
 GameObject:
   m_ObjectHideFlags: 0
@@ -2661,7 +2700,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2730,8 +2769,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c3ef1480a5dea4ca03433222dcd73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modeIndex: 0
   stageIndex: 9
   FadeOutPage: {fileID: 1718129749}
+  button: {fileID: 1908047745}
+  unlockedSprite: {fileID: 21300010, guid: e14bbe2e2c7636d469e52ddb56b46f0c, type: 3}
+  lockedSprite: {fileID: 21300068, guid: e94582a58ac4ac74e9174df5c4a2a31d, type: 3}
+  buttonText: {fileID: 1116686267}
 --- !u!1 &1927368354
 GameObject:
   m_ObjectHideFlags: 0
@@ -2999,7 +3043,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3068,8 +3112,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c3ef1480a5dea4ca03433222dcd73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modeIndex: 0
   stageIndex: 1
   FadeOutPage: {fileID: 1718129749}
+  button: {fileID: 2017641047}
+  unlockedSprite: {fileID: 21300010, guid: e14bbe2e2c7636d469e52ddb56b46f0c, type: 3}
+  lockedSprite: {fileID: 21300068, guid: e94582a58ac4ac74e9174df5c4a2a31d, type: 3}
+  buttonText: {fileID: 1989139582}
 --- !u!1 &2021655874
 GameObject:
   m_ObjectHideFlags: 0
@@ -3270,7 +3319,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3339,8 +3388,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c3ef1480a5dea4ca03433222dcd73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modeIndex: 0
   stageIndex: 0
   FadeOutPage: {fileID: 1718129749}
+  button: {fileID: 2088219064}
+  unlockedSprite: {fileID: 21300010, guid: e14bbe2e2c7636d469e52ddb56b46f0c, type: 3}
+  lockedSprite: {fileID: 21300068, guid: e94582a58ac4ac74e9174df5c4a2a31d, type: 3}
+  buttonText: {fileID: 608130762}
 --- !u!1 &2129939118
 GameObject:
   m_ObjectHideFlags: 0

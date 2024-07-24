@@ -1,58 +1,102 @@
 using UnityEngine;
 
 [System.Serializable]
-public class StageData
+public class BaseStageData
 {
-    public string stageName;
-    public GameObject[] monsterPrefabs; // 여러 몬스터 프리팹을 저장
-    public int targetKillCount; // 목표 처치 마리 수
-    public float stageTime; // 스테이지 진행시간
-    public float threeStarTime; // 별 3개로 클리어할 수 있는 최소시간
-    public float twoStarTime; // 별 2개로 클리어할 수 있는 최소시간
-    public int score; // 점수
+    public float stageTime;
+    public float threeStarTime;
+    public float twoStarTime;
+    public int score;
+}
+
+[System.Serializable]
+public class HuntStageData : BaseStageData
+{
+    public GameObject[] monsterPrefabs;
+    public int targetKillCount;
+}
+
+[System.Serializable]
+public class BossStageData : BaseStageData
+{
+    public GameObject bossPrefab;
+    public float clearTime;
+}
+
+[System.Serializable]
+public class GuardianStageData : BaseStageData
+{
+    public GameObject[] guardianPrefabs;
+    public float defenseTime;
 }
 
 public class GameManager : MonoBehaviour
 {
-    // 싱글톤 인스턴스
     private static GameManager instance;
     public static GameManager Instance { get { return instance; } }
 
-    public StageData[] stages;
+    public HuntStageData[] huntStages;
+    public BossStageData[] bossStages;
+    public GuardianStageData[] guardianStages;
 
-    // 게임 데이터 변수
+    [SerializeField] private int[] stagesCleared; // 스테이지 클리어 상태 저장 (0은 클리어하지 않음, 1은 클리어함)
     [SerializeField] private int playerID;
     [SerializeField] private int rank;
     [SerializeField] private int power;
     [SerializeField] private int maxHP;
     [SerializeField] private int currentHP;
     [SerializeField] private int gold;
-    [SerializeField] private int sumScore; // 플레이어 스코어 총합
+    [SerializeField] private int sumScore;
     [SerializeField] private float time;
-
 
     private void Awake()
     {
-        // 싱글톤 인스턴스 설정
         if (instance == null)
             instance = this;
         else
             Destroy(gameObject);
 
-        // 게임 데이터 초기 설정
         LoadGameData();
-    }
-
-    public StageData GetStageData(int stageIndex)
-    {
-        if (stageIndex >= 0 && stageIndex < stages.Length)
+        if (stagesCleared == null || stagesCleared.Length == 0)
         {
-            return stages[stageIndex];
+            stagesCleared = new int[30]; // 30개의 스테이지 클리어 상태 초기화
         }
-        return null;
     }
 
-    public void LoadGameData() // 게임 초기 데이터 로드
+    public bool IsStageCleared(int modeIndex, int stageIndex)
+    {
+        int index = GetIndexFromModeAndStage(modeIndex, stageIndex);
+        return stagesCleared[index] == 1;
+    }
+
+    public void SetStageCleared(int modeIndex, int stageIndex, bool cleared)
+    {
+        int index = GetIndexFromModeAndStage(modeIndex, stageIndex);
+        stagesCleared[index] = cleared ? 1 : 0;
+        SaveGameData();
+    }
+
+    private int GetIndexFromModeAndStage(int modeIndex, int stageIndex)
+    {
+        return modeIndex * 10 + stageIndex; // 모드별로 스테이지 인덱스를 조합
+    }
+
+    public BaseStageData GetStageData(int modeIndex, int stageIndex)
+    {
+        switch (modeIndex)
+        {
+            case 0:
+                return huntStages[stageIndex];
+            case 1:
+                return bossStages[stageIndex];
+            case 2:
+                return guardianStages[stageIndex];
+            default:
+                return null;
+        }
+    }
+
+    public void LoadGameData()
     {
         playerID = PlayerPrefs.GetInt("playerID", 1);
         rank = PlayerPrefs.GetInt("Rank", 1);
@@ -61,11 +105,12 @@ public class GameManager : MonoBehaviour
         currentHP = PlayerPrefs.GetInt("CurrentHP", 100);
         gold = PlayerPrefs.GetInt("Gold", 0);
         sumScore = PlayerPrefs.GetInt("SumScore", 0);
-
         time = PlayerPrefs.GetFloat("Time", 60.0f);
+
+        stagesCleared = PlayerPrefsX.GetIntArray("StagesCleared", new int[30]);
     }
 
-    public void SaveGameData() // 게임 데이터 저장
+    public void SaveGameData()
     {
         PlayerPrefs.SetInt("PlayerID", playerID);
         PlayerPrefs.SetInt("Rank", rank);
@@ -74,12 +119,12 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("CurrentHP", currentHP);
         PlayerPrefs.SetInt("Gold", gold);
         PlayerPrefs.SetInt("SumScore", sumScore);
-
         PlayerPrefs.SetFloat("Time", time);
+
+        PlayerPrefsX.SetIntArray("StagesCleared", stagesCleared);
         PlayerPrefs.Save();
     }
 
-    // 게임 데이터 가져오기
     public int GetPlayerID() { return playerID; }
     public int GetRank() { return rank; }
     public int GetPower() { return power; }
@@ -87,11 +132,8 @@ public class GameManager : MonoBehaviour
     public int GetCurrentHP() { return currentHP; }
     public int GetGold() { return gold; }
     public int GetSumScore() { return sumScore; }
-
     public float GetTime() { return time; }
 
-
-    // 게임 데이터 설정하기
     public void SetPlayerID(int value) { playerID = value; }
     public void SetRank(int value) { rank = value; }
     public void SetPower(int value) { power = value; }
@@ -99,6 +141,5 @@ public class GameManager : MonoBehaviour
     public void SetCurrentHP(int value) { currentHP = value; }
     public void SetGold(int value) { gold = value; }
     public void SetSumScore(int value) { sumScore = value; }
-
     public void SetTime(float value) { time = value; }
 }

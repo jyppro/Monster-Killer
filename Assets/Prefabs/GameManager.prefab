@@ -44,103 +44,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c608dcee11adbfc46837de699b7b2146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stages:
-  - stageName: HuntStage1
+  huntStages:
+  - stageTime: 60
+    threeStarTime: 30
+    twoStarTime: 20
+    score: 100
     monsterPrefabs:
     - {fileID: 100720, guid: b8b50a49e9c060c4cb5c40e6c7252b4a, type: 3}
     targetKillCount: 20
-    stageTime: 60
+  - stageTime: 60
     threeStarTime: 30
     twoStarTime: 20
-    oneStarTime: 10
-    score: 100
-  - stageName: HuntStage2
+    score: 0
     monsterPrefabs:
     - {fileID: 193776, guid: ebd7ba32832189141887e37461d9ebcb, type: 3}
-    targetKillCount: 30
-    stageTime: 60
-    threeStarTime: 30
-    twoStarTime: 20
-    oneStarTime: 10
-    score: 100
-  - stageName: HuntStage3
-    monsterPrefabs:
-    - {fileID: 168864, guid: 707a5227ac0c3644d9be1d2bfbca233e, type: 3}
-    - {fileID: 132742, guid: 36393eeb33b50c44584e7436ba75dd55, type: 3}
-    targetKillCount: 35
-    stageTime: 70
-    threeStarTime: 35
-    twoStarTime: 25
-    oneStarTime: 15
-    score: 100
-  - stageName: HuntStage4
-    monsterPrefabs:
-    - {fileID: 130964, guid: 74416203b7250864b8f77793f00c272e, type: 3}
-    targetKillCount: 40
-    stageTime: 70
-    threeStarTime: 35
-    twoStarTime: 25
-    oneStarTime: 15
-    score: 100
-  - stageName: HuntStage5
-    monsterPrefabs:
-    - {fileID: 170346, guid: 02e169f6a4d0b6744afaff651155de53, type: 3}
-    - {fileID: 174418, guid: 2a88ff1feb2252b4db76248e2951730a, type: 3}
-    targetKillCount: 50
-    stageTime: 80
-    threeStarTime: 40
-    twoStarTime: 30
-    oneStarTime: 20
-    score: 100
-  - stageName: HuntStage6
-    monsterPrefabs:
-    - {fileID: 130416, guid: 5b1efc534723ae742a665d778fb52871, type: 3}
-    targetKillCount: 55
-    stageTime: 80
-    threeStarTime: 40
-    twoStarTime: 30
-    oneStarTime: 20
-    score: 100
-  - stageName: HuntStage7
-    monsterPrefabs:
-    - {fileID: 109776, guid: 9a6f31dafc0f5584ba85107935f283ea, type: 3}
-    - {fileID: 135744, guid: 68b8d3352da4c0647937f76959d17be5, type: 3}
-    targetKillCount: 70
-    stageTime: 90
-    threeStarTime: 45
-    twoStarTime: 35
-    oneStarTime: 25
-    score: 100
-  - stageName: HuntStage8
-    monsterPrefabs:
-    - {fileID: 196076, guid: 2c97a41f0f429764d9bb3559ac9c6f81, type: 3}
-    - {fileID: 101568, guid: f0bf16dfee027174c8f18f4681e3b377, type: 3}
-    targetKillCount: 80
-    stageTime: 90
-    threeStarTime: 45
-    twoStarTime: 35
-    oneStarTime: 25
-    score: 100
-  - stageName: HuntStage9
-    monsterPrefabs:
-    - {fileID: 132738, guid: e6b7de0b1d702184ba9ee3e0bac439ec, type: 3}
-    - {fileID: 116688, guid: 55574c0f6de047f47ab5a4460dba8425, type: 3}
-    targetKillCount: 90
-    stageTime: 100
-    threeStarTime: 50
-    twoStarTime: 40
-    oneStarTime: 30
-    score: 100
-  - stageName: HuntStage10
-    monsterPrefabs:
-    - {fileID: 194904, guid: a6c11609732f52749b4f12f68d3d8667, type: 3}
-    - {fileID: 139696, guid: ec2cc785e32d1f6458a59a7107b9f6e8, type: 3}
-    targetKillCount: 100
-    stageTime: 100
-    threeStarTime: 50
-    twoStarTime: 40
-    oneStarTime: 30
-    score: 100
+    targetKillCount: 25
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    monsterPrefabs: []
+    targetKillCount: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    monsterPrefabs: []
+    targetKillCount: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    monsterPrefabs: []
+    targetKillCount: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    monsterPrefabs: []
+    targetKillCount: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    monsterPrefabs: []
+    targetKillCount: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    monsterPrefabs: []
+    targetKillCount: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    monsterPrefabs: []
+    targetKillCount: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    monsterPrefabs: []
+    targetKillCount: 0
+  bossStages: []
+  guardianStages: []
   playerID: 0
   rank: 0
   power: 0
