@@ -77,6 +77,10 @@ public class StageController : MonoBehaviour
 
             sumScore = GameManager.Instance.GetSumScore();
             sumScore += score;
+            GameManager.Instance.SetSumScore(sumScore);
+
+            // 스테이지 클리어 상태 업데이트
+            GameManager.Instance.UnlockNextStage(StageLoader.Instance.currentModeIndex, StageLoader.Instance.currentStageIndex);
 
             ClearPage.SetActive(true);
             Time.timeScale = 0.0f;

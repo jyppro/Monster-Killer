@@ -76,6 +76,15 @@ public class GameManager : MonoBehaviour
         SaveGameData();
     }
 
+    // 다음 스테이지 해제
+    public void UnlockNextStage(int modeIndex, int currentStageIndex)
+    {
+        if (currentStageIndex < 9) // 스테이지 인덱스 0~9까지
+        {
+            SetStageCleared(modeIndex, currentStageIndex + 1, true);
+        }
+    }
+
     private int GetIndexFromModeAndStage(int modeIndex, int stageIndex)
     {
         return modeIndex * 10 + stageIndex; // 모드별로 스테이지 인덱스를 조합
