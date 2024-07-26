@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b49280baed1e6d4fa6340aed0d1ea4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 20
   gravity: 0
   controller: {fileID: 8348367807032197566}
   cameraTransform: {fileID: 3691886441539812096}

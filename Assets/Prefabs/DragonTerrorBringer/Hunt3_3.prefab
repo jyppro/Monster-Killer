@@ -2928,7 +2928,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -3015,6 +3015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d49460cca2e67e741ad15764aa17fd0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMoving: 0
   minMoveDelay: 1
   maxMoveDelay: 3
 --- !u!114 &626518992424699120

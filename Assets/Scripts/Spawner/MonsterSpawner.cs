@@ -28,12 +28,10 @@ public class MonsterSpawner : MonoBehaviour
             else if (stageData is BossStageData bossStageData)
             {
                 monsterPrefabs = new GameObject[] { bossStageData.bossPrefab };
-                // Add boss specific logic
             }
             else if (stageData is GuardianStageData guardianStageData)
             {
                 monsterPrefabs = guardianStageData.guardianPrefabs;
-                // Add guardian specific logic
             }
         }
     }

@@ -1322,7 +1322,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 804060a6134c444478707906af48750f, type: 3}
   - {fileID: 8300000, guid: 49633201f9c137a46a22d01b399b938f, type: 3}
   goldReward: 10
-  stage: 0
   IncreasePower: 2
   IncreaseReward: 2
   IncreaseMonsterMaxHealth: 5
@@ -1347,7 +1346,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1434,6 +1433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d49460cca2e67e741ad15764aa17fd0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMoving: 0
   minMoveDelay: 1
   maxMoveDelay: 3
 --- !u!195 &-1915843306009134695

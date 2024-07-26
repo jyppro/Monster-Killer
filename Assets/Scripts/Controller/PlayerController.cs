@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 5f;
-    public float gravity = -9.81f;
+    public float speed = 10f;
+    public float gravity = 0f;
 
     public CharacterController controller;
     public Transform cameraTransform;
