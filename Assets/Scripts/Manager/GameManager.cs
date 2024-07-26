@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -49,6 +50,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int sumScore;
     [SerializeField] private float time;
 
+    private Dictionary<int, int> stageHighScores = new Dictionary<int, int>();
+
     private void Awake()
     {
         if (instance == null)
@@ -76,7 +79,6 @@ public class GameManager : MonoBehaviour
         SaveGameData();
     }
 
-    // 다음 스테이지 해제
     public void UnlockNextStage(int modeIndex, int currentStageIndex)
     {
         if (currentStageIndex < 9) // 스테이지 인덱스 0~9까지
@@ -105,6 +107,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public int GetHighScore(int modeIndex, int stageIndex)
+    {
+        int index = GetIndexFromModeAndStage(modeIndex, stageIndex);
+        if (stageHighScores.ContainsKey(index))
+        {
+            return stageHighScores[index];
+        }
+        return 0;
+    }
+
+    public void SetHighScore(int modeIndex, int stageIndex, int score)
+    {
+        int index = GetIndexFromModeAndStage(modeIndex, stageIndex);
+        if (stageHighScores.ContainsKey(index))
+        {
+            stageHighScores[index] = Mathf.Max(stageHighScores[index], score);
+        }
+        else
+        {
+            stageHighScores.Add(index, score);
+        }
+        SaveGameData();
+    }
+
     public void LoadGameData()
     {
         playerID = PlayerPrefs.GetInt("playerID", 1);
@@ -117,6 +143,12 @@ public class GameManager : MonoBehaviour
         time = PlayerPrefs.GetFloat("Time", 60.0f);
 
         stagesCleared = PlayerPrefsX.GetIntArray("StagesCleared", new int[30]);
+
+        // Load stage high scores
+        for (int i = 0; i < 30; i++)
+        {
+            stageHighScores[i] = PlayerPrefs.GetInt("StageHighScore" + i, 0);
+        }
     }
 
     public void SaveGameData()
@@ -131,6 +163,13 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("Time", time);
 
         PlayerPrefsX.SetIntArray("StagesCleared", stagesCleared);
+
+        // Save stage high scores
+        foreach (var kvp in stageHighScores)
+        {
+            PlayerPrefs.SetInt("StageHighScore" + kvp.Key, kvp.Value);
+        }
+
         PlayerPrefs.Save();
     }
 

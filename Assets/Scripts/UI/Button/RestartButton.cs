@@ -24,7 +24,7 @@ public class RestartButton : MonoBehaviour
         
         while(alpha.a < 1.0f)
         {
-            time += Time.deltaTime / F_time;
+            time += Time.unscaledDeltaTime / F_time; // Time.unscaledDeltaTime 사용
             alpha.a = Mathf.Lerp(0, 1, time);
             FadeOutPage.color = alpha;
             yield return null;

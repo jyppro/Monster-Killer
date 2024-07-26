@@ -38,7 +38,6 @@ public class StageController : MonoBehaviour
 
             score = stageData.score;
         }
-        
     }
 
     private void Update()
@@ -75,12 +74,20 @@ public class StageController : MonoBehaviour
             }
             DisplayScoreText();
 
-            sumScore = GameManager.Instance.GetSumScore();
-            sumScore += score;
-            GameManager.Instance.SetSumScore(sumScore);
+            int modeIndex = StageLoader.Instance.currentModeIndex;
+            int stageIndex = StageLoader.Instance.currentStageIndex;
+            int previousHighScore = GameManager.Instance.GetHighScore(modeIndex, stageIndex);
+
+            if (score > previousHighScore)
+            {
+                sumScore = GameManager.Instance.GetSumScore();
+                sumScore += (score - previousHighScore);
+                GameManager.Instance.SetSumScore(sumScore);
+                GameManager.Instance.SetHighScore(modeIndex, stageIndex, score);
+            }
 
             // 스테이지 클리어 상태 업데이트
-            GameManager.Instance.UnlockNextStage(StageLoader.Instance.currentModeIndex, StageLoader.Instance.currentStageIndex);
+            GameManager.Instance.UnlockNextStage(modeIndex, stageIndex);
 
             ClearPage.SetActive(true);
             Time.timeScale = 0.0f;
