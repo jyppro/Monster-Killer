@@ -21,7 +21,7 @@ public class HuntStageData : BaseStageData
 public class BossStageData : BaseStageData
 {
     public GameObject bossPrefab;
-    public float clearTime;
+    // public float clearTime;
 }
 
 [System.Serializable]

@@ -121,8 +121,128 @@ MonoBehaviour:
     - {fileID: 194904, guid: a6c11609732f52749b4f12f68d3d8667, type: 3}
     - {fileID: 139696, guid: ec2cc785e32d1f6458a59a7107b9f6e8, type: 3}
     targetKillCount: 100
-  bossStages: []
-  guardianStages: []
+  bossStages:
+  - stageTime: 360
+    threeStarTime: 180
+    twoStarTime: 120
+    score: 1000
+    bossPrefab: {fileID: 0}
+    clearTime: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    bossPrefab: {fileID: 0}
+    clearTime: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    bossPrefab: {fileID: 0}
+    clearTime: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    bossPrefab: {fileID: 0}
+    clearTime: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    bossPrefab: {fileID: 0}
+    clearTime: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    bossPrefab: {fileID: 0}
+    clearTime: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    bossPrefab: {fileID: 0}
+    clearTime: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    bossPrefab: {fileID: 0}
+    clearTime: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    bossPrefab: {fileID: 0}
+    clearTime: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    bossPrefab: {fileID: 0}
+    clearTime: 0
+  guardianStages:
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    guardianPrefabs: []
+    defenseTime: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    guardianPrefabs: []
+    defenseTime: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    guardianPrefabs: []
+    defenseTime: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    guardianPrefabs: []
+    defenseTime: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    guardianPrefabs: []
+    defenseTime: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    guardianPrefabs: []
+    defenseTime: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    guardianPrefabs: []
+    defenseTime: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    guardianPrefabs: []
+    defenseTime: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    guardianPrefabs: []
+    defenseTime: 0
+  - stageTime: 0
+    threeStarTime: 0
+    twoStarTime: 0
+    score: 0
+    guardianPrefabs: []
+    defenseTime: 0
   stagesCleared: 
   playerID: 0
   rank: 0
