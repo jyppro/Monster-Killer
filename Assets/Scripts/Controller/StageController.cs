@@ -38,6 +38,8 @@ public class StageController : MonoBehaviour
 
             score = stageData.score;
         }
+
+        ClearPage.SetActive(false);
     }
 
     private void Update()

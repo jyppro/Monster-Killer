@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-
 public class MonsterSpawner : MonoBehaviour
 {
     public Transform[] spawnPoints;
@@ -13,6 +12,7 @@ public class MonsterSpawner : MonoBehaviour
     private int currentMonsterCount = 0;
     public int targetKillCount = 0;
     public int currentKillCount = 0;
+    private bool bossSpawned = false; // 보스가 소환되었는지 여부를 추적
 
     void Start()
     {
@@ -28,6 +28,8 @@ public class MonsterSpawner : MonoBehaviour
             else if (stageData is BossStageData bossStageData)
             {
                 monsterPrefabs = new GameObject[] { bossStageData.bossPrefab };
+                targetKillCount = bossStageData.targetKillCount;
+                SpawnBoss(); // 보스 스테이지일 경우 보스를 소환
             }
             else if (stageData is GuardianStageData guardianStageData)
             {
@@ -51,6 +53,17 @@ public class MonsterSpawner : MonoBehaviour
                 }
             }
             yield return new WaitForSeconds(spawnInterval);
+        }
+    }
+
+    public void SpawnBoss()
+    {
+        if (!bossSpawned && monsterPrefabs.Length > 0)
+        {
+            Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            Instantiate(monsterPrefabs[0], spawnPoint.position, spawnPoint.rotation);
+            bossSpawned = true; // 보스가 소환되었음을 기록
+            currentMonsterCount++; // 현재 몬스터 수를 증가
         }
     }
 

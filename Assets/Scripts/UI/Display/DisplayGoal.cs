@@ -31,7 +31,6 @@ public class DisplayGoal : MonoBehaviour
         }
 
         spawner = FindObjectOfType<MonsterSpawner>();
-        ClearPage.SetActive(false);
 
         if(spawner != null)
         {

@@ -126,62 +126,52 @@ MonoBehaviour:
     threeStarTime: 180
     twoStarTime: 120
     score: 1000
-    bossPrefab: {fileID: 0}
-    clearTime: 0
+    bossPrefab: {fileID: 460098901970961165, guid: b6d4775bc5afaf6489f89b50b43958f3, type: 3}
   - stageTime: 0
     threeStarTime: 0
     twoStarTime: 0
     score: 0
     bossPrefab: {fileID: 0}
-    clearTime: 0
   - stageTime: 0
     threeStarTime: 0
     twoStarTime: 0
     score: 0
     bossPrefab: {fileID: 0}
-    clearTime: 0
   - stageTime: 0
     threeStarTime: 0
     twoStarTime: 0
     score: 0
     bossPrefab: {fileID: 0}
-    clearTime: 0
   - stageTime: 0
     threeStarTime: 0
     twoStarTime: 0
     score: 0
     bossPrefab: {fileID: 0}
-    clearTime: 0
   - stageTime: 0
     threeStarTime: 0
     twoStarTime: 0
     score: 0
     bossPrefab: {fileID: 0}
-    clearTime: 0
   - stageTime: 0
     threeStarTime: 0
     twoStarTime: 0
     score: 0
     bossPrefab: {fileID: 0}
-    clearTime: 0
   - stageTime: 0
     threeStarTime: 0
     twoStarTime: 0
     score: 0
     bossPrefab: {fileID: 0}
-    clearTime: 0
   - stageTime: 0
     threeStarTime: 0
     twoStarTime: 0
     score: 0
     bossPrefab: {fileID: 0}
-    clearTime: 0
   - stageTime: 0
     threeStarTime: 0
     twoStarTime: 0
     score: 0
     bossPrefab: {fileID: 0}
-    clearTime: 0
   guardianStages:
   - stageTime: 0
     threeStarTime: 0
