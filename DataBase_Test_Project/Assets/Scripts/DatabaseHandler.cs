@@ -1,3 +1,7 @@
+/*
+게임내에서 버튼, 파이어베이스 데이터베이스 연결
+*/
+
 using UnityEngine;
 using UnityEngine.UI;
 using FirebaseWebGL.Scripts.FirebaseBridge;

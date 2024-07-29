@@ -1,3 +1,6 @@
+/*
+파이어베이스 데이터베이스의 자바스크립트 라이블러리와 연결
+*/
 using System.Runtime.InteropServices;
 
 namespace FirebaseWebGL.Scripts.FirebaseBridge

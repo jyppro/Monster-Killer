@@ -1,3 +1,7 @@
+/*
+실제적으로 파이어베이스와 통신
+*/
+
 mergeInto(LibraryManager.library, {
 
     PostJSON: function(path, value, objectName, callback, fallback) {
