@@ -7,7 +7,6 @@ public class RestartButton : MonoBehaviour
 {
     public Image FadeOutPage;
     public string sceneToLoad; // 인스펙터에서 설정할 씬 이름
-    float time = 0.0f;
     float F_time = 1.0f;
 
     private void Start()
@@ -19,10 +18,12 @@ public class RestartButton : MonoBehaviour
     private void PauseExit() { Time.timeScale = 1.0f; }
     IEnumerator FadeOut()
     {
+        float time = 0.0f;
+        
         FadeOutPage.gameObject.SetActive(true);
         Color alpha = FadeOutPage.color;
         
-        while(alpha.a < 1.0f)
+        while(alpha.a < 1)
         {
             time += Time.unscaledDeltaTime / F_time; // Time.unscaledDeltaTime 사용
             alpha.a = Mathf.Lerp(0, 1, time);

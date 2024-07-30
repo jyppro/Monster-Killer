@@ -44,17 +44,19 @@ public class WeaponController : MonoBehaviour
         if (!collision.gameObject.CompareTag("terrain"))
         {
             if (collision.gameObject.CompareTag("Head")) //몬스터의 각 파츠별 충돌 데미지
-            { PartsDamage += Random.Range(30,50); }
+            { PartsDamage += Random.Range(30, 50); }
             else if (collision.gameObject.CompareTag("L_Leg"))
-            { PartsDamage += Random.Range(25,40); }
+            { PartsDamage += Random.Range(25, 40); }
             else if (collision.gameObject.CompareTag("R_Leg"))
-            { PartsDamage += Random.Range(25,40); }
+            { PartsDamage += Random.Range(25, 40); }
             else if (collision.gameObject.CompareTag("Body"))
-            { PartsDamage += Random.Range(20,35); }
+            { PartsDamage += Random.Range(20, 35); }
             else if (collision.gameObject.CompareTag("Tail"))
-            { PartsDamage += Random.Range(10,50); }
+            { PartsDamage += Random.Range(10, 50); }
             else if (collision.gameObject.CompareTag("Wing"))
-            { PartsDamage += Random.Range(40,60); }
+            { PartsDamage += Random.Range(40, 60); }
+            else if (collision.gameObject.CompareTag("Neck"))
+            { PartsDamage += Random.Range(55, 60); }
 
             damage += currentDamage; // 강화 데미지 합산
             damage += PartsDamage; // 파츠 별 데미지 합산

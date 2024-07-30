@@ -33,10 +33,10 @@ public class StageButton : MonoBehaviour
         FadeOutPage.gameObject.SetActive(true);
         Color alpha = FadeOutPage.color;
 
-        float time = 0f;
-        float fadeTime = 1f;
+        float time = 0.0f;
+        float fadeTime = 1.0f;
 
-        while (alpha.a < 1f)
+        while (alpha.a < 1.0f)
         {
             time += Time.deltaTime / fadeTime;
             alpha.a = Mathf.Lerp(0, 1, time);

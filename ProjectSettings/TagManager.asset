@@ -15,6 +15,7 @@ TagManager:
   - Body
   - Tail
   - Wing
+  - Neck
   layers:
   - Default
   - TransparentFX
