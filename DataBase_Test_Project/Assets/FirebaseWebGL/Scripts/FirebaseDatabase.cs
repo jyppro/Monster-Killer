@@ -8,6 +8,12 @@ namespace FirebaseWebGL.Scripts.FirebaseBridge
     public static class FirebaseDatabase
     {
         [DllImport("__Internal")]
+        public static extern void SaveJSON(int playerID, int rank, int power, int gold, float time, string objectName, string callback, string fallback);
+
+        [DllImport("__Internal")]
+        public static extern void LoadJSON(int playerID, string path, string objectName, string callback, string fallback);
+
+        [DllImport("__Internal")]
         public static extern void PostJSON(string path, string value, string objectName, string callback, string fallback);
 
         [DllImport("__Internal")]

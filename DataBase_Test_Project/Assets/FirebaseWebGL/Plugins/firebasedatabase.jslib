@@ -4,6 +4,70 @@
 
 mergeInto(LibraryManager.library, {
 
+    SaveJSON: function(playerID, rank, power, gold, time, objectName, callback, fallback) {
+        //UTF8ToString
+        var parsedObjectName = Pointer_stringify(objectName);
+        var parsedCallback = Pointer_stringify(callback);
+        var parsedFallback = Pointer_stringify(fallback);
+
+        var data = {
+            playerID: playerID,
+            rank: rank,
+            power: power,
+            gold: gold,
+            time: time
+        };
+
+        var parsedPath = 'players/' + playerID;
+        var parsedValue = JSON.stringify(data);
+
+        try {
+
+            firebase.database().ref(parsedPath).set(data).then(function() {
+                window.unityInstance.SendMessage(parsedObjectName, parsedCallback, "Success: " + parsedValue + " was saveed to " + parsedPath);
+            }).catch(function(error){
+                window.unityInstance.SendMessage(parsedObjectName, parsedFallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
+            });
+
+        } catch (error) {
+            window.unityInstance.SendMessage(parsedObjectName, parsedFallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
+        }
+    },
+
+    LoadJSON: function(playerID, path, objectName, callback, fallback) {
+        //UTF8ToString
+        var parsedPath = Pointer_stringify(path) + '/' + playerID;
+        var parsedObjectName = Pointer_stringify(objectName);
+        var parsedCallback = Pointer_stringify(callback);
+        var parsedFallback = Pointer_stringify(fallback);
+
+        try {
+            firebase.database().ref(parsedPath)
+            .once('value')
+            .then(function(snapshot) {
+                var playerID = snapshot.child("playerID").val();
+                var rank = snapshot.child("rank").val();
+                var power = snapshot.child("power").val();
+                var gold = snapshot.child("gold").val();
+                var time = snapshot.child("time").val();
+
+                var data = {
+                    playerID: playerID,
+                    rank: rank,
+                    power: power,
+                    gold: gold,
+                    time: time
+                };
+
+                window.unityInstance.SendMessage(parsedObjectName, parsedCallback, JSON.stringify(data));
+            }).catch(function(error){
+                window.unityInstance.SendMessage(parsedObjectName, parsedFallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
+            });
+        } catch (error) {
+            window.unityInstance.SendMessage(parsedObjectName, parsedFallback, JSON.stringify(error, Object.getOwnPropertyNames(error)));
+        }
+    },
+    
     PostJSON: function(path, value, objectName, callback, fallback) {
         var parsedPath = Pointer_stringify(path);
         var parsedValue = Pointer_stringify(value);
@@ -13,7 +77,7 @@ mergeInto(LibraryManager.library, {
 
         try {
 
-            firebase.database().ref(parsedPath).set(parsedValue).then(function(unused) {
+            firebase.database().ref(parsedPath).set(parsedValue).then(function() {
                 window.unityInstance.SendMessage(parsedObjectName, parsedCallback, "Success: " + parsedValue + " was posted to " + parsedPath);
             });
 
