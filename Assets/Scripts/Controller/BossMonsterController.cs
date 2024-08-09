@@ -11,8 +11,10 @@ public class BossMonsterController : MonoBehaviour
     [SerializeField] private AudioClip[] Clips; // 사용할 오디오 클립의 배열 <0 : 소환, 1 : 공격, 2 : 피격, 3 : 사망>
     [SerializeField] private int MonsterMaxHealth = 1000; // 보스 최대 체력
     [SerializeField] private int MonsterCurrentHealth = 1000; // 보스 현재 체력
-    [SerializeField] private int MonsterPower = 50; // 보스 공격력
     [SerializeField] private int attackInterval = 10; // 공격 간격
+    [SerializeField] private float attackRange = 2.0f; // 공격 범위
+    [SerializeField] public int MonsterPower = 50; // 보스 공격력
+    [SerializeField] private LayerMask playerLayer; // 플레이어가 있는 레이어
     private AudioSource MonsterAudio; // 보스 사운드
     private Animator animator; // 애니메이터
     private Canvas canvas; // 캔버스
@@ -49,6 +51,18 @@ public class BossMonsterController : MonoBehaviour
             animator.SetTrigger("Attack");
             MonsterAudio.clip = Clips[1]; // 몬스터 공격 효과음
             MonsterAudio.Play();
+
+            // 공격 판정 범위 생성
+            // Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange, playerLayer);
+            // foreach (var hitCollider in hitColliders)
+            // {
+            //     // PlayerHP playerHP = hitCollider.GetComponent<PlayerHP>();
+            //     if (playerHP != null)
+            //     {
+            //         playerHP.TakeDamage_P(MonsterPower);
+            //     }
+            // }
+
             // ApplyDamageToPlayer(MonsterPower);
             playerHP.TakeDamage_P(MonsterPower);
         }

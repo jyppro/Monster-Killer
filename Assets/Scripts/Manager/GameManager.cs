@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         LoadGameData();
+        
         if (stagesCleared == null || stagesCleared.Length == 0)
         {
             stagesCleared = new int[30]; // 30개의 스테이지 클리어 상태 초기화
