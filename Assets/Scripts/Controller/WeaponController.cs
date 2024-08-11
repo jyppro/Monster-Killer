@@ -63,6 +63,7 @@ public class WeaponController : MonoBehaviour
 
             MonsterController monsterController = collision.gameObject.transform.root.GetComponent<MonsterController>();
             HuntMonsterController huntMonsterController = collision.gameObject.transform.root.GetComponent<HuntMonsterController>();
+            DefenseMonsterController defenseMonsterController = collision.gameObject.transform.root.GetComponent<DefenseMonsterController>();
             if(monsterController)
             {
                 monsterController.TakeDamage_M(damage);
@@ -73,6 +74,12 @@ public class WeaponController : MonoBehaviour
                 huntMonsterController.TakeDamage_M(damage);
                 huntMonsterController.ShowDamageText(damage, collision.GetContact(0).point);
             }
+            else if(defenseMonsterController)
+            {
+                defenseMonsterController.TakeDamage_M(damage);
+                defenseMonsterController.ShowDamageText(damage, collision.GetContact(0).point);
+            }
+            
             
             Destroy(gameObject, 0.5f);
         }

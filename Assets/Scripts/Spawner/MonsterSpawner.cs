@@ -10,8 +10,8 @@ public class MonsterSpawner : MonoBehaviour
     private GameObject[] monsterPrefabs;
     private int maxMonster = 20;
     private int currentMonsterCount = 0;
-    public int targetKillCount = 0;
-    public int currentKillCount = 0;
+    public int targetKillCount = 0; // 목표 킬 카운트
+    public int currentKillCount = 0; // 현재 킬 카운트
     private bool bossSpawned = false; // 보스가 소환되었는지 여부를 추적
 
     void Start()
@@ -34,6 +34,8 @@ public class MonsterSpawner : MonoBehaviour
             else if (stageData is GuardianStageData guardianStageData)
             {
                 monsterPrefabs = guardianStageData.guardianPrefabs;
+                // defenseTime = guardianStageData.defenseTime; // 가디언 모드의 제한 시간은 주석 처리
+                StartCoroutine(SpawnMonsters());
             }
         }
     }
@@ -72,7 +74,8 @@ public class MonsterSpawner : MonoBehaviour
         currentMonsterCount--;
         currentKillCount++;
 
-        if (currentKillCount >= targetKillCount)
+        // targetKillCount가 0일 때에는 클리어 페이지를 표시하지 않음
+        if (targetKillCount > 0 && currentKillCount >= targetKillCount)
         {
             StageController.Instance.ShowClearPage(); // 인스턴스를 통해 메서드 호출
         }

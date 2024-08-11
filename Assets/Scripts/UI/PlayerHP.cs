@@ -16,17 +16,21 @@ public class PlayerHP : MonoBehaviour
         playerCurrentHealth = GameManager.Instance.GetCurrentHP(); // GameManager에서 현재 체력값 가져오기
         playerMaxHealth = GameManager.Instance.GetMaxHP(); // GameManager에서 최대 체력값 가져오기
 
-        if(playerMaxHealth != playerCurrentHealth)
+        BaseStageData stageData = StageLoader.Instance.LoadStageData();
+        if (stageData is GuardianStageData guardianStageData)
+        {
+            IncreaseHealth(10);
+        }
+        if (playerMaxHealth != playerCurrentHealth)
         {
             playerCurrentHealth = playerMaxHealth;
         }
-        
+
         UpdateHealthSlider();
     }
 
     public void UpdateHealthSlider() // 체력바 업데이트
     {
-        // 정수 나눗셈 대신 부동 소수점 나눗셈으로 변경
         float decreaseHp = (float)playerCurrentHealth / playerMaxHealth;
         PlayerhealthSlider.value = decreaseHp; // 체력바의 값을 현재 체력 비율로 설정
         PlayerHPText.text = $"{playerCurrentHealth} / {playerMaxHealth}";
@@ -40,10 +44,15 @@ public class PlayerHP : MonoBehaviour
         if (playerCurrentHealth <= 0)
         {
             GameOver.SetActive(true);
-            // Cursor.lockState = CursorLockMode.None;
-            // Cursor.visible = true;
-
             Time.timeScale = 0.0f;
         }
+    }
+
+    // 체력 증가 메서드 추가
+    public void IncreaseHealth(int multiplier)
+    {
+        playerMaxHealth *= multiplier;
+        playerCurrentHealth *= multiplier;
+        UpdateHealthSlider();
     }
 }
