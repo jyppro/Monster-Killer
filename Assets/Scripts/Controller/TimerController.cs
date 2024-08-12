@@ -7,28 +7,12 @@ public class TimerController : MonoBehaviour
     public float currentTime;
     public bool isTimerRunning = false;
     [SerializeField] private TextMeshProUGUI TimeText;
-    GameObject GameOver;
+    private GameObject GameOver;
 
     private void Start()
     {
-        maxTime = GameManager.Instance.GetTime();
-        Debug.Log("maxTime from GameManager: " + maxTime);
-        currentTime = maxTime;
-        isTimerRunning = true;
-        UpdateTimerText();
-
-        GameOver = GameObject.Find("GameOverPage");
-        if (GameOver)
-        {
-            GameOver.SetActive(false);
-        }
-        else
-        {
-            Debug.LogError("GameOverPage not found!");
-            return;
-        }
+        InitializeTimer();
     }
-
 
     private void Update()
     {
@@ -43,14 +27,51 @@ public class TimerController : MonoBehaviour
         }
     }
 
-    public void StartTimer() { isTimerRunning = true; }
+    public void InitializeTimer()
+    {
+        if (StageLoader.Instance.currentModeIndex == 2) // Guardian 모드인 경우
+        {
+            int stageIndex = StageLoader.Instance.currentStageIndex;
+            GuardianStageData guardianStageData = GameManager.Instance.guardianStages[stageIndex];
+            maxTime = guardianStageData.defenseTime;
+        }
+        else
+        {
+            maxTime = GameManager.Instance.GetTime(); // 기본 시간 사용
+        }
+
+        currentTime = maxTime;
+        isTimerRunning = true;
+        UpdateTimerText();
+
+        GameOver = GameObject.Find("GameOverPage");
+        if (GameOver)
+        {
+            GameOver.SetActive(false);
+        }
+        else
+        {
+            return;
+        }
+    }
+
+    public void StartTimer()
+    {
+        isTimerRunning = true;
+    }
+
     public void StopTimer()
     {
         isTimerRunning = false;
-        GameOver.SetActive(true);
-        // Cursor.lockState = CursorLockMode.None;
-        // Cursor.visible = true;
 
+        if (StageLoader.Instance.currentModeIndex == 2) // Guardian 모드인 경우
+        {
+            StageController.Instance.ShowClearPage();
+        }
+        else
+        {
+            GameOver.SetActive(true);
+        }
         Time.timeScale = 0.0f;
     }
 

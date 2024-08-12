@@ -44,6 +44,11 @@ public class StageController : MonoBehaviour
 
     private void Update()
     {
+        if (StageLoader.Instance.currentModeIndex == 2) // Guardian 모드인 경우
+        {
+            return;
+        }
+
         CurrentStageTime -= Time.deltaTime;
     }
 

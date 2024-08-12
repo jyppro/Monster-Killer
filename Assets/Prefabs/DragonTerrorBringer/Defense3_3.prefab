@@ -2838,7 +2838,8 @@ GameObject:
   - component: {fileID: 9569754}
   - component: {fileID: -6034000777451176529}
   - component: {fileID: 5080786688364248216}
-  - component: {fileID: 626518992424699120}
+  - component: {fileID: 9148387974550523625}
+  - component: {fileID: 6560309547568731072}
   m_Layer: 0
   m_Name: Defense3_3
   m_TagString: Monster
@@ -2892,7 +2893,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196076}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -334000983
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -3002,7 +3003,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &626518992424699120
+--- !u!114 &9148387974550523625
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3011,7 +3012,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 196076}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b35ea89da68b3d245a83cd4cef501544, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a287c6190ed7f84680df34ec55949f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targets: []
+  moveSpeed: 10
+  stopDistance: 10
+--- !u!114 &6560309547568731072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7391b5bd55a5e24f85aee4f62b918fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 0}
@@ -3022,9 +3038,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 13af2eac59c0f8347abefca083d3c785, type: 3}
   - {fileID: 8300000, guid: b9618b7020142fb45984dc7214513b11, type: 3}
   - {fileID: 8300000, guid: 1d38a58a3709c5c45a53a41932a81c95, type: 3}
-  MonsterMaxHealth: 1000
-  MonsterCurrentHealth: 1000
-  MonsterPower: 100
+  MonsterMaxHealth: 100
+  MonsterCurrentHealth: 100
+  MonsterPower: 5
+  target: {fileID: 0}
+  attackDistance: 5
+  attackCooldown: 5
 --- !u!1 &198178
 GameObject:
   m_ObjectHideFlags: 0

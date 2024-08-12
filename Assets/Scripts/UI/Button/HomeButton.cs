@@ -16,6 +16,8 @@ public class HomeButton : MonoBehaviour
     }
     private void ReturnHome()
     {
+        // 스테이지 인덱스와 모드 인덱스 설정
+        StageLoader.Instance.SetCurrentStage(0, 0);
         GameManager.Instance.SaveGameData();
         StartCoroutine(FadeOut());
     }

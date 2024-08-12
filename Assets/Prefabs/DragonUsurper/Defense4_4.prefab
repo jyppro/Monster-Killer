@@ -1268,7 +1268,8 @@ GameObject:
   - component: {fileID: 9586004}
   - component: {fileID: -5171323508000418674}
   - component: {fileID: -5635513308934915010}
-  - component: {fileID: -3086665705392601509}
+  - component: {fileID: -1971994149814137180}
+  - component: {fileID: 6611933603612363557}
   m_Layer: 0
   m_Name: Defense4_4
   m_TagString: Monster
@@ -1418,7 +1419,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139696}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -334000983
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -1432,7 +1433,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-3086665705392601509
+--- !u!114 &-1971994149814137180
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1441,7 +1442,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 139696}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b35ea89da68b3d245a83cd4cef501544, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a287c6190ed7f84680df34ec55949f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targets: []
+  moveSpeed: 10
+  stopDistance: 10
+--- !u!114 &6611933603612363557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7391b5bd55a5e24f85aee4f62b918fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 0}
@@ -1452,9 +1468,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 301a462b2ced13f44afb61acd6364a0d, type: 3}
   - {fileID: 8300000, guid: a577c2325268be54488591a486be171a, type: 3}
   - {fileID: 8300000, guid: 49633201f9c137a46a22d01b399b938f, type: 3}
-  MonsterMaxHealth: 3000
-  MonsterCurrentHealth: 3000
-  MonsterPower: 300
+  MonsterMaxHealth: 100
+  MonsterCurrentHealth: 100
+  MonsterPower: 5
+  target: {fileID: 0}
+  attackDistance: 5
+  attackCooldown: 5
 --- !u!1 &139704
 GameObject:
   m_ObjectHideFlags: 0

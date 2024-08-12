@@ -49,7 +49,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int gold;
     [SerializeField] private int sumScore;
     [SerializeField] private float time;
-
     private Dictionary<int, int> stageHighScores = new Dictionary<int, int>();
 
     private void Awake()

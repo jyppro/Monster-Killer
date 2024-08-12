@@ -6461,14 +6461,6 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 6721602027593258867, guid: 12e4722473d60e24086e473637584d6b, type: 3}
-      propertyPath: bossStages.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6721602027593258867, guid: 12e4722473d60e24086e473637584d6b, type: 3}
-      propertyPath: guardianStages.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6721602027593258867, guid: 12e4722473d60e24086e473637584d6b, type: 3}
       propertyPath: stages.Array.data[0].maxMonster
       value: 20
       objectReference: {fileID: 0}

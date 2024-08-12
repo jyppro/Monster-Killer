@@ -136,18 +136,32 @@ public class MonsterController : MonoBehaviour
 
     private void SpawnNextMonster() // 다음 몬스터를 소환하는 함수
     {
-        if (nextMonsterPrefab != null) // 다음 몬스터 프리팹이 세팅되어 있다면
+        // 씬에 현재 존재하는 몬스터의 수를 카운트
+        MonsterController[] existingMonsters = FindObjectsOfType<MonsterController>();
+        int monsterCount = existingMonsters.Length;
+
+        // 몬스터가 1마리 이하로 남아있으면 새로운 몬스터를 소환
+        if (monsterCount <= 1)
         {
-            ResetMonster(); // 넘겨줄 몬스터 데이터 세팅
+            if (nextMonsterPrefab != null) // 다음 몬스터 프리팹이 세팅되어 있다면
+            {
+                ResetMonster(); // 넘겨줄 몬스터 데이터 세팅
+            }
         }
 
-         // 이전 몬스터의 데미지 텍스트 UI 오브젝트 제거
-        foreach (GameObject damageTextObject in damageTextObjects) { Destroy(damageTextObject); }
+        // 이전 몬스터의 데미지 텍스트 UI 오브젝트 제거
+        foreach (GameObject damageTextObject in damageTextObjects)
+        {
+            Destroy(damageTextObject);
+        }
         damageTextObjects.Clear(); // 리스트 초기화
         StageBar.value += 0.33f;
         GameManager.Instance.SaveGameData();
 
-        if(StageBarCopy.value >= 1.0f) { StageBarCopy.value = 0.0f; }
+        if (StageBarCopy.value >= 1.0f)
+        {
+            StageBarCopy.value = 0.0f;
+        }
         Destroy(gameObject);
     }
 

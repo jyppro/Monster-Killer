@@ -34,7 +34,6 @@ public class MonsterSpawner : MonoBehaviour
             else if (stageData is GuardianStageData guardianStageData)
             {
                 monsterPrefabs = guardianStageData.guardianPrefabs;
-                // defenseTime = guardianStageData.defenseTime; // 가디언 모드의 제한 시간은 주석 처리
                 StartCoroutine(SpawnMonsters());
             }
         }

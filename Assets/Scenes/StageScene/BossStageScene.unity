@@ -4500,6 +4500,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossMap
       objectReference: {fileID: 0}
+    - target: {fileID: 7084995906780761154, guid: 1a38e2f397aa80f45828ad3d97ff96cf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1597,6 +1597,8 @@ GameObject:
   - component: {fileID: 5814283861075591898}
   - component: {fileID: 8281425600775690067}
   - component: {fileID: -5413503622121010105}
+  - component: {fileID: 7436238530254714938}
+  - component: {fileID: -7512302359322475222}
   m_Layer: 0
   m_Name: Defense2_3
   m_TagString: Monster
@@ -1746,7 +1748,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174418}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -334000983
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -1783,6 +1785,47 @@ MonoBehaviour:
   MonsterMaxHealth: 400
   MonsterCurrentHealth: 400
   MonsterPower: 40
+--- !u!114 &7436238530254714938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a287c6190ed7f84680df34ec55949f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targets: []
+  moveSpeed: 10
+  stopDistance: 10
+--- !u!114 &-7512302359322475222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7391b5bd55a5e24f85aee4f62b918fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 0}
+  textHP: {fileID: 0}
+  damageTextPrefab: {fileID: 3433391998738348564, guid: e065d6633001a4e4b82dd454d28f03a9, type: 3}
+  Clips:
+  - {fileID: 8300000, guid: defe1ee8e7a51d343b29bb2e1ec2761b, type: 3}
+  - {fileID: 8300000, guid: 119a78ae6bd6e3043b1b1cec83b5f90d, type: 3}
+  - {fileID: 8300000, guid: 0360ca2a1e60bae4e97993ba5ae13018, type: 3}
+  - {fileID: 8300000, guid: 8abaebcc3dd4f7c48acd0c806ba80fb2, type: 3}
+  MonsterMaxHealth: 100
+  MonsterCurrentHealth: 100
+  MonsterPower: 5
+  target: {fileID: 0}
+  attackDistance: 5
+  attackCooldown: 5
 --- !u!1 &176574
 GameObject:
   m_ObjectHideFlags: 0

@@ -184,76 +184,81 @@ MonoBehaviour:
     targetKillCount: 0
   guardianStages:
   - stageTime: 300
-    threeStarTime: 180
-    twoStarTime: 120
+    threeStarTime: 0
+    twoStarTime: 0
     score: 500
     guardianPrefabs:
     - {fileID: 100720, guid: 8ea0bacdbba91f64183131a39ab8cb20, type: 3}
     defenseTime: 300
-    baseHP: 1000
-  - stageTime: 0
+  - stageTime: 300
     threeStarTime: 0
     twoStarTime: 0
-    score: 0
-    guardianPrefabs: []
-    defenseTime: 0
-    baseHP: 0
-  - stageTime: 0
+    score: 500
+    guardianPrefabs:
+    - {fileID: 193776, guid: d44891f6328c8ee4e967df57718e092f, type: 3}
+    defenseTime: 300
+  - stageTime: 300
     threeStarTime: 0
     twoStarTime: 0
-    score: 0
-    guardianPrefabs: []
-    defenseTime: 0
-    baseHP: 0
-  - stageTime: 0
+    score: 500
+    guardianPrefabs:
+    - {fileID: 168864, guid: b3b9fef8305c6b54392a6d7215fbcc52, type: 3}
+    - {fileID: 132742, guid: 8b95ec4e2586d0d4fb7f4efcce746970, type: 3}
+    defenseTime: 300
+  - stageTime: 300
     threeStarTime: 0
     twoStarTime: 0
-    score: 0
-    guardianPrefabs: []
-    defenseTime: 0
-    baseHP: 0
-  - stageTime: 0
+    score: 500
+    guardianPrefabs:
+    - {fileID: 130964, guid: abd5459ebbcd9fc45af5fb1b0e06c34c, type: 3}
+    defenseTime: 300
+  - stageTime: 300
     threeStarTime: 0
     twoStarTime: 0
-    score: 0
-    guardianPrefabs: []
-    defenseTime: 0
-    baseHP: 0
-  - stageTime: 0
+    score: 500
+    guardianPrefabs:
+    - {fileID: 170346, guid: 73421bcd03536c341829b2e2ae712280, type: 3}
+    defenseTime: 300
+  - stageTime: 360
     threeStarTime: 0
     twoStarTime: 0
-    score: 0
-    guardianPrefabs: []
-    defenseTime: 0
-    baseHP: 0
-  - stageTime: 0
+    score: 500
+    guardianPrefabs:
+    - {fileID: 174418, guid: ecd9d190fbf52e946ad39de1a5116388, type: 3}
+    - {fileID: 130416, guid: e68311099af4c9f418d8f46f362a36e6, type: 3}
+    defenseTime: 360
+  - stageTime: 360
     threeStarTime: 0
     twoStarTime: 0
-    score: 0
-    guardianPrefabs: []
-    defenseTime: 0
-    baseHP: 0
-  - stageTime: 0
+    score: 500
+    guardianPrefabs:
+    - {fileID: 109776, guid: ccaa1f170950f894db2088b669a269da, type: 3}
+    - {fileID: 135744, guid: e2110b77932aa3d4fab61bd9603844a1, type: 3}
+    defenseTime: 360
+  - stageTime: 360
     threeStarTime: 0
     twoStarTime: 0
-    score: 0
-    guardianPrefabs: []
-    defenseTime: 0
-    baseHP: 0
-  - stageTime: 0
+    score: 500
+    guardianPrefabs:
+    - {fileID: 196076, guid: 042e2b2b63a51c54ea0759a739adbf68, type: 3}
+    - {fileID: 101568, guid: 0aeaaccc409bdf54b876eafd80126f91, type: 3}
+    defenseTime: 360
+  - stageTime: 360
     threeStarTime: 0
     twoStarTime: 0
-    score: 0
-    guardianPrefabs: []
-    defenseTime: 0
-    baseHP: 0
-  - stageTime: 0
+    score: 500
+    guardianPrefabs:
+    - {fileID: 132738, guid: 007cec06b6edaa247a15c889457283b0, type: 3}
+    - {fileID: 116688, guid: 5c88e3583eacec54fa8a9b1503659f81, type: 3}
+    defenseTime: 360
+  - stageTime: 360
     threeStarTime: 0
     twoStarTime: 0
-    score: 0
-    guardianPrefabs: []
-    defenseTime: 0
-    baseHP: 0
+    score: 500
+    guardianPrefabs:
+    - {fileID: 194904, guid: 07bc7e7b2b6070347bcd9363448de227, type: 3}
+    - {fileID: 139696, guid: 2ae0768250e03e74989d42023df8603a, type: 3}
+    defenseTime: 360
   stagesCleared: 
   playerID: 0
   rank: 0

@@ -1331,7 +1331,7 @@ MonoBehaviour:
   StageBar: {fileID: 0}
   textHP: {fileID: 0}
   damageTextPrefab: {fileID: 0}
-  nextMonsterPrefab: {fileID: 0}
+  nextMonsterPrefab: {fileID: 100720, guid: b2cf14a48e4ac874b84864c99f1b0c7c, type: 3}
   Clips:
   - {fileID: 8300000, guid: dd68c6f0dfd306c489dc7d2919167e42, type: 3}
   - {fileID: 8300000, guid: 301a462b2ced13f44afb61acd6364a0d, type: 3}
