@@ -13,6 +13,7 @@ public class StageButton : MonoBehaviour
     public Sprite unlockedSprite;
     public Sprite lockedSprite;
     public TextMeshProUGUI buttonText;
+    public float F_time = 1.0f;
 
     private void Start()
     {
@@ -30,15 +31,14 @@ public class StageButton : MonoBehaviour
 
     private IEnumerator FadeOutAndLoad()
     {
+        float time = 0.0f;
+
         FadeOutPage.gameObject.SetActive(true);
         Color alpha = FadeOutPage.color;
 
-        float time = 0.0f;
-        float fadeTime = 1.0f;
-
-        while (alpha.a < 1.0f)
+        while (alpha.a < 1)
         {
-            time += Time.deltaTime / fadeTime;
+            time += Time.deltaTime / F_time;
             alpha.a = Mathf.Lerp(0, 1, time);
             FadeOutPage.color = alpha;
             yield return null;
@@ -46,8 +46,6 @@ public class StageButton : MonoBehaviour
 
         // 스테이지 인덱스와 모드 인덱스 설정
         StageLoader.Instance.SetCurrentStage(modeIndex, stageIndex);
-        
-        // Get the appropriate scene name based on the mode
         string sceneName = StageLoader.Instance.GetCurrentSceneName();
         SceneManager.LoadScene(sceneName); // 해당 씬으로 이동
     }

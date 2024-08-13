@@ -8,9 +8,9 @@ public class PlayerHP : MonoBehaviour
     private Slider PlayerhealthSlider; // 체력바 UI
     public int playerMaxHealth; // 플레이어 최대 체력
     public int playerCurrentHealth; // 플레이어 현재 체력
-    public GameObject GameOver;
+    public GameObject GameOver; // 게임오버 페이지 삭제
 
-    void Start()
+    private void Start()
     {
         PlayerhealthSlider = this.GetComponent<Slider>();
         playerCurrentHealth = GameManager.Instance.GetCurrentHP(); // GameManager에서 현재 체력값 가져오기
@@ -43,8 +43,7 @@ public class PlayerHP : MonoBehaviour
         UpdateHealthSlider();
         if (playerCurrentHealth <= 0)
         {
-            GameOver.SetActive(true);
-            Time.timeScale = 0.0f;
+            HandleGameOver();
         }
     }
 
@@ -54,5 +53,10 @@ public class PlayerHP : MonoBehaviour
         playerMaxHealth *= multiplier;
         playerCurrentHealth *= multiplier;
         UpdateHealthSlider();
+    }
+
+    private void HandleGameOver()
+    {
+        StartCoroutine(GameManager.Instance.GameOverAndReturnHome()); // GameManager에 게임오버 및 홈 전환 호출
     }
 }

@@ -7,7 +7,7 @@ public class TimerController : MonoBehaviour
     public float currentTime;
     public bool isTimerRunning = false;
     [SerializeField] private TextMeshProUGUI TimeText;
-    private GameObject GameOver;
+    [SerializeField] private GameObject ClearPage;
 
     private void Start()
     {
@@ -43,16 +43,6 @@ public class TimerController : MonoBehaviour
         currentTime = maxTime;
         isTimerRunning = true;
         UpdateTimerText();
-
-        GameOver = GameObject.Find("GameOverPage");
-        if (GameOver)
-        {
-            GameOver.SetActive(false);
-        }
-        else
-        {
-            return;
-        }
     }
 
     public void StartTimer()
@@ -63,16 +53,19 @@ public class TimerController : MonoBehaviour
     public void StopTimer()
     {
         isTimerRunning = false;
+        HandleGameOver();
+    }
 
+    private void HandleGameOver()
+    {
         if (StageLoader.Instance.currentModeIndex == 2) // Guardian 모드인 경우
         {
             StageController.Instance.ShowClearPage();
         }
         else
         {
-            GameOver.SetActive(true);
+            StartCoroutine(GameManager.Instance.GameOverAndReturnHome()); // GameManager에 게임오버 및 홈 전환 호출
         }
-        Time.timeScale = 0.0f;
     }
 
     public void UpdateTimerText()
