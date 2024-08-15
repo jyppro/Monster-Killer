@@ -1482,7 +1482,6 @@ MonoBehaviour:
   MonsterMaxHealth: 1000
   MonsterCurrentHealth: 1000
   attackInterval: 10
-  attackRange: 2
   MonsterPower: 50
   playerLayer:
     serializedVersion: 2
@@ -1520,9 +1519,9 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 2f8b69acddfa760419e257c69b3771c4, type: 3}
   m_Controller: {fileID: 9100000, guid: 06534e49b90eaa24a860d1abb2eba6ea, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 

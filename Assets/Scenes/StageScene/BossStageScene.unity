@@ -3896,10 +3896,6 @@ PrefabInstance:
       propertyPath: stages.Array.data[9].StageTime
       value: 100
       objectReference: {fileID: 0}
-    - target: {fileID: 6721602027593258867, guid: 12e4722473d60e24086e473637584d6b, type: 3}
-      propertyPath: bossStages.Array.data[1].targetKillCount
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8573995776463078684, guid: 12e4722473d60e24086e473637584d6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -167.25
