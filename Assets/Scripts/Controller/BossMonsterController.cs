@@ -12,7 +12,7 @@ public class BossMonsterController : MonoBehaviour
     [SerializeField] private int MonsterMaxHealth = 1000; // 보스 최대 체력
     [SerializeField] private int MonsterCurrentHealth = 1000; // 보스 현재 체력
     [SerializeField] private int attackInterval = 10; // 공격 간격
-    [SerializeField] private float attackRange = 2.0f; // 공격 범위
+    // [SerializeField] private float attackRange = 2.0f; // 공격 범위
     [SerializeField] public int MonsterPower = 50; // 보스 공격력
     [SerializeField] private LayerMask playerLayer; // 플레이어가 있는 레이어
     private AudioSource MonsterAudio; // 보스 사운드
@@ -110,7 +110,6 @@ public class BossMonsterController : MonoBehaviour
         if (spawner != null)
         {
             spawner.MonsterDied();
-            
         }
     }
 

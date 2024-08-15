@@ -309,6 +309,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300010, guid: ef4a8d855fd835e42b625eb8c707a861, type: 3}
   lockedSprite: {fileID: 21300068, guid: 67d3869b8e162374ea38dac76f590529, type: 3}
   buttonText: {fileID: 811227953}
+  F_time: 1
 --- !u!1 &155594256
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,6 +451,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300010, guid: ef4a8d855fd835e42b625eb8c707a861, type: 3}
   lockedSprite: {fileID: 21300068, guid: 67d3869b8e162374ea38dac76f590529, type: 3}
   buttonText: {fileID: 866389227}
+  F_time: 1
 --- !u!1 &159336638
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,6 +593,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300010, guid: ef4a8d855fd835e42b625eb8c707a861, type: 3}
   lockedSprite: {fileID: 21300068, guid: 67d3869b8e162374ea38dac76f590529, type: 3}
   buttonText: {fileID: 353209857}
+  F_time: 1
 --- !u!1 &353209855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,6 +1003,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300010, guid: ef4a8d855fd835e42b625eb8c707a861, type: 3}
   lockedSprite: {fileID: 21300068, guid: 67d3869b8e162374ea38dac76f590529, type: 3}
   buttonText: {fileID: 417048970}
+  F_time: 1
 --- !u!1 &587674635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,6 +1279,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300010, guid: ef4a8d855fd835e42b625eb8c707a861, type: 3}
   lockedSprite: {fileID: 21300068, guid: 67d3869b8e162374ea38dac76f590529, type: 3}
   buttonText: {fileID: 587674637}
+  F_time: 1
 --- !u!1 &747177641
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,6 +1490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FadeOutPage: {fileID: 1710678066}
   sceneToLoad: MainScene
+  F_time: 1
 --- !u!1 &789559807
 GameObject:
   m_ObjectHideFlags: 0
@@ -1626,6 +1632,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300010, guid: ef4a8d855fd835e42b625eb8c707a861, type: 3}
   lockedSprite: {fileID: 21300068, guid: 67d3869b8e162374ea38dac76f590529, type: 3}
   buttonText: {fileID: 1197838198}
+  F_time: 1
 --- !u!1 &811227951
 GameObject:
   m_ObjectHideFlags: 0
@@ -2035,6 +2042,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300010, guid: ef4a8d855fd835e42b625eb8c707a861, type: 3}
   lockedSprite: {fileID: 21300068, guid: 67d3869b8e162374ea38dac76f590529, type: 3}
   buttonText: {fileID: 1169025221}
+  F_time: 1
 --- !u!1 &922146631
 GameObject:
   m_ObjectHideFlags: 0
@@ -2641,6 +2649,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300010, guid: ef4a8d855fd835e42b625eb8c707a861, type: 3}
   lockedSprite: {fileID: 21300068, guid: 67d3869b8e162374ea38dac76f590529, type: 3}
   buttonText: {fileID: 1265392234}
+  F_time: 1
 --- !u!1 &1169025219
 GameObject:
   m_ObjectHideFlags: 0
@@ -3184,6 +3193,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300010, guid: ef4a8d855fd835e42b625eb8c707a861, type: 3}
   lockedSprite: {fileID: 21300068, guid: 67d3869b8e162374ea38dac76f590529, type: 3}
   buttonText: {fileID: 922146633}
+  F_time: 1
 --- !u!1 &1635480689
 GameObject:
   m_ObjectHideFlags: 0
@@ -3325,6 +3335,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300010, guid: ef4a8d855fd835e42b625eb8c707a861, type: 3}
   lockedSprite: {fileID: 21300068, guid: 67d3869b8e162374ea38dac76f590529, type: 3}
   buttonText: {fileID: 995594844}
+  F_time: 1
 --- !u!1 &1710678064
 GameObject:
   m_ObjectHideFlags: 0
