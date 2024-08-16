@@ -4,6 +4,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+using FirebaseWebGL.Scripts.FirebaseBridge;
+using FirebaseWebGL.Scripts.Objects;
+
+public class PlayerData{
+    public int playerID;
+    public int rank;
+    public int power;
+    public int gold;
+    public float time;
+    public int maxHP;
+}
+
 [System.Serializable]
 public class BaseStageData
 {
@@ -52,17 +64,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int gold;
     [SerializeField] private int sumScore;
     [SerializeField] private float time;
-    [SerializeField] private Image FadeOutPage;
+    //[SerializeField] private Image FadeOutPage;
     private Dictionary<int, int> stageHighScores = new Dictionary<int, int>();
 
     private void Awake()
     {
         if (instance == null)
+        {
             instance = this;
+            DontDestroyOnLoad(gameObject);
+        }    
         else
             Destroy(gameObject);
 
-        LoadGameData();
+        //LoadGameData();
         
         if (stagesCleared == null || stagesCleared.Length == 0)
         {
@@ -76,27 +91,29 @@ public class GameManager : MonoBehaviour
         yield return StartCoroutine(FadeOutAndReturnHome());
 
         // 씬 전환
-        SceneManager.LoadScene("MainScene"); // 메인 씬 이름으로 변경
+        //SceneManager.LoadScene("MainScene"); // 메인 씬 이름으로 변경
     }
 
     private IEnumerator FadeOutAndReturnHome()
     {
-        float F_time = 1.0f; // 페이드 아웃 시
+        // float F_time = 1.0f; // 페이드 아웃 시
 
-        if (FadeOutPage != null)
-        {
-            float time = 0.0f;
-            FadeOutPage.gameObject.SetActive(true);
-            Color alpha = FadeOutPage.color;
+        // if (FadeOutPage != null)
+        // {
+        //     float time = 0.0f;
+        //     FadeOutPage.gameObject.SetActive(true);
+        //     Color alpha = FadeOutPage.color;
 
-            while (alpha.a < 1)
-            {
-                time += Time.deltaTime / F_time;
-                alpha.a = Mathf.Lerp(0, 1, time);
-                FadeOutPage.color = alpha;
-                yield return null;
-            }
-        }
+        //     while (alpha.a < 1)
+        //     {
+        //         time += Time.deltaTime / F_time;
+        //         alpha.a = Mathf.Lerp(0, 1, time);
+        //         FadeOutPage.color = alpha;
+        //         yield return null;
+        //     }
+        // }
+        SceneManager.LoadScene("MainScene"); // 메인 씬 이름으로 변경
+        yield return null;
     }
 
     public bool IsStageCleared(int modeIndex, int stageIndex)
@@ -166,14 +183,16 @@ public class GameManager : MonoBehaviour
 
     public void LoadGameData()
     {
-        playerID = PlayerPrefs.GetInt("playerID", 1);
-        rank = PlayerPrefs.GetInt("Rank", 1);
-        power = PlayerPrefs.GetInt("Power", 10);
-        maxHP = PlayerPrefs.GetInt("MaxHP", 100);
-        currentHP = PlayerPrefs.GetInt("CurrentHP", 100);
-        gold = PlayerPrefs.GetInt("Gold", 0);
-        sumScore = PlayerPrefs.GetInt("SumScore", 0);
-        time = PlayerPrefs.GetFloat("Time", 60.0f);
+        // playerID = PlayerPrefs.GetInt("playerID", 1);
+        // rank = PlayerPrefs.GetInt("Rank", 1);
+        // power = PlayerPrefs.GetInt("Power", 10);
+        // maxHP = PlayerPrefs.GetInt("MaxHP", 100);
+        // currentHP = PlayerPrefs.GetInt("CurrentHP", 100);
+        // gold = PlayerPrefs.GetInt("Gold", 0);
+        // sumScore = PlayerPrefs.GetInt("SumScore", 0);
+        // time = PlayerPrefs.GetFloat("Time", 60.0f);
+        playerID = 100;
+        FirebaseDatabase.LoadGameData(playerID, gameObject.name, "onLoadSuccess", "OnLoadError");
 
         stagesCleared = PlayerPrefsX.GetIntArray("StagesCleared", new int[30]);
 
@@ -204,6 +223,28 @@ public class GameManager : MonoBehaviour
         }
 
         PlayerPrefs.Save();
+    }
+
+    public void onLoadSuccess(string jsonData){
+        //statusText.text = "Data loaded successfully: " + jsonData;
+        var data = JsonUtility.FromJson<PlayerData>(jsonData);
+        playerID = data.playerID;
+        rank = data.rank;
+        power = data.power;
+        gold = data.gold;
+        time = data.time;
+        maxHP = data.maxHP;
+
+        // playerIDText.text = playerID.ToString();
+        // rankText.text = rank.ToString();
+        // powerText.text = power.ToString();
+        // goldText.text = gold.ToString();
+        // timeText.text = time.ToString();
+    }
+
+    public void OnLoadError(string error){
+        //statusText.text = "Error loading data: " + error;
+        Debug.LogError(error);
     }
 
     public int GetPlayerID() { return playerID; }
