@@ -13,7 +13,7 @@ public class WeaponController : MonoBehaviour
     void Start()
     {
         this.WeaponGenerator = GameObject.Find("WeaponGenerator");
-        currentDamage = GameManager.Instance.GetPower();
+        //currentDamage = GameManager.Instance.GetPower();
     }
 
     // public void ApplyDamageToMonster(float damage) // 플레이어가 몬스터에게 주는 데미지

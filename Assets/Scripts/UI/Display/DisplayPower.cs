@@ -49,7 +49,7 @@ public class DisplayPower : MonoBehaviour
 
     public void UpdatePower(int newPower)
     {
-        PlayerPower += newPower;
+        PlayerPower = newPower;
         GameManager.Instance.SetPower(PlayerPower);
         DisplayPlayerPower();
     }

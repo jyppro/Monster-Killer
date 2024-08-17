@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using FirebaseWebGL.Scripts.FirebaseBridge;
+using FirebaseWebGL.Scripts.Objects;
 
 public class PlayerData{
     public int playerID;
@@ -168,14 +169,25 @@ public class GameManager : MonoBehaviour
 
     public void SaveGameData()
     {
-        PlayerPrefs.SetInt("PlayerID", playerID);
-        PlayerPrefs.SetInt("Rank", rank);
-        PlayerPrefs.SetInt("Power", power);
-        PlayerPrefs.SetInt("MaxHP", maxHP);
-        PlayerPrefs.SetInt("CurrentHP", currentHP);
-        PlayerPrefs.SetInt("Gold", gold);
-        PlayerPrefs.SetInt("SumScore", sumScore);
-        PlayerPrefs.SetFloat("Time", time);
+        // PlayerPrefs.SetInt("PlayerID", playerID);
+        // PlayerPrefs.SetInt("Rank", rank);
+        // PlayerPrefs.SetInt("Power", power);
+        // PlayerPrefs.SetInt("MaxHP", maxHP);
+        // PlayerPrefs.SetInt("CurrentHP", currentHP);
+        // PlayerPrefs.SetInt("Gold", gold);
+        // PlayerPrefs.SetInt("SumScore", sumScore);
+        // PlayerPrefs.SetFloat("Time", time);
+
+        playerID = 100;
+        FirebaseDatabase.SaveGameData(playerID, 
+        rank, 
+        power, 
+        maxHP, 
+        currentHP, 
+        gold, 
+        sumScore,
+        time, 
+        gameObject.name, "onSaveSuccess", "OnSaveError");
 
         PlayerPrefsX.SetIntArray("StagesCleared", stagesCleared);
 
@@ -205,9 +217,21 @@ public class GameManager : MonoBehaviour
         // timeText.text = time.ToString();
     }
 
+    public void onSaveSuccess(string info)
+    {
+        //statusText.text = info;
+        Debug.Log("onSaveSuccess: " + info);
+    }
+
     public void OnLoadError(string error){
         //statusText.text = "Error loading data: " + error;
         Debug.LogError(error);
+    }
+
+    public void OnSaveError(string error)
+    {
+        var parsedError = JsonUtility.FromJson<FirebaseError>(error);
+        Debug.LogError(parsedError.message);
     }
 
     public int GetPlayerID() { return playerID; }

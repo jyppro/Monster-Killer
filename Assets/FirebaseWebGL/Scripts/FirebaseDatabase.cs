@@ -9,5 +9,16 @@ namespace FirebaseWebGL.Scripts.FirebaseBridge
     {
         [DllImport("__Internal")]
         public static extern void LoadGameData(int playerID, string objectName, string callback, string fallback);
+        
+        [DllImport("__Internal")]
+        public static extern void SaveGameData(int playerID, 
+        int rank, 
+        int power, 
+        int maxHP, 
+        int currentHP, 
+        int gold, 
+        int sumScore,
+        float time, 
+        string objectName, string callback, string fallback);
     }
 }

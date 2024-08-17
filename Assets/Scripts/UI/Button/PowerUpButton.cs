@@ -28,9 +28,11 @@ public class PowerUpButton : MonoBehaviour
             WeaponController weaponController = WeaponPrefab.GetComponent<WeaponController>();
             if (weaponController != null)
             {
-                int newPower = weaponController.currentDamage + IncreaseDamage; // 데미지 강화값
+                this.displayPower.PlayerPower += IncreaseDamage;
+                //int newPower = weaponController.currentDamage + IncreaseDamage; // 데미지 강화값
                 //weaponController.currentDamage += IncreaseDamage; // 데미지 강화
-                this.displayPower.UpdatePower(newPower); // 새로운 공격력을 설정하고 UI 업데이트
+                this.displayPower.UpdatePower(this.displayPower.PlayerPower); // 새로운 공격력을 설정하고 UI 업데이트
+                weaponController.currentDamage = this.displayPower.PlayerPower;
                 GameManager.Instance.SaveGameData();
             }
             else
