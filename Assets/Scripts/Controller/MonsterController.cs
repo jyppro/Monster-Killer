@@ -115,7 +115,8 @@ public class MonsterController : MonoBehaviour
         MonsterAudio.clip = Clips[3]; // 몬스터 사망 효과음
         MonsterAudio.Play();
 
-        GameObject.Find("GoldController").GetComponent<GoldController>().GoldSum(goldReward);
+        // GameObject.Find("GoldController").GetComponent<GoldController>().GoldSum(goldReward);
+        GameObject.Find("GoldText").GetComponent<DisplayGold>().GoldSum(goldReward);
         GameManager.Instance.SaveGameData(); // 게임 데이터 저장
 
         if(monsterMovement != null)

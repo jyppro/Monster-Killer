@@ -2786,7 +2786,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &864202741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5035,6 +5035,7 @@ GameObject:
   - component: {fileID: 1628492001}
   - component: {fileID: 1628492004}
   - component: {fileID: 1628492003}
+  - component: {fileID: 1628492005}
   m_Layer: 5
   m_Name: GoldText
   m_TagString: Untagged
@@ -5158,6 +5159,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1628492000}
   m_CullTransparentMesh: 1
+--- !u!114 &1628492005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628492000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1de09b057424c34f99a6d462c007eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerGold: 0
+  GoldText: {fileID: 1628492003}
 --- !u!1 &1649815276
 GameObject:
   m_ObjectHideFlags: 0
@@ -5308,6 +5323,26 @@ PrefabInstance:
     - target: {fileID: 6704225053512939227, guid: 12e4722473d60e24086e473637584d6b, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721602027593258867, guid: 12e4722473d60e24086e473637584d6b, type: 3}
+      propertyPath: gold
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721602027593258867, guid: 12e4722473d60e24086e473637584d6b, type: 3}
+      propertyPath: time
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721602027593258867, guid: 12e4722473d60e24086e473637584d6b, type: 3}
+      propertyPath: maxHP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721602027593258867, guid: 12e4722473d60e24086e473637584d6b, type: 3}
+      propertyPath: power
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721602027593258867, guid: 12e4722473d60e24086e473637584d6b, type: 3}
+      propertyPath: currentHP
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6721602027593258867, guid: 12e4722473d60e24086e473637584d6b, type: 3}
       propertyPath: FadeOutPage

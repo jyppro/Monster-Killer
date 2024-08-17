@@ -23,9 +23,8 @@ public class GoldController : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
-
-        FindAllGoldTexts();
 
         // 씬 전환 이벤트 구독
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -33,22 +32,16 @@ public class GoldController : MonoBehaviour
 
     private void Start()
     {
+        // PlayerGold를 GameManager에서 동기화
         PlayerGold = GameManager.Instance.GetGold();
+        FindAllGoldTexts();
         UpdateGoldText();  // 골드 텍스트 업데이트
-    }
-
-    private void OnDestroy()
-    {
-        // 씬 전환 이벤트 구독 해제
-        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // 씬이 로드될 때 골드 텍스트 업데이트
         FindAllGoldTexts();
-        
-        // PlayerGold를 GameManager에서 동기화
         PlayerGold = GameManager.Instance.GetGold();
         UpdateGoldText();
     }

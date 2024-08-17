@@ -5,22 +5,22 @@ public class HPUpButton : MonoBehaviour
     [SerializeField] private int GoldNeeds = 10;
     [SerializeField] private int IncreaseMaxHealth = 10;
     public DisplayPlayerHP displayPlayerHP;
-    public GoldController goldController;
+    public DisplayGold displayGold;
 
     void Start()
     {
         this.displayPlayerHP = GameObject.Find("HPText").GetComponent<DisplayPlayerHP>();
-        this.goldController = GameObject.Find("GoldController").GetComponent<GoldController>();
+        this.displayGold = GameObject.Find("GoldText").GetComponent<DisplayGold>();
         GetComponent<UnityEngine.UI.Button>().onClick.AddListener(UpgradeHP);
     }
 
     void UpgradeHP()
     {
-        if(goldController != null && this.goldController.PlayerGold >= this.GoldNeeds)
+        if(displayGold != null && this.displayGold.PlayerGold >= this.GoldNeeds)
         {
-            this.goldController.PlayerGold -= this.GoldNeeds;
-            GameManager.Instance.SetGold(this.goldController.PlayerGold);
-            this.goldController.UpdateGoldText();
+            this.displayGold.PlayerGold -= this.GoldNeeds;
+            GameManager.Instance.SetGold(this.displayGold.PlayerGold);
+            //this.displayGold.UpdateGold();
 
             this.displayPlayerHP.PlayerHP += IncreaseMaxHealth;
             this.displayPlayerHP.UpdateHP(this.displayPlayerHP.PlayerHP);

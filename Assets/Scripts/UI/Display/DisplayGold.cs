@@ -5,23 +5,56 @@ public class DisplayGold : MonoBehaviour
 {
     public int PlayerGold;
 
-    [SerializeField] private TextMeshProUGUI goldText;
+    [SerializeField] private TextMeshProUGUI GoldText;
 
     void Start()
     {
-       PlayerGold = GameManager.Instance.GetGold();
+        if (GameManager.Instance == null)
+        {
+            Debug.LogError("GameManager instance is not found.");
+            return;
+        }
+
+        PlayerGold = GameManager.Instance.GetGold();
+
+        if (GoldText == null)
+        {
+            Debug.LogError("GoldText is not assigned.");
+            return;
+        }
+
+        DisplayPlayerGold();
     }
 
     void Update()
     {
-        DisplayPlayerGold();
+        int currentGold = GameManager.Instance.GetGold();
+        if (PlayerGold != currentGold)
+        {
+            PlayerGold = currentGold;
+            DisplayPlayerGold();
+        }
     }
 
     public void DisplayPlayerGold()
     {
-        if (goldText != null)
+        if (GoldText != null)
         {
-            goldText.text = "Gold : " + PlayerGold + "G";  // 골드 텍스트 업데이트
+            GoldText.text = "Gold : " + PlayerGold;
         }
+    }
+
+    public void UpdateGold(int newGold)
+    {
+        PlayerGold = newGold;
+        GameManager.Instance.SetPower(PlayerGold);
+        DisplayPlayerGold();
+    }
+
+    public void GoldSum(int goldReward)
+    {
+        PlayerGold += goldReward;  // 골드 증가
+        GameManager.Instance.SetGold(PlayerGold);  // GameManager에도 골드 업데이트
+        UpdateGold(PlayerGold);  // 골드 텍스트 업데이트
     }
 }

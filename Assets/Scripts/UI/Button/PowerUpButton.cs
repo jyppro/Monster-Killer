@@ -5,23 +5,25 @@ public class PowerUpButton : MonoBehaviour
     [SerializeField] private int GoldNeeds = 10;
     [SerializeField] private int IncreaseDamage = 10;
     [SerializeField] private GameObject WeaponPrefab; // 무기 프리팹
-    public GoldController goldController;
+    // public GoldController goldController;
     public DisplayPower displayPower;
+    public DisplayGold displayGold;
 
     void Start()
     {
         this.displayPower = GameObject.Find("PowerText").GetComponent<DisplayPower>();
-        this.goldController = GameObject.Find("GoldController").GetComponent<GoldController>();
+        //this.goldController = GameObject.Find("GoldController").GetComponent<GoldController>();
+        this.displayGold = GameObject.Find("GoldText").GetComponent<DisplayGold>();
         GetComponent<UnityEngine.UI.Button>().onClick.AddListener(UpgradePower);
     }
 
     void UpgradePower()
     { 
-        if(goldController != null && this.goldController.PlayerGold >= this.GoldNeeds)
+        if(displayGold != null && this.displayGold.PlayerGold >= this.GoldNeeds)
         {
-            this.goldController.PlayerGold -= this.GoldNeeds;
-            GameManager.Instance.SetGold(this.goldController.PlayerGold);
-            this.goldController.UpdateGoldText();
+            this.displayGold.PlayerGold -= this.GoldNeeds;
+            GameManager.Instance.SetGold(this.displayGold.PlayerGold);
+            //this.goldController.UpdateGoldText();
 
             WeaponController weaponController = WeaponPrefab.GetComponent<WeaponController>();
             if (weaponController != null)
