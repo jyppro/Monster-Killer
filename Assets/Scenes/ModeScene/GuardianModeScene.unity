@@ -329,7 +329,7 @@ MonoBehaviour:
   stageIndex: 3
   FadeOutPage: {fileID: 1766372932}
   button: {fileID: 52130195}
-  unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
+  unlockedSprite: {fileID: 21300010, guid: d3a53dd56fb9a0444835a5fa1cdd14f6, type: 3}
   lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
   buttonText: {fileID: 767484969}
   F_time: 1
@@ -471,7 +471,7 @@ MonoBehaviour:
   stageIndex: 9
   FadeOutPage: {fileID: 1766372932}
   button: {fileID: 197126668}
-  unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
+  unlockedSprite: {fileID: 21300010, guid: d3a53dd56fb9a0444835a5fa1cdd14f6, type: 3}
   lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
   buttonText: {fileID: 239130040}
   F_time: 1
@@ -792,7 +792,7 @@ MonoBehaviour:
   stageIndex: 6
   FadeOutPage: {fileID: 1766372932}
   button: {fileID: 443607094}
-  unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
+  unlockedSprite: {fileID: 21300010, guid: d3a53dd56fb9a0444835a5fa1cdd14f6, type: 3}
   lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
   buttonText: {fileID: 1517632796}
   F_time: 1
@@ -934,7 +934,7 @@ MonoBehaviour:
   stageIndex: 0
   FadeOutPage: {fileID: 1766372932}
   button: {fileID: 494554127}
-  unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
+  unlockedSprite: {fileID: 21300010, guid: d3a53dd56fb9a0444835a5fa1cdd14f6, type: 3}
   lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
   buttonText: {fileID: 1288490677}
   F_time: 1
@@ -1478,7 +1478,7 @@ MonoBehaviour:
   stageIndex: 8
   FadeOutPage: {fileID: 1766372932}
   button: {fileID: 866020207}
-  unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
+  unlockedSprite: {fileID: 21300010, guid: d3a53dd56fb9a0444835a5fa1cdd14f6, type: 3}
   lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
   buttonText: {fileID: 1285239671}
   F_time: 1
@@ -1620,7 +1620,7 @@ MonoBehaviour:
   stageIndex: 5
   FadeOutPage: {fileID: 1766372932}
   button: {fileID: 873681678}
-  unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
+  unlockedSprite: {fileID: 21300010, guid: d3a53dd56fb9a0444835a5fa1cdd14f6, type: 3}
   lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
   buttonText: {fileID: 2126592822}
   F_time: 1
@@ -2465,7 +2465,7 @@ MonoBehaviour:
   stageIndex: 7
   FadeOutPage: {fileID: 1766372932}
   button: {fileID: 1340124939}
-  unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
+  unlockedSprite: {fileID: 21300010, guid: d3a53dd56fb9a0444835a5fa1cdd14f6, type: 3}
   lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
   buttonText: {fileID: 997975502}
   F_time: 1
@@ -2607,7 +2607,7 @@ MonoBehaviour:
   stageIndex: 4
   FadeOutPage: {fileID: 1766372932}
   button: {fileID: 1515285701}
-  unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
+  unlockedSprite: {fileID: 21300010, guid: d3a53dd56fb9a0444835a5fa1cdd14f6, type: 3}
   lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
   buttonText: {fileID: 1207776640}
   F_time: 1
@@ -3199,7 +3199,7 @@ MonoBehaviour:
   stageIndex: 2
   FadeOutPage: {fileID: 1766372932}
   button: {fileID: 2089135197}
-  unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
+  unlockedSprite: {fileID: 21300010, guid: d3a53dd56fb9a0444835a5fa1cdd14f6, type: 3}
   lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
   buttonText: {fileID: 761524810}
   F_time: 1
@@ -3341,7 +3341,7 @@ MonoBehaviour:
   stageIndex: 1
   FadeOutPage: {fileID: 1766372932}
   button: {fileID: 2123334299}
-  unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
+  unlockedSprite: {fileID: 21300010, guid: d3a53dd56fb9a0444835a5fa1cdd14f6, type: 3}
   lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
   buttonText: {fileID: 641785907}
   F_time: 1

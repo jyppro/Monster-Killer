@@ -3185,7 +3185,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300034, guid: 5bf49fb08e8d282429049467171af2ee, type: 3}
+  m_Sprite: {fileID: 21300034, guid: f760e8c2f86be0a46a16e0a7a5bfe8ed, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3342,7 +3342,7 @@ MonoBehaviour:
   FadeOutPage: {fileID: 1718129749}
   button: {fileID: 2088219064}
   unlockedSprite: {fileID: 21300010, guid: e14bbe2e2c7636d469e52ddb56b46f0c, type: 3}
-  lockedSprite: {fileID: 21300068, guid: e94582a58ac4ac74e9174df5c4a2a31d, type: 3}
+  lockedSprite: {fileID: 21300000, guid: e1b5da2ab91c4f0478a53df5aebc83a6, type: 3}
   buttonText: {fileID: 608130762}
   F_time: 1
 --- !u!1 &2129939118
