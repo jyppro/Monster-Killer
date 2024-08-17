@@ -1,9 +1,9 @@
 mergeInto(LibraryManager.library, {
     LoadGameData: function (playerID, objectName, callback, fallback){
         var parsedPath = "players" + '/' + playerID;
-        var parsedObjectName = Pointer_stringify(objectName);
-        var parsedCallback = Pointer_stringify(callback);
-        var parsedFallback = Pointer_stringify(fallback);
+        var parsedObjectName = UTF8ToString(objectName);
+        var parsedCallback = UTF8ToString(callback);
+        var parsedFallback = UTF8ToString(fallback);
 
         try {
         firebase.database().ref(parsedPath)

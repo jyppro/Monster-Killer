@@ -20,7 +20,7 @@ public class HPUpButton : MonoBehaviour
         {
             this.displayGold.PlayerGold -= this.GoldNeeds;
             GameManager.Instance.SetGold(this.displayGold.PlayerGold);
-            //this.displayGold.UpdateGold();
+            this.displayGold.UpdateGold(this.displayGold.PlayerGold);
 
             this.displayPlayerHP.PlayerHP += IncreaseMaxHealth;
             this.displayPlayerHP.UpdateHP(this.displayPlayerHP.PlayerHP);

@@ -40,14 +40,14 @@ public class DisplayGold : MonoBehaviour
     {
         if (GoldText != null)
         {
-            GoldText.text = "Gold : " + PlayerGold;
+            GoldText.text = "Gold : " + PlayerGold + "G";
         }
     }
 
     public void UpdateGold(int newGold)
     {
         PlayerGold = newGold;
-        GameManager.Instance.SetPower(PlayerGold);
+        GameManager.Instance.SetGold(PlayerGold);
         DisplayPlayerGold();
     }
 

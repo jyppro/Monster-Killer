@@ -24,7 +24,8 @@ public class TimeIncreaseButton : MonoBehaviour
         {
             this.displayGold.PlayerGold -= this.GoldNeeds;
             GameManager.Instance.SetGold(this.displayGold.PlayerGold);
-            // this.displayGold.UpdateGold();
+            this.displayGold.UpdateGold(this.displayGold.PlayerGold);
+
 
             float newTime = this.DisplayPlayerTime.PlayerTime + IncreaseTime;
             this.DisplayPlayerTime.UpdateTime(newTime); // 새로운 시간을 설정하고 UI 업데이트

@@ -23,14 +23,14 @@ public class PowerUpButton : MonoBehaviour
         {
             this.displayGold.PlayerGold -= this.GoldNeeds;
             GameManager.Instance.SetGold(this.displayGold.PlayerGold);
-            //this.goldController.UpdateGoldText();
+            this.displayGold.UpdateGold(this.displayGold.PlayerGold);
 
             WeaponController weaponController = WeaponPrefab.GetComponent<WeaponController>();
             if (weaponController != null)
             {
-                // int newPower = weaponController.currentDamage + IncreaseDamage; // 데미지 강화값
-                weaponController.currentDamage += IncreaseDamage; // 데미지 강화
-                this.displayPower.UpdatePower(weaponController.currentDamage); // 새로운 공격력을 설정하고 UI 업데이트
+                int newPower = weaponController.currentDamage + IncreaseDamage; // 데미지 강화값
+                //weaponController.currentDamage += IncreaseDamage; // 데미지 강화
+                this.displayPower.UpdatePower(newPower); // 새로운 공격력을 설정하고 UI 업데이트
                 GameManager.Instance.SaveGameData();
             }
             else
