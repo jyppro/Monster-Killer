@@ -17,7 +17,7 @@ public class SceneChangeButton : MonoBehaviour
     private void SceneChange()
     {
         PauseExit();  // Time.timeScale을 복구
-        GameManager.Instance.SaveGameData();
+        // GameManager.Instance.SaveGameData();
         StartCoroutine(FadeOut());
     }
 

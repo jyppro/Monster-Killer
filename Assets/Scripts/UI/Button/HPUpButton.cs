@@ -25,7 +25,7 @@ public class HPUpButton : MonoBehaviour
             this.displayPlayerHP.PlayerHP += IncreaseMaxHealth;
             this.displayPlayerHP.UpdateHP(this.displayPlayerHP.PlayerHP);
 
-            GameManager.Instance.SaveGameData();
+            // GameManager.Instance.SaveGameData();
             // GameManager.Instance.SetMaxHP(this.HP.playerMaxHealth); // 업그레이드 시 데이터 저장 (최대 체력)
         }
         else

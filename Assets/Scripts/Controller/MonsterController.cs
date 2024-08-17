@@ -117,7 +117,7 @@ public class MonsterController : MonoBehaviour
 
         // GameObject.Find("GoldController").GetComponent<GoldController>().GoldSum(goldReward);
         GameObject.Find("GoldText").GetComponent<DisplayGold>().GoldSum(goldReward);
-        GameManager.Instance.SaveGameData(); // 게임 데이터 저장
+        // GameManager.Instance.SaveGameData(); // 게임 데이터 저장
 
         if(monsterMovement != null)
         {
@@ -157,7 +157,8 @@ public class MonsterController : MonoBehaviour
         }
         damageTextObjects.Clear(); // 리스트 초기화
         StageBar.value += 0.33f;
-        GameManager.Instance.SaveGameData();
+        // GameManager.Instance.SaveGameData();
+        GameManager.Instance.ScoreCal();
 
         if (StageBarCopy.value >= 1.0f)
         {

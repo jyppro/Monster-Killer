@@ -2843,7 +2843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6704225053512939227, guid: 12e4722473d60e24086e473637584d6b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6721602027593258867, guid: 12e4722473d60e24086e473637584d6b, type: 3}
       propertyPath: gold
@@ -2876,6 +2876,10 @@ PrefabInstance:
     - target: {fileID: 6721602027593258867, guid: 12e4722473d60e24086e473637584d6b, type: 3}
       propertyPath: FadeOutPage
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721602027593258867, guid: 12e4722473d60e24086e473637584d6b, type: 3}
+      propertyPath: guardianStages.Array.data[0].defenseTime
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8573995776463078684, guid: 12e4722473d60e24086e473637584d6b, type: 3}
       propertyPath: m_LocalPosition.x

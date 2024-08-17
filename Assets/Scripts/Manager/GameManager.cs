@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         //LoadGameData();
+        StageClear();
         
         if (stagesCleared == null || stagesCleared.Length == 0)
         {
@@ -90,7 +91,8 @@ public class GameManager : MonoBehaviour
     {
         int index = GetIndexFromModeAndStage(modeIndex, stageIndex);
         stagesCleared[index] = cleared ? 1 : 0;
-        SaveGameData();
+        // SaveGameData();
+        ScoreCal();
     }
 
     public void UnlockNextStage(int modeIndex, int currentStageIndex)
@@ -142,7 +144,8 @@ public class GameManager : MonoBehaviour
         {
             stageHighScores.Add(index, score);
         }
-        SaveGameData();
+        // SaveGameData();
+        ScoreCal();
     }
 
     public void LoadGameData()
@@ -158,6 +161,17 @@ public class GameManager : MonoBehaviour
         playerID = 100;
         FirebaseDatabase.LoadGameData(playerID, gameObject.name, "onLoadSuccess", "OnLoadError");
 
+        // stagesCleared = PlayerPrefsX.GetIntArray("StagesCleared", new int[30]);
+
+        // // Load stage high scores
+        // for (int i = 0; i < 30; i++)
+        // {
+        //     stageHighScores[i] = PlayerPrefs.GetInt("StageHighScore" + i, 0);
+        // }
+    }
+
+    public void StageClear()
+    {
         stagesCleared = PlayerPrefsX.GetIntArray("StagesCleared", new int[30]);
 
         // Load stage high scores
@@ -189,6 +203,19 @@ public class GameManager : MonoBehaviour
         time, 
         gameObject.name, "onSaveSuccess", "OnSaveError");
 
+        // PlayerPrefsX.SetIntArray("StagesCleared", stagesCleared);
+
+        // // Save stage high scores
+        // foreach (var kvp in stageHighScores)
+        // {
+        //     PlayerPrefs.SetInt("StageHighScore" + kvp.Key, kvp.Value);
+        // }
+
+        // PlayerPrefs.Save();
+    }
+
+    public void ScoreCal()
+    {
         PlayerPrefsX.SetIntArray("StagesCleared", stagesCleared);
 
         // Save stage high scores

@@ -32,7 +32,7 @@ public class TimeIncreaseButton : MonoBehaviour
 
             // GameManager.Instance.SetTime(newTime); // 업그레이드 시 데이터 저장 (최대 시간)
             
-            GameManager.Instance.SaveGameData();
+            // GameManager.Instance.SaveGameData();
         }
         else
         {
