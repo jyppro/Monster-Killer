@@ -139,7 +139,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &33608572
 RectTransform:
@@ -391,9 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f7cd57f4a41654abf4a677c32f9bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FadeOutPage: {fileID: 1772920282}
   sceneToLoad: MainScene
-  F_time: 1
 --- !u!1 &210601986
 GameObject:
   m_ObjectHideFlags: 0
@@ -1616,7 +1614,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &1632575788
 RectTransform:
@@ -1804,7 +1802,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &1794364724
 RectTransform:

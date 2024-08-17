@@ -332,6 +332,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
   lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
   buttonText: {fileID: 767484969}
+  F_time: 1
 --- !u!1 &197126665
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,6 +474,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
   lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
   buttonText: {fileID: 239130040}
+  F_time: 1
 --- !u!1 &239130038
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,6 +795,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
   lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
   buttonText: {fileID: 1517632796}
+  F_time: 1
 --- !u!1 &494554124
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,6 +937,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
   lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
   buttonText: {fileID: 1288490677}
+  F_time: 1
 --- !u!1 &641785905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1477,6 +1481,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
   lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
   buttonText: {fileID: 1285239671}
+  F_time: 1
 --- !u!1 &873681675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,6 +1623,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
   lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
   buttonText: {fileID: 2126592822}
+  F_time: 1
 --- !u!1 &880493973
 GameObject:
   m_ObjectHideFlags: 0
@@ -1634,7 +1640,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &880493974
 RectTransform:
@@ -1843,7 +1849,7 @@ GameObject:
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!81 &1145020239
 AudioListener:
@@ -2462,6 +2468,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
   lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
   buttonText: {fileID: 997975502}
+  F_time: 1
 --- !u!1 &1515285698
 GameObject:
   m_ObjectHideFlags: 0
@@ -2603,6 +2610,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
   lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
   buttonText: {fileID: 1207776640}
+  F_time: 1
 --- !u!1 &1517632794
 GameObject:
   m_ObjectHideFlags: 0
@@ -2790,6 +2798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FadeOutPage: {fileID: 1766372932}
   sceneToLoad: MainScene
+  F_time: 1
 --- !u!114 &1533502570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3193,6 +3202,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
   lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
   buttonText: {fileID: 761524810}
+  F_time: 1
 --- !u!1 &2123334296
 GameObject:
   m_ObjectHideFlags: 0
@@ -3334,6 +3344,7 @@ MonoBehaviour:
   unlockedSprite: {fileID: 21300010, guid: bf863c1f5968393428ffda61834c097c, type: 3}
   lockedSprite: {fileID: 21300068, guid: 64a7c8f38d213274f8f497bb697b41a8, type: 3}
   buttonText: {fileID: 641785907}
+  F_time: 1
 --- !u!1 &2126592820
 GameObject:
   m_ObjectHideFlags: 0

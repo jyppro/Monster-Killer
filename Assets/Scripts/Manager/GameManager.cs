@@ -1,11 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-
 using FirebaseWebGL.Scripts.FirebaseBridge;
-using FirebaseWebGL.Scripts.Objects;
 
 public class PlayerData{
     public int playerID;
@@ -64,7 +59,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int gold;
     [SerializeField] private int sumScore;
     [SerializeField] private float time;
-    //[SerializeField] private Image FadeOutPage;
     private Dictionary<int, int> stageHighScores = new Dictionary<int, int>();
 
     private void Awake()
@@ -83,37 +77,6 @@ public class GameManager : MonoBehaviour
         {
             stagesCleared = new int[30]; // 30개의 스테이지 클리어 상태 초기화
         }
-    }
-
-    public IEnumerator GameOverAndReturnHome()
-    {
-        // 페이드 아웃 애니메이션
-        yield return StartCoroutine(FadeOutAndReturnHome());
-
-        // 씬 전환
-        //SceneManager.LoadScene("MainScene"); // 메인 씬 이름으로 변경
-    }
-
-    private IEnumerator FadeOutAndReturnHome()
-    {
-        // float F_time = 1.0f; // 페이드 아웃 시
-
-        // if (FadeOutPage != null)
-        // {
-        //     float time = 0.0f;
-        //     FadeOutPage.gameObject.SetActive(true);
-        //     Color alpha = FadeOutPage.color;
-
-        //     while (alpha.a < 1)
-        //     {
-        //         time += Time.deltaTime / F_time;
-        //         alpha.a = Mathf.Lerp(0, 1, time);
-        //         FadeOutPage.color = alpha;
-        //         yield return null;
-        //     }
-        // }
-        SceneManager.LoadScene("MainScene"); // 메인 씬 이름으로 변경
-        yield return null;
     }
 
     public bool IsStageCleared(int modeIndex, int stageIndex)

@@ -612,6 +612,7 @@ GameObject:
   - component: {fileID: 102314923}
   - component: {fileID: 102314922}
   - component: {fileID: 102314921}
+  - component: {fileID: 102314924}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: terrain
@@ -687,12 +688,43 @@ Transform:
   m_GameObject: {fileID: 102314920}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -250, y: 0, z: -250}
+  m_LocalPosition: {x: -164, y: 0, z: -114.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &102314924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102314920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 1
+  m_Size: {x: 281.68066, y: 21.732763, z: 152.01001}
+  m_Center: {x: 150, y: 0, z: 90}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: e89fd9a41008f9647bb3fb8d8db928cc, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &155487175
 GameObject:
   m_ObjectHideFlags: 0
@@ -2036,6 +2068,8 @@ MonoBehaviour:
   currentTime: 0
   isTimerRunning: 0
   TimeText: {fileID: 763722793}
+  FadeOutPage: {fileID: 1924706684}
+  ClearPage: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -3103,6 +3137,7 @@ MonoBehaviour:
   playerMaxHealth: 0
   playerCurrentHealth: 0
   GameOver: {fileID: 994797212}
+  FadeOutPage: {fileID: 1924706684}
 --- !u!1 &1108607386
 GameObject:
   m_ObjectHideFlags: 0

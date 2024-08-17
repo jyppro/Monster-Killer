@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerHP : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class PlayerHP : MonoBehaviour
     public int playerMaxHealth; // 플레이어 최대 체력
     public int playerCurrentHealth; // 플레이어 현재 체력
     public GameObject GameOver; // 게임오버 페이지 삭제
+    [SerializeField] private Image FadeOutPage;
 
     private void Start()
     {
@@ -57,6 +60,35 @@ public class PlayerHP : MonoBehaviour
 
     private void HandleGameOver()
     {
-        StartCoroutine(GameManager.Instance.GameOverAndReturnHome()); // GameManager에 게임오버 및 홈 전환 호출
+        StartCoroutine(GameOverAndReturnHome()); // GameManager에 게임오버 및 홈 전환 호출
+    }
+
+    public IEnumerator GameOverAndReturnHome()
+    {
+        // 페이드 아웃 애니메이션
+        yield return StartCoroutine(FadeOutAndReturnHome());
+
+        // 씬 전환
+        SceneManager.LoadScene("MainScene"); // 메인 씬 이름으로 변경
+    }
+
+    private IEnumerator FadeOutAndReturnHome()
+    {
+        float F_time = 1.0f; // 페이드 아웃 시
+
+        if (FadeOutPage != null)
+        {
+            float time = 0.0f;
+            FadeOutPage.gameObject.SetActive(true);
+            Color alpha = FadeOutPage.color;
+
+            while (alpha.a < 1)
+            {
+                time += Time.deltaTime / F_time;
+                alpha.a = Mathf.Lerp(0, 1, time);
+                FadeOutPage.color = alpha;
+                yield return null;
+            }
+        }
     }
 }
