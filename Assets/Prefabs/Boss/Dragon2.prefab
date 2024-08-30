@@ -1322,7 +1322,6 @@ GameObject:
   - component: {fileID: 5245101711039374898}
   - component: {fileID: 4140133758144443897}
   - component: {fileID: 2476004764833464696}
-  - component: {fileID: 745089553628846350}
   - component: {fileID: 2248974292671593899}
   m_Layer: 0
   m_Name: Dragon2
@@ -1486,28 +1485,6 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 0
---- !u!195 &745089553628846350
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5747943755673903067}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!95 &2248974292671593899
 Animator:
   serializedVersion: 5

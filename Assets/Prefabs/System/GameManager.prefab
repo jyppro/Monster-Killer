@@ -268,4 +268,3 @@ MonoBehaviour:
   gold: 0
   sumScore: 0
   time: 0
-  FadeOutPage: {fileID: 2127388699227881253, guid: 41fe9968eb9806b449c6ba4b3c8ff620, type: 3}

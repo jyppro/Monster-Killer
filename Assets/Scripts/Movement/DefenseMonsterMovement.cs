@@ -88,11 +88,8 @@ public class DefenseMonsterMovement : MonoBehaviour
         OffMeshLinkData linkData = navMeshAgent.currentOffMeshLinkData;
         Vector3 endPos = linkData.endPos;
 
-        // 간단하게 AI를 끝점으로 이동시키는 예제
         navMeshAgent.CompleteOffMeshLink();
         navMeshAgent.transform.position = endPos;
-
-        // 필요한 경우 추가 로직 또는 애니메이션 추가
         animator.SetBool("Move", true);
 
         yield return null;

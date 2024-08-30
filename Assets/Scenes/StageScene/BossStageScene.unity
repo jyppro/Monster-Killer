@@ -3408,7 +3408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FadeOutPage: {fileID: 1891984287}
-  sceneToLoad: HuntStageScene
+  sceneToLoad: BossStageScene
 --- !u!114 &1406432130
 MonoBehaviour:
   m_ObjectHideFlags: 0
