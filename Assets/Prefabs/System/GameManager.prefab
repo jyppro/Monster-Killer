@@ -134,54 +134,54 @@ MonoBehaviour:
     score: 1000
     bossPrefab: {fileID: 5747943755673903067, guid: 9807a968b11bf014bab4041bc55d1f8a, type: 3}
     targetKillCount: 1
-  - stageTime: 0
-    threeStarTime: 0
-    twoStarTime: 0
-    score: 0
-    bossPrefab: {fileID: 0}
-    targetKillCount: 0
-  - stageTime: 0
-    threeStarTime: 0
-    twoStarTime: 0
-    score: 0
-    bossPrefab: {fileID: 0}
-    targetKillCount: 0
-  - stageTime: 0
-    threeStarTime: 0
-    twoStarTime: 0
-    score: 0
-    bossPrefab: {fileID: 0}
-    targetKillCount: 0
-  - stageTime: 0
-    threeStarTime: 0
-    twoStarTime: 0
-    score: 0
-    bossPrefab: {fileID: 0}
-    targetKillCount: 0
-  - stageTime: 0
-    threeStarTime: 0
-    twoStarTime: 0
-    score: 0
-    bossPrefab: {fileID: 0}
-    targetKillCount: 0
-  - stageTime: 0
-    threeStarTime: 0
-    twoStarTime: 0
-    score: 0
-    bossPrefab: {fileID: 0}
-    targetKillCount: 0
-  - stageTime: 0
-    threeStarTime: 0
-    twoStarTime: 0
-    score: 0
-    bossPrefab: {fileID: 0}
-    targetKillCount: 0
-  - stageTime: 0
-    threeStarTime: 0
-    twoStarTime: 0
-    score: 0
-    bossPrefab: {fileID: 0}
-    targetKillCount: 0
+  - stageTime: 360
+    threeStarTime: 180
+    twoStarTime: 120
+    score: 1000
+    bossPrefab: {fileID: 5630610525625969542, guid: 0c8a5cb04349755498dacf1c21de7f7d, type: 3}
+    targetKillCount: 1
+  - stageTime: 360
+    threeStarTime: 180
+    twoStarTime: 120
+    score: 1000
+    bossPrefab: {fileID: 8161974945715205705, guid: cdef605c8b251574aa2104b59f2e10db, type: 3}
+    targetKillCount: 1
+  - stageTime: 360
+    threeStarTime: 180
+    twoStarTime: 120
+    score: 1000
+    bossPrefab: {fileID: 7106241705816717486, guid: 25a4748397941a945be8ccd51fa46745, type: 3}
+    targetKillCount: 1
+  - stageTime: 360
+    threeStarTime: 180
+    twoStarTime: 120
+    score: 1000
+    bossPrefab: {fileID: 6270596195132203326, guid: 120f9cfacb4891f40b82b35307960ade, type: 3}
+    targetKillCount: 1
+  - stageTime: 360
+    threeStarTime: 180
+    twoStarTime: 120
+    score: 1000
+    bossPrefab: {fileID: 3736208178540633263, guid: 4d235b57388537e489c993dce0d7c9f3, type: 3}
+    targetKillCount: 1
+  - stageTime: 360
+    threeStarTime: 180
+    twoStarTime: 120
+    score: 1000
+    bossPrefab: {fileID: 7063173822665864553, guid: 1302ddf57068b214cad24c55775fcfaa, type: 3}
+    targetKillCount: 1
+  - stageTime: 360
+    threeStarTime: 180
+    twoStarTime: 120
+    score: 1000
+    bossPrefab: {fileID: 3791188024623526531, guid: ff329ec6f52abc14da0b495df8bd74e9, type: 3}
+    targetKillCount: 1
+  - stageTime: 360
+    threeStarTime: 180
+    twoStarTime: 120
+    score: 10000
+    bossPrefab: {fileID: 7172254052817117787, guid: fb4fa80e728f4364a974efe8eb09e90d, type: 3}
+    targetKillCount: 1
   guardianStages:
   - stageTime: 180
     threeStarTime: 0
