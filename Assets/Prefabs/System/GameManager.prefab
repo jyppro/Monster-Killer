@@ -168,7 +168,7 @@ MonoBehaviour:
     threeStarTime: 180
     twoStarTime: 120
     score: 1000
-    bossPrefab: {fileID: 7063173822665864553, guid: 1302ddf57068b214cad24c55775fcfaa, type: 3}
+    bossPrefab: {fileID: 8565655798210911250, guid: 1302ddf57068b214cad24c55775fcfaa, type: 3}
     targetKillCount: 1
   - stageTime: 360
     threeStarTime: 180

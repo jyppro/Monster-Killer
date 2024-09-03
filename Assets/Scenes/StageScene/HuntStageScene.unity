@@ -1522,6 +1522,10 @@ PrefabInstance:
       value: Rock_Kit1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 492c8ffe1f6b4ac4fab0d0e04d7aae5d, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 492c8ffe1f6b4ac4fab0d0e04d7aae5d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -2405,7 +2409,7 @@ GameObject:
   - component: {fileID: 1000510022}
   m_Layer: 0
   m_Name: Land
-  m_TagString: Untagged
+  m_TagString: terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -4245,6 +4249,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 492c8ffe1f6b4ac4fab0d0e04d7aae5d, type: 3}
       propertyPath: m_Name
       value: Rock_Kit2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 492c8ffe1f6b4ac4fab0d0e04d7aae5d, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 492c8ffe1f6b4ac4fab0d0e04d7aae5d, type: 3}
       propertyPath: m_StaticEditorFlags

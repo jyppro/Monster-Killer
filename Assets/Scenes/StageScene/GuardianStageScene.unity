@@ -554,6 +554,7 @@ Transform:
   - {fileID: 777724522}
   - {fileID: 184158738}
   - {fileID: 480053386}
+  - {fileID: 1436758619}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &92793038
@@ -4193,6 +4194,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 429818014}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &1436758618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1436758619}
+  - component: {fileID: 1436758620}
+  m_Layer: 0
+  m_Name: Cube (6)
+  m_TagString: terrain
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &1436758619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436758618}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -19.6, y: -31.2, z: 17.3}
+  m_LocalScale: {x: 1, y: 383.0195, z: 328.4038}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 79318541}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!65 &1436758620
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436758618}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.0162904, y: 1, z: 1}
+  m_Center: {x: -1.0081452, y: 0, z: 9.836154e-11}
 --- !u!1 &1464947434
 GameObject:
   m_ObjectHideFlags: 0
@@ -6252,6 +6306,10 @@ PrefabInstance:
     - target: {fileID: 8867735443944334507, guid: 10631fd81547efe4ba70ffba85e0d373, type: 3}
       propertyPath: m_Name
       value: Final_svet
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867735443944334507, guid: 10631fd81547efe4ba70ffba85e0d373, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8867735443944334507, guid: 10631fd81547efe4ba70ffba85e0d373, type: 3}
       propertyPath: m_StaticEditorFlags
