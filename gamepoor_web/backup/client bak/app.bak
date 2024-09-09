@@ -1,0 +1,20 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginForm from './components/LoginForm';
+import SignForm from './components/SignForm'; 
+import Game from './components/game';
+
+const App: React.FC = () => {
+    return (
+        <Router>
+            <Routes>
+                <Route path="/login" element={<LoginForm />} />
+                <Route path="/signup" element={<SignForm />} /> 
+                <Route path="/game" element={<Game />} /> 
+                <Route path="/" element={<LoginForm />} />
+            </Routes>
+        </Router>
+    );
+};
+
+export default App;
