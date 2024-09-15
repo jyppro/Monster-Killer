@@ -5578,7 +5578,6 @@ GameObject:
   - component: {fileID: 1755515024}
   - component: {fileID: 1755515027}
   - component: {fileID: 1755515026}
-  - component: {fileID: 1755515028}
   m_Layer: 5
   m_Name: UpgradePage
   m_TagString: Untagged
@@ -5650,19 +5649,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755515023}
   m_CullTransparentMesh: 1
---- !u!114 &1755515028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1755515023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 582dcf0c4668e3445a5d4a16aaf3ca9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UpgradePage: {fileID: 1755515023}
 --- !u!1 &1779584335
 GameObject:
   m_ObjectHideFlags: 0
