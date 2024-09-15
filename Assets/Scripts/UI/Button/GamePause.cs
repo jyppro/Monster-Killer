@@ -16,7 +16,7 @@ public class GamePause : MonoBehaviour
         buttonImage = GetComponent<Image>();
         if(GetComponent<Button>() != null) { GetComponent<Button>().onClick.AddListener(TogglePause); }
     }
-    private void Update() { if (Input.GetKeyDown(KeyCode.Escape)) { TogglePause(); } }
+    // private void Update() { if (Input.GetKeyDown(KeyCode.Escape)) { TogglePause(); } }
     private void TogglePause()
     {
         isPaused = !isPaused;

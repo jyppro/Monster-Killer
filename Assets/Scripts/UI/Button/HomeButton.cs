@@ -26,6 +26,15 @@ public class HomeButton : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        // ESC 키를 눌러도 아무 동작이 없도록 로그만 남김 (차단 효과)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("ESC 입력이 차단되었습니다.");
+        }
+    }
+
     private void ReturnHome()
     {
         if (!isFading)
@@ -35,39 +44,39 @@ public class HomeButton : MonoBehaviour
     }
 
     private IEnumerator FadeOutAndReturnHome()
-{
-    // EventSystem 비활성화하여 입력 막기
-    if (eventSystem != null)
     {
-        eventSystem.enabled = false; 
-    }
-
-    // Time.timeScale 복구
-    Time.timeScale = 1.0f;
-
-    // 페이드 아웃 시작
-    isFading = true;
-    float time = 0.0f;
-
-    if (FadeOutPage != null)
-    {
-        FadeOutPage.gameObject.SetActive(true);
-        Color alpha = FadeOutPage.color;
-
-        while (alpha.a < 1)
+        // EventSystem 비활성화하여 마우스 입력 막기
+        if (eventSystem != null)
         {
-            time += Time.deltaTime / F_time;
-            alpha.a = Mathf.Lerp(0, 1, time);
-            FadeOutPage.color = alpha;
-            yield return null;
+            eventSystem.enabled = false;
         }
 
-        // 페이드 아웃 완료 후 씬 전환
-        Debug.Log("씬 전환을 시작합니다."); // 디버그 메시지 추가
-        SceneManager.LoadScene(sceneToLoad);
+        // Time.timeScale을 0으로 설정하여 게임을 일시정지
+        Time.timeScale = 0.0f;
+
+        // 페이드 아웃 시작
+        isFading = true;
+        float time = 0.0f;
+
+        if (FadeOutPage != null)
+        {
+            FadeOutPage.gameObject.SetActive(true);
+            Color alpha = FadeOutPage.color;
+
+            while (alpha.a < 1)
+            {
+                time += Time.unscaledDeltaTime / F_time; // 시간 스케일이 0이므로 unscaledDeltaTime 사용
+                alpha.a = Mathf.Lerp(0, 1, time);
+                FadeOutPage.color = alpha;
+                yield return null;
+            }
+
+            // 페이드 아웃 완료 후 씬 전환
+            Debug.Log("씬 전환을 시작합니다.");
+            Time.timeScale = 1.0f; // 씬 전환 전에 Time.timeScale을 복구
+            SceneManager.LoadScene(sceneToLoad);
+        }
+
+        isFading = false;
     }
-
-    isFading = false;
-}
-
 }
