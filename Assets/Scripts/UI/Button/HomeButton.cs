@@ -26,14 +26,14 @@ public class HomeButton : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        // ESC 키를 눌러도 아무 동작이 없도록 로그만 남김 (차단 효과)
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("ESC 입력이 차단되었습니다.");
-        }
-    }
+    // private void Update()
+    // {
+    //     // ESC 키를 눌러도 아무 동작이 없도록 로그만 남김 (차단 효과)
+    //     if (Input.GetKeyDown(KeyCode.Escape))
+    //     {
+    //         Debug.Log("ESC 입력이 차단되었습니다.");
+    //     }
+    // }
 
     private void ReturnHome()
     {

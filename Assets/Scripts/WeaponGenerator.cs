@@ -35,7 +35,7 @@ public class WeaponGenerator : MonoBehaviour
             currentWeapon.GetComponent<Rigidbody>().isKinematic = false;
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             Vector3 worldDir = ray.direction;
-            currentWeapon.GetComponent<WeaponController>().Shoot(worldDir.normalized * 2000);
+            currentWeapon.GetComponent<WeaponController>().Shoot(worldDir.normalized * 5000);
 
             currentWeapon = null;
             canGenerate = false;

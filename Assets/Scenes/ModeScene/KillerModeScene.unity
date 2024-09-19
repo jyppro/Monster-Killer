@@ -3521,6 +3521,10 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1716371724}
+    - target: {fileID: -7298419198509166706, guid: b2cf14a48e4ac874b84864c99f1b0c7c, type: 3}
+      propertyPath: IncreaseMonsterMaxHealth
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: -4531214977206900079, guid: b2cf14a48e4ac874b84864c99f1b0c7c, type: 3}
       propertyPath: m_Volume
       value: 1
