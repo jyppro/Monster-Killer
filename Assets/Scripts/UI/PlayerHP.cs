@@ -10,8 +10,9 @@ public class PlayerHP : MonoBehaviour
     private Slider PlayerhealthSlider; // 체력바 UI
     public int playerMaxHealth; // 플레이어 최대 체력
     public int playerCurrentHealth; // 플레이어 현재 체력
-    public GameObject GameOver; // 게임오버 페이지 삭제
+    // public GameObject GameOver; // 게임오버 페이지 삭제
     [SerializeField] private Image FadeOutPage;
+    public MouseLook mouseLook;
 
     private void Start()
     {
@@ -74,6 +75,7 @@ public class PlayerHP : MonoBehaviour
 
     private IEnumerator FadeOutAndReturnHome()
     {
+        mouseLook.UnlockMouse();
         float F_time = 1.0f; // 페이드 아웃 시
 
         if (FadeOutPage != null)

@@ -10,10 +10,13 @@ public class StageController : MonoBehaviour
     public float twoStarTime;
     public int score;
     public int sumScore;
+
     [SerializeField] private TextMeshProUGUI ScoreText;
     [SerializeField] private GameObject ClearPage;
     [SerializeField] private Sprite[] starImages;
     [SerializeField] private Image starResult;
+
+    public MouseLook mouseLook;
 
     public static StageController Instance { get; private set; }
 
@@ -95,6 +98,7 @@ public class StageController : MonoBehaviour
 
             // 스테이지 클리어 상태 업데이트
             GameManager.Instance.UnlockNextStage(modeIndex, stageIndex);
+            mouseLook.UnlockMouse();
 
             ClearPage.SetActive(true);
             Time.timeScale = 0.0f;
