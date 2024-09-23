@@ -158,6 +158,7 @@ MonoBehaviour:
   WeaponPrefab: {fileID: 3787972095011550686, guid: 9b2b002c99deb3647b98423e05d7eb2b, type: 3}
   mainCamera: {fileID: 1060178392242585566}
   controlOffset: {x: 0.5, y: -0.8, z: 1}
+  throwSpeed: 200
 --- !u!114 &6131144231966435214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,8 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  dashSpeed: 500
-  dashDuration: 0.1
+  gravity: 0
   controller: {fileID: 8348367807032197566}
   cameraTransform: {fileID: 3691886441539812096}
 --- !u!143 &8348367807032197566

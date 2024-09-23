@@ -8,6 +8,7 @@ public class WeaponGenerator : MonoBehaviour
     private float delay = 0.7f;
     private bool canGenerate = true; // 생성가능 상태체크
     [SerializeField] Vector3 controlOffset = new Vector3(0.5f, -0.8f, 1.0f);
+    [SerializeField] private float throwSpeed = 500f; // 던질 때의 속도
     Vector3 spawnPosition;
 
     void Start()
@@ -32,10 +33,13 @@ public class WeaponGenerator : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && currentWeapon != null) // 무기 던지기
         {
-            currentWeapon.GetComponent<Rigidbody>().isKinematic = false;
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            Vector3 worldDir = ray.direction;
-            currentWeapon.GetComponent<WeaponController>().Shoot(worldDir.normalized * 5000);
+            Rigidbody rb = currentWeapon.GetComponent<Rigidbody>();
+            rb.isKinematic = false;
+            rb.useGravity = false; // 중력 비활성화
+
+            // 카메라의 정면 방향으로 빠르게 던지기
+            Vector3 shootDirection = mainCamera.transform.forward;
+            rb.velocity = shootDirection.normalized * throwSpeed; // 던지는 속도 설정
 
             currentWeapon = null;
             canGenerate = false;

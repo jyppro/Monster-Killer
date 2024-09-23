@@ -13,6 +13,9 @@ public class PlayerHP : MonoBehaviour
     // public GameObject GameOver; // 게임오버 페이지 삭제
     [SerializeField] private Image FadeOutPage;
     public MouseLook mouseLook;
+    [SerializeField] private Image hitEffectImage; // 피격 효과 이미지 추가
+    [SerializeField] private Camera playerCamera; // 플레이어 카메라 추가
+    public float hitAlpha = 0.3f;
 
     private void Start()
     {
@@ -45,6 +48,19 @@ public class PlayerHP : MonoBehaviour
         playerCurrentHealth -= monsterPower;
         playerCurrentHealth = Mathf.Clamp(playerCurrentHealth, 0, playerMaxHealth); // 체력이 음수가 되지 않도록 클램핑
         UpdateHealthSlider();
+
+        // 피격 이미지 활성화 및 알파값 변경
+        if (hitEffectImage != null)
+        {
+            StartCoroutine(ShowHitEffect());
+        }
+
+        // 카메라 흔들림 효과 호출
+        if (playerCamera != null)
+        {
+            StartCoroutine(CameraShake(0.4f, 0.05f)); // 지속 시간과 세기를 전달
+        }
+
         if (playerCurrentHealth <= 0)
         {
             HandleGameOver();
@@ -92,5 +108,47 @@ public class PlayerHP : MonoBehaviour
                 yield return null;
             }
         }
+    }
+
+    // 피격 이미지 알파값 조절 코루틴
+    private IEnumerator ShowHitEffect()
+    {
+        float duration = 1.5f; // 1초 동안 효과
+        Color hitColor = hitEffectImage.color;
+        hitColor.a = hitAlpha;
+        hitEffectImage.color = hitColor;
+        hitEffectImage.gameObject.SetActive(true);
+
+        // 1초 동안 알파값을 서서히 줄이기
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            hitColor.a = Mathf.Lerp(hitAlpha, 0f, elapsedTime / duration); // 알파값을 0으로 줄임
+            hitEffectImage.color = hitColor;
+            yield return null;
+        }
+
+        hitEffectImage.gameObject.SetActive(false); // 알파값이 0이 되면 비활성화
+    }
+
+    // 카메라 흔들림 효과 코루틴
+    private IEnumerator CameraShake(float duration, float magnitude)
+    {
+        Vector3 originalPosition = playerCamera.transform.localPosition; // 카메라 원래 위치 저장
+        float elapsed = 0.0f;
+
+        while (elapsed < duration)
+        {
+            float x = Random.Range(-1f, 1f) * magnitude; // 랜덤 X값
+            float y = Random.Range(-1f, 1f) * magnitude; // 랜덤 Y값
+
+            playerCamera.transform.localPosition = new Vector3(originalPosition.x + x, originalPosition.y + y, originalPosition.z); // 카메라 위치 변화
+
+            elapsed += Time.deltaTime;
+            yield return null; // 한 프레임 대기
+        }
+
+        playerCamera.transform.localPosition = originalPosition; // 원래 위치로 복구
     }
 }

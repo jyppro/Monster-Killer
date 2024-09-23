@@ -5122,7 +5122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponGenerator: {fileID: 0}
   damage: 0
-  currentDamage: 0
+  currentDamage: 10000
   PartsDamage: 0
 --- !u!1 &5654181982335150524
 GameObject:
