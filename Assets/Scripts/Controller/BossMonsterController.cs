@@ -103,8 +103,26 @@ public class BossMonsterController : MonoBehaviour
             col.enabled = false;
         }
 
-        // 3초 뒤에 몬스터 제거
-        Destroy(gameObject, 3f);
+        StartCoroutine(Die());
+
+        // // 3초 뒤에 몬스터 제거
+        // Destroy(gameObject, 3f);
+
+        // // 스포너의 MonsterDied 메서드 호출
+        // if (spawner != null)
+        // {
+        //     spawner.MonsterDied();
+        // }
+    }
+
+    // 몬스터 사망 처리
+    IEnumerator Die()
+    {
+        // 5초 후에 Destroy 실행
+        yield return new WaitForSeconds(5f);
+
+        // 게임 오브젝트 삭제
+        Destroy(gameObject);
 
         // 스포너의 MonsterDied 메서드 호출
         if (spawner != null)

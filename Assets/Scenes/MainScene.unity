@@ -3262,11 +3262,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6721602027593258867, guid: 12e4722473d60e24086e473637584d6b, type: 3}
       propertyPath: maxHP
-      value: 130
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6721602027593258867, guid: 12e4722473d60e24086e473637584d6b, type: 3}
       propertyPath: power
-      value: 10000
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6721602027593258867, guid: 12e4722473d60e24086e473637584d6b, type: 3}
       propertyPath: playerID
@@ -3274,7 +3274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6721602027593258867, guid: 12e4722473d60e24086e473637584d6b, type: 3}
       propertyPath: currentHP
-      value: 130
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6721602027593258867, guid: 12e4722473d60e24086e473637584d6b, type: 3}
       propertyPath: FadeOutPage

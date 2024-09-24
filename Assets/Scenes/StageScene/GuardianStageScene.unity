@@ -881,11 +881,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 498b9139b7a3beb4ba5cfbfddebc5254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!20 &151449466 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 1060178392242585566, guid: a70f2c1204bd12848bbdd018ffd4f321, type: 3}
-  m_PrefabInstance: {fileID: 151449464}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &184158734
 GameObject:
   m_ObjectHideFlags: 0
@@ -4208,7 +4203,7 @@ MonoBehaviour:
   FadeOutPage: {fileID: 1150181030}
   mouseLook: {fileID: 151449465}
   hitEffectImage: {fileID: 1543362968}
-  playerCamera: {fileID: 151449466}
+  playerCamera: {fileID: 0}
   hitAlpha: 0.3
 --- !u!114 &1407426152
 MonoBehaviour:

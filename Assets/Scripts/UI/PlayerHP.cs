@@ -45,25 +45,28 @@ public class PlayerHP : MonoBehaviour
 
     public void TakeDamage_P(int monsterPower) // 플레이어가 받는 데미지
     {
-        playerCurrentHealth -= monsterPower;
-        playerCurrentHealth = Mathf.Clamp(playerCurrentHealth, 0, playerMaxHealth); // 체력이 음수가 되지 않도록 클램핑
-        UpdateHealthSlider();
-
-        // 피격 이미지 활성화 및 알파값 변경
-        if (hitEffectImage != null)
+        if(monsterPower > 0)
         {
-            StartCoroutine(ShowHitEffect());
-        }
+            playerCurrentHealth -= monsterPower;
+            playerCurrentHealth = Mathf.Clamp(playerCurrentHealth, 0, playerMaxHealth); // 체력이 음수가 되지 않도록 클램핑
+            UpdateHealthSlider();
 
-        // 카메라 흔들림 효과 호출
-        if (playerCamera != null)
-        {
-            StartCoroutine(CameraShake(0.4f, 0.05f)); // 지속 시간과 세기를 전달
-        }
+            // 피격 이미지 활성화 및 알파값 변경
+            if (hitEffectImage != null)
+            {
+                StartCoroutine(ShowHitEffect());
+            }
 
-        if (playerCurrentHealth <= 0)
-        {
-            HandleGameOver();
+            // 카메라 흔들림 효과 호출
+            if (playerCamera != null)
+            {
+                StartCoroutine(CameraShake(0.4f, 0.05f)); // 지속 시간과 세기를 전달
+            }
+
+            if (playerCurrentHealth <= 0)
+            {
+                HandleGameOver();
+            }
         }
     }
 

@@ -7910,8 +7910,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2bef44c58e277b349992531b1fbab271, type: 3}
   - {fileID: 8300000, guid: 4ff2cd7e27d300840967aabc540e9213, type: 3}
   - {fileID: 8300000, guid: da79055cc27a29547b4a6a35deb76776, type: 3}
-  MonsterMaxHealth: 1000
-  MonsterCurrentHealth: 1000
+  MonsterMaxHealth: 999999
+  MonsterCurrentHealth: 999999
   attackInterval: 10
   MonsterPower: 0
   playerLayer:
@@ -7952,7 +7952,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterPrefab: {fileID: 1297029129040627618, guid: d9208043371a48048b05b558e555bd28, type: 3}
   player: {fileID: 0}
-  offsetY: 0.5
 --- !u!1 &3818042582238282502
 GameObject:
   m_ObjectHideFlags: 0

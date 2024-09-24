@@ -2737,7 +2737,7 @@ GameObject:
   - component: {fileID: 9004521357852183822}
   m_Layer: 0
   m_Name: FinalBoss
-  m_TagString: Untagged
+  m_TagString: Head
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2911,10 +2911,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2bef44c58e277b349992531b1fbab271, type: 3}
   - {fileID: 8300000, guid: 4ff2cd7e27d300840967aabc540e9213, type: 3}
   - {fileID: 8300000, guid: da79055cc27a29547b4a6a35deb76776, type: 3}
-  MonsterMaxHealth: 1000
-  MonsterCurrentHealth: 1000
+  MonsterMaxHealth: 20243813
+  MonsterCurrentHealth: 20243813
   attackInterval: 20
-  MonsterPower: 100
+  MonsterPower: 20243813
   playerLayer:
     serializedVersion: 2
     m_Bits: 0
