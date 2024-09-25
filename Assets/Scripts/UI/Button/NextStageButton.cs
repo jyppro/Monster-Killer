@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class RestartButton : MonoBehaviour
+public class NextStageButton : MonoBehaviour
 {
     public Image FadeOutPage;
     public string sceneToLoad; // 인스펙터에서 설정할 씬 이름
@@ -18,6 +18,7 @@ public class RestartButton : MonoBehaviour
     private void PauseExit() { Time.timeScale = 1.0f; }
     IEnumerator FadeOut()
     {
+        StageLoader.Instance.currentStageIndex++;
         float time = 0.0f;
         
         FadeOutPage.gameObject.SetActive(true);
