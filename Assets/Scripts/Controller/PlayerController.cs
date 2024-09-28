@@ -61,8 +61,8 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        // Z키가 눌렸을 때 무기 스왑 처리
-        if (Input.GetKeyDown(KeyCode.Z) && !isSwappingWeapon)
+        // Z키가 눌렸을 때 무기 스왑 처리 (버튼이 활성화되어 있을 때만)
+        if (Input.GetKeyDown(KeyCode.Z) && !isSwappingWeapon && skill1Button.interactable)
         {
             PlayKeyPressSound(0); // 키프레스 사운드 재생 (첫 번째 클립)
             StartCoroutine(SwapWeapon());
