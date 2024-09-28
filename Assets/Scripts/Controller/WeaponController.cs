@@ -6,7 +6,9 @@ public class WeaponController : MonoBehaviour
     public int damage = 10; // 기본 데미지, 10으로 데이터 설정
     public int currentDamage = 0; // 강화 추가 데미지
     public int PartsDamage = 0; // 부위 별 추가 데미지
-    public AudioSource WeaponAudio; // 몬스터 사운드
+    //public AudioSource WeaponAudio; // 무기 사운드
+    public AudioSource[] WeaponAudios; // 하위 오브젝트들의 오디오 소스를 배열로 저장
+    public ParticleSystem ParticleSystem;
 
     public void Shoot(Vector3 dir) //인자로 3차원 벡터가 입력되고
     { GetComponent<Rigidbody>().AddForce(dir); } // 들어온 입력벡터 만큼 오브젝트에 힘이 가해진다.
@@ -14,7 +16,18 @@ public class WeaponController : MonoBehaviour
     void Start()
     {
         this.WeaponGenerator = GameObject.Find("WeaponGenerator");
-        WeaponAudio = GetComponent<AudioSource>(); // 오디오 소스 연결
+        if(WeaponAudios != null)
+        {
+            //WeaponAudio = GetComponent<AudioSource>(); // 오디오 소스 연결
+            // 프리팹의 하위에 있는 모든 AudioSource를 가져온다
+            WeaponAudios = GetComponentsInChildren<AudioSource>();
+        }
+
+        if(ParticleSystem != null)
+        {
+            ParticleSystem = GetComponent<ParticleSystem>();
+        }
+
         //currentDamage = GameManager.Instance.GetPower();
     }
 
@@ -41,10 +54,26 @@ public class WeaponController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) //다른 물체와 충돌하는 순간
     {
-        WeaponAudio.Play();
-        GetComponent<Rigidbody>().isKinematic = true; //중력 무시
-        GetComponent<ParticleSystem>().Play(); // 파티클 실행
+        if(WeaponAudios != null)
+        {
+            //WeaponAudio.Play();
 
+            // 각각의 하위 오브젝트에 있는 오디오 소스를 재생
+            foreach (AudioSource audioSource in WeaponAudios)
+            {
+                if(audioSource != null)
+                {
+                    audioSource.Play(); // 오디오 재생
+                }
+            }
+        }
+        
+        GetComponent<Rigidbody>().isKinematic = true; //중력 무시
+
+        if(ParticleSystem != null)
+        {
+            ParticleSystem.Play(); // 파티클 실행
+        }
 
         if (!collision.gameObject.CompareTag("terrain"))
         {

@@ -5125,7 +5125,9 @@ MonoBehaviour:
   damage: 0
   currentDamage: 200
   PartsDamage: 0
-  WeaponAudio: {fileID: -3359887582911109671}
+  WeaponAudios:
+  - {fileID: -3359887582911109671}
+  ParticleSystem: {fileID: 0}
 --- !u!82 &-3359887582911109671
 AudioSource:
   m_ObjectHideFlags: 0

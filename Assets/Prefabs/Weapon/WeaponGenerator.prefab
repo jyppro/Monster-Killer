@@ -47,3 +47,4 @@ MonoBehaviour:
   WeaponPrefab: {fileID: 3787972095011550686, guid: 9b2b002c99deb3647b98423e05d7eb2b, type: 3}
   mainCamera: {fileID: 0}
   controlOffset: {x: 0, y: -0.8, z: 2}
+  throwSpeed: 100
