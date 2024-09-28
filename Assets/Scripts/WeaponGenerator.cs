@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class WeaponGenerator : MonoBehaviour
 {
-    [SerializeField] private GameObject WeaponPrefab; // 무기 프리팹
+    [SerializeField] public GameObject WeaponPrefab; // 무기 프리팹
     [SerializeField] private Camera mainCamera; // 메인 카메라
-    private GameObject currentWeapon; // 현재 무기
+    public GameObject currentWeapon; // 현재 무기
     private float delay = 0.7f;
     private bool canGenerate = true; // 생성가능 상태체크
     [SerializeField] Vector3 controlOffset = new Vector3(0.5f, -0.8f, 1.0f);
     [SerializeField] private float throwSpeed = 500f; // 던질 때의 속도
-    Vector3 spawnPosition;
+    public Vector3 spawnPosition;
 
     void Start()
     {
@@ -47,8 +47,14 @@ public class WeaponGenerator : MonoBehaviour
         }
     }
 
-    private void GenerateWeapon() // 무기 생성
+    public void GenerateWeapon() // 무기 생성
     {
+        // 기존 무기 제거
+        if (currentWeapon != null)
+        {
+            Destroy(currentWeapon);
+        }
+        
         currentWeapon = Instantiate(WeaponPrefab);
         currentWeapon.GetComponent<Rigidbody>().isKinematic = true;
 
