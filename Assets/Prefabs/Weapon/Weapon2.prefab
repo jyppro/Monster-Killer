@@ -480,8 +480,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponGenerator: {fileID: 0}
-  damage: 0
-  currentDamage: 200
+  damage: 10
+  currentDamage: 10
   PartsDamage: 0
   WeaponAudios:
   - {fileID: 6404306101602168898}

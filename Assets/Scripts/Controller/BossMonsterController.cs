@@ -70,6 +70,8 @@ public class BossMonsterController : MonoBehaviour
 
     public void TakeDamage_M(int damage) // 몬스터에게 데미지를 주는 함수
     {
+        if (!isAlive) return; // 몬스터가 죽었다면 함수를 종료
+        
         MonsterCurrentHealth -= damage;
         MonsterAudio.clip = Clips[2]; // 몬스터 피격 효과음
         MonsterAudio.Play();

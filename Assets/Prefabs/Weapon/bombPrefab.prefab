@@ -5122,7 +5122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponGenerator: {fileID: 0}
-  damage: 0
+  damage: 10
   currentDamage: 200
   PartsDamage: 0
   WeaponAudios:

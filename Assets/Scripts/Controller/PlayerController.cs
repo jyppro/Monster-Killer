@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;  // UI 시스템을 사용하기 위한 네임스페이스 추가
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour
@@ -8,40 +8,37 @@ public class PlayerController : MonoBehaviour
     public float gravity = 0f;
     public CharacterController controller;
     public Transform cameraTransform;
-
     private Vector3 velocity;
-
-    public WeaponGenerator weaponGenerator;  // WeaponGenerator에 대한 참조
+    public WeaponGenerator weaponGenerator;
     public GameObject originalWeaponPrefab;  // 원래 무기 프리팹
     public GameObject weapon2Prefab;         // 무기2 프리팹
+    public GameObject magicAttackPrefab;     // 마법 공격 프리팹
     public int weaponSwapDuration = 5;    // 원래 무기로 돌아가기까지의 시간
     public int skill1Cooldown = 5;
-    // public int skill2Cooldown = 20;
-
+    public int skill2Cooldown = 10;
     private bool isSwappingWeapon = false;
-
-    // UI 버튼에 대한 참조
     public Button skill1Button; // 스왑 버튼
-
-    // UI 버튼에 대한 참조
     public Button skill2Button;
-
-    // KeyPressSound 오브젝트에 대한 참조
     public KeyPressSound keyPressSound;
 
     void Start()
     {
         keyPressSound = GameObject.Find("KeyPressSound").GetComponent<KeyPressSound>();
         skill1Button = GameObject.Find("Skill1Weapon").GetComponent<Button>();
-        // skill2Button = gameObject.Find("Skill2_Explosion").GetComponent<Button>();
+        skill2Button = GameObject.Find("Skill2Explosion").GetComponent<Button>();
 
         // 버튼이 존재하는지 확인하고 이벤트 추가
         if (skill1Button != null)
         {
-            skill1Button.onClick.AddListener(OnSwapButtonClicked);
+            skill1Button.onClick.AddListener(OnSkill1ButtonClicked);
+        }
+
+        // 버튼이 존재하는지 확인하고 이벤트 추가
+        if (skill2Button != null)
+        {
+            skill2Button.onClick.AddListener(OnSkill2ButtonClicked);
         }
     }
-
 
     void Update()
     {
@@ -67,9 +64,16 @@ public class PlayerController : MonoBehaviour
             PlayKeyPressSound(0); // 키프레스 사운드 재생 (첫 번째 클립)
             StartCoroutine(SwapWeapon());
         }
+
+        // X키가 눌렸을 때 마법 공격 처리
+        if(Input.GetKeyDown(KeyCode.X) && skill2Button.interactable)
+        {
+            PlayKeyPressSound(1); // 키프레스 사운드 재생 (두 번째 클립)
+            CastMagicAttack();
+        }
     }
 
-    private void OnSwapButtonClicked()
+    private void OnSkill1ButtonClicked()
     {
         if (!isSwappingWeapon)
         {
@@ -78,13 +82,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void PlayKeyPressSound(int index)
+    private void OnSkill2ButtonClicked()
     {
-        // KeyPressSound 클래스에서 사운드 재생
-        if (keyPressSound != null)
-        {
-            keyPressSound.PlayKeyPressSound(index);
-        }
+        PlayKeyPressSound(1); // 키프레스 사운드 재생 (두 번째 클립)
+        CastMagicAttack();
     }
 
     private IEnumerator SwapWeapon()
@@ -108,14 +109,46 @@ public class PlayerController : MonoBehaviour
         weaponGenerator.WeaponPrefab = originalWeaponPrefab;
         weaponGenerator.GenerateWeapon(); // 즉시 원래 무기 생성
 
-
         // 쿨다운 시작
-        StartCoroutine(Cooldown());
+        StartCoroutine(Skill1Cooldown());
 
         isSwappingWeapon = false;
     }
 
-    private IEnumerator Cooldown()
+    private void CastMagicAttack()
+    {
+        skill2Button.interactable = false;
+
+        if (magicAttackPrefab != null)
+        {
+            // 마우스 포인터 위치 가져오기
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            // 마우스 포인터가 위치한 지점 찾기
+            if (Physics.Raycast(ray, out hit))
+            {
+                // 마법 공격을 생성하기 전에 방향 설정
+                Vector3 spawnPosition = hit.point;
+
+                // 카메라로부터 마우스 위치까지의 방향 계산
+                Vector3 direction = (hit.point - transform.position).normalized;
+
+                // 방향을 기반으로 회전값 설정
+                Quaternion rotation = Quaternion.LookRotation(direction);
+
+                // 마법 공격을 생성하고 방향 회전을 적용
+                GameObject magicAttack = Instantiate(magicAttackPrefab, spawnPosition, rotation);
+                Destroy(magicAttack, 5f);
+            }
+
+            // 쿨다운 시작
+            StartCoroutine(Skill2Cooldown());
+        }
+    }
+
+
+    private IEnumerator Skill1Cooldown()
     {
         // 쿨다운 시간 동안 대기
         yield return new WaitForSeconds(skill1Cooldown);
@@ -124,6 +157,27 @@ public class PlayerController : MonoBehaviour
         if (skill1Button != null)
         {
             skill1Button.interactable = true;
+        }
+    }
+
+    private IEnumerator Skill2Cooldown()
+    {
+        // 쿨다운 시간 동안 대기
+        yield return new WaitForSeconds(skill2Cooldown);
+
+        // 버튼 다시 활성화
+        if (skill2Button != null)
+        {
+            skill2Button.interactable = true;
+        }
+    }
+
+    private void PlayKeyPressSound(int index)
+    {
+        // KeyPressSound 클래스에서 사운드 재생
+        if (keyPressSound != null)
+        {
+            keyPressSound.PlayKeyPressSound(index);
         }
     }
 }

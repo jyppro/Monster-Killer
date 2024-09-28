@@ -120,7 +120,6 @@ public class WeaponController : MonoBehaviour
                 bossMonsterController.ShowDamageText(damage, collision.GetContact(0).point);
             }
             
-            
             Destroy(gameObject, 0.5f);
         }
         else { Destroy(gameObject); }

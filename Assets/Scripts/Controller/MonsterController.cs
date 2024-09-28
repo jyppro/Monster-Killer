@@ -93,6 +93,8 @@ public class MonsterController : MonoBehaviour
 
     public void TakeDamage_M(int damage) // 몬스터에게 데미지를 주는 함수
     {
+        if (!isAlive) return; // 몬스터가 죽었다면 함수를 종료
+        
         MonsterCurrentHealth -= damage;
         MonsterAudio.clip = Clips[2]; // 몬스터 피격 효과음
         MonsterAudio.Play();
@@ -109,7 +111,10 @@ public class MonsterController : MonoBehaviour
     private void OnDeath()
     {
         isAlive = false;
-        MonsterCurrentHealth = 0;
+        if(MonsterCurrentHealth <= 0)
+        {
+            MonsterCurrentHealth = 0;
+        }
         animator.SetBool("Death", true);
 
         MonsterAudio.clip = Clips[3]; // 몬스터 사망 효과음
@@ -202,14 +207,33 @@ public class MonsterController : MonoBehaviour
 
     public void ShowDamageText(float damage, Vector3 position) // 몬스터가 받는 데미지 보여주기
     {
-        GameObject damageTextObject = Instantiate(damageTextPrefab, position, Quaternion.identity);
+        // 겹침을 방지하기 위해 랜덤 오프셋 생성
+        float randomOffsetX = Random.Range(-2.0f, 2.0f); // X 방향 랜덤 오프셋 (범위 확대)
+        float randomOffsetY = Random.Range(1.0f, 2.0f); // Y 방향 랜덤 오프셋 (범위 확대)
+
+        // 랜덤 오프셋을 적용한 새로운 월드 위치 생성
+        Vector3 randomPosition = position + new Vector3(randomOffsetX, randomOffsetY, 0);
+
+        // 랜덤 위치에서 데미지 텍스트 오브젝트 생성
+        GameObject damageTextObject = Instantiate(damageTextPrefab, randomPosition, Quaternion.identity);
+        
+        // 위치를 스크린 공간으로 변환
+        Vector3 screenPosition = Camera.main.WorldToScreenPoint(randomPosition);
+        
+        // RectTransform의 부모 설정 및 위치 지정
+        RectTransform rt = damageTextObject.GetComponent<RectTransform>();
+        rt.SetParent(canvas.transform, false); // 캔버스의 자식으로 설정
+        rt.position = screenPosition; // 스크린 위치로 설정
+
+        // 데미지 텍스트 설정
         TextMeshProUGUI textComponent = damageTextObject.GetComponent<TextMeshProUGUI>();
         textComponent.text = "-" + damage.ToString();
-        damageTextObject.transform.SetParent(canvas.transform, false);
+        
+        // 데미지 텍스트 오브젝트를 리스트에 추가
         damageTextObjects.Add(damageTextObject); // 리스트에 추가
+
         StartCoroutine(AnimateDamageText(textComponent));
     }
-
 
     private IEnumerator AnimateDamageText(TextMeshProUGUI textComponent) // 데미지에 애니메이션 적용
     {
