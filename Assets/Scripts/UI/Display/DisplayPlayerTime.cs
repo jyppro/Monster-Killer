@@ -45,7 +45,7 @@ public class DisplayPlayerTime : MonoBehaviour
         {
             int minutes = Mathf.FloorToInt(PlayerTime / 60);
             int seconds = Mathf.FloorToInt(PlayerTime % 60);
-            TimeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            TimeText.text = string.Format("TIME : " + "{0:00}:{1:00}", minutes, seconds);
         }
     }
 
