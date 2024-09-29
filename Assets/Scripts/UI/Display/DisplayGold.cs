@@ -40,7 +40,7 @@ public class DisplayGold : MonoBehaviour
     {
         if (GoldText != null)
         {
-            GoldText.text = "Gold : " + PlayerGold + "G";
+            GoldText.text = PlayerGold + "G";
         }
     }
 

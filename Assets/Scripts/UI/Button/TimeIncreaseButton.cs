@@ -12,7 +12,7 @@ public class TimeIncreaseButton : MonoBehaviour
     void Start()
     {
         // PlayerGold = GameManager.Instance.GetGold();
-        this.DisplayPlayerTime = GameObject.Find("Timer").GetComponent<DisplayPlayerTime>();
+        this.DisplayPlayerTime = GameObject.Find("TimerText").GetComponent<DisplayPlayerTime>();
         //this.goldController = GameObject.Find("GoldController").GetComponent<GoldController>();
         this.displayGold = GameObject.Find("GoldText").GetComponent<DisplayGold>();
         GetComponent<UnityEngine.UI.Button>().onClick.AddListener(UpgradeTime);

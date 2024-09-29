@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class BossMonsterController : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class BossMonsterController : MonoBehaviour
     private bool isAlive = true; // 보스 생사 여부
     private MonsterMovement monsterMovement;
     private MonsterSpawner spawner;
+    private List<GameObject> damageTextObjects = new List<GameObject>(); // 데미지 텍스트 리스트
 
     void Start()
     {
@@ -148,23 +150,35 @@ public class BossMonsterController : MonoBehaviour
 
     public void ShowDamageText(float damage, Vector3 position) // 몬스터가 받는 데미지 보여주기
     {
-        // 월드 좌표를 화면 좌표로 변환
-        Vector3 screenPosition = Camera.main.WorldToScreenPoint(position);
+        // 겹침을 방지하기 위해 랜덤 오프셋 생성
+        float randomOffsetX = Random.Range(-2.0f, 2.0f); // X 방향 랜덤 오프셋 (범위 확대)
+        float randomOffsetY = Random.Range(1.0f, 2.0f); // Y 방향 랜덤 오프셋 (범위 확대)
 
-        // 데미지 텍스트 오브젝트 생성
-        GameObject damageTextObject = Instantiate(damageTextPrefab, canvas.transform);
+        // 랜덤 오프셋을 적용한 새로운 월드 위치 생성
+        Vector3 randomPosition = position + new Vector3(randomOffsetX, randomOffsetY, 0);
 
-        // 텍스트 설정
+        // 랜덤 위치에서 데미지 텍스트 오브젝트 생성
+        GameObject damageTextObject = Instantiate(damageTextPrefab, randomPosition, Quaternion.identity);
+        
+        // 위치를 스크린 공간으로 변환
+        Vector3 screenPosition = Camera.main.WorldToScreenPoint(randomPosition);
+        
+        // RectTransform의 부모 설정 및 위치 지정
+        RectTransform rt = damageTextObject.GetComponent<RectTransform>();
+        rt.SetParent(canvas.transform, false); // 캔버스의 자식으로 설정
+        rt.position = screenPosition; // 스크린 위치로 설정
+
+        // 데미지 텍스트 설정
         TextMeshProUGUI textComponent = damageTextObject.GetComponent<TextMeshProUGUI>();
         textComponent.text = "-" + damage.ToString();
-
-        // 화면 좌표로 위치 설정
-        damageTextObject.transform.position = screenPosition;
+        
+        // 데미지 텍스트 오브젝트를 리스트에 추가
+        damageTextObjects.Add(damageTextObject); // 리스트에 추가
 
         StartCoroutine(AnimateDamageText(textComponent));
     }
 
-    private IEnumerator AnimateDamageText(TextMeshProUGUI textComponent) // 데미지 애니메이션
+    private IEnumerator AnimateDamageText(TextMeshProUGUI textComponent) // 데미지에 애니메이션 적용
     {
         float duration = 1.5f; // 애니메이션 지속 시간
         float elapsedTime = 0f;
@@ -176,12 +190,22 @@ public class BossMonsterController : MonoBehaviour
 
         while (elapsedTime < duration)
         {
+            // 텍스트 컴포넌트가 여전히 존재하는지 확인
+            if (textComponent == null)
+            {
+                yield break; // 텍스트가 파괴되었으면 코루틴 종료
+            }
+
             float progress = elapsedTime / duration;
             textComponent.transform.position = Vector3.Lerp(startPosition, endPosition, progress); // 위치 이동
             textComponent.color = Color.Lerp(startColor, endColor, progress); // 투명도 조정
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        Destroy(textComponent.gameObject); // 애니메이션 종료 후 텍스트 오브젝트 제거
+
+        if (textComponent != null) // 애니메이션 종료 후 텍스트 오브젝트가 존재하면 제거
+        {
+            Destroy(textComponent.gameObject);
+        }
     }
 }

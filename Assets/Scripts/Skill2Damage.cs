@@ -7,7 +7,7 @@ public class Skill2Damage : MonoBehaviour
     public int baseDamage = 10;  // 기본 데미지
     public float damageInterval = 0.5f;  // 도트 데미지 간격
     private Coroutine damageCoroutine;  // 도트 데미지를 적용하는 코루틴
-    public float duration = 3f; // 총 지속 시간
+    public float duration = 3.0f; // 총 지속 시간
     public float multiplier = 2f; // 지속 데미지 배수
     public float totalDamage;
 
@@ -51,9 +51,9 @@ public class Skill2Damage : MonoBehaviour
     private IEnumerator ApplyDotDamage()
     {
         float damagePerTick = totalDamage / (duration / damageInterval); // 틱마다 주는 데미지 계산
-        float elapsedTime = 0f;
+        float elapsedTime = 0.0f;
 
-        while (elapsedTime < duration)
+        while (elapsedTime <= duration)
         {
             foreach (var part in affectedParts)
             {

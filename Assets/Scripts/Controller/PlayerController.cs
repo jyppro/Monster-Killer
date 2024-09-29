@@ -99,8 +99,12 @@ public class PlayerController : MonoBehaviour
         }
 
         // Weapon2로 교체하고 즉시 무기 업데이트
+        // weapon2Prefab.WeaponController.currentDamage = originalWeaponPrefab.WeaponController.currentDamage;
         weaponGenerator.WeaponPrefab = weapon2Prefab;
         weaponGenerator.GenerateWeapon(); // 즉시 무기 생성
+
+        // 원래 무기의 공격력 동기화
+        SyncWeaponDamage(originalWeaponPrefab);
 
         // 설정된 시간 동안 대기
         yield return new WaitForSeconds(weaponSwapDuration);
@@ -113,6 +117,17 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(Skill1Cooldown());
 
         isSwappingWeapon = false;
+    }
+
+    private void SyncWeaponDamage(GameObject weaponPrefab)
+    {
+        WeaponController originalWeaponController = originalWeaponPrefab.GetComponent<WeaponController>();
+        WeaponController generatedWeaponController = weaponPrefab.GetComponent<WeaponController>();
+
+        if (originalWeaponController != null && generatedWeaponController != null && generatedWeaponController.currentDamage != originalWeaponController.currentDamage)
+        {
+            generatedWeaponController.currentDamage = originalWeaponController.currentDamage;
+        }
     }
 
     private void CastMagicAttack()

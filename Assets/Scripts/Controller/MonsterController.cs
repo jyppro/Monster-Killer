@@ -247,12 +247,22 @@ public class MonsterController : MonoBehaviour
 
         while (elapsedTime < duration)
         {
+            // 텍스트 컴포넌트가 여전히 존재하는지 확인
+            if (textComponent == null)
+            {
+                yield break; // 텍스트가 파괴되었으면 코루틴 종료
+            }
+
             float progress = elapsedTime / duration;
             textComponent.transform.position = Vector3.Lerp(startPosition, endPosition, progress); // 위치 이동
             textComponent.color = Color.Lerp(startColor, endColor, progress); // 투명도 조정
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        Destroy(textComponent.gameObject); // 애니메이션 종료 후 텍스트 오브젝트 제거
+
+        if (textComponent != null) // 애니메이션 종료 후 텍스트 오브젝트가 존재하면 제거
+        {
+            Destroy(textComponent.gameObject);
+        }
     }
 }
