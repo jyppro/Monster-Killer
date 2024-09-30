@@ -35,9 +35,13 @@ public class BossMonsterController : MonoBehaviour
         }
         canvas = FindObjectOfType<Canvas>(); // Canvas 연결
         animator = GetComponent<Animator>(); // 애니메이터 연결
-        MonsterAudio = GetComponent<AudioSource>(); // 오디오 소스 연결
-        MonsterAudio.clip = Clips[0]; // 몬스터 소환 효과음
-        MonsterAudio.Play();
+
+        if(MonsterAudio != null)
+        {
+            MonsterAudio = GetComponent<AudioSource>(); // 오디오 소스 연결
+            MonsterAudio.clip = Clips[0]; // 몬스터 소환 효과음
+            MonsterAudio.Play();
+        }
 
         UpdateHealthSlider();
         InvokeRepeating("MonsterAttack", attackInterval, attackInterval);
@@ -51,8 +55,12 @@ public class BossMonsterController : MonoBehaviour
         if (playerHP && animator != null && isAlive)
         {
             animator.SetTrigger("Attack");
-            MonsterAudio.clip = Clips[1]; // 몬스터 공격 효과음
-            MonsterAudio.Play();
+            
+            if(MonsterAudio != null)
+            {
+                MonsterAudio.clip = Clips[1]; // 몬스터 공격 효과음
+                MonsterAudio.Play();
+            }
 
             // 공격 판정 범위 생성
             // Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange, playerLayer);
@@ -75,8 +83,12 @@ public class BossMonsterController : MonoBehaviour
         if (!isAlive) return; // 몬스터가 죽었다면 함수를 종료
         
         MonsterCurrentHealth -= damage;
-        MonsterAudio.clip = Clips[2]; // 몬스터 피격 효과음
-        MonsterAudio.Play();
+
+        if(MonsterAudio != null)
+        {
+            MonsterAudio.clip = Clips[2]; // 몬스터 피격 효과음
+            MonsterAudio.Play();
+        }
 
         // 체력이 전부 소진되면 몬스터 사망 처리
         if (MonsterCurrentHealth <= 0)
@@ -92,8 +104,11 @@ public class BossMonsterController : MonoBehaviour
         MonsterCurrentHealth = 0;
         animator.SetBool("Death", true);
 
-        MonsterAudio.clip = Clips[3]; // 몬스터 사망 효과음
-        MonsterAudio.Play();
+        if(MonsterAudio != null)
+        {
+            MonsterAudio.clip = Clips[3]; // 몬스터 사망 효과음
+            MonsterAudio.Play();
+        }
 
         if(monsterMovement != null)
         {

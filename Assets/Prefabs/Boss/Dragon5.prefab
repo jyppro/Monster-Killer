@@ -3714,8 +3714,8 @@ MonoBehaviour:
   textHP: {fileID: 0}
   damageTextPrefab: {fileID: 3433391998738348564, guid: e065d6633001a4e4b82dd454d28f03a9, type: 3}
   Clips:
-  - {fileID: 8300000, guid: 3c9c0bbacf942674583cbbf3431b5c9b, type: 3}
-  - {fileID: 8300000, guid: 2bef44c58e277b349992531b1fbab271, type: 3}
+  - {fileID: 8300000, guid: aa170bbcc6d8fc44c885b182e6a36523, type: 3}
+  - {fileID: 8300000, guid: 13af2eac59c0f8347abefca083d3c785, type: 3}
   - {fileID: 8300000, guid: 4ff2cd7e27d300840967aabc540e9213, type: 3}
   - {fileID: 8300000, guid: da79055cc27a29547b4a6a35deb76776, type: 3}
   MonsterMaxHealth: 22222

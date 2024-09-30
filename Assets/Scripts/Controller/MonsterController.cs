@@ -151,7 +151,26 @@ public class MonsterController : MonoBehaviour
         {
             if (nextMonsterPrefab != null) // 다음 몬스터 프리팹이 세팅되어 있다면
             {
-                ResetMonster(); // 넘겨줄 몬스터 데이터 세팅
+                // 범위 내 랜덤 위치 생성 (아이템 소환처럼)
+                Vector3 randomSpawnPosition = GetRandomSpawnPosition();
+
+                // 몬스터 소환
+                GameObject nextMonster = Instantiate(nextMonsterPrefab, randomSpawnPosition, Quaternion.identity);
+
+                // 넘겨줄 몬스터 데이터 세팅
+                MonsterController nextMonsterController = nextMonster.GetComponent<MonsterController>();
+                nextMonsterController.MonsterPower = MonsterPowerCopy;
+                nextMonsterController.healthSlider = healthSliderCopy;
+                nextMonsterController.StageBar = StageBarCopy;
+                nextMonsterController.textHP = textHPCopy;
+                nextMonsterController.damageTextPrefab = damageTextPrefabCopy;
+                nextMonsterController.goldReward = goldRewardCopy;
+                nextMonsterController.MonsterMaxHealth = MonsterMaxHealth;
+                nextMonsterController.MonsterCurrentHealth = MonsterCurrentHealth;
+                nextMonsterController.UpdateHealthSlider();
+                nextMonsterController.IncreaseHealth();
+                nextMonsterController.MonsterPower += IncreasePower;
+                nextMonsterController.goldReward += IncreaseReward;
             }
         }
 
@@ -162,7 +181,7 @@ public class MonsterController : MonoBehaviour
         }
         damageTextObjects.Clear(); // 리스트 초기화
         StageBar.value += 0.33f;
-        // GameManager.Instance.SaveGameData();
+
         GameManager.Instance.ScoreCal();
 
         if (StageBarCopy.value >= 1.0f)
@@ -170,6 +189,21 @@ public class MonsterController : MonoBehaviour
             StageBarCopy.value = 0.0f;
         }
         Destroy(gameObject);
+    }
+
+    private Vector3 GetRandomSpawnPosition() // 랜덤한 스폰 위치 계산 함수
+    {
+        // 소환 범위의 최소 및 최대값 설정 (이 범위 안에서 랜덤으로 위치 지정)
+        Vector2 spawnAreaMin = new Vector2(-80f, -75f); // 예시로 -5 ~ 5의 범위를 설정
+        Vector2 spawnAreaMax = new Vector2(90f, 35f);
+
+        // X와 Z 축에 대한 랜덤 값을 생성
+        float randomX = Random.Range(spawnAreaMin.x, spawnAreaMax.x);
+        float randomZ = Random.Range(spawnAreaMin.y, spawnAreaMax.y);
+
+        // 최종적으로 소환될 위치 반환 (Y 값은 현재 몬스터의 Y 값을 유지)
+        Vector3 randomPosition = new Vector3(randomX, transform.position.y, randomZ);
+        return randomPosition;
     }
 
     private void ResetMonster() // 몬스터 초기화
