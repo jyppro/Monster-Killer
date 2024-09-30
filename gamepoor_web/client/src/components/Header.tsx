@@ -1,20 +1,19 @@
-// src/components/Header.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/navbar.css'; // 네비게이션 바 CSS 파일
+import '../styles/navbar.css';
 
 const Header: React.FC = () => {
   return (
     <nav className="navbar">
       <div className="logo">
-        <Link to="/" className="logo-link">Monster Killer</Link>
+        <Link to="/">Monster Killer</Link>
       </div>
       <ul className="nav-links">
         <li className="dropdown-container">
           <Link to="/">소개</Link>
           <div className="dropdown">
             <Link to="/intro/overview">개요</Link>
-            <Link to="/intro/team">팀</Link>
+            <Link to="/intro/team">소개</Link>
             <Link to="/intro/mission">미션</Link>
           </div>
         </li>

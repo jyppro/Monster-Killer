@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -9,11 +10,17 @@ import '../styles/sign-up.css';
 const SignUpForm: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState(''); // 비밀번호 확인 상태 추가
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      setError('비밀번호가 일치하지 않습니다.');
+      return;
+    }
 
     try {
       const response = await axios.post(
@@ -32,12 +39,6 @@ const SignUpForm: React.FC = () => {
     <div className="container">
       <Header />
       <Main children={undefined} />
-      <section className="m">
-          <h1 className="fade-in">Monster Killer</h1>
-          <h2 className="fade-in">사냥, 경쟁</h2>
-          <p className="fade-in">"Score hunting"</p>
-          <p className="fade-in famous">새로운 몹</p>
-        </section>
       <form onSubmit={handleSubmit} className="signupForm">
         <h1 className="signup_title">회원가입</h1>
         <div className="signup_input">
@@ -55,6 +56,7 @@ const SignUpForm: React.FC = () => {
             placeholder="비밀번호"
             className="password"
           />
+         
         </div>
         {error && <p className="error">{error}</p>}
         <button type="submit" className="signup_button">회원가입</button>
@@ -66,3 +68,6 @@ const SignUpForm: React.FC = () => {
 };
 
 export default SignUpForm;
+
+
+

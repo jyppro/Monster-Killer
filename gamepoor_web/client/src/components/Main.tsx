@@ -10,3 +10,8 @@ const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 };
 
 export default Main;
+
+
+import '../styles/sign-up.css';
+
+

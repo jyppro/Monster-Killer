@@ -43,8 +43,8 @@ const LoginForm: React.FC = () => {
         <section className="m">
           <h1 className="fade-in">Monster Killer</h1>
           <h2 className="fade-in">사냥, 경쟁</h2>
-          <p className="fade-in">"Monster hunt"</p>
-          <p className="fade-in famous">새로운 몬스터</p>
+          <p className="fade-in">"Monster Hunt"</p>
+          <p className="fade-in famous">새로운 몬스터, 새로운 스킬</p>
         </section>
         <form onSubmit={handleSubmit} className="loginForm">
           <h1 className="login_title">로그인</h1>
