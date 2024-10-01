@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 592346556643381511}
   - component: {fileID: 6279343219945565117}
   - component: {fileID: 6084152269055515747}
+  - component: {fileID: 3001594079207885286}
   m_Layer: 0
   m_Name: Dragon1
   m_TagString: Untagged
@@ -337,6 +338,27 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 0
+--- !u!65 &3001594079207885286
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460098901970961165}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.444613, y: 1, z: 1.6301333}
+  m_Center: {x: 0.24645355, y: 0, z: 0.23807535}
 --- !u!1 &460865001234603612
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,19 +6,19 @@ public class WeaponController : MonoBehaviour
     public int damage = 10; // 기본 데미지, 10으로 데이터 설정
     public int currentDamage = 0; // 강화 추가 데미지
     public int PartsDamage = 0; // 부위 별 추가 데미지
-    //public AudioSource WeaponAudio; // 무기 사운드
     public AudioSource[] WeaponAudios; // 하위 오브젝트들의 오디오 소스를 배열로 저장
     public ParticleSystem ParticleSystem;
 
     public void Shoot(Vector3 dir) //인자로 3차원 벡터가 입력되고
-    { GetComponent<Rigidbody>().AddForce(dir); } // 들어온 입력벡터 만큼 오브젝트에 힘이 가해진다.
+    {
+        GetComponent<Rigidbody>().AddForce(dir); // 들어온 입력벡터 만큼 오브젝트에 힘이 가해진다.
+    }
     
     void Start()
     {
         this.WeaponGenerator = GameObject.Find("WeaponGenerator");
         if(WeaponAudios != null)
         {
-            //WeaponAudio = GetComponent<AudioSource>(); // 오디오 소스 연결
             // 프리팹의 하위에 있는 모든 AudioSource를 가져온다
             WeaponAudios = GetComponentsInChildren<AudioSource>();
         }
@@ -27,41 +27,16 @@ public class WeaponController : MonoBehaviour
         {
             ParticleSystem = GetComponent<ParticleSystem>();
         }
-
-        //currentDamage = GameManager.Instance.GetPower();
     }
-
-    // public void ApplyDamageToMonster(float damage) // 플레이어가 몬스터에게 주는 데미지
-    // {
-    //     MonsterCurrentHealth -= damage;
-    //     MonsterAudio.clip = Clips[2]; // 몬스터 피격 효과음
-    //     MonsterAudio.Play();
-
-    //     // 체력이 전부 소진되면 다음 몬스터 소환
-    //     if (MonsterCurrentHealth <= 0f)
-    //     {
-    //         isAlive = false;
-    //         MonsterCurrentHealth = MonsterMaxHealth;
-    //         animator.SetBool("Death", true);
-    //         gameObject.GetComponent<MonsterMovement>().enabled = false;
-    //         GameObject.Find("GoldText").GetComponent<GoldController>().GoldSum(goldReward); // 수정 필요 -> 골드 데이터 값으로
-    //         MonsterAudio.clip = Clips[3]; // 몬스터 사망 효과음
-    //         MonsterAudio.Play();
-    //         Invoke("SpawnNextMonster", 3f);
-    //     }
-    //     UpdateHealthSlider();
-    // }
 
     private void OnCollisionEnter(Collision collision) //다른 물체와 충돌하는 순간
     {
         if(WeaponAudios != null)
         {
-            //WeaponAudio.Play();
-
             // 각각의 하위 오브젝트에 있는 오디오 소스를 재생
             foreach (AudioSource audioSource in WeaponAudios)
             {
-                if(audioSource != null)
+                if(audioSource != null && audioSource.enabled)
                 {
                     audioSource.Play(); // 오디오 재생
                 }

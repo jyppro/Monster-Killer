@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
         {
             skill2Button.onClick.AddListener(OnSkill2ButtonClicked);
         }
+
+        CenterMouse(); // 마우스를 중앙으로 이동
     }
 
     void Update()
@@ -194,5 +196,13 @@ public class PlayerController : MonoBehaviour
         {
             keyPressSound.PlayKeyPressSound(index);
         }
+    }
+
+    // 마우스를 중앙으로 이동하는 함수
+    private void CenterMouse()
+    {
+        Cursor.lockState = CursorLockMode.Locked; // 마우스 잠금
+        Cursor.visible = false; // 마우스 커서 숨김
+        Cursor.SetCursor(null, new Vector2(Screen.width / 2, Screen.height / 2), CursorMode.Auto); // 마우스 중앙으로 이동
     }
 }

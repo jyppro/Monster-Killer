@@ -15,7 +15,7 @@ public class HealthPotion : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // 플레이어의 PlayerHP 컴포넌트 찾기
-        if (playerHP != null)
+        if (other.CompareTag("Player") && playerHP != null)
         {
             // 체력 회복
             playerHP.Heal(healAmount);

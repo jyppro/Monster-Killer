@@ -12,7 +12,8 @@ public class TimerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI TimeText;
     [SerializeField] private Image FadeOutPage;
     [SerializeField] private GameObject ClearPage;
-    public MouseLook MouseLook;
+
+    public MouseLook mouseLook;
 
     private void Start()
     {
@@ -65,7 +66,6 @@ public class TimerController : MonoBehaviour
     {
         if (StageLoader.Instance.currentModeIndex == 2) // Guardian 모드인 경우
         {
-            MouseLook.UnlockMouse();
             StageController.Instance.ShowClearPage();
         }
         else
@@ -85,7 +85,7 @@ public class TimerController : MonoBehaviour
 
     private IEnumerator FadeOutAndReturnHome()
     {
-        MouseLook.UnlockMouse();
+        mouseLook.UnlockMouse();
         float F_time = 1.0f; // 페이드 아웃 시
 
         if (FadeOutPage != null)

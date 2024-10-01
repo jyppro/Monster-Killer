@@ -1434,6 +1434,7 @@ GameObject:
   - component: {fileID: 2476004764833464696}
   - component: {fileID: 2248974292671593899}
   - component: {fileID: 6275607673912998817}
+  - component: {fileID: 168411254913769150}
   m_Layer: 0
   m_Name: Dragon2
   m_TagString: Untagged
@@ -1639,6 +1640,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &168411254913769150
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5747943755673903067}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.2303931, y: 0.18734187, z: 0.27842277}
+  m_Center: {x: 0.012021472, y: 0.20287876, z: -0.044889476}
 --- !u!1 &5823759832936389429
 GameObject:
   m_ObjectHideFlags: 0

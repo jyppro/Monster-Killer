@@ -36,9 +36,10 @@ public class BossMonsterController : MonoBehaviour
         canvas = FindObjectOfType<Canvas>(); // Canvas 연결
         animator = GetComponent<Animator>(); // 애니메이터 연결
 
-        if(MonsterAudio != null)
+        MonsterAudio = GetComponent<AudioSource>(); // 오디오 소스 연결
+
+        if (Clips.Length > 0 && MonsterAudio != null && Clips[0] != null) // 오디오 클립 존재 여부와 오디오 소스 체크
         {
-            MonsterAudio = GetComponent<AudioSource>(); // 오디오 소스 연결
             MonsterAudio.clip = Clips[0]; // 몬스터 소환 효과음
             MonsterAudio.Play();
         }
@@ -56,24 +57,12 @@ public class BossMonsterController : MonoBehaviour
         {
             animator.SetTrigger("Attack");
             
-            if(MonsterAudio != null)
+            if (Clips.Length > 1 && MonsterAudio != null && Clips[1] != null) // 오디오 클립 존재 여부와 오디오 소스 체크
             {
                 MonsterAudio.clip = Clips[1]; // 몬스터 공격 효과음
                 MonsterAudio.Play();
             }
 
-            // 공격 판정 범위 생성
-            // Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange, playerLayer);
-            // foreach (var hitCollider in hitColliders)
-            // {
-            //     // PlayerHP playerHP = hitCollider.GetComponent<PlayerHP>();
-            //     if (playerHP != null)
-            //     {
-            //         playerHP.TakeDamage_P(MonsterPower);
-            //     }
-            // }
-
-            // ApplyDamageToPlayer(MonsterPower);
             playerHP.TakeDamage_P(MonsterPower);
         }
     }
@@ -84,7 +73,7 @@ public class BossMonsterController : MonoBehaviour
         
         MonsterCurrentHealth -= damage;
 
-        if(MonsterAudio != null)
+        if (Clips.Length > 2 && MonsterAudio != null && Clips[2] != null) // 오디오 클립 존재 여부와 오디오 소스 체크
         {
             MonsterAudio.clip = Clips[2]; // 몬스터 피격 효과음
             MonsterAudio.Play();
@@ -104,7 +93,7 @@ public class BossMonsterController : MonoBehaviour
         MonsterCurrentHealth = 0;
         animator.SetBool("Death", true);
 
-        if(MonsterAudio != null)
+        if (Clips.Length > 3 && MonsterAudio != null && Clips[3] != null) // 오디오 클립 존재 여부와 오디오 소스 체크
         {
             MonsterAudio.clip = Clips[3]; // 몬스터 사망 효과음
             MonsterAudio.Play();
@@ -123,15 +112,6 @@ public class BossMonsterController : MonoBehaviour
         }
 
         StartCoroutine(Die());
-
-        // // 3초 뒤에 몬스터 제거
-        // Destroy(gameObject, 3f);
-
-        // // 스포너의 MonsterDied 메서드 호출
-        // if (spawner != null)
-        // {
-        //     spawner.MonsterDied();
-        // }
     }
 
     // 몬스터 사망 처리

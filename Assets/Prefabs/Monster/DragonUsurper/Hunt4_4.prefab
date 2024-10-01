@@ -1270,6 +1270,7 @@ GameObject:
   - component: {fileID: -5171323508000418674}
   - component: {fileID: -5635513308934915010}
   - component: {fileID: -3086665705392601509}
+  - component: {fileID: 4766519452930067108}
   m_Layer: 0
   m_Name: Hunt4_4
   m_TagString: Monster
@@ -1471,6 +1472,27 @@ MonoBehaviour:
   MonsterMaxHealth: 3000
   MonsterCurrentHealth: 3000
   MonsterPower: 300
+--- !u!65 &4766519452930067108
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139696}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 9.185581, y: 6.7797813, z: 16.195293}
+  m_Center: {x: 0.023429155, y: 2.8898907, z: -0.99656296}
 --- !u!1 &139704
 GameObject:
   m_ObjectHideFlags: 0

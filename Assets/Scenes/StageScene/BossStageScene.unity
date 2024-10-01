@@ -440,6 +440,7 @@ RectTransform:
   - {fileID: 958306290}
   - {fileID: 926107869}
   - {fileID: 1549189978}
+  - {fileID: 1466939622}
   - {fileID: 165727483}
   - {fileID: 1891984286}
   m_Father: {fileID: 1013398867}
@@ -2741,7 +2742,6 @@ RectTransform:
   m_Children:
   - {fileID: 1879012539}
   - {fileID: 187492202}
-  - {fileID: 1466939622}
   - {fileID: 1722325343}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3681,6 +3681,7 @@ MonoBehaviour:
   spawnAreaMax: {x: 48.2, y: 84.7}
   fixedYPosition: 7
   spawnAreaRotationAngle: 45
+  maxItems: 3
 --- !u!4 &1250648735
 Transform:
   m_ObjectHideFlags: 0
@@ -4692,7 +4693,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1013398867}
+  m_Father: {fileID: 187492202}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}

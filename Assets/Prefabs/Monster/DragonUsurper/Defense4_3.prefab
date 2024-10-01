@@ -4092,6 +4092,7 @@ GameObject:
   - component: {fileID: 7529278333886847685}
   - component: {fileID: 6624293323543929404}
   - component: {fileID: 2257194112124337304}
+  - component: {fileID: -2058181299914766726}
   m_Layer: 0
   m_Name: Defense4_3
   m_TagString: Monster
@@ -4296,6 +4297,27 @@ MonoBehaviour:
   target: {fileID: 0}
   attackDistance: 5
   attackCooldown: 5
+--- !u!65 &-2058181299914766726
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194904}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 9.185581, y: 6.7797813, z: 16.195293}
+  m_Center: {x: 0.023429155, y: 2.8898907, z: -0.99656296}
 --- !u!1 &196352
 GameObject:
   m_ObjectHideFlags: 0

@@ -1768,6 +1768,7 @@ GameObject:
   - component: {fileID: 993114744424159716}
   - component: {fileID: 3314518490833725805}
   - component: {fileID: 5807671612516948097}
+  - component: {fileID: 8543134946149613046}
   m_Layer: 0
   m_Name: Dragon3
   m_TagString: Untagged
@@ -1981,6 +1982,27 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 0
+--- !u!65 &8543134946149613046
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630610525625969542}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.056904048, y: 0.09417301, z: 0.11055604}
+  m_Center: {x: -0.00076746463, y: 0.04346979, z: -0.01610801}
 --- !u!1 &5736986360143193622
 GameObject:
   m_ObjectHideFlags: 0
