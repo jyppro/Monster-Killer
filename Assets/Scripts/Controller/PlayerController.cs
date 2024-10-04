@@ -101,7 +101,6 @@ public class PlayerController : MonoBehaviour
         }
 
         // Weapon2로 교체하고 즉시 무기 업데이트
-        // weapon2Prefab.WeaponController.currentDamage = originalWeaponPrefab.WeaponController.currentDamage;
         weaponGenerator.WeaponPrefab = weapon2Prefab;
         weaponGenerator.GenerateWeapon(); // 즉시 무기 생성
 
@@ -113,7 +112,6 @@ public class PlayerController : MonoBehaviour
 
         // 원래 무기로 되돌리고 즉시 무기 업데이트
         weaponGenerator.WeaponPrefab = originalWeaponPrefab;
-        weaponGenerator.GenerateWeapon(); // 즉시 원래 무기 생성
 
         // 쿨다운 시작
         StartCoroutine(Skill1Cooldown());
