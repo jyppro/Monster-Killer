@@ -45,6 +45,9 @@ public class HomeButton : MonoBehaviour
 
     private IEnumerator FadeOutAndReturnHome()
     {
+        StageLoader.Instance.currentModeIndex = 0;
+        StageLoader.Instance.currentStageIndex = 0;
+
         // EventSystem 비활성화하여 마우스 입력 막기
         if (eventSystem != null)
         {

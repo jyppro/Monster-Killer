@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
         weaponGenerator.GenerateWeapon(); // 즉시 무기 생성
 
         // 원래 무기의 공격력 동기화
-        SyncWeaponDamage(originalWeaponPrefab);
+        SyncWeaponDamage(weaponGenerator.WeaponPrefab);
 
         // 설정된 시간 동안 대기
         yield return new WaitForSeconds(weaponSwapDuration);
@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
         isSwappingWeapon = false;
     }
 
-    private void SyncWeaponDamage(GameObject weaponPrefab)
+    private void SyncWeaponDamage(GameObject weaponPrefab) // 기본 무기와 Z스킬 무기의 공격력 동기화
     {
         WeaponController originalWeaponController = originalWeaponPrefab.GetComponent<WeaponController>();
         WeaponController generatedWeaponController = weaponPrefab.GetComponent<WeaponController>();

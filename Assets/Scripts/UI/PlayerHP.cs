@@ -23,11 +23,12 @@ public class PlayerHP : MonoBehaviour
         playerCurrentHealth = GameManager.Instance.GetCurrentHP(); // GameManager에서 현재 체력값 가져오기
         playerMaxHealth = GameManager.Instance.GetMaxHP(); // GameManager에서 최대 체력값 가져오기
 
-        BaseStageData stageData = StageLoader.Instance.LoadStageData();
-        if (stageData is GuardianStageData guardianStageData)
+        // BaseStageData stageData = StageLoader.Instance.LoadStageData();
+        if (StageLoader.Instance.currentModeIndex == 2)
         {
             IncreaseHealth(10);
         }
+
         if (playerMaxHealth != playerCurrentHealth)
         {
             playerCurrentHealth = playerMaxHealth;
