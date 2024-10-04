@@ -1913,11 +1913,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 492c8ffe1f6b4ac4fab0d0e04d7aae5d, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: terrain
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 492c8ffe1f6b4ac4fab0d0e04d7aae5d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 492c8ffe1f6b4ac4fab0d0e04d7aae5d, type: 3}
+      propertyPath: m_TagString
+      value: terrain
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: 492c8ffe1f6b4ac4fab0d0e04d7aae5d, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4632,11 +4636,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 492c8ffe1f6b4ac4fab0d0e04d7aae5d, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: terrain
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 492c8ffe1f6b4ac4fab0d0e04d7aae5d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 492c8ffe1f6b4ac4fab0d0e04d7aae5d, type: 3}
+      propertyPath: m_TagString
+      value: terrain
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: 492c8ffe1f6b4ac4fab0d0e04d7aae5d, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5814,6 +5822,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5163216748384019312, guid: 231bbaec2c48ee743a5d00c37b3f6684, type: 3}
+      propertyPath: m_TagString
+      value: terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 5163216748384019312, guid: 231bbaec2c48ee743a5d00c37b3f6684, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -5822,8 +5834,16 @@ PrefabInstance:
       value: Cave1
       objectReference: {fileID: 0}
     - target: {fileID: 5667033293987328879, guid: 231bbaec2c48ee743a5d00c37b3f6684, type: 3}
+      propertyPath: m_TagString
+      value: terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667033293987328879, guid: 231bbaec2c48ee743a5d00c37b3f6684, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 9139636070289544101, guid: 231bbaec2c48ee743a5d00c37b3f6684, type: 3}
+      propertyPath: m_TagString
+      value: terrain
       objectReference: {fileID: 0}
     - target: {fileID: 9139636070289544101, guid: 231bbaec2c48ee743a5d00c37b3f6684, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6466,6 +6486,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5163216748384019312, guid: 231bbaec2c48ee743a5d00c37b3f6684, type: 3}
+      propertyPath: m_TagString
+      value: terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 5163216748384019312, guid: 231bbaec2c48ee743a5d00c37b3f6684, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -6474,8 +6498,16 @@ PrefabInstance:
       value: Cave2
       objectReference: {fileID: 0}
     - target: {fileID: 5667033293987328879, guid: 231bbaec2c48ee743a5d00c37b3f6684, type: 3}
+      propertyPath: m_TagString
+      value: terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667033293987328879, guid: 231bbaec2c48ee743a5d00c37b3f6684, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 9139636070289544101, guid: 231bbaec2c48ee743a5d00c37b3f6684, type: 3}
+      propertyPath: m_TagString
+      value: terrain
       objectReference: {fileID: 0}
     - target: {fileID: 9139636070289544101, guid: 231bbaec2c48ee743a5d00c37b3f6684, type: 3}
       propertyPath: m_StaticEditorFlags
