@@ -7,8 +7,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 10f;
     public CharacterController controller;
     public Transform cameraTransform;
-    private Vector3 velocity;
-    public WeaponGenerator weaponGenerator;
+    public WeaponGenerator weaponGenerator; // WeaponGenerator 스크립트 참조
     public GameObject originalWeaponPrefab;
     public GameObject weapon2Prefab;
     public GameObject magicAttackPrefab;
@@ -27,7 +26,6 @@ public class PlayerController : MonoBehaviour
         CenterMouse();
     }
 
-    // 입력 및 스킬 처리 로직은 Update에서 처리
     private void Update()
     {
         HandleMovement();
@@ -88,7 +86,7 @@ public class PlayerController : MonoBehaviour
         isSwappingWeapon = true;
         SetButtonInteractable(skill1Button, false);
 
-        // 무기 변경 로직 최적화
+        // 무기 변경 로직
         SwapToWeapon(weapon2Prefab);
 
         yield return new WaitForSeconds(weaponSwapDuration);
@@ -101,9 +99,10 @@ public class PlayerController : MonoBehaviour
 
     private void SwapToWeapon(GameObject weaponPrefab)
     {
-        weaponGenerator.WeaponPrefab = weaponPrefab;
+        weaponGenerator.weaponPrefab = weaponPrefab;
 
-        if (!weaponGenerator.isWeaponGenerated || weaponGenerator.WeaponPrefab != weaponPrefab)
+        // 무기가 생성되지 않았거나 무기가 다른 경우에만 무기 생성
+        if (!weaponGenerator.isWeaponGenerated || weaponGenerator.weaponPrefab != weaponPrefab)
         {
             weaponGenerator.GenerateWeapon();
             weaponGenerator.isWeaponGenerated = true;
@@ -153,7 +152,7 @@ public class PlayerController : MonoBehaviour
 
     private void SetButtonInteractable(Button button, bool state)
     {
-        if (button != null) 
+        if (button != null)
             button.interactable = state;
     }
 

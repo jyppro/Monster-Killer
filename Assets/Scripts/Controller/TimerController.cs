@@ -7,11 +7,12 @@ using UnityEngine.UI;
 public class TimerController : MonoBehaviour
 {
     public float maxTime; // 초기 제한시간
-    public float currentTime;
-    public bool isTimerRunning = false;
-    [SerializeField] private TextMeshProUGUI TimeText;
-    [SerializeField] private Image FadeOutPage;
-    [SerializeField] private GameObject ClearPage;
+    private float currentTime;
+    private bool isTimerRunning;
+
+    [SerializeField] private TextMeshProUGUI timeText;
+    [SerializeField] private Image fadeOutPage;
+    [SerializeField] private GameObject clearPage;
 
     public MouseLook mouseLook;
 
@@ -24,39 +25,33 @@ public class TimerController : MonoBehaviour
     {
         if (isTimerRunning)
         {
-            currentTime -= Time.deltaTime;
-            UpdateTimerText();
-            if (currentTime <= 0.0f)
-            {
-                StopTimer();
-            }
+            UpdateTimer();
         }
     }
 
-    public void InitializeTimer()
+    private void InitializeTimer()
     {
-        if (StageLoader.Instance.currentModeIndex == 2) // Guardian 모드인 경우
-        {
-            int stageIndex = StageLoader.Instance.currentStageIndex;
-            GuardianStageData guardianStageData = GameManager.Instance.guardianStages[stageIndex];
-            maxTime = guardianStageData.defenseTime;
-        }
-        else
-        {
-            maxTime = GameManager.Instance.GetTime(); // 기본 시간 사용
-        }
+        maxTime = (StageLoader.Instance.currentModeIndex == 2)
+            ? GameManager.Instance.guardianStages[StageLoader.Instance.currentStageIndex].defenseTime
+            : GameManager.Instance.GetTime();
 
         currentTime = maxTime;
         isTimerRunning = true;
         UpdateTimerText();
     }
 
-    public void StartTimer()
+    private void UpdateTimer()
     {
-        isTimerRunning = true;
+        currentTime -= Time.deltaTime;
+        UpdateTimerText();
+
+        if (currentTime <= 0.0f)
+        {
+            StopTimer();
+        }
     }
 
-    public void StopTimer()
+    private void StopTimer()
     {
         isTimerRunning = false;
         HandleGameOver();
@@ -64,51 +59,45 @@ public class TimerController : MonoBehaviour
 
     private void HandleGameOver()
     {
-        if (StageLoader.Instance.currentModeIndex == 2) // Guardian 모드인 경우
+        if (StageLoader.Instance.currentModeIndex == 2)
         {
             StageController.Instance.ShowClearPage();
         }
         else
         {
-            StartCoroutine(GameOverAndReturnHome()); // GameManager에 게임오버 및 홈 전환 호출
+            StartCoroutine(GameOverAndReturnHome());
         }
     }
 
-    public IEnumerator GameOverAndReturnHome()
+    private IEnumerator GameOverAndReturnHome()
     {
-        // 페이드 아웃 애니메이션
-        yield return StartCoroutine(FadeOutAndReturnHome());
-
-        // 씬 전환
+        yield return FadeOutAndReturnHome();
         SceneManager.LoadScene("MainScene"); // 메인 씬 이름으로 변경
     }
 
     private IEnumerator FadeOutAndReturnHome()
     {
         mouseLook.UnlockMouse();
-        float F_time = 1.0f; // 페이드 아웃 시
+        float fadeDuration = 1.0f;
 
-        if (FadeOutPage != null)
+        if (fadeOutPage != null)
         {
-            float time = 0.0f;
-            FadeOutPage.gameObject.SetActive(true);
-            Color alpha = FadeOutPage.color;
+            fadeOutPage.gameObject.SetActive(true);
+            Color alpha = fadeOutPage.color;
 
-            while (alpha.a < 1)
+            for (float time = 0; alpha.a < 1; time += Time.deltaTime / fadeDuration)
             {
-                time += Time.deltaTime / F_time;
                 alpha.a = Mathf.Lerp(0, 1, time);
-                FadeOutPage.color = alpha;
+                fadeOutPage.color = alpha;
                 yield return null;
             }
         }
     }
 
-
-    public void UpdateTimerText()
+    private void UpdateTimerText()
     {
         int minutes = Mathf.FloorToInt(currentTime / 60);
         int seconds = Mathf.FloorToInt(currentTime % 60);
-        TimeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timeText.text = $"{minutes:00}:{seconds:00}";
     }
 }

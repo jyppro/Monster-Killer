@@ -236,8 +236,6 @@ public class MonsterController : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
-        Destroy(textComponent.gameObject);
     }
 
     // 데미지 텍스트 오브젝트 제거

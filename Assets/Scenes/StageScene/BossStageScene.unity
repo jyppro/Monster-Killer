@@ -258,13 +258,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageTime: 0
-  CurrentStageTime: 0
+  currentStageTime: 0
   threeStarTime: 0
   twoStarTime: 0
   score: 0
   sumScore: 0
-  ScoreText: {fileID: 1905968076}
-  ClearPage: {fileID: 1579494328}
+  scoreText: {fileID: 1905968076}
+  clearPage: {fileID: 1579494328}
   starImages:
   - {fileID: 21300030, guid: 945fcd18fb309ec4994ee16d4bc5dc43, type: 3}
   - {fileID: 21300028, guid: 945fcd18fb309ec4994ee16d4bc5dc43, type: 3}

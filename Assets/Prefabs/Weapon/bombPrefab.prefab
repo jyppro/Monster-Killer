@@ -5122,12 +5122,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponGenerator: {fileID: 0}
-  damage: 10
+  baseDamage: 10
   currentDamage: 200
-  PartsDamage: 0
-  WeaponAudios:
+  partsDamage: 0
+  weaponAudios:
   - {fileID: -3359887582911109671}
-  ParticleSystem: {fileID: 0}
+  weaponParticleSystem: {fileID: 0}
 --- !u!82 &-3359887582911109671
 AudioSource:
   m_ObjectHideFlags: 0

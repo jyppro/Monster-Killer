@@ -3,100 +3,130 @@
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] private GameObject WeaponGenerator;
-    public int damage = 10; // 기본 데미지, 10으로 데이터 설정
+    public int baseDamage = 10; // 기본 데미지, 10으로 데이터 설정
     public int currentDamage = 0; // 강화 추가 데미지
-    public int PartsDamage = 0; // 부위 별 추가 데미지
-    public AudioSource[] WeaponAudios; // 하위 오브젝트들의 오디오 소스를 배열로 저장
-    public ParticleSystem ParticleSystem;
+    public int partsDamage = 0; // 부위 별 추가 데미지
+    public AudioSource[] weaponAudios; // 하위 오브젝트들의 오디오 소스를 배열로 저장
+    public ParticleSystem weaponParticleSystem;
 
-    public void Shoot(Vector3 dir) //인자로 3차원 벡터가 입력되고
-    {
-        GetComponent<Rigidbody>().AddForce(dir); // 들어온 입력벡터 만큼 오브젝트에 힘이 가해진다.
-    }
-    
-    void Start()
-    {
-        this.WeaponGenerator = GameObject.Find("WeaponGenerator");
-        if(WeaponAudios != null)
-        {
-            // 프리팹의 하위에 있는 모든 AudioSource를 가져온다
-            WeaponAudios = GetComponentsInChildren<AudioSource>();
-        }
+    private Rigidbody rb;
 
-        if(ParticleSystem != null)
-        {
-            ParticleSystem = GetComponent<ParticleSystem>();
-        }
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        WeaponGenerator = GameObject.Find("WeaponGenerator");
+
+        // 프리팹의 하위에 있는 모든 AudioSource를 가져온다
+        weaponAudios = GetComponentsInChildren<AudioSource>();
+
+        // 파티클 시스템 초기화
+        weaponParticleSystem = GetComponent<ParticleSystem>();
     }
 
-    private void OnCollisionEnter(Collision collision) //다른 물체와 충돌하는 순간
+    public void Shoot(Vector3 dir)
     {
-        if(WeaponAudios != null)
+        rb.AddForce(dir); // 들어온 입력벡터만큼 오브젝트에 힘이 가해진다.
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        PlayAudio();
+
+        rb.isKinematic = true; // 충돌 시 중력 무시
+
+        // 파티클 실행
+        if (weaponParticleSystem != null)
         {
-            // 각각의 하위 오브젝트에 있는 오디오 소스를 재생
-            foreach (AudioSource audioSource in WeaponAudios)
+            weaponParticleSystem.Play();
+        }
+
+        if (!collision.gameObject.CompareTag("terrain"))
+        {
+            CalculatePartsDamage(collision);
+
+            int totalDamage = baseDamage + currentDamage + partsDamage; // 총 데미지 계산
+            ApplyDamageToSpecificMonster(collision, totalDamage);
+
+            Destroy(gameObject, 0.5f); // 오브젝트 파괴
+        }
+        else
+        {
+            Destroy(gameObject); // 지형 충돌 시 즉시 파괴
+        }
+    }
+
+    private void PlayAudio()
+    {
+        if (weaponAudios != null)
+        {
+            foreach (AudioSource audioSource in weaponAudios)
             {
-                if(audioSource != null && audioSource.enabled)
+                if (audioSource != null && audioSource.enabled)
                 {
                     audioSource.Play(); // 오디오 재생
                 }
             }
         }
-        
-        GetComponent<Rigidbody>().isKinematic = true; //중력 무시
+    }
 
-        if(ParticleSystem != null)
+    private void CalculatePartsDamage(Collision collision)
+    {
+        // 충돌한 부위에 따라 추가 데미지를 계산
+        switch (collision.gameObject.tag)
         {
-            ParticleSystem.Play(); // 파티클 실행
+            case "Head":
+                partsDamage += Random.Range(30, 50);
+                break;
+            case "L_Leg":
+            case "R_Leg":
+                partsDamage += Random.Range(25, 40);
+                break;
+            case "Body":
+                partsDamage += Random.Range(20, 35);
+                break;
+            case "Tail":
+                partsDamage += Random.Range(10, 50);
+                break;
+            case "Wing":
+                partsDamage += Random.Range(40, 60);
+                break;
+            case "Neck":
+                partsDamage += Random.Range(55, 60);
+                break;
         }
+    }
 
-        if (!collision.gameObject.CompareTag("terrain"))
+    private void ApplyDamageToSpecificMonster(Collision collision, int totalDamage)
+    {
+        // 각 몬스터의 컨트롤러에 대해 개별적으로 처리
+        var monsterController = collision.gameObject.transform.root.GetComponent<MonsterController>();
+        var huntMonsterController = collision.gameObject.transform.root.GetComponent<HuntMonsterController>();
+        var defenseMonsterController = collision.gameObject.transform.root.GetComponent<DefenseMonsterController>();
+        var bossMonsterController = collision.gameObject.transform.root.GetComponent<BossMonsterController>();
+
+        if (monsterController != null)
         {
-            if (collision.gameObject.CompareTag("Head")) //몬스터의 각 파츠별 충돌 데미지
-            { PartsDamage += Random.Range(30, 50); }
-            else if (collision.gameObject.CompareTag("L_Leg"))
-            { PartsDamage += Random.Range(25, 40); }
-            else if (collision.gameObject.CompareTag("R_Leg"))
-            { PartsDamage += Random.Range(25, 40); }
-            else if (collision.gameObject.CompareTag("Body"))
-            { PartsDamage += Random.Range(20, 35); }
-            else if (collision.gameObject.CompareTag("Tail"))
-            { PartsDamage += Random.Range(10, 50); }
-            else if (collision.gameObject.CompareTag("Wing"))
-            { PartsDamage += Random.Range(40, 60); }
-            else if (collision.gameObject.CompareTag("Neck"))
-            { PartsDamage += Random.Range(55, 60); }
-
-            damage += currentDamage; // 강화 데미지 합산
-            damage += PartsDamage; // 파츠 별 데미지 합산
-
-            MonsterController monsterController = collision.gameObject.transform.root.GetComponent<MonsterController>();
-            HuntMonsterController huntMonsterController = collision.gameObject.transform.root.GetComponent<HuntMonsterController>();
-            DefenseMonsterController defenseMonsterController = collision.gameObject.transform.root.GetComponent<DefenseMonsterController>();
-            BossMonsterController bossMonsterController = collision.gameObject.transform.root.GetComponent<BossMonsterController>();
-            if(monsterController)
-            {
-                monsterController.TakeDamage_M(damage);
-                monsterController.ShowDamageText(damage, collision.GetContact(0).point);
-            }
-            else if(huntMonsterController)
-            {
-                huntMonsterController.TakeDamage_M(damage);
-                huntMonsterController.ShowDamageText(damage, collision.GetContact(0).point);
-            }
-            else if(defenseMonsterController)
-            {
-                defenseMonsterController.TakeDamage_M(damage);
-                defenseMonsterController.ShowDamageText(damage, collision.GetContact(0).point);
-            }
-            else if(bossMonsterController)
-            {
-                bossMonsterController.TakeDamage_M(damage);
-                bossMonsterController.ShowDamageText(damage, collision.GetContact(0).point);
-            }
-            
-            Destroy(gameObject, 0.5f);
+            // MonsterController에 데미지 적용
+            monsterController.TakeDamage_M(totalDamage);
+            monsterController.ShowDamageText(totalDamage, collision.GetContact(0).point);
         }
-        else { Destroy(gameObject); }
+        else if (huntMonsterController != null)
+        {
+            // HuntMonsterController에 데미지 적용
+            huntMonsterController.TakeDamage_M(totalDamage);
+            huntMonsterController.ShowDamageText(totalDamage, collision.GetContact(0).point);
+        }
+        else if (defenseMonsterController != null)
+        {
+            // DefenseMonsterController에 데미지 적용
+            defenseMonsterController.TakeDamage_M(totalDamage);
+            defenseMonsterController.ShowDamageText(totalDamage, collision.GetContact(0).point);
+        }
+        else if (bossMonsterController != null)
+        {
+            // BossMonsterController에 데미지 적용
+            bossMonsterController.TakeDamage_M(totalDamage);
+            bossMonsterController.ShowDamageText(totalDamage, collision.GetContact(0).point);
+        }
     }
 }

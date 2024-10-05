@@ -480,14 +480,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponGenerator: {fileID: 0}
-  damage: 10
+  baseDamage: 10
   currentDamage: 10
-  PartsDamage: 0
-  WeaponAudios:
+  partsDamage: 0
+  weaponAudios:
   - {fileID: 6404306101602168898}
   - {fileID: 1297698240313771331}
   - {fileID: 5972887836496462057}
-  ParticleSystem: {fileID: 0}
+  weaponParticleSystem: {fileID: 0}
 --- !u!1 &8344990971140334776
 GameObject:
   m_ObjectHideFlags: 0

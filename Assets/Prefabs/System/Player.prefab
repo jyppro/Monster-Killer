@@ -155,13 +155,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462a6a601d8dfbe4d8ef694b4fb4007f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponPrefab: {fileID: 3787972095011550686, guid: 9b2b002c99deb3647b98423e05d7eb2b, type: 3}
+  weaponPrefab: {fileID: 3787972095011550686, guid: 9b2b002c99deb3647b98423e05d7eb2b, type: 3}
   mainCamera: {fileID: 1060178392242585566}
-  currentWeapon: {fileID: 0}
-  canGenerate: 1
   controlOffset: {x: 0.5, y: -0.8, z: 1}
   throwSpeed: 200
-  spawnPosition: {x: 0, y: 0, z: 0}
+  delay: 0.7
   isWeaponGenerated: 0
 --- !u!114 &6131144231966435214
 MonoBehaviour:

@@ -175,12 +175,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTime: 60
-  currentTime: 0
-  isTimerRunning: 0
-  TimeText: {fileID: 1241352521}
-  FadeOutPage: {fileID: 1150181030}
-  ClearPage: {fileID: 0}
-  mouseLook: {fileID: 0}
+  timeText: {fileID: 1241352521}
+  fadeOutPage: {fileID: 1150181030}
+  clearPage: {fileID: 0}
+  mouseLook: {fileID: 151449465}
 --- !u!114 &5532899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1077,13 +1075,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageTime: 0
-  CurrentStageTime: 0
+  currentStageTime: 0
   threeStarTime: 0
   twoStarTime: 0
   score: 0
   sumScore: 0
-  ScoreText: {fileID: 1356027332}
-  ClearPage: {fileID: 917748069}
+  scoreText: {fileID: 1356027332}
+  clearPage: {fileID: 917748069}
   starImages:
   - {fileID: 21300000, guid: 222b871060ee0d444894770446d086d2, type: 3}
   - {fileID: 21300000, guid: 222b871060ee0d444894770446d086d2, type: 3}

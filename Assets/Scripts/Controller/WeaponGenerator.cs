@@ -2,73 +2,106 @@ using UnityEngine;
 
 public class WeaponGenerator : MonoBehaviour
 {
-    [SerializeField] public GameObject WeaponPrefab; // 무기 프리팹
-    [SerializeField] private Camera mainCamera; // 메인 카메라
-    public GameObject currentWeapon; // 현재 무기
-    private float delay = 0.7f;
-    public bool canGenerate = true; // 생성가능 상태체크
-    [SerializeField] Vector3 controlOffset = new Vector3(0.5f, -0.8f, 1.0f);
-    [SerializeField] private float throwSpeed = 500f; // 던질 때의 속도
-    public Vector3 spawnPosition;
-    // public PlayerController PlayerController;
-    public bool isWeaponGenerated = false;
+    public GameObject weaponPrefab; // 무기 프리팹
+    public Camera mainCamera; // 메인 카메라
+    public Vector3 controlOffset = new Vector3(0.5f, -0.8f, 1.0f); // 무기 위치 오프셋
+    public float throwSpeed = 500f; // 던질 때의 속도
+    public float delay = 0.7f; // 무기 재생성 딜레이
 
-    void Start()
+    private GameObject currentWeapon; // 현재 무기
+    private bool canGenerate = true; // 무기 생성 가능 여부
+    private Vector3 spawnPosition; // 무기 생성 위치
+    public bool isWeaponGenerated = false; // 무기 생성 상태 확인
+
+    private void Start()
     {
-        WeaponPrefab.GetComponent<WeaponController>().currentDamage = GameManager.Instance.GetPower();
-        // PlayerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        InitializeWeaponDamage();
     }
 
-    void Update()
+    private void Update()
     {
-        if (currentWeapon == null && canGenerate) 
+        HandleWeaponGeneration();
+    }
+
+    // 무기 데미지 초기화
+    private void InitializeWeaponDamage()
+    {
+        var weaponController = weaponPrefab.GetComponent<WeaponController>();
+        if (weaponController != null)
+        {
+            weaponController.currentDamage = GameManager.Instance.GetPower();
+        }
+        else
+        {
+            Debug.LogWarning("WeaponController가 WeaponPrefab에 존재하지 않습니다.");
+        }
+    }
+
+    // 무기 생성과 관련된 처리
+    private void HandleWeaponGeneration()
+    {
+        if (currentWeapon == null && canGenerate)
         {
             GenerateWeapon();
         }
 
         if (currentWeapon != null)
         {
-            // 매 프레임마다 currentWeapon의 위치를 카메라 위치로 업데이트
-            spawnPosition = mainCamera.transform.position + mainCamera.transform.rotation * controlOffset;
-            currentWeapon.transform.position = spawnPosition;
-            currentWeapon.transform.rotation = mainCamera.transform.rotation;
+            UpdateWeaponPosition();
         }
 
-        if (Input.GetMouseButtonDown(0) && currentWeapon != null) // 무기 던지기
+        if (Input.GetMouseButtonDown(0) && currentWeapon != null) // 무기 던지기 처리
         {
-            Rigidbody rb = currentWeapon.GetComponent<Rigidbody>();
-            rb.isKinematic = false;
-            rb.useGravity = false; // 중력 비활성화
-
-            // 카메라의 정면 방향으로 빠르게 던지기
-            Vector3 shootDirection = mainCamera.transform.forward;
-            rb.velocity = shootDirection.normalized * throwSpeed; // 던지는 속도 설정
-
+            ThrowWeapon();
             currentWeapon = null;
             canGenerate = false;
-            Invoke("EnableGeneration", delay);
+            Invoke(nameof(EnableWeaponGeneration), delay);
         }
     }
 
-    public void GenerateWeapon() // 무기 생성
+    // 무기를 생성하는 함수
+    public void GenerateWeapon()
     {
-        // 기존 무기 제거
-        if (currentWeapon != null)
-        {
-            Destroy(currentWeapon);
-        }
-        
-        currentWeapon = Instantiate(WeaponPrefab);
-        currentWeapon.GetComponent<Rigidbody>().isKinematic = true;
+        currentWeapon = Instantiate(weaponPrefab);
+        var rb = currentWeapon.GetComponent<Rigidbody>();
 
-        // 생성된 무기를 카메라 위치로 이동
+        if (rb != null)
+        {
+            rb.isKinematic = true;
+        }
+
+        UpdateWeaponPosition();
+        isWeaponGenerated = true;
+    }
+
+    // 무기 위치 업데이트
+    private void UpdateWeaponPosition()
+    {
         spawnPosition = mainCamera.transform.position + mainCamera.transform.rotation * controlOffset;
         currentWeapon.transform.position = spawnPosition;
         currentWeapon.transform.rotation = mainCamera.transform.rotation;
     }
 
-    private void EnableGeneration() 
+    // 무기 던지기 처리
+    private void ThrowWeapon()
     {
-        canGenerate = true; 
+        var rb = currentWeapon.GetComponent<Rigidbody>();
+
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+            rb.useGravity = false;
+            rb.velocity = mainCamera.transform.forward.normalized * throwSpeed;
+        }
+        else
+        {
+            Debug.LogWarning("Rigidbody가 currentWeapon에 존재하지 않습니다.");
+        }
+    }
+
+    // 무기 재생성 활성화
+    private void EnableWeaponGeneration()
+    {
+        canGenerate = true;
     }
 }
