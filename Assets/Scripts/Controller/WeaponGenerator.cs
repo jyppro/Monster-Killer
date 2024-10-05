@@ -6,14 +6,17 @@ public class WeaponGenerator : MonoBehaviour
     [SerializeField] private Camera mainCamera; // 메인 카메라
     public GameObject currentWeapon; // 현재 무기
     private float delay = 0.7f;
-    private bool canGenerate = true; // 생성가능 상태체크
+    public bool canGenerate = true; // 생성가능 상태체크
     [SerializeField] Vector3 controlOffset = new Vector3(0.5f, -0.8f, 1.0f);
     [SerializeField] private float throwSpeed = 500f; // 던질 때의 속도
     public Vector3 spawnPosition;
+    // public PlayerController PlayerController;
+    public bool isWeaponGenerated = false;
 
     void Start()
     {
         WeaponPrefab.GetComponent<WeaponController>().currentDamage = GameManager.Instance.GetPower();
+        // PlayerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     void Update()

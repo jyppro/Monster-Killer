@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public int weaponSwapDuration = 5;    // 원래 무기로 돌아가기까지의 시간
     public int skill1Cooldown = 5;
     public int skill2Cooldown = 10;
-    private bool isSwappingWeapon = false;
+    public bool isSwappingWeapon = false;
     public Button skill1Button; // 스왑 버튼
     public Button skill2Button;
     public KeyPressSound keyPressSound;
@@ -92,6 +92,9 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator SwapWeapon()
     {
+        // 이미 스왑 중인 경우 조기 종료
+        if (isSwappingWeapon) yield break;
+
         isSwappingWeapon = true;
 
         // 버튼 비활성화
@@ -102,7 +105,13 @@ public class PlayerController : MonoBehaviour
 
         // Weapon2로 교체하고 즉시 무기 업데이트
         weaponGenerator.WeaponPrefab = weapon2Prefab;
-        weaponGenerator.GenerateWeapon(); // 즉시 무기 생성
+
+        // 무기 생성이 안 된 경우에만 생성
+        if (!weaponGenerator.isWeaponGenerated || weaponGenerator.WeaponPrefab == originalWeaponPrefab)
+        {
+            weaponGenerator.GenerateWeapon(); // 즉시 무기 생성
+            weaponGenerator.isWeaponGenerated = true; // 무기가 생성되었음을 표시
+        }
 
         // 원래 무기의 공격력 동기화
         SyncWeaponDamage(weaponGenerator.WeaponPrefab);
@@ -113,10 +122,18 @@ public class PlayerController : MonoBehaviour
         // 원래 무기로 되돌리고 즉시 무기 업데이트
         weaponGenerator.WeaponPrefab = originalWeaponPrefab;
 
+        // 원래 무기로 돌아왔을 때만 무기 재생성
+        if (!weaponGenerator.isWeaponGenerated || weaponGenerator.WeaponPrefab == weapon2Prefab)
+        {
+            weaponGenerator.GenerateWeapon();
+            weaponGenerator.isWeaponGenerated = true; // 무기가 생성되었음을 표시
+        }
+
+        // 스왑 완료
+        isSwappingWeapon = false;
+
         // 쿨다운 시작
         StartCoroutine(Skill1Cooldown());
-
-        isSwappingWeapon = false;
     }
 
     private void SyncWeaponDamage(GameObject weaponPrefab) // 기본 무기와 Z스킬 무기의 공격력 동기화
@@ -174,6 +191,7 @@ public class PlayerController : MonoBehaviour
             skill1Button.interactable = true;
         }
     }
+
 
     private IEnumerator Skill2Cooldown()
     {
