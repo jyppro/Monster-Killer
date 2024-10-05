@@ -161,6 +161,5 @@ public class PlayerHP : MonoBehaviour
         playerCurrentHealth += healAmount;
         playerCurrentHealth = Mathf.Clamp(playerCurrentHealth, 0, playerMaxHealth); // 체력을 최대 체력 이하로 유지
         UpdateHealthSlider(); // 체력바 업데이트
-        Debug.Log("체력이 회복되었습니다: " + playerCurrentHealth);
     }
 }

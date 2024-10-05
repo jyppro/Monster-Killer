@@ -1343,19 +1343,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 0}
-  StageBar: {fileID: 0}
-  textHP: {fileID: 0}
+  stageBar: {fileID: 0}
+  healthText: {fileID: 0}
   damageTextPrefab: {fileID: 0}
   nextMonsterPrefab: {fileID: 116688, guid: b8cc3664183bfc74daadd7be9317d441, type: 3}
-  Clips:
+  audioClips:
   - {fileID: 8300000, guid: dd68c6f0dfd306c489dc7d2919167e42, type: 3}
   - {fileID: 8300000, guid: 301a462b2ced13f44afb61acd6364a0d, type: 3}
   - {fileID: 8300000, guid: a577c2325268be54488591a486be171a, type: 3}
   - {fileID: 8300000, guid: 49633201f9c137a46a22d01b399b938f, type: 3}
   goldReward: 10
-  IncreasePower: 2
-  IncreaseReward: 2
-  IncreaseMonsterMaxHealth: 5
+  powerIncrease: 2
+  rewardIncrease: 2
+  healthIncrease: 5
 --- !u!114 &8988863020360275165
 MonoBehaviour:
   m_ObjectHideFlags: 0

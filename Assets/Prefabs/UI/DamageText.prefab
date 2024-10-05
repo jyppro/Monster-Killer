@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3433391998738348567}
   - component: {fileID: 3433391998738348585}
   - component: {fileID: 3433391998738348566}
-  - component: {fileID: 7745653611076307013}
+  - component: {fileID: 4225498099866758675}
   m_Layer: 5
   m_Name: DamageText
   m_TagString: Untagged
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &7745653611076307013
+--- !u!114 &4225498099866758675
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

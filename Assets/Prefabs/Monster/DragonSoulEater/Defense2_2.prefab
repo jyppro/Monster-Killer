@@ -1792,15 +1792,14 @@ MonoBehaviour:
   healthSlider: {fileID: 0}
   textHP: {fileID: 0}
   damageTextPrefab: {fileID: 3433391998738348564, guid: e065d6633001a4e4b82dd454d28f03a9, type: 3}
-  Clips:
+  monsterMaxHealth: 100
+  monsterCurrentHealth: 0
+  monsterPower: 5
+  audioClips:
   - {fileID: 8300000, guid: defe1ee8e7a51d343b29bb2e1ec2761b, type: 3}
   - {fileID: 8300000, guid: 119a78ae6bd6e3043b1b1cec83b5f90d, type: 3}
   - {fileID: 8300000, guid: 0360ca2a1e60bae4e97993ba5ae13018, type: 3}
   - {fileID: 8300000, guid: 8abaebcc3dd4f7c48acd0c806ba80fb2, type: 3}
-  MonsterMaxHealth: 100
-  MonsterCurrentHealth: 100
-  MonsterPower: 5
-  target: {fileID: 0}
   attackDistance: 5
   attackCooldown: 5
 --- !u!65 &8614778249174346444

@@ -3711,20 +3711,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 0}
-  textHP: {fileID: 0}
+  healthText: {fileID: 0}
   damageTextPrefab: {fileID: 3433391998738348564, guid: e065d6633001a4e4b82dd454d28f03a9, type: 3}
-  Clips:
-  - {fileID: 8300000, guid: aa170bbcc6d8fc44c885b182e6a36523, type: 3}
-  - {fileID: 8300000, guid: 13af2eac59c0f8347abefca083d3c785, type: 3}
-  - {fileID: 8300000, guid: 4ff2cd7e27d300840967aabc540e9213, type: 3}
-  - {fileID: 8300000, guid: da79055cc27a29547b4a6a35deb76776, type: 3}
-  MonsterMaxHealth: 22222
-  MonsterCurrentHealth: 22222
+  audioClips:
+  - {fileID: 8300000, guid: dd68c6f0dfd306c489dc7d2919167e42, type: 3}
+  - {fileID: 8300000, guid: 301a462b2ced13f44afb61acd6364a0d, type: 3}
+  - {fileID: 8300000, guid: a577c2325268be54488591a486be171a, type: 3}
+  - {fileID: 8300000, guid: 49633201f9c137a46a22d01b399b938f, type: 3}
+  maxHealth: 1000
+  currentHealth: 1000
   attackInterval: 10
-  MonsterPower: 2222
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  attackPower: 50
 --- !u!1 &7132164746906972477
 GameObject:
   m_ObjectHideFlags: 0

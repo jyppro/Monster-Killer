@@ -527,16 +527,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 0}
-  textHP: {fileID: 0}
+  healthText: {fileID: 0}
   damageTextPrefab: {fileID: 3433391998738348564, guid: e065d6633001a4e4b82dd454d28f03a9, type: 3}
-  Clips:
+  audioClips:
   - {fileID: 8300000, guid: 4abab8fa42f82594081b3013ed1040d8, type: 3}
   - {fileID: 8300000, guid: 13af2eac59c0f8347abefca083d3c785, type: 3}
   - {fileID: 8300000, guid: b9618b7020142fb45984dc7214513b11, type: 3}
   - {fileID: 8300000, guid: 1d38a58a3709c5c45a53a41932a81c95, type: 3}
-  MonsterMaxHealth: 800
-  MonsterCurrentHealth: 800
-  MonsterPower: 80
+  maxHealth: 100
+  currentHealth: 100
+  attackPower: 5
 --- !u!65 &3426960450685162378
 BoxCollider:
   m_ObjectHideFlags: 0

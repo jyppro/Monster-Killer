@@ -243,7 +243,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &65307567
 MonoBehaviour:
@@ -301,7 +301,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &106228402
 MonoBehaviour:
@@ -382,6 +382,10 @@ PrefabInstance:
     - target: {fileID: 1885334752666496131, guid: 6bb6a06ed24e67842979f30f309cd0d0, type: 3}
       propertyPath: m_Name
       value: MonsterSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 1885334752666496131, guid: 6bb6a06ed24e67842979f30f309cd0d0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3766791606873813437, guid: 6bb6a06ed24e67842979f30f309cd0d0, type: 3}
       propertyPath: spawnInterval
@@ -1371,7 +1375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FadeOutPage: {fileID: 1891984287}
-  sceneToLoad: HuntStageScene
+  sceneToLoad: BossStageScene
 --- !u!114 &656912181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2923,7 +2927,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &1217990160
 MonoBehaviour:
@@ -3102,7 +3106,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &1250648734
 MonoBehaviour:
@@ -5817,7 +5821,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!82 &1976920028
 AudioSource:

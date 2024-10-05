@@ -1,302 +1,259 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections.Generic;
 
 public class MonsterController : MonoBehaviour
 {
-    [SerializeField] private Slider healthSlider; // 몬스터 체력바 UI
-    [SerializeField] private Slider StageBar; // 스테이지 UI
-    [SerializeField] private TextMeshProUGUI textHP; // 체력바 텍스트 UI
-    [SerializeField] private GameObject damageTextPrefab; // 데미지 텍스트 UI
-    [SerializeField] private GameObject nextMonsterPrefab; // 다음 몬스터로 전환할 때 사용할 프리팹
-    [SerializeField] private AudioClip[] Clips; // 사용할 오디오 클립의 배열 <0 : 소환, 1 : 공격, 2 : 피격, 3 : 사망>
-    [SerializeField] public int goldReward = 10; // 몬스터 잡을 때 획득 가능한 골드량
-    private List<GameObject> damageTextObjects = new List<GameObject>(); // 데미지 텍스트 리스트
-    private AudioSource MonsterAudio; // 몬스터 사운드
-    private Animator animator; // 애니메이터
-    private Canvas canvas; // 캔버스
-    private bool isAlive = true; // 몬스터 생사 여부
-    private int MonsterMaxHealth = 100; // 몬스터 최대 체력
-    private int MonsterCurrentHealth = 100; // 몬스터 현재 체력
-    private int MonsterPower = 5; // 몬스터 공격력
-    private int attackInterval = 5; // 공격 간격
+    // UI 및 사운드 관련 변수들
+    [SerializeField] private Slider healthSlider; 
+    [SerializeField] private Slider stageBar; 
+    [SerializeField] private TextMeshProUGUI healthText; 
+    [SerializeField] private GameObject damageTextPrefab; 
+    [SerializeField] private GameObject nextMonsterPrefab; 
+    [SerializeField] private AudioClip[] audioClips; // 0: 소환, 1: 공격, 2: 피격, 3: 사망
+    [SerializeField] private int goldReward = 10; 
 
-    private int MonsterPowerCopy;
+    // 내부 상태 및 설정 변수들
+    private List<GameObject> damageTextObjects = new List<GameObject>(); 
+    private AudioSource monsterAudio;
+    private Animator animator; 
+    private Canvas canvas; 
+    private bool isAlive = true; 
+    private int maxHealth = 100; 
+    private int currentHealth = 100; 
+    private int attackPower = 5; 
+    private int attackInterval = 5;
+
+    // 상태 복사본 저장 변수들
+    private int attackPowerCopy;
     private Slider healthSliderCopy;
-    private Slider StageBarCopy;
-    private TextMeshProUGUI textHPCopy;
+    private Slider stageBarCopy;
+    private TextMeshProUGUI healthTextCopy;
     private GameObject damageTextPrefabCopy;
     private int goldRewardCopy;
-    // public int stage;
-    public int IncreasePower = 2;
-    public int IncreaseReward = 2;
-    public int IncreaseMonsterMaxHealth = 5;
+
+    // 능력치 증가 설정
+    public int powerIncrease = 2;
+    public int rewardIncrease = 2;
+    public int healthIncrease = 5;
+
+    // 기타 참조 변수
     private MonsterSpawner spawner;
     private MonsterMovement monsterMovement;
 
-    void Start()
+    private void Start()
     {
-        monsterMovement = this.GetComponent<MonsterMovement>();
-        canvas = FindObjectOfType<Canvas>(); // Canvas 연결
-        animator = GetComponent<Animator>(); // 애니메이터 연결
-        MonsterAudio = GetComponent<AudioSource>(); // 오디오 소스 연결
-        MonsterAudio.clip = Clips[0]; // 몬스터 소환 효과음
-        MonsterAudio.Play();
-
-        // 복사본 저장
-        MonsterPowerCopy = this.MonsterPower;
-        healthSliderCopy = this.healthSlider;
-        StageBarCopy = this.StageBar;
-        textHPCopy = this.textHP;
-        damageTextPrefabCopy = this.damageTextPrefab;
-        goldRewardCopy = this.goldReward;
-
+        InitializeComponents();
+        InitializeMonsterValues();
         UpdateHealthSlider();
         InvokeRepeating("MonsterAttack", attackInterval, attackInterval);
-
-        if(spawner != null)
-        {
-            spawner = FindObjectOfType<MonsterSpawner>();
-        }
-        else
-        {
-            return;
-        }
+        AssignSpawner();
     }
 
-    private void MonsterAttack() // 몬스터 공격 애니메이션 실행 및 플레이어에게 데미지 주기
+    // 컴포넌트 초기화
+    private void InitializeComponents()
+    {
+        monsterMovement = GetComponent<MonsterMovement>();
+        canvas = FindObjectOfType<Canvas>();
+        animator = GetComponent<Animator>();
+        monsterAudio = GetComponent<AudioSource>();
+        monsterAudio.clip = audioClips[0]; 
+        monsterAudio.Play();
+    }
+
+    // 몬스터 능력치 및 복사본 초기화
+    private void InitializeMonsterValues()
+    {
+        attackPowerCopy = attackPower;
+        healthSliderCopy = healthSlider;
+        stageBarCopy = stageBar;
+        healthTextCopy = healthText;
+        damageTextPrefabCopy = damageTextPrefab;
+        goldRewardCopy = goldReward;
+    }
+
+    // 스포너 할당
+    private void AssignSpawner()
+    {
+        spawner = FindObjectOfType<MonsterSpawner>();
+    }
+
+    // 몬스터 공격 로직
+    private void MonsterAttack()
     {
         PlayerHP playerHP = FindObjectOfType<PlayerHP>();
-        if (playerHP && animator != null && isAlive == true)
+        if (playerHP && animator != null && isAlive)
         {
             animator.SetTrigger("Attack");
-            MonsterAudio.clip = Clips[1]; // 몬스터 공격 효과음
-            MonsterAudio.Play();
-            // ApplyDamageToPlayer(MonsterPower);
-            playerHP.TakeDamage_P(MonsterPower);
+            PlayAudioClip(1);
+            playerHP.TakeDamage_P(attackPower);
         }
     }
 
-    // public void ApplyDamageToPlayer(float monsterPower) // 몬스터가 플레이어에게 주는 데미지
-    // {
-    //     playerCurrentHealth -= monsterPower;
-    //     playerCurrentHealth = Mathf.Clamp(playerCurrentHealth, 0f, playerMaxHealth); // 체력이 음수가 되지 않도록 클램핑
-    //     UpdateHealthSlider();
-    //     if (playerCurrentHealth <= 0.0f)
-    //     {
-    //          GameOver.SetActive(true);
-    //          Time.timeScale = 0.0f;
-    //     }
-    // }
-
-    public void TakeDamage_M(int damage) // 몬스터에게 데미지를 주는 함수
+    // 몬스터가 데미지를 받는 로직
+    public void TakeDamage_M(int damage)
     {
-        if (!isAlive) return; // 몬스터가 죽었다면 함수를 종료
+        if (!isAlive) return;
         
-        MonsterCurrentHealth -= damage;
-        MonsterAudio.clip = Clips[2]; // 몬스터 피격 효과음
-        MonsterAudio.Play();
+        currentHealth -= damage;
+        PlayAudioClip(2);
 
-        // 체력이 전부 소진되면 다음 몬스터 소환
-        if (MonsterCurrentHealth <= 0)
+        if (currentHealth <= 0) 
         {
-            OnDeath();
+            Die();
             Invoke("SpawnNextMonster", 2.0f);
         }
         UpdateHealthSlider();
     }
 
-    private void OnDeath()
+    // 몬스터 사망 로직
+    private void Die()
     {
         isAlive = false;
-        if(MonsterCurrentHealth <= 0)
-        {
-            MonsterCurrentHealth = 0;
-        }
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         animator.SetBool("Death", true);
-
-        MonsterAudio.clip = Clips[3]; // 몬스터 사망 효과음
-        MonsterAudio.Play();
-
-        // GameObject.Find("GoldController").GetComponent<GoldController>().GoldSum(goldReward);
+        PlayAudioClip(3);
         GameObject.Find("GoldText").GetComponent<DisplayGold>().GoldSum(goldReward);
-        // GameManager.Instance.SaveGameData(); // 게임 데이터 저장
 
-        if(monsterMovement != null)
-        {
-            monsterMovement.StopMoving(); // Stop the movement
-        }
+        monsterMovement?.StopMoving();
+        DisableColliders();
 
-        // 하위의 모든 콜라이더를 비활성화
-        Collider[] colliders = GetComponentsInChildren<Collider>();
-        foreach (Collider col in colliders)
+        Destroy(gameObject, 3.0f); 
+    }
+
+    // 모든 자식 콜라이더 비활성화
+    private void DisableColliders()
+    {
+        foreach (Collider col in GetComponentsInChildren<Collider>())
         {
             col.enabled = false;
         }
-
-        // 3초 뒤에 몬스터 제거
-        Destroy(gameObject, 3.0f);
     }
 
-    private void SpawnNextMonster() // 다음 몬스터를 소환하는 함수
+    // 다음 몬스터 소환
+    private void SpawnNextMonster()
     {
-        // 씬에 현재 존재하는 몬스터의 수를 카운트
-        MonsterController[] existingMonsters = FindObjectsOfType<MonsterController>();
-        int monsterCount = existingMonsters.Length;
-
-        // 몬스터가 1마리 이하로 남아있으면 새로운 몬스터를 소환
-        if (monsterCount <= 1)
+        if (FindObjectsOfType<MonsterController>().Length <= 1 && nextMonsterPrefab != null)
         {
-            if (nextMonsterPrefab != null) // 다음 몬스터 프리팹이 세팅되어 있다면
-            {
-                // 범위 내 랜덤 위치 생성 (아이템 소환처럼)
-                Vector3 randomSpawnPosition = GetRandomSpawnPosition();
-
-                // 몬스터 소환
-                GameObject nextMonster = Instantiate(nextMonsterPrefab, randomSpawnPosition, Quaternion.identity);
-
-                // 넘겨줄 몬스터 데이터 세팅
-                MonsterController nextMonsterController = nextMonster.GetComponent<MonsterController>();
-                nextMonsterController.MonsterPower = MonsterPowerCopy;
-                nextMonsterController.healthSlider = healthSliderCopy;
-                nextMonsterController.StageBar = StageBarCopy;
-                nextMonsterController.textHP = textHPCopy;
-                nextMonsterController.damageTextPrefab = damageTextPrefabCopy;
-                nextMonsterController.goldReward = goldRewardCopy;
-                nextMonsterController.MonsterMaxHealth = MonsterMaxHealth;
-                nextMonsterController.MonsterCurrentHealth = MonsterCurrentHealth;
-                nextMonsterController.UpdateHealthSlider();
-                nextMonsterController.IncreaseHealth();
-                nextMonsterController.MonsterPower += IncreasePower;
-                nextMonsterController.goldReward += IncreaseReward;
-            }
+            GameObject nextMonster = Instantiate(nextMonsterPrefab, GetRandomSpawnPosition(), Quaternion.identity);
+            MonsterController nextMonsterController = nextMonster.GetComponent<MonsterController>();
+            SetNextMonsterValues(nextMonsterController);
         }
 
-        // 이전 몬스터의 데미지 텍스트 UI 오브젝트 제거
-        foreach (GameObject damageTextObject in damageTextObjects)
-        {
-            Destroy(damageTextObject);
-        }
-        damageTextObjects.Clear(); // 리스트 초기화
-        StageBar.value += 0.33f;
+        ClearDamageTextObjects();
+        stageBar.value += 0.33f;
 
         GameManager.Instance.ScoreCal();
 
-        if (StageBarCopy.value >= 1.0f)
+        if (stageBarCopy.value >= 1.0f)
         {
-            StageBarCopy.value = 0.0f;
+            stageBarCopy.value = 0.0f;
         }
         Destroy(gameObject);
     }
 
-    private Vector3 GetRandomSpawnPosition() // 랜덤한 스폰 위치 계산 함수
+    // 다음 몬스터 능력치 설정
+    private void SetNextMonsterValues(MonsterController nextMonster)
     {
-        // 소환 범위의 최소 및 최대값 설정 (이 범위 안에서 랜덤으로 위치 지정)
-        Vector2 spawnAreaMin = new Vector2(-80f, -75f); // 예시로 -5 ~ 5의 범위를 설정
-        Vector2 spawnAreaMax = new Vector2(90f, 35f);
-
-        // X와 Z 축에 대한 랜덤 값을 생성
-        float randomX = Random.Range(spawnAreaMin.x, spawnAreaMax.x);
-        float randomZ = Random.Range(spawnAreaMin.y, spawnAreaMax.y);
-
-        // 최종적으로 소환될 위치 반환 (Y 값은 현재 몬스터의 Y 값을 유지)
-        Vector3 randomPosition = new Vector3(randomX, transform.position.y, randomZ);
-        return randomPosition;
+        nextMonster.attackPower = attackPowerCopy;
+        nextMonster.healthSlider = healthSliderCopy;
+        nextMonster.stageBar = stageBarCopy;
+        nextMonster.healthText = healthTextCopy;
+        nextMonster.damageTextPrefab = damageTextPrefabCopy;
+        nextMonster.goldReward = goldRewardCopy;
+        nextMonster.maxHealth = maxHealth;
+        nextMonster.currentHealth = currentHealth;
+        nextMonster.UpdateHealthSlider();
+        nextMonster.IncreaseStats();
     }
 
-    private void ResetMonster() // 몬스터 초기화
+    // 스탯 증가
+    private void IncreaseStats()
     {
-        GameObject nextMonster = Instantiate(nextMonsterPrefab, transform.position, transform.rotation);
-        MonsterController nextMonsterController = nextMonster.GetComponent<MonsterController>();
-        nextMonsterController.MonsterPower = MonsterPowerCopy;
-        nextMonsterController.healthSlider = healthSliderCopy;
-        nextMonsterController.StageBar = StageBarCopy;
-        nextMonsterController.textHP = textHPCopy;
-        nextMonsterController.damageTextPrefab = damageTextPrefabCopy;
-        nextMonsterController.goldReward = goldRewardCopy;
-        nextMonsterController.MonsterMaxHealth = MonsterMaxHealth;
-        nextMonsterController.MonsterCurrentHealth = MonsterCurrentHealth;
-        nextMonsterController.UpdateHealthSlider();
-        nextMonsterController.IncreaseHealth();
-        nextMonsterController.MonsterPower += IncreasePower;
-        nextMonsterController.goldReward += IncreaseReward;
-    }
-
-    private void IncreaseHealth() // 다음몬스터 소환 시 체력 증가
-    {
-        MonsterMaxHealth += IncreaseMonsterMaxHealth;
-        if (MonsterCurrentHealth != MonsterMaxHealth) { MonsterCurrentHealth = MonsterMaxHealth; }
+        maxHealth += healthIncrease;
+        currentHealth = maxHealth;
+        attackPower += powerIncrease;
+        goldReward += rewardIncrease;
         UpdateHealthSlider();
     }
 
-    private void UpdateHealthSlider() // 체력바 업데이트
+    // 체력바 업데이트
+    private void UpdateHealthSlider()
     {
-        // 체력바 슬라이더의 값을 현재 체력 비율로 설정
-        float decreaseHp = (float)MonsterCurrentHealth / MonsterMaxHealth;
-        healthSlider.value = decreaseHp;
-        textHP.text = $"{MonsterCurrentHealth} / {MonsterMaxHealth}";
+        healthSlider.value = (float)currentHealth / maxHealth;
+        healthText.text = $"{currentHealth} / {maxHealth}";
     }
 
-    public void ShowDamageText(float damage, Vector3 position) // 몬스터가 받는 데미지 보여주기
+    // 랜덤한 스폰 위치 계산
+    private Vector3 GetRandomSpawnPosition()
     {
-        // 겹침을 방지하기 위해 랜덤 오프셋 생성
-        float randomOffsetX = Random.Range(-2.0f, 2.0f); // X 방향 랜덤 오프셋 (범위 확대)
-        float randomOffsetY = Random.Range(1.0f, 2.0f); // Y 방향 랜덤 오프셋 (범위 확대)
+        Vector2 spawnAreaMin = new Vector2(-80f, -75f);
+        Vector2 spawnAreaMax = new Vector2(90f, 35f);
 
-        // 랜덤 오프셋을 적용한 새로운 월드 위치 생성
-        Vector3 randomPosition = position + new Vector3(randomOffsetX, randomOffsetY, 0);
+        float randomX = Random.Range(spawnAreaMin.x, spawnAreaMax.x);
+        float randomZ = Random.Range(spawnAreaMin.y, spawnAreaMax.y);
 
-        // 랜덤 위치에서 데미지 텍스트 오브젝트 생성
-        GameObject damageTextObject = Instantiate(damageTextPrefab, randomPosition, Quaternion.identity);
-        
-        // 위치를 스크린 공간으로 변환
-        Vector3 screenPosition = Camera.main.WorldToScreenPoint(randomPosition);
-        
-        // RectTransform의 부모 설정 및 위치 지정
+        return new Vector3(randomX, transform.position.y, randomZ);
+    }
+
+    // 데미지 텍스트 생성 및 애니메이션 적용
+    public void ShowDamageText(float damage, Vector3 position)
+    {
+        Vector3 randomPosition = position + new Vector3(Random.Range(-2.0f, 2.0f), Random.Range(1.0f, 2.0f), 0);
+        GameObject damageTextObject = Instantiate(damageTextPrefab, randomPosition, Quaternion.identity, canvas.transform);
         RectTransform rt = damageTextObject.GetComponent<RectTransform>();
-        rt.SetParent(canvas.transform, false); // 캔버스의 자식으로 설정
-        rt.position = screenPosition; // 스크린 위치로 설정
+        rt.position = Camera.main.WorldToScreenPoint(randomPosition);
 
-        // 데미지 텍스트 설정
         TextMeshProUGUI textComponent = damageTextObject.GetComponent<TextMeshProUGUI>();
         textComponent.text = "-" + damage.ToString();
-        
-        // 데미지 텍스트 오브젝트를 리스트에 추가
-        damageTextObjects.Add(damageTextObject); // 리스트에 추가
+
+        damageTextObjects.Add(damageTextObject);
 
         StartCoroutine(AnimateDamageText(textComponent));
     }
 
-    private IEnumerator AnimateDamageText(TextMeshProUGUI textComponent) // 데미지에 애니메이션 적용
+    // 데미지 텍스트 애니메이션 코루틴
+    private IEnumerator AnimateDamageText(TextMeshProUGUI textComponent)
     {
-        float duration = 1.5f; // 애니메이션 지속 시간
+        float duration = 1.5f;
         float elapsedTime = 0f;
 
         Vector3 startPosition = textComponent.transform.position;
-        Vector3 endPosition = startPosition + Vector3.up * 50.0f; // 위로 올라갈 위치
+        Vector3 endPosition = startPosition + Vector3.up * 50.0f;
         Color startColor = textComponent.color;
-        Color endColor = new Color(startColor.r, startColor.g, startColor.b, 0f); // 투명도 조정
+        Color endColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
 
         while (elapsedTime < duration)
         {
-            // 텍스트 컴포넌트가 여전히 존재하는지 확인
-            if (textComponent == null)
-            {
-                yield break; // 텍스트가 파괴되었으면 코루틴 종료
-            }
+            if (textComponent == null) yield break;
 
             float progress = elapsedTime / duration;
-            textComponent.transform.position = Vector3.Lerp(startPosition, endPosition, progress); // 위치 이동
-            textComponent.color = Color.Lerp(startColor, endColor, progress); // 투명도 조정
+            textComponent.transform.position = Vector3.Lerp(startPosition, endPosition, progress);
+            textComponent.color = Color.Lerp(startColor, endColor, progress);
+
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        if (textComponent != null) // 애니메이션 종료 후 텍스트 오브젝트가 존재하면 제거
+        Destroy(textComponent.gameObject);
+    }
+
+    // 데미지 텍스트 오브젝트 제거
+    private void ClearDamageTextObjects()
+    {
+        foreach (GameObject damageTextObject in damageTextObjects)
         {
-            Destroy(textComponent.gameObject);
+            Destroy(damageTextObject);
         }
+        damageTextObjects.Clear();
+    }
+
+    // 오디오 클립 재생
+    private void PlayAudioClip(int index)
+    {
+        monsterAudio.clip = audioClips[index];
+        monsterAudio.Play();
     }
 }
