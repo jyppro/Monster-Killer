@@ -269,9 +269,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c27c01a2fa67c84385c95e0a0d43854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FadeOutPage: {fileID: 1150181030}
+  fadeOutPage: {fileID: 1150181030}
   sceneToLoad: MainScene
-  F_time: 1
+  fadeTime: 1
 --- !u!114 &17239737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2149,9 +2149,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c27c01a2fa67c84385c95e0a0d43854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FadeOutPage: {fileID: 1150181030}
+  fadeOutPage: {fileID: 1150181030}
   sceneToLoad: MainScene
-  F_time: 1
+  fadeTime: 1
 --- !u!114 &485656780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4940,8 +4940,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerHPText: {fileID: 276969302}
-  playerMaxHealth: 0
-  playerCurrentHealth: 0
   FadeOutPage: {fileID: 1150181030}
   mouseLook: {fileID: 151449465}
   hitEffectImage: {fileID: 1543362968}
@@ -5592,7 +5590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newImage: {fileID: 21300000, guid: f760e8c2f86be0a46a16e0a7a5bfe8ed, type: 3}
-  orignalImage: {fileID: 21300006, guid: f760e8c2f86be0a46a16e0a7a5bfe8ed, type: 3}
+  originalImage: {fileID: 21300006, guid: f760e8c2f86be0a46a16e0a7a5bfe8ed, type: 3}
 --- !u!114 &1656677850
 MonoBehaviour:
   m_ObjectHideFlags: 0

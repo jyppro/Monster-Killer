@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI; // Slider와 Button을 사용하기 위해 추가
+using UnityEngine.UI;
 
 public class MuteBtn : MonoBehaviour
 {

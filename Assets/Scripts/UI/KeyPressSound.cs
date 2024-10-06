@@ -13,11 +13,10 @@ public class KeyPressSound : MonoBehaviour
 
     public void PlayKeyPressSound(int index)
     {
-        // 인덱스가 유효할 경우 오디오 클립을 재생
-        if (audioClips != null && index >= 0 && index < audioClips.Length)
+        // 인덱스가 유효하고 audioClips가 비어있지 않은 경우 오디오 클립을 재생
+        if (audioClips != null && audioClips.Length > 0 && index >= 0 && index < audioClips.Length)
         {
-            audioSource.clip = audioClips[index];
-            audioSource.Play();
+            audioSource.PlayOneShot(audioClips[index]); // PlayOneShot을 사용하여 겹치는 소리 처리
         }
     }
 

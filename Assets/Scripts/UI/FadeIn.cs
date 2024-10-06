@@ -5,24 +5,33 @@ using UnityEngine.UI;
 public class FadeIn : MonoBehaviour
 {
     public Image FadeInPage;
-    float time = 0f;
-    float F_time = 2f;
-    
-    void Start() { Fade(); } 
+    private float time = 0f;
+    private const float FadeDuration = 2f;
 
-    public void Fade() { StartCoroutine(Fade_In()); }
+    void Start() 
+    {
+        Fade(); 
+    } 
 
-    IEnumerator Fade_In()
+    public void Fade() 
+    { 
+        StartCoroutine(Fade_In()); 
+    }
+
+    private IEnumerator Fade_In()
     {
         Color alpha = FadeInPage.color;
-        while(alpha.a > 0f)
+
+        while (time < FadeDuration)
         {
-            time += Time.deltaTime / F_time;
-            alpha.a = Mathf.Lerp(1, 0, time);
+            time += Time.deltaTime;
+            alpha.a = Mathf.Lerp(1, 0, time / FadeDuration);
             FadeInPage.color = alpha;
             yield return null;
         }
+
+        alpha.a = 0; // Ensure alpha is exactly 0
+        FadeInPage.color = alpha; // Update color one last time
         FadeInPage.gameObject.SetActive(false);
-        yield return null;
     }
 }

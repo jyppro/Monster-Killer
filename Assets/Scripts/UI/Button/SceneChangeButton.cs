@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems; // EventSystem을 사용하기 위해 추가
+using UnityEngine.EventSystems;
 
 public class SceneChangeButton : MonoBehaviour
 {
@@ -20,7 +20,6 @@ public class SceneChangeButton : MonoBehaviour
     private void SceneChange()
     {
         PauseExit();  // Time.timeScale을 복구
-        // GameManager.Instance.SaveGameData();
         StartCoroutine(FadeOut());
     }
 

@@ -31,7 +31,6 @@ public class NextStageButton : MonoBehaviour
             FadeOutPage.color = alpha;
             yield return null;
         }
-        // PlayerPrefs.DeleteAll(); // 이전에 획득한 정보만 삭제해야 함
         SceneManager.LoadScene(sceneToLoad);
     }
 }
