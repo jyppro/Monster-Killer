@@ -16,39 +16,47 @@ public class DefenseMonsterMovement : MonoBehaviour
 
     private void Start()
     {
-        navMeshAgent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
-        monsterController = GetComponent<DefenseMonsterController>(); // 몬스터 컨트롤러 참조
-        targets = FindTargetsWithTag("Dest"); // "destination" 태그를 가진 오브젝트 찾기
-
-        navMeshAgent.speed = moveSpeed; // 이동 속도 설정
-        navMeshAgent.autoTraverseOffMeshLink = true; // Off-Mesh Link 자동 사용 활성화
-
+        InitializeComponents();
+        targets = FindTargetsWithTag("Dest"); // "Dest" 태그를 가진 오브젝트 찾기
+        SetNavMeshAgentSettings();
         SelectRandomTarget();
     }
 
     private void Update()
     {
-        // Off-Mesh Link 처리
         if (navMeshAgent.isOnOffMeshLink)
         {
             StartCoroutine(HandleOffMeshLink());
         }
-
-        if (currentTarget != null)
+        else if (currentTarget != null)
         {
             MoveToTarget();
         }
+    }
+
+    private void InitializeComponents()
+    {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        monsterController = GetComponent<DefenseMonsterController>(); // 몬스터 컨트롤러 참조
+    }
+
+    private void SetNavMeshAgentSettings()
+    {
+        navMeshAgent.speed = moveSpeed; // 이동 속도 설정
+        navMeshAgent.autoTraverseOffMeshLink = true; // Off-Mesh Link 자동 사용 활성화
     }
 
     private Transform[] FindTargetsWithTag(string tag)
     {
         GameObject[] targetObjects = GameObject.FindGameObjectsWithTag(tag);
         Transform[] targetTransforms = new Transform[targetObjects.Length];
+        
         for (int i = 0; i < targetObjects.Length; i++)
         {
             targetTransforms[i] = targetObjects[i].transform;
         }
+        
         return targetTransforms;
     }
 
@@ -64,23 +72,21 @@ public class DefenseMonsterMovement : MonoBehaviour
 
     private void MoveToTarget()
     {
-        navMeshAgent.SetDestination(currentTarget.position);
-
         if (navMeshAgent.remainingDistance <= stopDistance)
         {
-            //StopMoving();
-            animator.SetBool("Move", false);
-
-            // 이동이 완료되면 몬스터 컨트롤러에게 타겟 정보를 전달하고 공격 실행
-            if (monsterController != null)
-            {
-                monsterController.SetTarget(currentTarget);
-            }
+            OnTargetReached();
         }
         else
         {
+            navMeshAgent.SetDestination(currentTarget.position);
             animator.SetBool("Move", true);
         }
+    }
+
+    private void OnTargetReached()
+    {
+        animator.SetBool("Move", false);
+        monsterController?.SetTarget(currentTarget); // null 체크를 이용한 안전한 호출
     }
 
     private IEnumerator HandleOffMeshLink()
@@ -92,7 +98,7 @@ public class DefenseMonsterMovement : MonoBehaviour
         navMeshAgent.transform.position = endPos;
         animator.SetBool("Move", true);
 
-        yield return null;
+        yield return null; // 다음 프레임까지 대기
     }
 
     public void StopMoving()

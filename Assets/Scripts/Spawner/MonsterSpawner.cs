@@ -3,43 +3,52 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    public Transform[] spawnPoints;
-    public float spawnInterval = 3.0f;
-    public int numberOfMonsters = 2;
+    [Header("Spawn Settings")]
+    [SerializeField] private Transform[] spawnPoints; // 소환 포인트
+    [SerializeField] private float spawnInterval = 3.0f; // 소환 주기
+    [SerializeField] private int numberOfMonsters = 2; // 한 번에 소환할 몬스터 수
 
-    private GameObject[] monsterPrefabs;
-    private int maxMonster = 20;
-    private int currentMonsterCount = 0;
+    private GameObject[] monsterPrefabs; // 몬스터 프리팹 배열
+    private const int maxMonster = 20; // 최대 몬스터 수
+    private int currentMonsterCount = 0; // 현재 몬스터 수
     public int targetKillCount = 0; // 목표 킬 카운트
     public int currentKillCount = 0; // 현재 킬 카운트
-    private bool bossSpawned = false; // 보스가 소환되었는지 여부를 추적
+    private bool bossSpawned = false; // 보스 소환 여부
 
-    void Start()
+    private void Start()
+    {
+        LoadStageData();
+    }
+
+    private void LoadStageData()
     {
         BaseStageData stageData = StageLoader.Instance.LoadStageData();
-        if (stageData != null)
+        if (stageData == null) return;
+
+        if (stageData is HuntStageData huntStageData)
         {
-            if (stageData is HuntStageData huntStageData)
-            {
-                monsterPrefabs = huntStageData.monsterPrefabs;
-                targetKillCount = huntStageData.targetKillCount;
-                StartCoroutine(SpawnMonsters());
-            }
-            else if (stageData is BossStageData bossStageData)
-            {
-                monsterPrefabs = new GameObject[] { bossStageData.bossPrefab };
-                targetKillCount = bossStageData.targetKillCount;
-                SpawnBoss(); // 보스 스테이지일 경우 보스를 소환
-            }
-            else if (stageData is GuardianStageData guardianStageData)
-            {
-                monsterPrefabs = guardianStageData.guardianPrefabs;
-                StartCoroutine(SpawnMonsters());
-            }
+            InitializeMonsterData(huntStageData.monsterPrefabs, huntStageData.targetKillCount);
+            StartCoroutine(SpawnMonsters());
+        }
+        else if (stageData is BossStageData bossStageData)
+        {
+            InitializeMonsterData(new GameObject[] { bossStageData.bossPrefab }, bossStageData.targetKillCount);
+            SpawnBoss(); // 보스 소환
+        }
+        else if (stageData is GuardianStageData guardianStageData)
+        {
+            InitializeMonsterData(guardianStageData.guardianPrefabs, 0);
+            StartCoroutine(SpawnMonsters());
         }
     }
 
-    IEnumerator SpawnMonsters()
+    private void InitializeMonsterData(GameObject[] prefabs, int killCount)
+    {
+        monsterPrefabs = prefabs;
+        targetKillCount = killCount;
+    }
+
+    private IEnumerator SpawnMonsters()
     {
         while (true)
         {
@@ -47,24 +56,27 @@ public class MonsterSpawner : MonoBehaviour
             {
                 for (int i = 0; i < numberOfMonsters && currentMonsterCount < maxMonster; i++)
                 {
-                    Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-                    GameObject monsterPrefab = monsterPrefabs[Random.Range(0, monsterPrefabs.Length)];
-                    Instantiate(monsterPrefab, spawnPoint.position, spawnPoint.rotation);
-                    currentMonsterCount++;
+                    SpawnMonster();
                 }
             }
             yield return new WaitForSeconds(spawnInterval);
         }
     }
 
+    private void SpawnMonster()
+    {
+        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        GameObject monsterPrefab = monsterPrefabs[Random.Range(0, monsterPrefabs.Length)];
+        Instantiate(monsterPrefab, spawnPoint.position, spawnPoint.rotation);
+        currentMonsterCount++;
+    }
+
     public void SpawnBoss()
     {
         if (!bossSpawned && monsterPrefabs.Length > 0)
         {
-            Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            Instantiate(monsterPrefabs[0], spawnPoint.position, spawnPoint.rotation);
-            bossSpawned = true; // 보스가 소환되었음을 기록
-            currentMonsterCount++; // 현재 몬스터 수를 증가
+            SpawnMonster();
+            bossSpawned = true; // 보스 소환 기록
         }
     }
 
@@ -73,10 +85,10 @@ public class MonsterSpawner : MonoBehaviour
         currentMonsterCount--;
         currentKillCount++;
 
-        // targetKillCount가 0일 때에는 클리어 페이지를 표시하지 않음
+        // 목표 킬 카운트 달성 시 클리어 페이지 표시
         if (targetKillCount > 0 && currentKillCount >= targetKillCount)
         {
-            StageController.Instance.ShowClearPage(); // 인스턴스를 통해 메서드 호출
+            StageController.Instance.ShowClearPage();
         }
     }
 }

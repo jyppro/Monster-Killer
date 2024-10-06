@@ -8,7 +8,7 @@ public class WeaponGenerator : MonoBehaviour
     public float throwSpeed = 500f; // 던질 때의 속도
     public float delay = 0.7f; // 무기 재생성 딜레이
 
-    private GameObject currentWeapon; // 현재 무기
+    public GameObject currentWeapon; // 현재 무기
     private bool canGenerate = true; // 무기 생성 가능 여부
     private Vector3 spawnPosition; // 무기 생성 위치
     public bool isWeaponGenerated = false; // 무기 생성 상태 확인

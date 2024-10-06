@@ -86,11 +86,12 @@ public class PlayerController : MonoBehaviour
         isSwappingWeapon = true;
         SetButtonInteractable(skill1Button, false);
 
-        // 무기 변경 로직
+        // 무기를 즉시 변경
         SwapToWeapon(weapon2Prefab);
 
         yield return new WaitForSeconds(weaponSwapDuration);
 
+        // 무기를 지속 시간이 끝난 후 즉시 원래 무기로 변경
         SwapToWeapon(originalWeaponPrefab);
 
         isSwappingWeapon = false;
@@ -99,15 +100,20 @@ public class PlayerController : MonoBehaviour
 
     private void SwapToWeapon(GameObject weaponPrefab)
     {
+        // 무기 프리팹 변경
         weaponGenerator.weaponPrefab = weaponPrefab;
 
-        // 무기가 생성되지 않았거나 무기가 다른 경우에만 무기 생성
-        if (!weaponGenerator.isWeaponGenerated || weaponGenerator.weaponPrefab != weaponPrefab)
+        // 기존 무기를 강제로 파괴하여 무기 교체가 즉시 이루어지도록 함
+        if (weaponGenerator.currentWeapon != null)
         {
-            weaponGenerator.GenerateWeapon();
-            weaponGenerator.isWeaponGenerated = true;
+            Destroy(weaponGenerator.currentWeapon);
         }
 
+        // 새로운 무기 생성
+        weaponGenerator.GenerateWeapon();
+        weaponGenerator.isWeaponGenerated = true;
+
+        // 데미지 동기화
         SyncWeaponDamage(weaponPrefab);
     }
 

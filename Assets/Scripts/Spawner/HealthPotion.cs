@@ -2,26 +2,33 @@ using UnityEngine;
 
 public class HealthPotion : MonoBehaviour
 {
-    // 회복할 체력 양
-    public int healAmount = 20;
+    [SerializeField] // 인스펙터에서 설정 가능하도록 [SerializeField] 속성을 추가
+    private int healAmount = 20; // 회복할 체력 양
     private PlayerHP playerHP;
 
-    void Start()
+    private void Awake()
     {
-        playerHP = FindObjectOfType<PlayerHP>();
+        playerHP = FindObjectOfType<PlayerHP>(); // PlayerHP 컴포넌트 캐시
     }
 
-    // 플레이어와 충돌했을 때 호출되는 함수
     private void OnTriggerEnter(Collider other)
     {
-        // 플레이어의 PlayerHP 컴포넌트 찾기
-        if (other.CompareTag("Player") && playerHP != null)
+        if (other.CompareTag("Player"))
         {
-            // 체력 회복
-            playerHP.Heal(healAmount);
+            HealPlayer(); // 플레이어 체력 회복 메서드 호출
+        }
+    }
 
-            // 포션 제거
-            Destroy(gameObject);
+    private void HealPlayer()
+    {
+        if (playerHP != null)
+        {
+            playerHP.Heal(healAmount); // 체력 회복
+            Destroy(gameObject); // 포션 제거
+        }
+        else
+        {
+            Debug.LogWarning("PlayerHP component not found!");
         }
     }
 }

@@ -4,10 +4,11 @@ public class StageLoader : MonoBehaviour
 {
     public static StageLoader Instance;
 
+    // 변수명을 다시 원래대로 변경하여 외부에서 참조할 수 있도록 수정
     public int currentModeIndex;
     public int currentStageIndex;
 
-    private string[] modeSceneNames = { "HuntStageScene", "BossStageScene", "GuardianStageScene" };
+    private static readonly string[] ModeSceneNames = { "HuntStageScene", "BossStageScene", "GuardianStageScene" };
 
     private void Awake()
     {
@@ -35,6 +36,11 @@ public class StageLoader : MonoBehaviour
 
     public string GetCurrentSceneName()
     {
-        return modeSceneNames[currentModeIndex];
+        if (currentModeIndex >= 0 && currentModeIndex < ModeSceneNames.Length)
+        {
+            return ModeSceneNames[currentModeIndex];
+        }
+        Debug.LogError("Invalid mode index: " + currentModeIndex);
+        return string.Empty;
     }
 }

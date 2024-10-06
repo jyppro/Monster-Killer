@@ -5,11 +5,12 @@ using UnityEngine.AI;
 public class MonsterMovement : MonoBehaviour
 {
     private NavMeshAgent navMeshAgent;
-    public bool isMoving = false;
     private Animator animator; // 애니메이터
 
     [SerializeField] private float minMoveDelay = 1f; // 최소 이동 딜레이
     [SerializeField] private float maxMoveDelay = 3f; // 최대 이동 딜레이
+
+    private bool isMoving;
 
     private void Start()
     {
@@ -24,11 +25,8 @@ public class MonsterMovement : MonoBehaviour
         {
             if (!isMoving)
             {
-                // 이동을 시작하기 전에 랜덤한 딜레이를 줍니다.
-                float moveDelay = Random.Range(minMoveDelay, maxMoveDelay);
-                yield return new WaitForSeconds(moveDelay);
+                yield return new WaitForSeconds(Random.Range(minMoveDelay, maxMoveDelay)); // 랜덤한 딜레이
 
-                // 새로운 목표 지점을 선택하여 이동합니다.
                 Vector3 targetPosition = GetRandomTargetPosition();
                 MoveTo(targetPosition);
             }
@@ -46,31 +44,27 @@ public class MonsterMovement : MonoBehaviour
     private Vector3 GetRandomTargetPosition()
     {
         // 랜덤한 위치를 선택하여 반환합니다.
-        Vector3 randomPosition = new Vector3(Random.Range(-10f, 10f), 0f, Random.Range(-10f, 10f));
-        return randomPosition;
+        return new Vector3(Random.Range(-10f, 10f), 0f, Random.Range(-10f, 10f));
     }
 
     private void Update()
     {
-        if (isMoving && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+        if (isMoving && IsReachedDestination())
         {
-            isMoving = false;
-            animator.SetBool("Move", false);
+            StopMoving(); // 도착하면 이동 중지
         }
     }
 
+    private bool IsReachedDestination()
+    {
+        return navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
+    }
 
     public void StopMoving()
     {
         // Stop the movement and set the isMoving flag to false
         isMoving = false;
-        if (navMeshAgent != null)
-        {
-            navMeshAgent.isStopped = true;
-        }
-        if (animator != null)
-        {
-            animator.SetBool("Move", false);
-        }
+        navMeshAgent.isStopped = true;
+        animator.SetBool("Move", false);
     }
 }
