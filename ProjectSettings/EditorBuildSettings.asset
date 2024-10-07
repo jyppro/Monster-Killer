@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: d5c6d6af63517ad4ca9347f904388667
   - enabled: 1
-    path: Assets/Scenes/ModeScene/KillerModeScene.unity
+    path: Assets/Scenes/ModeScene/KillerModeScene/KillerModeScene.unity
     guid: 7abaeb52157330c4bbc8370e149a287f
   - enabled: 1
     path: Assets/Scenes/ModeScene/HuntModeScene.unity
@@ -21,12 +21,12 @@ EditorBuildSettings:
     path: Assets/Scenes/ModeScene/GuardianModeScene.unity
     guid: ec240e151b00ecf49add9c22df5607c9
   - enabled: 1
-    path: Assets/Scenes/StageScene/BossStageScene.unity
+    path: Assets/Scenes/StageScene/BossStageScene/BossStageScene.unity
     guid: 18fc6d7fa84ac60419525ed261847a29
   - enabled: 1
-    path: Assets/Scenes/StageScene/GuardianStageScene.unity
+    path: Assets/Scenes/StageScene/GuardianStageScene/GuardianStageScene.unity
     guid: f434b99eae4b5d74584e474a4d773618
   - enabled: 1
-    path: Assets/Scenes/StageScene/HuntStageScene.unity
+    path: Assets/Scenes/StageScene/HuntStageScene/HuntStageScene.unity
     guid: b8b06f0c1e2573c4da0999173cf71945
   m_configObjects: {}

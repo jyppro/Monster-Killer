@@ -189,8 +189,8 @@ public class MonsterController : MonoBehaviour
     // 랜덤한 스폰 위치 계산
     private Vector3 GetRandomSpawnPosition()
     {
-        Vector2 spawnAreaMin = new Vector2(-80f, -75f);
-        Vector2 spawnAreaMax = new Vector2(90f, 35f);
+        Vector2 spawnAreaMin = new Vector2(-75f, -25f);
+        Vector2 spawnAreaMax = new Vector2(50f, 45f);
 
         float randomX = Random.Range(spawnAreaMin.x, spawnAreaMax.x);
         float randomZ = Random.Range(spawnAreaMin.y, spawnAreaMax.y);

@@ -1774,7 +1774,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d49460cca2e67e741ad15764aa17fd0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMoving: 0
   minMoveDelay: 1
   maxMoveDelay: 3
 --- !u!114 &-5413503622121010105

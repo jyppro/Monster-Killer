@@ -1958,11 +1958,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 0}
-  textHP: {fileID: 0}
+  healthText: {fileID: 0}
   damageTextPrefab: {fileID: 3433391998738348564, guid: e065d6633001a4e4b82dd454d28f03a9, type: 3}
-  monsterMaxHealth: 100
-  monsterCurrentHealth: 0
-  monsterPower: 5
+  maxHealth: 100
+  currentHealth: 0
+  attackPower: 5
   audioClips:
   - {fileID: 8300000, guid: 39d048fe5ac0fe24489d885125296aa0, type: 3}
   - {fileID: 8300000, guid: d1f8d4165dfa79a4fa92289d2d83d58f, type: 3}

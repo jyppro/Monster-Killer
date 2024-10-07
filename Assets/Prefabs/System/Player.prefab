@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 8505926098566884713}
   - component: {fileID: 6131144231966435214}
   - component: {fileID: 8348367807032197566}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -160,6 +160,7 @@ MonoBehaviour:
   controlOffset: {x: 0.5, y: -0.8, z: 1}
   throwSpeed: 200
   delay: 0.7
+  currentWeapon: {fileID: 0}
   isWeaponGenerated: 0
 --- !u!114 &6131144231966435214
 MonoBehaviour:

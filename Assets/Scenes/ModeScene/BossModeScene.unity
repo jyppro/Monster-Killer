@@ -1629,9 +1629,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c27c01a2fa67c84385c95e0a0d43854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FadeOutPage: {fileID: 1710678066}
+  fadeOutPage: {fileID: 1710678066}
   sceneToLoad: MainScene
-  F_time: 1
+  fadeTime: 1
 --- !u!1 &789559807
 GameObject:
   m_ObjectHideFlags: 0
