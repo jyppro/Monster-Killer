@@ -88,6 +88,10 @@ public class MonsterSpawner : MonoBehaviour
         // 목표 킬 카운트 달성 시 클리어 페이지 표시
         if (targetKillCount > 0 && currentKillCount >= targetKillCount)
         {
+            if(currentKillCount != targetKillCount)
+            {
+                currentKillCount = targetKillCount;
+            }
             StageController.Instance.ShowClearPage();
         }
     }

@@ -43,12 +43,13 @@ public class TimerController : MonoBehaviour
     private void UpdateTimer()
     {
         currentTime -= Time.deltaTime;
-        UpdateTimerText();
 
         if (currentTime <= 0.0f)
         {
+            currentTime = 0.0f;
             StopTimer();
         }
+        UpdateTimerText();
     }
 
     private void StopTimer()

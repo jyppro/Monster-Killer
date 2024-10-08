@@ -62,8 +62,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float time;
     private Dictionary<int, int> stageHighScores = new Dictionary<int, int>();
 
-    public Texture2D yourCursorTexture; // 커서 이미지
-
     private void Awake()
     {
         if (instance == null)
@@ -81,34 +79,6 @@ public class GameManager : MonoBehaviour
         {
             stagesCleared = new int[30]; // 30개의 스테이지 클리어 상태 초기화
         }
-    }
-
-    void Start()
-    {
-        Cursor.SetCursor(yourCursorTexture, Vector2.zero, CursorMode.Auto); // 커서 설정
-        //Cursor.lockState = CursorLockMode.Locked; // 커서 잠금
-        Cursor.visible = true; // 커서 보이게 설정
-
-        // Screen.fullScreen = true; // 전체화면 모드로 설정
-        SetResolution();
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            // 아무 동작도 하지 않음
-        }
-    }
-
-    public void SetResolution()
-    {
-        int setWidth = 1920; // 화면 너비
-        int setHeight = 1080; // 화면 높이
-
-        //해상도를 설정값에 따라 변경
-        //3번째 파라미터는 풀스크린 모드를 설정 > true : 풀스크린, false : 창모드
-        Screen.SetResolution(setWidth, setHeight, true);
     }
 
     public bool IsStageCleared(int modeIndex, int stageIndex)
