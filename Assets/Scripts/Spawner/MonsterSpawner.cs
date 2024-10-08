@@ -15,7 +15,7 @@ public class MonsterSpawner : MonoBehaviour
     public int currentKillCount = 0; // 현재 킬 카운트
     private bool bossSpawned = false; // 보스 소환 여부
 
-    private void Start()
+    private void Awake()
     {
         LoadStageData();
     }
