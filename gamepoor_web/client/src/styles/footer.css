@@ -1,0 +1,17 @@
+/* src/styles/footer.css */
+.footer {
+  display: flex; /* flexbox 사용 */
+  justify-content: flex-end; /* 오른쪽 정렬 */
+  padding: 10px; /* 적절한 패딩 추가 */
+}
+
+
+.footer p {
+  font-size: 14px;
+  margin-right: 20px; /* 오른쪽 여백 추가 */
+  text-align: right; /* 오른쪽 정렬 */
+}
+
+a{
+  color: #ccc;
+}

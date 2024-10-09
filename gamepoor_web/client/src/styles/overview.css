@@ -1,0 +1,38 @@
+.overview-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.overview-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.overview-content {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.overview-subtitle {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+.overview-features {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-bottom: 1.5rem;
+}
+
+.overview-footer {
+  font-size: 1rem;
+  color: #666;
+}
