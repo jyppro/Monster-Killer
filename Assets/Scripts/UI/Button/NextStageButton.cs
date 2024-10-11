@@ -8,14 +8,26 @@ public class NextStageButton : MonoBehaviour
     public Image FadeOutPage;
     public string sceneToLoad; // 인스펙터에서 설정할 씬 이름
     float F_time = 1.0f;
+    private Button nextStageButton;
 
     private void Start()
     {
-        GetComponent<Button>().onClick.AddListener(PauseExit);
-        GetComponent<Button>().onClick.AddListener(GameStart);
+        nextStageButton = GetComponent<Button>();
+
+        // 마지막 스테이지인 경우 버튼 비활성화
+        if (StageLoader.Instance.currentStageIndex == 9)
+        {
+            nextStageButton.interactable = false; // 버튼 비활성화
+        }
+        else
+        {
+            nextStageButton.onClick.AddListener(PauseExit);
+            nextStageButton.onClick.AddListener(GameStart);
+        }
     }
     private void GameStart() { StartCoroutine(FadeOut()); }
     private void PauseExit() { Time.timeScale = 1.0f; }
+
     IEnumerator FadeOut()
     {
         StageLoader.Instance.currentStageIndex++;

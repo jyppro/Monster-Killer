@@ -73,7 +73,6 @@ public class HuntMonsterController : MonoBehaviour
         UpdateHealthSlider();
     }
 
-    // 몬스터 사망 처리
     private void OnDeath()
     {
         isAlive = false;
@@ -84,13 +83,14 @@ public class HuntMonsterController : MonoBehaviour
         monsterMovement?.StopMoving();
         DisableColliders();
 
-        Destroy(gameObject, 3.0f);
+        Destroy(gameObject, 3.0f); // 3초 후에 몬스터 삭제
 
         if (spawner != null)
         {
-            spawner.MonsterDied();
+            spawner.MonsterDied(gameObject); // 몬스터 오브젝트 전달
         }
     }
+
 
     // 모든 자식 콜라이더 비활성화
     private void DisableColliders()
@@ -151,8 +151,12 @@ public class HuntMonsterController : MonoBehaviour
     // 오디오 클립 재생
     private void PlayAudioClip(int index)
     {
-        monsterAudio.clip = audioClips[index];
-        monsterAudio.Play();
+        // AudioSource가 활성화되어 있는지 확인
+        if (monsterAudio != null && monsterAudio.isActiveAndEnabled)
+        {
+            monsterAudio.clip = audioClips[index];
+            monsterAudio.Play();
+        }
     }
 
     // 스포너 할당

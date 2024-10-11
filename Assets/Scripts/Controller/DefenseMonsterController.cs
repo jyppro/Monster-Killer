@@ -199,7 +199,7 @@ public class DefenseMonsterController : MonoBehaviour
 
     private void PlayAudioClip(int index)
     {
-        if (audioClips.Length > index && monsterAudio != null && audioClips[index] != null)
+        if (audioClips.Length > index && monsterAudio != null && audioClips[index] != null && monsterAudio.isActiveAndEnabled)
         {
             monsterAudio.clip = audioClips[index];
             monsterAudio.Play();
@@ -210,7 +210,7 @@ public class DefenseMonsterController : MonoBehaviour
     {
         yield return new WaitForSeconds(3f); // 3초 후에 제거
         Destroy(gameObject);
-        spawner?.MonsterDied(); // 스포너의 MonsterDied 메서드 호출
+        spawner?.MonsterDied(gameObject); // 스포너의 MonsterDied 메서드 호출
     }
 
     private void AssignSpawner()

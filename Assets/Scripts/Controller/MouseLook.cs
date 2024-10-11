@@ -14,8 +14,6 @@ public class MouseLook : MonoBehaviour
 
     private void Start()
     {
-        // 게임 시작 시 커스텀 커서 설정
-        SetCustomCursor();
         LockMouse(); // 마우스 잠금
     }
 
@@ -52,28 +50,6 @@ public class MouseLook : MonoBehaviour
         {
             LockMouse();
         }
-
-        // ESC 키 눌렸을 때 커서 처리
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ResetCursor();
-        }
-    }
-
-    // 커서 설정 메서드
-    private void SetCustomCursor()
-    {
-        if (customCursorTexture != null)
-        {
-            Cursor.SetCursor(customCursorTexture, Vector2.zero, CursorMode.Auto);
-        }
-    }
-
-    // 커서 리셋 메서드
-    private void ResetCursor()
-    {
-        SetCustomCursor(); // 커스텀 커서 다시 설정
-        UnlockMouse(); // 마우스 잠금 해제
     }
 
     // 마우스 잠금 처리

@@ -6,7 +6,6 @@ using TMPro;
 
 public class MonsterController : MonoBehaviour
 {
-    // UI 및 사운드 관련 변수들
     [SerializeField] private Slider healthSlider; 
     [SerializeField] private Slider stageBar; 
     [SerializeField] private TextMeshProUGUI healthText; 
@@ -15,7 +14,6 @@ public class MonsterController : MonoBehaviour
     [SerializeField] private AudioClip[] audioClips; // 0: 소환, 1: 공격, 2: 피격, 3: 사망
     [SerializeField] private int goldReward = 10; 
 
-    // 내부 상태 및 설정 변수들
     private List<GameObject> damageTextObjects = new List<GameObject>(); 
     private AudioSource monsterAudio;
     private Animator animator; 
@@ -26,7 +24,6 @@ public class MonsterController : MonoBehaviour
     private int attackPower = 5; 
     private int attackInterval = 5;
 
-    // 상태 복사본 저장 변수들
     private int attackPowerCopy;
     private Slider healthSliderCopy;
     private Slider stageBarCopy;
@@ -34,12 +31,10 @@ public class MonsterController : MonoBehaviour
     private GameObject damageTextPrefabCopy;
     private int goldRewardCopy;
 
-    // 능력치 증가 설정
     public int powerIncrease = 2;
     public int rewardIncrease = 2;
     public int healthIncrease = 5;
 
-    // 기타 참조 변수
     private MonsterSpawner spawner;
     private MonsterMovement monsterMovement;
 
@@ -52,7 +47,6 @@ public class MonsterController : MonoBehaviour
         AssignSpawner();
     }
 
-    // 컴포넌트 초기화
     private void InitializeComponents()
     {
         monsterMovement = GetComponent<MonsterMovement>();
@@ -63,7 +57,6 @@ public class MonsterController : MonoBehaviour
         monsterAudio.Play();
     }
 
-    // 몬스터 능력치 및 복사본 초기화
     private void InitializeMonsterValues()
     {
         attackPowerCopy = attackPower;
@@ -74,13 +67,11 @@ public class MonsterController : MonoBehaviour
         goldRewardCopy = goldReward;
     }
 
-    // 스포너 할당
     private void AssignSpawner()
     {
         spawner = FindObjectOfType<MonsterSpawner>();
     }
 
-    // 몬스터 공격 로직
     private void MonsterAttack()
     {
         PlayerHP playerHP = FindObjectOfType<PlayerHP>();
@@ -92,7 +83,6 @@ public class MonsterController : MonoBehaviour
         }
     }
 
-    // 몬스터가 데미지를 받는 로직
     public void TakeDamage_M(int damage)
     {
         if (!isAlive) return;
@@ -103,12 +93,10 @@ public class MonsterController : MonoBehaviour
         if (currentHealth <= 0) 
         {
             Die();
-            Invoke("SpawnNextMonster", 2.0f);
         }
         UpdateHealthSlider();
     }
 
-    // 몬스터 사망 로직
     private void Die()
     {
         isAlive = false;
@@ -120,10 +108,10 @@ public class MonsterController : MonoBehaviour
         monsterMovement?.StopMoving();
         DisableColliders();
 
-        Destroy(gameObject, 3.0f); 
+        // 몬스터가 죽은 후 3초 뒤에 다음 몬스터를 소환합니다.
+        StartCoroutine(SpawnNextMonsterAfterDelay(3.0f));
     }
 
-    // 모든 자식 콜라이더 비활성화
     private void DisableColliders()
     {
         foreach (Collider col in GetComponentsInChildren<Collider>())
@@ -132,9 +120,10 @@ public class MonsterController : MonoBehaviour
         }
     }
 
-    // 다음 몬스터 소환
-    private void SpawnNextMonster()
+    private IEnumerator SpawnNextMonsterAfterDelay(float delay)
     {
+        yield return new WaitForSeconds(delay);
+        
         if (FindObjectsOfType<MonsterController>().Length <= 1 && nextMonsterPrefab != null)
         {
             GameObject nextMonster = Instantiate(nextMonsterPrefab, GetRandomSpawnPosition(), Quaternion.identity);
@@ -154,7 +143,6 @@ public class MonsterController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // 다음 몬스터 능력치 설정
     private void SetNextMonsterValues(MonsterController nextMonster)
     {
         nextMonster.attackPower = attackPowerCopy;
@@ -169,7 +157,6 @@ public class MonsterController : MonoBehaviour
         nextMonster.IncreaseStats();
     }
 
-    // 스탯 증가
     private void IncreaseStats()
     {
         maxHealth += healthIncrease;
@@ -179,18 +166,16 @@ public class MonsterController : MonoBehaviour
         UpdateHealthSlider();
     }
 
-    // 체력바 업데이트
     private void UpdateHealthSlider()
     {
         healthSlider.value = (float)currentHealth / maxHealth;
         healthText.text = $"{currentHealth} / {maxHealth}";
     }
 
-    // 랜덤한 스폰 위치 계산
     private Vector3 GetRandomSpawnPosition()
     {
-        Vector2 spawnAreaMin = new Vector2(-75f, -25f);
-        Vector2 spawnAreaMax = new Vector2(50f, 45f);
+        Vector2 spawnAreaMin = new Vector2(40f, -20f);
+        Vector2 spawnAreaMax = new Vector2(-10f, 30f);
 
         float randomX = Random.Range(spawnAreaMin.x, spawnAreaMax.x);
         float randomZ = Random.Range(spawnAreaMin.y, spawnAreaMax.y);
@@ -198,7 +183,6 @@ public class MonsterController : MonoBehaviour
         return new Vector3(randomX, transform.position.y, randomZ);
     }
 
-    // 데미지 텍스트 생성 및 애니메이션 적용
     public void ShowDamageText(float damage, Vector3 position)
     {
         Vector3 randomPosition = position + new Vector3(Random.Range(-2.0f, 2.0f), Random.Range(1.0f, 2.0f), 0);
@@ -214,7 +198,6 @@ public class MonsterController : MonoBehaviour
         StartCoroutine(AnimateDamageText(textComponent));
     }
 
-    // 데미지 텍스트 애니메이션 코루틴
     private IEnumerator AnimateDamageText(TextMeshProUGUI textComponent)
     {
         float duration = 1.5f;
@@ -238,7 +221,6 @@ public class MonsterController : MonoBehaviour
         }
     }
 
-    // 데미지 텍스트 오브젝트 제거
     private void ClearDamageTextObjects()
     {
         foreach (GameObject damageTextObject in damageTextObjects)
@@ -248,10 +230,13 @@ public class MonsterController : MonoBehaviour
         damageTextObjects.Clear();
     }
 
-    // 오디오 클립 재생
     private void PlayAudioClip(int index)
     {
-        monsterAudio.clip = audioClips[index];
-        monsterAudio.Play();
+        // AudioSource가 활성화되어 있는지 확인
+        if (monsterAudio != null && monsterAudio.isActiveAndEnabled)
+        {
+            monsterAudio.clip = audioClips[index];
+            monsterAudio.Play();
+        }
     }
 }

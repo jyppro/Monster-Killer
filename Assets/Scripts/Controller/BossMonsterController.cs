@@ -149,7 +149,7 @@ public class BossMonsterController : MonoBehaviour
     // 오디오 클립 재생
     private void PlayAudioClip(int index)
     {
-        if (audioClips.Length > index && monsterAudio != null && audioClips[index] != null)
+        if (audioClips.Length > index && monsterAudio != null && audioClips[index] != null && monsterAudio.isActiveAndEnabled)
         {
             monsterAudio.clip = audioClips[index];
             monsterAudio.Play();
@@ -164,7 +164,7 @@ public class BossMonsterController : MonoBehaviour
 
         if (spawner != null)
         {
-            spawner.MonsterDied();
+            spawner.MonsterDied(gameObject);
         }
     }
 

@@ -10,8 +10,6 @@ public class MonsterMovement : MonoBehaviour
     [SerializeField] private float minMoveDelay = 1f; // 최소 이동 딜레이
     [SerializeField] private float maxMoveDelay = 3f; // 최대 이동 딜레이
 
-    private bool isMoving;
-
     private void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -23,22 +21,27 @@ public class MonsterMovement : MonoBehaviour
     {
         while (true)
         {
-            if (!isMoving)
-            {
-                yield return new WaitForSeconds(Random.Range(minMoveDelay, maxMoveDelay)); // 랜덤한 딜레이
+            // 랜덤한 딜레이
+            yield return new WaitForSeconds(Random.Range(minMoveDelay, maxMoveDelay));
 
-                Vector3 targetPosition = GetRandomTargetPosition();
-                MoveTo(targetPosition);
+            Vector3 targetPosition = GetRandomTargetPosition();
+            MoveTo(targetPosition);
+
+            // 몬스터가 목적지에 도착할 때까지 대기
+            while (navMeshAgent.pathPending || navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance)
+            {
+                yield return null; // 대기
             }
-            yield return null;
+
+            StopMoving(); // 도착하면 이동 중지
         }
     }
 
     private void MoveTo(Vector3 targetPosition)
     {
-        isMoving = true;
         animator.SetBool("Move", true);
         navMeshAgent.SetDestination(targetPosition);
+        navMeshAgent.isStopped = false; // 이동 시작
     }
 
     private Vector3 GetRandomTargetPosition()
@@ -47,24 +50,13 @@ public class MonsterMovement : MonoBehaviour
         return new Vector3(Random.Range(-10f, 10f), 0f, Random.Range(-10f, 10f));
     }
 
-    private void Update()
-    {
-        if (isMoving && IsReachedDestination())
-        {
-            StopMoving(); // 도착하면 이동 중지
-        }
-    }
-
-    private bool IsReachedDestination()
-    {
-        return navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
-    }
-
     public void StopMoving()
     {
-        // Stop the movement and set the isMoving flag to false
-        isMoving = false;
-        navMeshAgent.isStopped = true;
-        animator.SetBool("Move", false);
+        // NavMeshAgent가 활성화되어 있고 NavMesh에 연결되어 있을 때만 멈추기
+        if (navMeshAgent != null && navMeshAgent.isActiveAndEnabled && navMeshAgent.isOnNavMesh)
+        {
+            navMeshAgent.isStopped = true;
+            animator.SetBool("Move", false);
+        }
     }
 }

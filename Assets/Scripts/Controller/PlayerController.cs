@@ -109,12 +109,12 @@ public class PlayerController : MonoBehaviour
             Destroy(weaponGenerator.currentWeapon);
         }
 
+        // 데미지 동기화
+        SyncWeaponDamage(weaponPrefab);
+
         // 새로운 무기 생성
         weaponGenerator.GenerateWeapon();
         weaponGenerator.isWeaponGenerated = true;
-
-        // 데미지 동기화
-        SyncWeaponDamage(weaponPrefab);
     }
 
     private void SyncWeaponDamage(GameObject weaponPrefab)

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
@@ -14,6 +15,8 @@ public class MonsterSpawner : MonoBehaviour
     public int targetKillCount = 0; // 목표 킬 카운트
     public int currentKillCount = 0; // 현재 킬 카운트
     private bool bossSpawned = false; // 보스 소환 여부
+    private bool isSpawning = true; // 몬스터 소환 여부
+    private List<GameObject> spawnedMonsters = new List<GameObject>(); // 현재 스폰된 몬스터 리스트
 
     private void Awake()
     {
@@ -50,7 +53,7 @@ public class MonsterSpawner : MonoBehaviour
 
     private IEnumerator SpawnMonsters()
     {
-        while (true)
+        while (isSpawning)
         {
             if (currentMonsterCount < maxMonster)
             {
@@ -67,7 +70,8 @@ public class MonsterSpawner : MonoBehaviour
     {
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
         GameObject monsterPrefab = monsterPrefabs[Random.Range(0, monsterPrefabs.Length)];
-        Instantiate(monsterPrefab, spawnPoint.position, spawnPoint.rotation);
+        GameObject spawnedMonster = Instantiate(monsterPrefab, spawnPoint.position, spawnPoint.rotation);
+        spawnedMonsters.Add(spawnedMonster); // 스폰된 몬스터 리스트에 추가
         currentMonsterCount++;
     }
 
@@ -80,19 +84,38 @@ public class MonsterSpawner : MonoBehaviour
         }
     }
 
-    public void MonsterDied()
+    public void MonsterDied(GameObject monster)
     {
         currentMonsterCount--;
         currentKillCount++;
 
-        // 목표 킬 카운트 달성 시 클리어 페이지 표시
+        // 목표 킬 카운트 달성 시 클리어 페이지 표시 및 몬스터 소환 중단
         if (targetKillCount > 0 && currentKillCount >= targetKillCount)
         {
-            if(currentKillCount != targetKillCount)
+            if (currentKillCount != targetKillCount)
             {
+                RemoveAllMonsters();
+                isSpawning = false; // 몬스터 소환 중단
                 currentKillCount = targetKillCount;
             }
-            StageController.Instance.ShowClearPage();
+
+            if(isSpawning == false)
+            {
+                StageController.Instance.ShowClearPage();
+            }
         }
+    }
+
+    private void RemoveAllMonsters()
+    {
+        // 현재 필드에 있는 모든 몬스터 제거
+        foreach (GameObject monster in spawnedMonsters)
+        {
+            if (monster != null)
+            {
+                Destroy(monster);
+            }
+        }
+        spawnedMonsters.Clear(); // 리스트 초기화
     }
 }
