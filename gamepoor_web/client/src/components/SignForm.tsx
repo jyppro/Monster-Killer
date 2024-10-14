@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -48,6 +47,7 @@ const SignUpForm: React.FC = () => {
         </section>
       <form onSubmit={handleSubmit} className="signupForm">
         <h1 className="signup_title">회원가입</h1>
+        <div className='signup_subtitle'>신규입력</div>
         <div className="signup_input">
           <input
             type="text"
