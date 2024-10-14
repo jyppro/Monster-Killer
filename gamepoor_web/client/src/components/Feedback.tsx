@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
-import '../styles/feedback.css'; // 스타일 파일 추가
+import '../styles/feedback.css';
 
 const Feedback: React.FC = () => {
   const [message, setMessage] = useState('');
-  
+  const [feedbacks, setFeedbacks] = useState<string[]>([]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("피드백 제출:", message);
-    setMessage('');
+    if (message.trim()) {
+      setFeedbacks([...feedbacks, message]); // 제출한 피드백을 리스트에 추가
+      setMessage(''); // 입력 필드 초기화
+    }
   };
 
   return (
     <div className="feedback-container">
-      <h1>피드백</h1>
-      <p>저희 게임에 대한 피드백을 남겨주세요!</p>
+      <h1>Monster Killer 이용 피드백</h1>
+      <p>게임에 대한 추가의견을 남겨주세요!</p>
       <form onSubmit={handleSubmit}>
         <textarea 
           value={message} 
@@ -22,8 +25,21 @@ const Feedback: React.FC = () => {
           rows={5}
           required
         />
-        <button type="submit">제출</button>
+        <button type="submit" className="submit-button">제출</button>
       </form>
+      
+      {/* 피드백 리스트 */}
+      <div className="feedback-list">
+        {feedbacks.length > 0 ? (
+          feedbacks.map((feedback, index) => (
+            <div key={index} className="feedback-item">
+              {index + 1}. {feedback}
+            </div>
+          ))
+        ) : (
+          <p>제출된 피드백이 없습니다.</p>
+        )}
+      </div>
     </div>
   );
 };
