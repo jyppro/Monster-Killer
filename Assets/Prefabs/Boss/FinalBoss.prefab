@@ -2808,16 +2808,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 0}
-  textHP: {fileID: 0}
+  healthText: {fileID: 0}
   damageTextPrefab: {fileID: 3433391998738348564, guid: e065d6633001a4e4b82dd454d28f03a9, type: 3}
-  Clips: []
-  MonsterMaxHealth: 20243813
-  MonsterCurrentHealth: 20243813
+  audioClips: []
+  maxHealth: 20243813
+  currentHealth: 20243813
   attackInterval: 20
-  MonsterPower: 20243813
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  attackPower: 20243813
 --- !u!65 &9004521357852183822
 BoxCollider:
   m_ObjectHideFlags: 0

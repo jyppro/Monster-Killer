@@ -31,9 +31,22 @@ public class MonsterController : MonoBehaviour
     private GameObject damageTextPrefabCopy;
     private int goldRewardCopy;
 
-    public int powerIncrease = 2;
-    public int rewardIncrease = 2;
-    public int healthIncrease = 5;
+    // public int powerIncrease = 2;
+    // public int rewardIncrease = 2;
+    // public int healthIncrease = 5;
+
+    // 새로운 변수 추가
+    private int monsterIndex = 1; // 몬스터의 종류 인덱스 (1~4)
+    // private int totalMonsters = 16; // 총 16마리
+    private int currentMonsterCount = 1; // 현재 소환된 몬스터 수
+
+    public int lowPowerIncrease = 1; // 낮은 증가율
+    public int lowRewardIncrease = 1;
+    public int lowHealthIncrease = 3;
+
+    public int highPowerIncrease = 5; // 높은 증가율
+    public int highRewardIncrease = 5;
+    public int highHealthIncrease = 10;
 
     private MonsterSpawner spawner;
     private MonsterMovement monsterMovement;
@@ -57,7 +70,7 @@ public class MonsterController : MonoBehaviour
         monsterAudio.Play();
     }
 
-    private void InitializeMonsterValues()
+     private void InitializeMonsterValues()
     {
         attackPowerCopy = attackPower;
         healthSliderCopy = healthSlider;
@@ -65,6 +78,9 @@ public class MonsterController : MonoBehaviour
         healthTextCopy = healthText;
         damageTextPrefabCopy = damageTextPrefab;
         goldRewardCopy = goldReward;
+
+        // monsterIndex 설정
+        monsterIndex = (currentMonsterCount - 1) % 4 + 1; // 몬스터 종류 1~4로 순환
     }
 
     private void AssignSpawner()
@@ -123,11 +139,15 @@ public class MonsterController : MonoBehaviour
     private IEnumerator SpawnNextMonsterAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        
+
         if (FindObjectsOfType<MonsterController>().Length <= 1 && nextMonsterPrefab != null)
         {
             GameObject nextMonster = Instantiate(nextMonsterPrefab, GetRandomSpawnPosition(), Quaternion.identity);
             MonsterController nextMonsterController = nextMonster.GetComponent<MonsterController>();
+
+            currentMonsterCount++; // 다음 몬스터로 진행
+            nextMonsterController.currentMonsterCount = currentMonsterCount; // 다음 몬스터 카운트를 증가시킴
+
             SetNextMonsterValues(nextMonsterController);
         }
 
@@ -154,15 +174,33 @@ public class MonsterController : MonoBehaviour
         nextMonster.maxHealth = maxHealth;
         nextMonster.currentHealth = currentHealth;
         nextMonster.UpdateHealthSlider();
-        nextMonster.IncreaseStats();
+
+        // 현재 몬스터의 증가율에 따라 다음 몬스터의 스탯을 증가시킴
+        nextMonster.IncreaseStats(monsterIndex);
     }
 
-    private void IncreaseStats()
+    private void IncreaseStats(int monsterIndex)
     {
-        maxHealth += healthIncrease;
+        if (monsterIndex % 4 == 0)  // 4번째 몬스터마다 높은 배율 적용
+        {
+            maxHealth = Mathf.RoundToInt(maxHealth * 1.5f);  // 체력 50% 증가
+            attackPower = Mathf.RoundToInt(attackPower * 1.5f);  // 공격력 50% 증가
+            goldReward = Mathf.RoundToInt(goldReward * 1.3f);  // 골드 보상도 30% 증가
+        }
+        else if (monsterIndex % 2 == 0)  // 2번째, 6번째, 10번째 등일 때 중간 배율 적용
+        {
+            maxHealth = Mathf.RoundToInt(maxHealth * 1.3f);  // 체력 30% 증가
+            attackPower = Mathf.RoundToInt(attackPower * 1.3f);  // 공격력 30% 증가
+            goldReward = Mathf.RoundToInt(goldReward * 1.15f);  // 골드 보상도 15% 증가
+        }
+        else  // 나머지 몬스터
+        {
+            maxHealth = Mathf.RoundToInt(maxHealth * 1.22f);  // 체력 22% 증가
+            attackPower = Mathf.RoundToInt(attackPower * 1.22f);  // 공격력 22% 증가
+        }
+
+        // 현재 체력을 새로 업데이트된 최대 체력으로 설정
         currentHealth = maxHealth;
-        attackPower += powerIncrease;
-        goldReward += rewardIncrease;
         UpdateHealthSlider();
     }
 

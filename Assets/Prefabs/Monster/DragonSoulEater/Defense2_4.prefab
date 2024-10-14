@@ -548,7 +548,6 @@ GameObject:
   - component: {fileID: 9585228}
   - component: {fileID: 1458115063080313315}
   - component: {fileID: 5251951574803476433}
-  - component: {fileID: -166859650611532163}
   - component: {fileID: 3023436648214169170}
   - component: {fileID: 3222581423580213071}
   - component: {fileID: -3882679561744919648}
@@ -715,25 +714,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-166859650611532163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b35ea89da68b3d245a83cd4cef501544, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 0}
-  healthText: {fileID: 0}
-  damageTextPrefab: {fileID: 3433391998738348564, guid: e065d6633001a4e4b82dd454d28f03a9, type: 3}
-  audioClips: []
-  maxHealth: 100
-  currentHealth: 100
-  attackPower: 5
 --- !u!114 &3023436648214169170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,9 +744,9 @@ MonoBehaviour:
   healthSlider: {fileID: 0}
   healthText: {fileID: 0}
   damageTextPrefab: {fileID: 3433391998738348564, guid: e065d6633001a4e4b82dd454d28f03a9, type: 3}
-  maxHealth: 100
+  maxHealth: 8500
   currentHealth: 0
-  attackPower: 5
+  attackPower: 350
   audioClips:
   - {fileID: 8300000, guid: defe1ee8e7a51d343b29bb2e1ec2761b, type: 3}
   - {fileID: 8300000, guid: 119a78ae6bd6e3043b1b1cec83b5f90d, type: 3}

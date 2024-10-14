@@ -3718,10 +3718,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 301a462b2ced13f44afb61acd6364a0d, type: 3}
   - {fileID: 8300000, guid: a577c2325268be54488591a486be171a, type: 3}
   - {fileID: 8300000, guid: 49633201f9c137a46a22d01b399b938f, type: 3}
-  maxHealth: 1000
-  currentHealth: 1000
+  maxHealth: 33333
+  currentHealth: 33333
   attackInterval: 10
-  attackPower: 50
+  attackPower: 3333
 --- !u!1 &7132164746906972477
 GameObject:
   m_ObjectHideFlags: 0

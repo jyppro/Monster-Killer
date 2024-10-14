@@ -748,9 +748,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 119a78ae6bd6e3043b1b1cec83b5f90d, type: 3}
   - {fileID: 8300000, guid: 0360ca2a1e60bae4e97993ba5ae13018, type: 3}
   - {fileID: 8300000, guid: 8abaebcc3dd4f7c48acd0c806ba80fb2, type: 3}
-  maxHealth: 100
-  currentHealth: 100
-  attackPower: 5
+  maxHealth: 8500
+  currentHealth: 8500
+  attackPower: 300
 --- !u!65 &-5098833437562566609
 BoxCollider:
   m_ObjectHideFlags: 0

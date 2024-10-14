@@ -45,77 +45,77 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   huntStages:
-  - stageTime: 60
-    threeStarTime: 30
-    twoStarTime: 20
+  - stageTime: 120
+    threeStarTime: 60
+    twoStarTime: 40
     score: 100
     monsterPrefabs:
     - {fileID: 100720, guid: b8b50a49e9c060c4cb5c40e6c7252b4a, type: 3}
     targetKillCount: 20
-  - stageTime: 60
-    threeStarTime: 30
-    twoStarTime: 20
+  - stageTime: 120
+    threeStarTime: 60
+    twoStarTime: 40
     score: 100
     monsterPrefabs:
     - {fileID: 193776, guid: ebd7ba32832189141887e37461d9ebcb, type: 3}
     targetKillCount: 25
-  - stageTime: 70
-    threeStarTime: 35
-    twoStarTime: 25
+  - stageTime: 130
+    threeStarTime: 70
+    twoStarTime: 50
     score: 120
     monsterPrefabs:
     - {fileID: 168864, guid: 707a5227ac0c3644d9be1d2bfbca233e, type: 3}
     - {fileID: 132742, guid: 36393eeb33b50c44584e7436ba75dd55, type: 3}
     targetKillCount: 30
-  - stageTime: 70
-    threeStarTime: 35
-    twoStarTime: 25
+  - stageTime: 130
+    threeStarTime: 70
+    twoStarTime: 50
     score: 120
     monsterPrefabs:
     - {fileID: 130964, guid: 74416203b7250864b8f77793f00c272e, type: 3}
     targetKillCount: 40
-  - stageTime: 80
-    threeStarTime: 40
-    twoStarTime: 30
+  - stageTime: 140
+    threeStarTime: 80
+    twoStarTime: 60
     score: 140
     monsterPrefabs:
     - {fileID: 170346, guid: 02e169f6a4d0b6744afaff651155de53, type: 3}
     targetKillCount: 50
-  - stageTime: 100
-    threeStarTime: 50
-    twoStarTime: 40
+  - stageTime: 200
+    threeStarTime: 100
+    twoStarTime: 80
     score: 200
     monsterPrefabs:
     - {fileID: 174418, guid: 2a88ff1feb2252b4db76248e2951730a, type: 3}
     - {fileID: 130416, guid: 5b1efc534723ae742a665d778fb52871, type: 3}
     targetKillCount: 60
-  - stageTime: 120
-    threeStarTime: 60
-    twoStarTime: 50
+  - stageTime: 240
+    threeStarTime: 120
+    twoStarTime: 100
     score: 250
     monsterPrefabs:
     - {fileID: 109776, guid: 9a6f31dafc0f5584ba85107935f283ea, type: 3}
     - {fileID: 135744, guid: 68b8d3352da4c0647937f76959d17be5, type: 3}
     targetKillCount: 70
-  - stageTime: 140
-    threeStarTime: 70
-    twoStarTime: 60
+  - stageTime: 280
+    threeStarTime: 140
+    twoStarTime: 120
     score: 300
     monsterPrefabs:
     - {fileID: 196076, guid: 2c97a41f0f429764d9bb3559ac9c6f81, type: 3}
     - {fileID: 101568, guid: f0bf16dfee027174c8f18f4681e3b377, type: 3}
     targetKillCount: 80
-  - stageTime: 160
-    threeStarTime: 80
-    twoStarTime: 70
+  - stageTime: 320
+    threeStarTime: 160
+    twoStarTime: 140
     score: 320
     monsterPrefabs:
     - {fileID: 132738, guid: e6b7de0b1d702184ba9ee3e0bac439ec, type: 3}
     - {fileID: 116688, guid: 55574c0f6de047f47ab5a4460dba8425, type: 3}
     targetKillCount: 90
-  - stageTime: 180
-    threeStarTime: 90
-    twoStarTime: 80
+  - stageTime: 360
+    threeStarTime: 180
+    twoStarTime: 160
     score: 350
     monsterPrefabs:
     - {fileID: 194904, guid: a6c11609732f52749b4f12f68d3d8667, type: 3}
@@ -183,66 +183,66 @@ MonoBehaviour:
     bossPrefab: {fileID: 7172254052817117787, guid: fb4fa80e728f4364a974efe8eb09e90d, type: 3}
     targetKillCount: 1
   guardianStages:
-  - stageTime: 180
+  - stageTime: 60
     threeStarTime: 0
     twoStarTime: 0
     score: 500
     guardianPrefabs:
     - {fileID: 100720, guid: 8ea0bacdbba91f64183131a39ab8cb20, type: 3}
-    defenseTime: 180
-  - stageTime: 180
+    defenseTime: 60
+  - stageTime: 60
     threeStarTime: 0
     twoStarTime: 0
     score: 500
     guardianPrefabs:
     - {fileID: 193776, guid: d44891f6328c8ee4e967df57718e092f, type: 3}
-    defenseTime: 180
-  - stageTime: 180
+    defenseTime: 60
+  - stageTime: 90
     threeStarTime: 0
     twoStarTime: 0
     score: 500
     guardianPrefabs:
     - {fileID: 168864, guid: b3b9fef8305c6b54392a6d7215fbcc52, type: 3}
     - {fileID: 132742, guid: 8b95ec4e2586d0d4fb7f4efcce746970, type: 3}
-    defenseTime: 180
-  - stageTime: 180
+    defenseTime: 90
+  - stageTime: 90
     threeStarTime: 0
     twoStarTime: 0
     score: 500
     guardianPrefabs:
     - {fileID: 130964, guid: abd5459ebbcd9fc45af5fb1b0e06c34c, type: 3}
-    defenseTime: 180
-  - stageTime: 180
+    defenseTime: 90
+  - stageTime: 120
     threeStarTime: 0
     twoStarTime: 0
     score: 500
     guardianPrefabs:
     - {fileID: 170346, guid: 73421bcd03536c341829b2e2ae712280, type: 3}
-    defenseTime: 180
-  - stageTime: 180
+    defenseTime: 120
+  - stageTime: 120
     threeStarTime: 0
     twoStarTime: 0
     score: 500
     guardianPrefabs:
     - {fileID: 174418, guid: ecd9d190fbf52e946ad39de1a5116388, type: 3}
     - {fileID: 130416, guid: e68311099af4c9f418d8f46f362a36e6, type: 3}
-    defenseTime: 180
-  - stageTime: 180
+    defenseTime: 120
+  - stageTime: 150
     threeStarTime: 0
     twoStarTime: 0
     score: 500
     guardianPrefabs:
     - {fileID: 109776, guid: ccaa1f170950f894db2088b669a269da, type: 3}
     - {fileID: 135744, guid: e2110b77932aa3d4fab61bd9603844a1, type: 3}
-    defenseTime: 180
-  - stageTime: 180
+    defenseTime: 150
+  - stageTime: 150
     threeStarTime: 0
     twoStarTime: 0
     score: 500
     guardianPrefabs:
     - {fileID: 196076, guid: 042e2b2b63a51c54ea0759a739adbf68, type: 3}
     - {fileID: 101568, guid: 0aeaaccc409bdf54b876eafd80126f91, type: 3}
-    defenseTime: 180
+    defenseTime: 150
   - stageTime: 180
     threeStarTime: 0
     twoStarTime: 0

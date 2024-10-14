@@ -83,9 +83,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 804060a6134c444478707906af48750f, type: 3}
   - {fileID: 8300000, guid: 49633201f9c137a46a22d01b399b938f, type: 3}
   goldReward: 10
-  powerIncrease: 2
-  rewardIncrease: 2
-  healthIncrease: 5
+  powerIncrease: 5
+  rewardIncrease: 3
+  healthIncrease: 54
 --- !u!82 &-4531214977206900079
 AudioSource:
   m_ObjectHideFlags: 0

@@ -4286,9 +4286,9 @@ MonoBehaviour:
   healthSlider: {fileID: 0}
   healthText: {fileID: 0}
   damageTextPrefab: {fileID: 3433391998738348564, guid: e065d6633001a4e4b82dd454d28f03a9, type: 3}
-  maxHealth: 100
+  maxHealth: 99999
   currentHealth: 0
-  attackPower: 5
+  attackPower: 5000
   audioClips:
   - {fileID: 8300000, guid: dd68c6f0dfd306c489dc7d2919167e42, type: 3}
   - {fileID: 8300000, guid: 301a462b2ced13f44afb61acd6364a0d, type: 3}
