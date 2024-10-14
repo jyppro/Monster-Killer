@@ -1,17 +1,30 @@
 .team-container {
-  padding: 20px;
+  padding: 10px;
   text-align: left;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
   border-radius: 10px;
-  margin: 10px auto;
-  max-width: 800px; 
+  margin: 5px auto;
+  max-width: 600px;
 }
 
 .team-member {
-  margin-bottom: 20px; 
-  padding: 15px;
-  border: 1px solid #4CAF50;
+  margin-bottom: 15px; /* 팀원 사이의 여백 줄이기 */
+  padding: 5px; /* 패딩 줄이기 */
+  border: 1px solid #4caf50;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+.bg-video {
+  position: absolute; /* 절대 위치로 설정 */
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
+.bg-video__content {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
