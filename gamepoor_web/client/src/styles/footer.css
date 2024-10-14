@@ -1,17 +1,25 @@
-/* src/styles/footer.css */
 .footer {
-  display: flex; /* flexbox 사용 */
-  justify-content: flex-end; /* 오른쪽 정렬 */
-  padding: 10px; /* 적절한 패딩 추가 */
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-end;
+  padding: 0px 0px; 
 }
 
+.copyright {
+  margin-bottom: -10px; 
+  text-align: right;
+}
 
 .footer p {
   font-size: 14px;
-  margin-right: 20px; /* 오른쪽 여백 추가 */
-  text-align: right; /* 오른쪽 정렬 */
+  margin-right: 20px;
 }
 
-a{
+.links p {
+  margin: 0; 
+  padding-right: 70px; 
+}
+
+a {
   color: #ccc;
 }
