@@ -31,22 +31,9 @@ public class MonsterController : MonoBehaviour
     private GameObject damageTextPrefabCopy;
     private int goldRewardCopy;
 
-    // public int powerIncrease = 2;
-    // public int rewardIncrease = 2;
-    // public int healthIncrease = 5;
-
     // 새로운 변수 추가
     private int monsterIndex = 1; // 몬스터의 종류 인덱스 (1~4)
-    // private int totalMonsters = 16; // 총 16마리
     private int currentMonsterCount = 1; // 현재 소환된 몬스터 수
-
-    public int lowPowerIncrease = 1; // 낮은 증가율
-    public int lowRewardIncrease = 1;
-    public int lowHealthIncrease = 3;
-
-    public int highPowerIncrease = 5; // 높은 증가율
-    public int highRewardIncrease = 5;
-    public int highHealthIncrease = 10;
 
     private MonsterSpawner spawner;
     private MonsterMovement monsterMovement;

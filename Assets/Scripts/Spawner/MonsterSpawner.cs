@@ -92,18 +92,24 @@ public class MonsterSpawner : MonoBehaviour
         // 목표 킬 카운트 달성 시 클리어 페이지 표시 및 몬스터 소환 중단
         if (targetKillCount > 0 && currentKillCount >= targetKillCount)
         {
+            isSpawning = false; // 몬스터 소환 중단
             if (currentKillCount != targetKillCount)
             {
-                RemoveAllMonsters();
-                isSpawning = false; // 몬스터 소환 중단
                 currentKillCount = targetKillCount;
             }
-
-            if(isSpawning == false)
-            {
-                StageController.Instance.ShowClearPage();
-            }
+            StartCoroutine(ShowClearPageAfterRemovingMonsters());
         }
+    }
+
+    private IEnumerator ShowClearPageAfterRemovingMonsters()
+    {
+        // 모든 몬스터 제거
+        RemoveAllMonsters();
+        
+        // 클리어 페이지를 보여주기 전에 잠시 대기
+        yield return new WaitForSeconds(0.1f); // 원하는 대기 시간 설정 (예: 1초)
+
+        StageController.Instance.ShowClearPage(); // 클리어 페이지 표시
     }
 
     private void RemoveAllMonsters()
