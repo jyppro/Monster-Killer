@@ -9,9 +9,10 @@ public class WeaponGenerator : MonoBehaviour
     public float delay = 0.7f; // 무기 재생성 딜레이
 
     public GameObject currentWeapon; // 현재 무기
-    private bool canGenerate = true; // 무기 생성 가능 여부
+    public bool canGenerate = true; // 무기 생성 가능 여부
     private Vector3 spawnPosition; // 무기 생성 위치
     public bool isWeaponGenerated = false; // 무기 생성 상태 확인
+    public bool isThrowing = false; // 무기 던지기 상태 확인 추가
 
     private void Start()
     {
@@ -40,7 +41,7 @@ public class WeaponGenerator : MonoBehaviour
     // 무기 생성과 관련된 처리
     private void HandleWeaponGeneration()
     {
-        if (currentWeapon == null && canGenerate)
+        if (currentWeapon == null && canGenerate && !isThrowing)
         {
             GenerateWeapon();
         }
@@ -50,11 +51,12 @@ public class WeaponGenerator : MonoBehaviour
             UpdateWeaponPosition();
         }
 
-        if (Input.GetMouseButtonDown(0) && currentWeapon != null) // 무기 던지기 처리
+        if (Input.GetMouseButtonDown(0) && currentWeapon != null && !isThrowing) // 무기 던지기 처리
         {
             ThrowWeapon();
             currentWeapon = null;
             canGenerate = false;
+            isThrowing = true; // 던지기 상태 시작
             Invoke(nameof(EnableWeaponGeneration), delay);
         }
     }
@@ -103,5 +105,6 @@ public class WeaponGenerator : MonoBehaviour
     private void EnableWeaponGeneration()
     {
         canGenerate = true;
+        isThrowing = false; // 던지기 상태 해제
     }
 }
