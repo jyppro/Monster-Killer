@@ -1,43 +1,36 @@
-import React, { useState, useEffect } from "react";
-import "../styles/rank.css";
+import React, {useEffect, useState} from 'react'
+import {getRealTimeRankings} from './getRealTimeRanking' // 함수 가져오는 용
 
-const RankingPage = () => {
-  const [rankingData, setRankingData] = useState([
-    { id: 1, name: "A1", score: 95 },
-    { id: 2, name: "B2", score: 85 },
-    { id: 3, name: "C3", score: 80 },
-    { id: 4, name: "D4", score: 90 },
-    { id: 5, name: "E5", score: 70 },
-  ]);
+interface Score {
+  username: string
+  score: number
+}
+
+const Ranking: React.FC = () => {
+  const [rankings, setRankings] = useState<Score[]>([])
 
   useEffect(() => {
-    const sortedData = [...rankingData].sort((a, b) => b.score - a.score);
-    setRankingData(sortedData);
-  }, [rankingData]);
+    const unsubscribe = getRealTimeRankings(10, (newRankings: Score[]) => {
+      setRankings(newRankings)
+    })
+
+    return () => {
+      unsubscribe()
+    }
+  }, [])
 
   return (
-    <div className="container">
-      <h1>Ranking</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Name</th>
-            <th>Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rankingData.map((player, index) => (
-            <tr key={player.id}>
-              <td>{index + 1}</td>
-              <td>{player.name}</td>
-              <td>{player.score}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div>
+      <h1>Top Rankings</h1>
+      <ul>
+        {rankings.map((rank, index) => (
+          <li key={index}>
+            {index + 1}. {rank.username} - {rank.score}
+          </li>
+        ))}
+      </ul>
     </div>
-  );
-};
+  )
+}
 
-export default RankingPage;
+export default Ranking

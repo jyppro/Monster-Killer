@@ -1,6 +1,6 @@
 import React from 'react'
 import '../styles/team.css'
-import video1 from '../videos/background.mp4'
+import video1 from '../video/background.mp4'
 
 const Team: React.FC = () => {
   return (

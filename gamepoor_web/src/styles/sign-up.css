@@ -7,6 +7,15 @@
   overflow: hidden; /* 내용이 넘치는 것을 숨김 */
 }
 
+@font-face {
+  font-family: 'SignupFont';
+  /* src: url('../fonts/MonsterHunterExpanded-rL19.otf') format('opentype'); */
+  src: url('../fonts/WickedType-OV2g8.ttf') format('truetype');
+  /* src: url('../fonts/HowlinMad-A31L.otf') format('opentype'); */
+  /* src: url('../fonts/KaijuMonsterG-05pr.ttf') format('truetype'); */
+  font-style: normal;
+}
+
 .bg-video {
   position: absolute;
   top: 0;
@@ -29,8 +38,8 @@
 }
 
 .content {
-  z-index: 1; 
-  background-color: rgba(255, 255, 255, 0.85); 
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.85);
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -49,7 +58,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 20px; 
+  margin-top: 20px;
 }
 
 .signup_title {
@@ -86,11 +95,11 @@
 }
 
 .signup_button {
-  background-color: #ffd700; 
+  background-color: #ffd700;
   border: 4px solid #4d4d4d;
   color: black;
-  font-size: 18px; 
-  font-weight: bold; 
+  font-size: 18px;
+  font-weight: bold;
   padding: 10px 20px;
   border-radius: 8px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
@@ -104,18 +113,26 @@
 }
 
 .signup_button:active {
-  background-color: #cca300; 
+  background-color: #cca300;
   box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 section.m {
   text-align: center;
   padding: 20px 20px;
-  margin-top: -200px; 
+  margin-top: -200px;
   color: #ccc;
 }
 
-.fade-in {
+.fade-in12 {
+  opacity: 0;
+  animation: fadeInAnimation 2s forwards;
+  font-family: 'SignupFont', sans-serif;
+  font-size: 100px;
+  color: white;
+}
+
+.fade-in22 {
   opacity: 0;
   animation: fadeInAnimation 2s forwards;
 }
@@ -145,10 +162,10 @@ section.m {
   bottom: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; 
+  z-index: 1000;
 }
 
 .loginLink {
-  margin-top: 10px; 
+  margin-top: 10px;
   text-decoration: none;
 }

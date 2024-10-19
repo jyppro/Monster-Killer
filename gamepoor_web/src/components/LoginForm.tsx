@@ -8,8 +8,8 @@ import '../styles/login.css'
 import '../styles/navbar.css'
 
 const LoginForm: React.FC = () => {
-  const [username, setUsername] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
   const navigate = useNavigate()
 
@@ -40,10 +40,10 @@ const LoginForm: React.FC = () => {
       <Header />
       <Main>
         <section className="m">
-          <h1 className="fade-in">몬스터 킬러</h1>
-          <h2 className="fade-in">사냥, 경쟁</h2>
-          <p className="fade-in">"몬스터 헌트"</p>
-          <p className="fade-in famous">새로운 몬스터, 새로운 스킬</p>
+          <h1 className="fade-in11">몬스터 킬러</h1>
+          <h1 className="fade-in21">사냥, 경쟁</h1>
+          <p className="fade-in21">"몬스터 헌트"</p>
+          <p className="fade-in21">새로운 몬스터, 새로운 스킬</p>
         </section>
         <form onSubmit={handleSubmit} className="loginForm">
           <h1 className="login_title">로그인</h1>

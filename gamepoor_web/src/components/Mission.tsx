@@ -1,7 +1,7 @@
 // src/components/Mission.tsx
 import React from 'react'
 import '../styles/mission.css' // 스타일 파일 추가
-import video1 from '../videos/background.mp4'
+import video1 from '../video/background.mp4'
 
 const Mission: React.FC = () => {
   return (

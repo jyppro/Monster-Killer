@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/navbar.css';
+import React from 'react'
+import {Link} from 'react-router-dom'
+import '../styles/navbar.css'
 
 const Header: React.FC = () => {
   return (
@@ -12,8 +12,8 @@ const Header: React.FC = () => {
         <li className="dropdown-container">
           <Link to="">소개</Link>
           <div className="dropdown">
-            <Link to="/overview">개요</Link> 
-            <Link to="/team">팀 소개</Link> 
+            <Link to="/overview">개요</Link>
+            <Link to="/team">팀 소개</Link>
             <Link to="/mission">미션</Link>
           </div>
         </li>
@@ -41,9 +41,15 @@ const Header: React.FC = () => {
             <Link to="/feedback">피드백</Link>
           </div>
         </li>
+        <li className="dropdown-container">
+          <Link to="">랭킹</Link>
+          <div className="dropdown">
+            <Link to="/Ranking">랭킹</Link>
+          </div>
+        </li>
       </ul>
     </nav>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
