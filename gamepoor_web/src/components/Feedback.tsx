@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import "../styles/feedback.css";
+import React, {useState} from 'react'
+import '../styles/feedback.css'
 // import video1 from "../videos/bg_gameplay.mp4";
-import video1 from "../video/background.mp4";
+import video1 from '../video/bg.mp4'
 
 const Feedback: React.FC = () => {
-  const [message, setMessage] = useState("");
-  const [feedbacks, setFeedbacks] = useState<string[]>([]);
+  const [message, setMessage] = useState('')
+  const [feedbacks, setFeedbacks] = useState<string[]>([])
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     if (message.trim()) {
-      setFeedbacks([...feedbacks, message]); // 제출한 피드백을 리스트에 추가
-      setMessage(""); // 입력 필드 초기화
+      setFeedbacks([...feedbacks, message]) // 제출한 피드백을 리스트에 추가
+      setMessage('') // 입력 필드 초기화
     }
-  };
+  }
 
   return (
     <div className="feedback-container">
@@ -29,7 +29,7 @@ const Feedback: React.FC = () => {
         <form onSubmit={handleSubmit}>
           <textarea
             value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={e => setMessage(e.target.value)}
             placeholder="피드백 내용을 입력하세요."
             rows={5}
             required
@@ -52,7 +52,7 @@ const Feedback: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Feedback;
+export default Feedback

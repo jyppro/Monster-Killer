@@ -7,3 +7,21 @@
   margin: 20px auto;
   max-width: 800px;
 }
+
+.bg-video2 {
+  position: fixed;
+  z-index: -1;
+  top: 0; /* 상단에 고정 */
+  left: 0; /* 왼쪽에 고정 */
+  width: 100%; /* 화면 전체 너비 */
+  height: 100%; /* 화면 전체 높이 */
+  display: flex; /* 플렉스 박스 사용 */
+}
+
+.bg-video__content2 {
+  width: auto; /* 자동 너비 */
+  height: auto; /* 자동 높이 */
+  object-fit: cover; /* 비율 유지하며 채우기 */
+  min-width: 100%; /* 최소 너비를 화면 전체로 */
+  min-height: 100%; /* 최소 높이를 화면 전체로 */
+}

@@ -121,11 +121,14 @@ body {
   animation: fadeInAnimation 2s forwards;
   font-family: 'loginfont';
   font-size: 70px;
+  /* color: #FFFF00; */
+  color: #ffd700;
 }
 
 .fade-in21 {
   opacity: 0;
   animation: fadeInAnimation 2s forwards;
+  color: white;
 }
 
 @keyframes fadeInAnimation {

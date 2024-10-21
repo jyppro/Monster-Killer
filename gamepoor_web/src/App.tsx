@@ -2,7 +2,7 @@ import React from 'react'
 import {Route, Routes} from 'react-router-dom'
 import LoginForm from './components/LoginForm'
 import SignUpForm from './components/SignForm'
-import Game from './components/game'
+import {UnityPlayer} from './components/UnityPlayer'
 import UserEditForm from './components/usereditform'
 import Header from './components/Header'
 import Overview from './components/Overview'
@@ -20,8 +20,8 @@ import Contact from './components/Contact'
 import Feedback from './components/Feedback'
 import Ranking from './components/RankingPage'
 
-import {BrowserRouter} from 'react-router-dom'
-import RoutersSetup from './routes/RoutesSetup'
+/* import {BrowserRouter} from 'react-router-dom'
+import RoutersSetup from './routes/RoutesSetup' */
 
 const App: React.FC = () => {
   return (
@@ -33,7 +33,7 @@ const App: React.FC = () => {
       <Route path="/mission" element={<Mission />} />
       <Route path="/footer" element={<Footer />} />
       <Route path="/signup" element={<SignUpForm />} />
-      <Route path="/game" element={<Game />} />
+      <Route path="/game" element={<UnityPlayer />} />
       <Route path="/edit" element={<UserEditForm />} />
       <Route path="/screenshot1" element={<Screenshot1 />} />
       <Route path="/screenshot2" element={<Screenshot2 />} />

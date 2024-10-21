@@ -1,10 +1,9 @@
-import React from "react";
-import "../styles/sign-up.css";
-import "../styles/login.css";
-// import video1 from '../videos/bg_gameplay.mp4';
-import video1 from "../video/background.mp4";
+import React from 'react'
+import '../styles/sign-up.css'
+import '../styles/login.css'
+import video1 from '../video/bg.mp4'
 
-const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const Main: React.FC<{children: React.ReactNode}> = ({children}) => {
   return (
     <div className="main-container">
       <div className="bg-video">
@@ -15,7 +14,7 @@ const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
       {children}
     </div>
-  );
-};
+  )
+}
 
-export default Main;
+export default Main

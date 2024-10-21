@@ -11,7 +11,7 @@ export function getRealTimeRankings(
   callback: (scores: Score[]) => void
 ): () => void {
   const scoresRef = query(
-    ref(db, 'players/playerID/'),
+    ref(db, 'scores/'),
     orderByChild('score'),
     limitToLast(limitNumber)
   )
@@ -31,7 +31,6 @@ export function getRealTimeRankings(
       }
     })
 
-    // 점수 내림차순 정렬
     const sortedScores = scoresArray.sort((a, b) => b.score - a.score)
     callback(sortedScores)
   })

@@ -6,7 +6,7 @@ import Team from '../components/Team'
 import Mission from '../components/Mission'
 import Footer from '../components/Footer'
 import SignUpForm from '../components/SignForm'
-import Game from '../components/game'
+import {UnityPlayer} from '../components/UnityPlayer' // '/game'
 import UserEditForm from '../components/usereditform'
 import Screenshot1 from '../components/Screenshot1'
 import Screenshot2 from '../components/Screenshot2'
@@ -28,7 +28,7 @@ export default function RoutersSetup() {
       <Route path="/mission" element={<Mission />} />
       <Route path="/footer" element={<Footer />} />
       <Route path="/signup" element={<SignUpForm />} />
-      <Route path="/game" element={<Game />} />
+      <Route path="/game" element={<UnityPlayer />} />
       <Route path="/edit" element={<UserEditForm />} />
       <Route path="/screenshot1" element={<Screenshot1 />} />
       <Route path="/screenshot2" element={<Screenshot2 />} />

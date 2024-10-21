@@ -1,12 +1,12 @@
 import React from 'react'
 import '../styles/team.css'
-import video1 from '../video/background.mp4'
+import video1 from '../video/bg.mp4'
 
 const Team: React.FC = () => {
   return (
     <div className="team-container">
-      <div className="bg-video">
-        <video className="bg-video__content" autoPlay muted loop>
+      <div className="bg-video1">
+        <video className="bg-video__content1" autoPlay muted loop>
           <source src={video1} type="video/mp4" />
         </video>
       </div>

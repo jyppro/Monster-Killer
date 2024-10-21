@@ -1,13 +1,14 @@
 import React, {useState} from 'react'
-import axios from 'axios'
 import {useNavigate, Link} from 'react-router-dom'
 import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
 import '../styles/sign-up.css'
+import {ref, set} from 'firebase/database'
+import {db} from '../FirebaseConfig'
 
 const SignUpForm: React.FC = () => {
-  const [playerID, setplayerID] = useState('')
+  const [playerID, setPlayerID] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('') // 비밀번호 확인 상태 추가
   const [error, setError] = useState<string | null>(null)
@@ -22,15 +23,15 @@ const SignUpForm: React.FC = () => {
     }
 
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/users/signup`,
-        {playerID, password}
-      )
-      if (response.status === 201) {
-        navigate('/login')
-      }
+      const dbPlayerId = 'playerID_' + playerID
+      await set(ref(db, `players/${dbPlayerId}`), {
+        id: playerID,
+        password
+      })
+      navigate('/')
     } catch (err) {
       setError('회원가입에 실패했습니다.')
+      console.log('회원가입 실패', err)
     }
   }
 
@@ -52,15 +53,22 @@ const SignUpForm: React.FC = () => {
           <input
             type="text"
             value={playerID}
-            onChange={e => setplayerID(e.target.value)}
+            onChange={e => setPlayerID(e.target.value)}
             placeholder="아이디"
-            className="userId"
+            className="playerId"
           />
           <input
             type="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
             placeholder="비밀번호"
+            className="password"
+          />
+          <input
+            type="password"
+            value={confirmPassword}
+            onChange={e => setConfirmPassword(e.target.value)}
+            placeholder="비밀번호 확인"
             className="password"
           />
         </div>

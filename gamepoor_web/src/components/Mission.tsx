@@ -1,13 +1,13 @@
 // src/components/Mission.tsx
 import React from 'react'
 import '../styles/mission.css' // 스타일 파일 추가
-import video1 from '../video/background.mp4'
+import video1 from '../video/bg.mp4'
 
 const Mission: React.FC = () => {
   return (
     <div className="mission-container">
-      <div className="bg-video">
-        <video className="bg-video__content" autoPlay muted loop>
+      <div className="bg-video2">
+        <video className="bg-video__content2" autoPlay muted loop>
           <source src={video1} type="video/mp4" />
         </video>
       </div>

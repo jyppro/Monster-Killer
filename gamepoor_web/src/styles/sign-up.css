@@ -17,27 +17,17 @@
 }
 
 .bg-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
+  position: fixed;
   z-index: -1;
+  left: 50%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -40%);
+  object-fit: cover;
+  pointer-events: none;
 }
 
-.bg-video__content {
-  position: absolute; /* 비디오를 절대 위치로 설정 */
-  top: 50%; /* 수직 중앙 정렬 */
-  left: 50%; /* 수평 중앙 정렬 */
-  min-width: 100%; /* 최소 너비는 100%로 설정 */
-  min-height: 100%; /* 최소 높이는 100%로 설정 */
-  width: auto; /* 비율 유지 */
-  height: auto; /* 비율 유지 */
-  transform: translate(-50%, -50%); /* 정확히 가운데로 위치 */
-  object-fit: cover; /* 비율을 유지하면서 공간을 채우도록 설정 */
-}
-
-.content {
+/* .content {
   z-index: 1;
   background-color: rgba(255, 255, 255, 0.85);
   padding: 2rem;
@@ -46,19 +36,17 @@
   width: 100%;
   max-width: 400px;
   text-align: center;
-}
+} */
 
 .signupForm {
-  padding: 2rem;
+  padding: 0.4rem;
   border-radius: 8px;
-  width: 100%;
-  max-width: 400px;
+  max-width: 350px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
 }
 
 .signup_title {
@@ -129,12 +117,14 @@ section.m {
   animation: fadeInAnimation 2s forwards;
   font-family: 'SignupFont', sans-serif;
   font-size: 100px;
-  color: white;
+  color: #ffd700;
+  /* color: white; */
 }
 
 .fade-in22 {
   opacity: 0;
   animation: fadeInAnimation 2s forwards;
+  color: white;
 }
 
 @keyframes fadeInAnimation {

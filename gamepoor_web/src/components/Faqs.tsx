@@ -1,7 +1,7 @@
 // src/components/FAQs.tsx
 import React from 'react'
 import '../styles/faqs.css' // 스타일 파일 추가
-import video1 from '../video/background.mp4'
+import video1 from '../video/bg.mp4'
 
 const FAQs: React.FC = () => {
   return (
