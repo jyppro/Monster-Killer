@@ -4,15 +4,12 @@ using FirebaseWebGL.Scripts.FirebaseBridge;
 using FirebaseWebGL.Scripts.Objects;
 
 public class PlayerData{
-    // public string playerID;
     public int playerID;
     public int rank;
     public int power;
     public int gold;
     public float time;
     public int maxHP;
-    public int currentHP;
-    public int sumScore;
 }
 
 [System.Serializable]
@@ -55,9 +52,7 @@ public class GameManager : MonoBehaviour
     public GuardianStageData[] guardianStages;
 
     [SerializeField] private int[] stagesCleared; // 스테이지 클리어 상태 저장 (0은 클리어하지 않음, 1은 클리어함)
-    // [SerializeField] private string playerID;
     [SerializeField] private int playerID;
-
     [SerializeField] private int rank;
     [SerializeField] private int power;
     [SerializeField] private int maxHP;
@@ -65,8 +60,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int gold;
     [SerializeField] private int sumScore;
     [SerializeField] private float time;
-    //플레이어가 웹에서 로그인 확인 체크용
-    // private bool loginCheck = false;
     private Dictionary<int, int> stageHighScores = new Dictionary<int, int>();
 
     private void Awake()
@@ -78,10 +71,8 @@ public class GameManager : MonoBehaviour
         }    
         else
             Destroy(gameObject);
-        // if(!loginCheck){
-        //     LoadGameData();
-        // }
-        // LoadGameData("100");
+
+        LoadGameData();
         StageClear();
         
         if (stagesCleared == null || stagesCleared.Length == 0)
@@ -157,7 +148,7 @@ public class GameManager : MonoBehaviour
         ScoreCal();
     }
 
-    public void LoadGameData(int test)
+    public void LoadGameData()
     {
         // playerID = PlayerPrefs.GetInt("playerID", 1);
         // rank = PlayerPrefs.GetInt("Rank", 1);
@@ -167,13 +158,8 @@ public class GameManager : MonoBehaviour
         // gold = PlayerPrefs.GetInt("Gold", 0);
         // sumScore = PlayerPrefs.GetInt("SumScore", 0);
         // time = PlayerPrefs.GetFloat("Time", 60.0f);
-
-        // int playerIDInputTemp; //로그인 안될 시 기본적인 로드
-
-        // playerIDInputTemp = "playerID_100";
-        // playerIDInputTemp = 100;
-        Debug.Log("로드게임:" + test);
-        FirebaseDatabase.LoadGameData(test, gameObject.name, "onLoadSuccess", "OnLoadError");
+        playerID = 100;
+        FirebaseDatabase.LoadGameData(playerID, gameObject.name, "onLoadSuccess", "OnLoadError");
 
         // stagesCleared = PlayerPrefsX.GetIntArray("StagesCleared", new int[30]);
 
@@ -183,13 +169,6 @@ public class GameManager : MonoBehaviour
         //     stageHighScores[i] = PlayerPrefs.GetInt("StageHighScore" + i, 0);
         // }
     }
-
-    // public void LoadGameData(string playerID){
-    //     //플레이어가 웹에서 로그인 확인 체크용
-    //     // loginCheck = true;
-    //     Debug.Log("플레이어아이디: " + playerID);
-    //     FirebaseDatabase.LoadGameData(playerID, gameObject.name, "onLoadSuccess", "OnLoadError");
-    // }
 
     public void StageClear()
     {
@@ -213,7 +192,7 @@ public class GameManager : MonoBehaviour
         // PlayerPrefs.SetInt("SumScore", sumScore);
         // PlayerPrefs.SetFloat("Time", time);
 
-        // playerID = "100";
+        playerID = 100;
         FirebaseDatabase.SaveGameData(playerID, 
         rank, 
         power, 
@@ -251,29 +230,12 @@ public class GameManager : MonoBehaviour
     public void onLoadSuccess(string jsonData){
         //statusText.text = "Data loaded successfully: " + jsonData;
         var data = JsonUtility.FromJson<PlayerData>(jsonData);
-        if(data.power <= 0 && data.gold <= 0 && data.time <= 0 && data.maxHP <= 0 && data.currentHP <= 0){
-            playerID = data.playerID;
-            rank = 0;
-            power = 10;
-            gold = 100;
-            time = 60;
-            maxHP = 100;
-            currentHP = 100;
-            sumScore = 0;
-            Debug.Log("저장함수 실행");
-            SaveGameData();
-        }else{
-            playerID = data.playerID;
-            rank = data.rank;
-            power = data.power;
-            gold = data.gold;
-            time = data.time;
-            maxHP = data.maxHP;
-            currentHP = data.currentHP;
-            sumScore = data.sumScore;
-        }
-
-
+        playerID = data.playerID;
+        rank = data.rank;
+        power = data.power;
+        gold = data.gold;
+        time = data.time;
+        maxHP = data.maxHP;
 
         // playerIDText.text = playerID.ToString();
         // rankText.text = rank.ToString();
