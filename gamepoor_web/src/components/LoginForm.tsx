@@ -24,7 +24,8 @@ const LoginForm: React.FC = () => {
 
     try {
       const dbRef = ref(db)
-      const snapshot = await get(child(dbRef, `players/${'playerID_' + playerID}`))
+      // const snapshot = await get(child(dbRef, `players/${'playerID_' + playerID}`))
+      const snapshot = await get(child(dbRef, `players/${playerID}`))
       if (snapshot.exists()) {
         const playerData = snapshot.val()
         if (playerData.password === password) {

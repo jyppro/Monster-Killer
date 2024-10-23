@@ -1,4 +1,4 @@
-import {useEffect} from 'react'
+import {useCallback, useEffect} from 'react'
 import {useLocation} from 'react-router-dom'
 import {Unity, useUnityContext} from 'react-unity-webgl'
 
@@ -10,6 +10,7 @@ declare global {
 
 export function UnityPlayer() {
   const {state} = useLocation()
+
   const {
     unityProvider,
     sendMessage,
@@ -30,13 +31,21 @@ export function UnityPlayer() {
     productVersion: '0.2'
   })
 
-  const handleloadGameData = () => {
+  const handleloadGameData = useCallback(() => {
+    let playerID = state.playerID
+    console.log(
+      '나는 야 playerID :' + playerID + '나는 야 state.playerID',
+      state.playerID
+    )
+    console.log('playerID 값:', playerID, '타입:', typeof playerID)
+
     if (isLoaded && window.unityInstance) {
-      sendMessage('GameManager', 'LoadGameData')
+      sendMessage('GameManager', 'LoadGameData', parseInt(playerID, 10))
+      // sendMessage('GameManager', 'LoadGameData', 1313)
     } else {
       console.error('Unity instance is not available yet.')
     }
-  }
+  }, [isLoaded, state.playerID])
 
   useEffect(() => {
     const unityIcon = document.createElement('link')
@@ -52,9 +61,10 @@ export function UnityPlayer() {
     if (isLoaded && UNSAFE__unityInstance !== null) {
       console.log('window.unityInstance' + window.unityInstance)
       window.unityInstance = UNSAFE__unityInstance
-      if (state.playerID) {
+      /* if (state?.playerID) {
         sendMessage('GameManager', 'LoadGameData', state.playerID)
-      }
+        console.log('전송하기 성공!!' + state.playerID)
+      } */
     }
 
     /*     addEventListener('LoadGameData', handleloadGameData)

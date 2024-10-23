@@ -23,7 +23,8 @@ const SignUpForm: React.FC = () => {
     }
 
     try {
-      const dbPlayerId = 'playerID_' + playerID
+      // const dbPlayerId = 'playerID_' + playerID
+      const dbPlayerId = playerID
       await set(ref(db, `players/${dbPlayerId}`), {
         id: playerID,
         password
