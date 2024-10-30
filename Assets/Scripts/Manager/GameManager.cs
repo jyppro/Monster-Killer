@@ -4,8 +4,8 @@ using FirebaseWebGL.Scripts.FirebaseBridge;
 using FirebaseWebGL.Scripts.Objects;
 
 public class PlayerData{
-    // public string playerID;
-    public int playerID;
+    public string playerID;
+    // public int playerID;
     public int rank;
     public int power;
     public int gold;
@@ -55,8 +55,8 @@ public class GameManager : MonoBehaviour
     public GuardianStageData[] guardianStages;
 
     [SerializeField] private int[] stagesCleared; // 스테이지 클리어 상태 저장 (0은 클리어하지 않음, 1은 클리어함)
-    // [SerializeField] private string playerID;
-    [SerializeField] private int playerID;
+    [SerializeField] private string playerID;
+    // [SerializeField] private int playerID;
 
     [SerializeField] private int rank;
     [SerializeField] private int power;
@@ -100,8 +100,8 @@ public class GameManager : MonoBehaviour
     {
         int index = GetIndexFromModeAndStage(modeIndex, stageIndex);
         stagesCleared[index] = cleared ? 1 : 0;
-        SaveGameData();
         ScoreCal();
+        SaveGameData();
     }
 
     public void UnlockNextStage(int modeIndex, int currentStageIndex)
@@ -153,11 +153,11 @@ public class GameManager : MonoBehaviour
         {
             stageHighScores.Add(index, score);
         }
-        SaveGameData();
         ScoreCal();
+        SaveGameData();
     }
 
-    public void LoadGameData(int test)
+    public void LoadGameData(string playerIDInput)
     {
         // playerID = PlayerPrefs.GetInt("playerID", 1);
         // rank = PlayerPrefs.GetInt("Rank", 1);
@@ -172,8 +172,8 @@ public class GameManager : MonoBehaviour
 
         // playerIDInputTemp = "playerID_100";
         // playerIDInputTemp = 100;
-        Debug.Log("로드게임:" + test);
-        FirebaseDatabase.LoadGameData(test, gameObject.name, "onLoadSuccess", "OnLoadError");
+        Debug.Log("로드게임:" + playerIDInput);
+        FirebaseDatabase.LoadGameData(playerIDInput, gameObject.name, "onLoadSuccess", "OnLoadError");
 
         // stagesCleared = PlayerPrefsX.GetIntArray("StagesCleared", new int[30]);
 
@@ -299,7 +299,8 @@ public class GameManager : MonoBehaviour
         Debug.LogError(parsedError.message);
     }
 
-    public int GetPlayerID() { return playerID; }
+    // public int GetPlayerID() { return playerID; }
+    public string GetPlayerID() { return playerID; }
     public int GetRank() { return rank; }
     public int GetPower() { return power; }
     public int GetMaxHP() { return maxHP; }
@@ -308,7 +309,9 @@ public class GameManager : MonoBehaviour
     public int GetSumScore() { return sumScore; }
     public float GetTime() { return time; }
 
-    public void SetPlayerID(int value) { playerID = value; }
+    // public void SetPlayerID(int value) { playerID = value; }
+    public void SetPlayerID(string value) { playerID = value; }
+    
     public void SetRank(int value) { rank = value; }
     public void SetPower(int value) { power = value; }
     public void SetMaxHP(int value) { maxHP = value; }
