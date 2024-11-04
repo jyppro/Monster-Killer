@@ -40,13 +40,6 @@ const SignUpForm: React.FC = () => {
     <div className="container">
       <Header />
       <Main children={undefined} />
-
-      <section className="m">
-        <h1 className="fade-in12">Monster Killer</h1>
-        <h2 className="fade-in22">Hunt, Competition</h2>
-        <p className="fade-in22">"Monster Hunt"</p>
-        <p className="fade-in22">New monsters, New skills</p>
-      </section>
       <form onSubmit={handleSubmit} className="signupForm">
         <h1 className="signup_title">회원가입</h1>
         <div className="signup_subtitle">신규입력</div>

@@ -1,8 +1,10 @@
 import React from 'react'
-import {Route, Routes} from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
+
+import Main from './components/Main'
 import LoginForm from './components/LoginForm'
 import SignUpForm from './components/SignForm'
-import {UnityPlayer} from './components/UnityPlayer'
+import { UnityPlayer } from './components/UnityPlayer'
 import UserEditForm from './components/usereditform'
 import Header from './components/Header'
 import Overview from './components/Overview'
@@ -20,13 +22,11 @@ import Contact from './components/Contact'
 import Feedback from './components/Feedback'
 import Ranking from './components/RankingPage'
 
-/* import {BrowserRouter} from 'react-router-dom'
-import RoutersSetup from './routes/RoutesSetup' */
-
 const App: React.FC = () => {
   return (
     <Routes>
-      <Route path="/" element={<LoginForm />} />
+      <Route path="/" element={<Main><h1> </h1></Main>} />
+      <Route path="/loginform" element={<LoginForm />} />
       <Route path="/header" element={<Header />} />
       <Route path="/overview" element={<Overview />} />
       <Route path="/team" element={<Team />} />

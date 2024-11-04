@@ -13,10 +13,10 @@ body {
   padding-bottom: 80px;
 }
 
-@font-face {
+/* @font-face {
   font-family: 'loginfont';
   src: url('../fonts/Tenada.ttf') format('truetype');
-}
+} */
 
 .logo-link {
   display: flex;
@@ -55,7 +55,7 @@ body {
 }
 
 .login_subtitle {
-  margin-right: 170px;
+  margin-right: 180px;
   color: #1999ff;
   padding: 5px;
 }
@@ -83,8 +83,8 @@ body {
 }
 
 .loginBut {
-  background-color: #ffd700;
-  border: 4px solid #4d4d4d;
+  /* background-color: #ffd700; */
+  /* border: 4px solid #4d4d4d; */
   color: black;
   font-size: 18px;
   font-weight: bold;
@@ -97,11 +97,13 @@ body {
 }
 
 .loginBut:hover {
-  background-color: #e6c200;
+  /* background-color: #e6c200; */
+  background-color: red;
 }
 
 .loginBut:active {
-  background-color: #cca300;
+  /* background-color: #cca300; */
+  background-color: red;
   box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
