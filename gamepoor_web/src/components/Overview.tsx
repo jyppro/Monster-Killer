@@ -1,18 +1,12 @@
 import React from 'react'
 import '../styles/overview.css'
+
 // import video1 from '../videos/bg_gameplay.mp4';
-import video1 from '../video/bg.mp4'
+// import video1 from '../video/bg.mp4'
 
 const Overview: React.FC = () => {
   return (
     <div className="overview-container">
-      {/* 백그라운드 비디오 */}
-      <div className="bg-video">
-        <video className="bg-video__content" autoPlay muted loop>
-          <source src={video1} type="video/mp4" />
-        </video>
-      </div>
-
       <div className="overview-content">
         <h1 className="overview-title">게임 개요</h1>
         <p className="overview-content">

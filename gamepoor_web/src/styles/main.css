@@ -50,9 +50,8 @@ html, body {
   opacity: 0;
   animation: fadeInAnimation 2s forwards;
   font-family: 'SignupFont', sans-serif;
-  font-size: 70px;
-  color: #ffd700;
-  /* color: aliceblue; */
+  font-size: 100px;
+  color: red
 }
 
 .fade-in22 {
@@ -65,36 +64,6 @@ html, body {
   to {
     opacity: 1;
   }
-}
-
-.button-container {
-  position: fixed;
-  bottom: 80px; 
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  z-index: 100; 
-}
-
-.main-button {
-  background-color: #1999ff;
-  color: white;
-  font-size: 16px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.main-button:hover {
-  background-color: #007bff;
-}
-
-.main-button:focus {
-  outline: none;
 }
 
 .footer {

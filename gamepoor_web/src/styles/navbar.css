@@ -97,7 +97,8 @@
 
 .lgin a,
 .sign a {
-  background-color: #555;
+  color: white;
+  padding: 4px;
   border-radius: 5px;
   text-decoration: none;
   margin-left: 20px; /* 링크 간 간격을 설정 */
@@ -106,7 +107,7 @@
 
 .lgin a:hover,
 .sign a:hover {
-  background-color: #575757;
-  padding: 5px;
+  background-color: #555;
+  transition: background-color 0.3s ease, color 0.3s ease;
   border-radius: 5px;
 }

@@ -1,9 +1,9 @@
 .container2 {
+  position: relative;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  padding-top: 20px; 
 }
 
 .signupForm {
@@ -16,7 +16,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  margin-top: 200px; /* section.m 아래로 내려오도록 margin-top을 추가 */
+  margin-top: 300px;
 }
 
 .signup_title {

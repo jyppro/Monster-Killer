@@ -1,19 +1,3 @@
-html,
-body {
-  overflow: hidden;
-  height: 100%;
-  margin: 0;
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  padding-top: 20px; 
-}
-
-
 .logo-link {
   display: flex;
   align-items: center;
@@ -40,9 +24,9 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 auto; /* 좌우 여백 자동으로 조정하여 중앙 정렬 */
-  position: relative; /* 상대 위치 지정 */
-  z-index: 1; /* 다른 요소들과 겹치지 않도록 z-index 설정 */
+  margin: -50px auto; 
+  position: relative; 
+  z-index: 1;
 }
 
 .login_title {
