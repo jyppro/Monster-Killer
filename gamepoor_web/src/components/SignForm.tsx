@@ -29,7 +29,7 @@ const SignUpForm: React.FC = () => {
         id: playerID,
         password
       })
-      navigate('/')
+      navigate('/loginform')
     } catch (err) {
       setError('회원가입에 실패했습니다.')
       console.log('회원가입 실패', err)
@@ -37,7 +37,7 @@ const SignUpForm: React.FC = () => {
   }
 
   return (
-    <div className="container">
+    <div className="container2">
       <Header />
       <Main children={undefined} />
       <form onSubmit={handleSubmit} className="signupForm">
@@ -70,7 +70,7 @@ const SignUpForm: React.FC = () => {
         <button type="submit" className="signup_button">
           회원가입
         </button>
-        <Link to="/" className="loginLink">
+        <Link to="/loginform" className="loginLink">
           로그인
         </Link>
       </form>

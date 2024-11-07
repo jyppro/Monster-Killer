@@ -89,6 +89,24 @@
   border-radius: 5px;
 }
 
-.container {
-  padding-top: 70px;
+.auth-links {
+  display: flex;
+  margin-left: 100px;  /* 오른쪽 끝으로 배치 */
+  align-items: center;
+}
+
+.lgin a,
+.sign a {
+  background-color: #555;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-left: 20px; /* 링크 간 간격을 설정 */
+  font-size: 16px;
+}
+
+.lgin a:hover,
+.sign a:hover {
+  background-color: #575757;
+  padding: 5px;
+  border-radius: 5px;
 }

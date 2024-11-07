@@ -1,49 +1,22 @@
-.container {
+.container2 {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  position: relative; /* position 설정 */
-  overflow: hidden; /* 내용이 넘치는 것을 숨김 */
+  padding-top: 20px; 
 }
-
-/* @font-face {
-  font-family: 'SignupFont';
-  src: url('../fonts/WickedType-OV2g8.ttf') format('truetype');
-  font-style: normal;
-} */
-
-.bg-video {
-  position: fixed;
-  z-index: -1;
-  left: 50%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -40%);
-  object-fit: cover;
-  pointer-events: none;
-}
-
-/* .content {
-  z-index: 1;
-  background-color: rgba(255, 255, 255, 0.85);
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
-} */
 
 .signupForm {
-  padding: 0.4rem;
-  border-radius: 8px;
-  max-width: 350px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+  margin-top: 200px; /* section.m 아래로 내려오도록 margin-top을 추가 */
 }
 
 .signup_title {
@@ -100,55 +73,11 @@
   box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-section.m {
-  text-align: center;
-  padding: 20px 20px;
-  margin-top: -200px;
-  color: #ccc;
-}
-
-.fade-in12 {
-  opacity: 0;
-  animation: fadeInAnimation 2s forwards;
-  font-family: 'SignupFont', sans-serif;
-  font-size: 100px;
-  color: #ffd700;
-  /* color: white; */
-}
-
-.fade-in22 {
-  opacity: 0;
-  animation: fadeInAnimation 2s forwards;
-  color: white;
-}
-
-@keyframes fadeInAnimation {
-  to {
-    opacity: 1;
-  }
-}
-
-.famous {
-  font-size: 16px;
-  font-weight: bold;
-}
-
 .link {
   text-align: center;
   margin-top: 10px;
 }
 
-.footer {
-  background-color: #333;
-  color: white;
-  text-align: center;
-  padding: 20px 0;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-}
 
 .loginLink {
   margin-top: 10px;

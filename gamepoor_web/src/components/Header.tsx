@@ -48,7 +48,16 @@ const Header: React.FC = () => {
           </div>
         </li>
       </ul>
+      <div className="auth-links">
+        <div className="lgin">
+          <Link to="/loginform">로그인</Link>
+        </div>
+        <div className="sign">
+          <Link to="/signup">회원가입</Link>
+        </div>
+      </div>
     </nav>
+    
   )
 }
 

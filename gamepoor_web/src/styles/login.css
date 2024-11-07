@@ -8,15 +8,11 @@ body {
 .container {
   display: flex;
   justify-content: center;
-  flex-direction: column;
   align-items: center;
-  padding-bottom: 80px;
+  height: 100vh;
+  padding-top: 20px; 
 }
 
-/* @font-face {
-  font-family: 'loginfont';
-  src: url('../fonts/Tenada.ttf') format('truetype');
-} */
 
 .logo-link {
   display: flex;
@@ -44,7 +40,9 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin: 0 auto; /* 좌우 여백 자동으로 조정하여 중앙 정렬 */
+  position: relative; /* 상대 위치 지정 */
+  z-index: 1; /* 다른 요소들과 겹치지 않도록 z-index 설정 */
 }
 
 .login_title {
@@ -112,46 +110,4 @@ body {
   text-decoration: none;
 }
 
-.m {
-  text-align: center;
-  padding: 20px 20px;
-  margin-top: -200px;
-}
 
-.fade-in11 {
-  opacity: 0;
-  animation: fadeInAnimation 2s forwards;
-  font-family: 'loginfont';
-  font-size: 70px;
-  /* color: #FFFF00; */
-  color: #ffd700;
-}
-
-.fade-in21 {
-  opacity: 0;
-  animation: fadeInAnimation 2s forwards;
-  color: white;
-}
-
-@keyframes fadeInAnimation {
-  to {
-    opacity: 1;
-  }
-}
-
-.famous {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.footer {
-  background-color: #333;
-  color: white;
-  text-align: center;
-  padding: 20px 0;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-}
