@@ -4,25 +4,18 @@ html, body {
   margin: 0;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  padding-top: 20px; 
-  z-index: 2; 
-}
-
 .main-container {
   position: fixed; 
   height: 100%;
   width: 100%;
+  
 }
 
 .bg-video {
   position: fixed; 
-  height: 100%; 
+  top: 49px;
   width: 100%;
+  height: calc(100% - 100px);
   overflow: hidden;
   z-index: -1; 
 }
@@ -30,7 +23,8 @@ html, body {
 .bg-video__content {
   height: 100%;
   width: 100%;
-  object-fit: cover; 
+  object-fit: contain;
+  background-color: black; /* 비디오 비율로 생기는 빈 공간을 채움 */
 }
 
 @font-face {
@@ -41,7 +35,7 @@ html, body {
 
 
 .m {
-  margin-top: 150px;
+  margin-top: 210px;
   text-align: center;
   position: relative;
 }

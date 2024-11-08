@@ -8,6 +8,7 @@
   align-items: center;
   background-color: #333;
   z-index: 1000;
+  padding: 5px 0;
 }
 
 .logo {
@@ -27,7 +28,7 @@
   display: flex;
   padding: 0;
   margin: 0;
-  gap: 60px;
+  gap: 30px;
 }
 
 .nav-links li {
@@ -50,6 +51,8 @@
 .dropdown {
   font-size: 5px;
   position: absolute;
+  white-space: nowrap;
+  font-size: 16px;
   top: 100%;
   left: 0;
   background-color: #333;
@@ -91,23 +94,23 @@
 
 .auth-links {
   display: flex;
-  margin-left: 100px;  /* 오른쪽 끝으로 배치 */
+  margin-left: 100px; 
   align-items: center;
+  padding-right: 20px;
 }
 
-.lgin a,
-.sign a {
+
+.auth-links a {
   color: white;
   padding: 4px;
   border-radius: 5px;
   text-decoration: none;
-  margin-left: 20px; /* 링크 간 간격을 설정 */
+  margin-left: 20px;
   font-size: 16px;
 }
 
-.lgin a:hover,
-.sign a:hover {
+.auth-links a:hover {
   background-color: #555;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease;
   border-radius: 5px;
 }
