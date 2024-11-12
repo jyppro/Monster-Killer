@@ -256,7 +256,7 @@ public class GameManager : MonoBehaviour
             rank = 0;
             power = 10;
             gold = 100;
-            time = 20;
+            time = 30;
             maxHP = 100;
             currentHP = 100;
             sumScore = 0;
