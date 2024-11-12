@@ -18,9 +18,9 @@ const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       </div>
       <section className="m">
         <h1 className="fade-in12">Monster Killer</h1>
-        <h2 className="fade-in22">Hunt, Competition</h2>
-        <p className="fade-in22">"Monster Hunt"</p>
-        <p className="fade-in22">New monsters, New skills</p>
+        <h2 className="fade-in22">HUNT, COMPETITION</h2>
+        <p className="fade-in22">"MONSTER HUNT"</p>
+        <p className="fade-in22">NEW MONSTERS, NEW SKILLS</p>
       </section>
 
 

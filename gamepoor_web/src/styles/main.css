@@ -15,7 +15,7 @@ html, body {
   position: fixed; 
   top: 49px;
   width: 100%;
-  height: calc(100% - 100px);
+  height: 100%;
   overflow: hidden;
   z-index: -1; 
 }
