@@ -21,6 +21,9 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
 }
 
 .list li {
@@ -31,7 +34,8 @@
   border-bottom: 1px solid #ddd;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  width: 100%; 
+  max-width: 500px; 
 }
 
 .list li:nth-child(odd) {
