@@ -78,6 +78,7 @@ public class PlayerHP : MonoBehaviour
 
     private IEnumerator FadeOutAndReturnHome()
     {
+        GameManager.Instance.SaveGameData();
         mouseLook.UnlockMouse();
         if (FadeOutPage != null)
         {

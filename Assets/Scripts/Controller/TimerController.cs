@@ -78,6 +78,7 @@ public class TimerController : MonoBehaviour
 
     private IEnumerator FadeOutAndReturnHome()
     {
+        GameManager.Instance.SaveGameData();
         mouseLook.UnlockMouse();
         float fadeDuration = 1.0f;
 
