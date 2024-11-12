@@ -1,34 +1,48 @@
-.container2 {
-  /* text-align: center;
+/* ranking.css */
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  position: relative;
-  overflow: hidden; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .title {
-  font-size: 36px;
+  font-size: 2em;
   font-weight: bold;
+  color: #333;
+  text-align: center;
   margin-bottom: 20px;
 }
 
 .list {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-.listItem {
-  font-size: 24px;
-  padding: 10px 0;
+.list li {
+  font-size: 1.2em;
+  color: #555;
+  padding: 10px 15px;
+  background-color: #fff;
   border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list li:nth-child(odd) {
+  background-color: #f3f3f3;
+}
+
+.list li:first-child {
+  font-weight: bold;
+  color: #d9534f;
+}
+
+.list li:last-child {
+  border-bottom: none;
 }
