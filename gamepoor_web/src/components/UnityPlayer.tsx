@@ -95,7 +95,7 @@ export function UnityPlayer() {
       <div id="unity-warning"></div>
       <Unity
         unityProvider={unityProvider}
-        style={{width: '960px', height: '600px', border: '2px solid black'}}
+        style={{width: '960px', height: '600px', border: '0px solid black'}}
       />
       <div id="unity-footer">
         <div id="unity-webgl-logo"></div>
