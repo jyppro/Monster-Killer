@@ -22,6 +22,11 @@ const SignUpForm: React.FC = () => {
       return
     }
 
+    if (!playerID || !password || !confirmPassword) {
+      setError('정보를 입력해 주세요.');
+      return;
+    }
+
     try {
       // const dbPlayerId = 'playerID_' + playerID
       const dbPlayerId = playerID

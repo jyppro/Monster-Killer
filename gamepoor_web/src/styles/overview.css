@@ -1,8 +1,9 @@
 .overview-container {
   padding: 20px;
-  margin-top: 200px;
-  width: auto;
-  background-color: rgba(255, 255, 255, 0.9);
+  margin-top: 250px;
+  width: 1500px;
+  margin-left: 200px;
+  background-color: whitesmoke;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }

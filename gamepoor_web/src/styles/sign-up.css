@@ -27,7 +27,7 @@
 }
 
 .signup_subtitle {
-  margin-right: 265px;
+  margin-right: 260px;
   color: #1999ff;
   padding: 5px;
 }
@@ -65,11 +65,11 @@
 }
 
 .signup_button:hover {
-  background-color: red;
+  background-color: white;
 }
 
 .signup_button:active {
-  background-color: red;
+  background-color: white;
   box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -82,4 +82,5 @@
 .loginLink {
   margin-top: 10px;
   text-decoration: none;
+  color: white;
 }
