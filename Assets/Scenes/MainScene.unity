@@ -946,6 +946,7 @@ GameObject:
   - component: {fileID: 114245776}
   - component: {fileID: 114245775}
   - component: {fileID: 114245778}
+  - component: {fileID: 114245779}
   m_Layer: 5
   m_Name: RankingPageBtn
   m_TagString: Untagged
@@ -1069,6 +1070,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Page: {fileID: 888460040}
   pageManager: {fileID: 0}
+--- !u!114 &114245779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114245773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8775afb9b9c57ee4baf6a8a66a9ba485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayRanking: {fileID: 2069378500}
 --- !u!1 &154189547
 GameObject:
   m_ObjectHideFlags: 0
@@ -9130,7 +9144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerRank: 1
   PlayerScore: 1
-  PlayerPlayerID: 1
+  PlayerPlayerID: "\uB098\uB294\uC57C\uC774\uB984"
   RankingText: {fileID: 2069378498}
 --- !u!1 &2117675123
 GameObject:
