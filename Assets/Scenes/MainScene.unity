@@ -1082,7 +1082,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8775afb9b9c57ee4baf6a8a66a9ba485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayRanking: {fileID: 2069378500}
 --- !u!1 &154189547
 GameObject:
   m_ObjectHideFlags: 0
@@ -9142,9 +9141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c479f13673b39c41b413bfa4247b3a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerRank: 1
-  PlayerScore: 1
-  PlayerPlayerID: "\uB098\uB294\uC57C\uC774\uB984"
   RankingText: {fileID: 2069378498}
 --- !u!1 &2117675123
 GameObject:

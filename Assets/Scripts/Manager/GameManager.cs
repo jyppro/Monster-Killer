@@ -1,8 +1,37 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using FirebaseWebGL.Scripts.FirebaseBridge;
 using FirebaseWebGL.Scripts.Objects;
 
+//Unity의 JsonUtility는 배열을 바로 변환할 수 없으므로, JSON 데이터를 배열로 파싱하기 위해 JsonHelper 클래스를 추가합니다.
+public static class JsonHelper
+{
+    public static T[] FromJson<T>(string json)
+    {
+        string newJson = "{ \"array\": " + json + "}";
+        Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(newJson);
+        return wrapper.array;
+    }
+
+    [Serializable]
+    private class Wrapper<T>
+    {
+        public T[] array;
+    }
+}
+
+
+[System.Serializable]
+public class RankData
+{
+    public string rank_PlayerID;
+    public string rank_Name;
+    public int rank_Score;
+    public int rank_Rank;
+}
+
+[System.Serializable]
 public class PlayerData{
     public string playerID;
     // public int playerID;
@@ -55,9 +84,14 @@ public class GameManager : MonoBehaviour
     public GuardianStageData[] guardianStages;
 
     [SerializeField] private int[] stagesCleared; // 스테이지 클리어 상태 저장 (0은 클리어하지 않음, 1은 클리어함)
+
+    //랭킹 전용 데이터
+    public List<RankData> rankingsList = new List<RankData>();
+    public event Action OnRankingsLoaded;
+
+    // 개인 데이터
     [SerializeField] private string playerID;
     // [SerializeField] private int playerID;
-
     [SerializeField] private int rank;
     [SerializeField] private int power;
     [SerializeField] private int maxHP;
@@ -297,6 +331,47 @@ public class GameManager : MonoBehaviour
     {
         var parsedError = JsonUtility.FromJson<FirebaseError>(error);
         Debug.LogError(parsedError.message);
+    }
+
+    public void LoadRankingsData()
+    {
+        FirebaseDatabase.LoadRankingsData(gameObject.name, "onLoadSuccessRankings", "OnLoadErrorRankings");
+    }
+
+    public void onLoadSuccessRankings(string jsonData)
+    {
+        Debug.Log("Rankings Loaded: " + jsonData);
+        
+        // 기존 리스트 초기화
+        rankingsList.Clear();
+        // JSON 데이터를 RankData 리스트로 변환
+        try
+        {
+            RankData[] rankingsArray = JsonHelper.FromJson<RankData>(jsonData);
+            rankingsList.AddRange(rankingsArray);
+
+            // 데이터 확인 (디버그 출력)
+            foreach (var rank in rankingsList)
+            {
+                Debug.Log($"PlayerID: {rank.rank_PlayerID}, Name: {rank.rank_Name}, Score: {rank.rank_Score}, Rank: {rank.rank_Rank}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("Error parsing rankings data: " + ex.Message);
+        }
+        // 데이터 로딩이 완료되면 이벤트 호출
+        OnRankingsLoaded?.Invoke();
+    }
+
+    public void OnLoadErrorRankings(string error)
+    {
+        Debug.LogError("Error loading rankings: " + error);
+    }
+
+    public List<RankData> GetRankDataList()
+    {
+        return rankingsList;
     }
 
     // public int GetPlayerID() { return playerID; }

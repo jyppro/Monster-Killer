@@ -111,4 +111,64 @@ mergeInto(LibraryManager.library, {
       );
     }
   },
+
+  LoadRankingsData: function (objectName, callback, fallback) {
+    // 문자열 변환
+    const parsedObjectName = UTF8ToString(objectName);
+    const parsedCallback = UTF8ToString(callback);
+    const parsedFallback = UTF8ToString(fallback);
+    const parsedPath = "sorted_rankings"; // Firebase 경로
+
+    console.log("데이터 경로:", parsedPath);
+
+    try {
+      // Firebase에서 sorted_rankings 데이터 가져오기
+      firebase
+        .database()
+        .ref(parsedPath)
+        .once("value")
+        .then(function (snapshot) {
+          if (snapshot.exists()) {
+            const rankingsData = snapshot.val();
+
+            // 데이터를 배열 형태로 변환
+            const rankingsArray = Object.keys(rankingsData).map((key) => ({
+              rank_PlayerID: rankingsData[key].playerID,
+              rank_Name: rankingsData[key].name,
+              rank_Score: rankingsData[key].score,
+              rank_Rank: rankingsData[key].rank,
+            }));
+
+            // Unity로 데이터 전송
+            window.unityInstance.SendMessage(
+              parsedObjectName,
+              parsedCallback,
+              JSON.stringify(rankingsArray)
+            );
+          } else {
+            // 데이터가 없을 경우 처리
+            window.unityInstance.SendMessage(
+              parsedObjectName,
+              parsedFallback,
+              JSON.stringify({ error: "No data found" })
+            );
+          }
+        })
+        .catch(function (error) {
+          // Firebase 에러 처리
+          window.unityInstance.SendMessage(
+            parsedObjectName,
+            parsedFallback,
+            JSON.stringify({ message: error.message, code: error.code || "Unknown" })
+          );
+        });
+    } catch (error) {
+      // 일반적인 오류 처리
+      window.unityInstance.SendMessage(
+        parsedObjectName,
+        parsedFallback,
+        JSON.stringify({ message: error.message, code: "Unknown" })
+      );
+    }
+  },
 });

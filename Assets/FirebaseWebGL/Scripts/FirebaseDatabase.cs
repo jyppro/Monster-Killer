@@ -20,5 +20,8 @@ namespace FirebaseWebGL.Scripts.FirebaseBridge
         int sumScore,
         float time, 
         string objectName, string callback, string fallback);
+
+        [DllImport("__Internal")]
+        public static extern void LoadRankingsData(string objectName, string callback, string fallback);
     }
 }
