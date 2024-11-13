@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class DisplayRanking : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class DisplayRanking : MonoBehaviour
     [SerializeField] private GameObject rankingTextPrefab; // 랭킹 텍스트 프리팹
     [SerializeField] private Transform contentTransform;   // Scroll View의 Content 오브젝트
 
+    // 오브젝트 풀링을 위한 리스트
+    private List<GameObject> objectPool = new List<GameObject>();
+    
     void Start()
     {
         // RankingText가 null이 아닌지 확인
@@ -54,33 +58,62 @@ public class DisplayRanking : MonoBehaviour
     
     private void DisplayPlayerRanking()
     {
-        // 이전 랭킹 항목 지우기
+        List<RankData> rankList = GameManager.Instance.GetRankDataList();
+
+        // 이전 랭킹 항목 비활성화 및 풀에 반환
         foreach (Transform child in contentTransform)
         {
-            Destroy(child.gameObject);
+            child.gameObject.SetActive(false);
+            objectPool.Add(child.gameObject);
         }
+        // 강제로 캔버스 업데이트 (레이아웃 갱신)
+        Canvas.ForceUpdateCanvases();
 
-        List<RankData> rankList = GameManager.Instance.GetRankDataList();
+        // 새로운 데이터로 UI 갱신
         if (rankList != null && rankList.Count > 0)
         {
-            // 랭킹 데이터 표시
             for (int i = 0; i < rankList.Count; i++)
             {
-                // 프리팹을 인스턴스화하여 Content에 추가
-                GameObject rankItem = Instantiate(rankingTextPrefab, contentTransform);
+                // 풀에서 오브젝트를 가져오거나, 없으면 새로 생성
+                GameObject rankItem = GetPooledObject();
+                rankItem.transform.SetParent(contentTransform, false);
+                rankItem.SetActive(true);
+
+                // 텍스트 설정
                 TextMeshProUGUI rankText = rankItem.GetComponent<TextMeshProUGUI>();
-                
-                // 텍스트 설정 (랭킹, 이름, 점수 표시)
                 rankText.text = $"{rankList[i].rank_Rank}. {rankList[i].rank_Name} - {rankList[i].rank_Score} Score";
             }
         }
         else
         {
-            // 데이터가 없을 경우
-            GameObject rankItem = Instantiate(rankingTextPrefab, contentTransform);
+            GameObject rankItem = GetPooledObject();
+            rankItem.transform.SetParent(contentTransform, false);
+            rankItem.SetActive(true);
+
             TextMeshProUGUI rankText = rankItem.GetComponent<TextMeshProUGUI>();
             rankText.text = "랭킹 데이터를 불러올 수 없습니다.";
         }
+
+        // 추가적으로 레이아웃을 강제로 갱신
+        LayoutRebuilder.ForceRebuildLayoutImmediate(contentTransform.GetComponent<RectTransform>());
+        Canvas.ForceUpdateCanvases();
     }
 
+    // 오브젝트 풀에서 사용 가능한 오브젝트를 가져오는 메서드
+    private GameObject GetPooledObject()
+    {
+        // 풀에 사용 가능한 오브젝트가 있는지 확인
+        foreach (var obj in objectPool)
+        {
+            if (!obj.activeInHierarchy)
+            {
+                objectPool.Remove(obj);
+                return obj;
+            }
+        }
+
+        // 사용 가능한 오브젝트가 없으면 새로 생성
+        GameObject newObj = Instantiate(rankingTextPrefab);
+        return newObj;
+    }
 }
