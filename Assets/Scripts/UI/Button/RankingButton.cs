@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class RankingButton : MonoBehaviour
 {
-    // [SerializeField] private DisplayRanking displayRanking;
+    [SerializeField] private DisplayRanking displayRanking;
 
     void Start()
     {
@@ -23,7 +23,7 @@ public class RankingButton : MonoBehaviour
 
     void RankingBtn()
     {
-        if (GameManager.Instance != null)
+        if (displayRanking != null)
         {
             GameManager.Instance.LoadRankingsData();
             Debug.Log("랭킹 데이터 로드 버튼 클릭됨");

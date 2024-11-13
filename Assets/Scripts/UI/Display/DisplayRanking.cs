@@ -4,18 +4,18 @@ using TMPro;
 
 public class DisplayRanking : MonoBehaviour
 {
-    // 대충 정렬된 랭킹을 받는 변수
-
-    [SerializeField] private TextMeshProUGUI RankingText;
+    // [SerializeField] private TextMeshProUGUI RankingText;
+    [SerializeField] private GameObject rankingTextPrefab; // 랭킹 텍스트 프리팹
+    [SerializeField] private Transform contentTransform;   // Scroll View의 Content 오브젝트
 
     void Start()
     {
         // RankingText가 null이 아닌지 확인
-        if (RankingText == null)
+/*         if (RankingText == null)
         {
             Debug.LogError("RankingText가 할당되지 않았습니다.");
             return;
-        }
+        } */
 
         // GameManager의 데이터 로드 완료 이벤트를 구독
         GameManager.Instance.OnRankingsLoaded += DisplayPlayerRanking;
@@ -54,19 +54,32 @@ public class DisplayRanking : MonoBehaviour
     
     private void DisplayPlayerRanking()
     {
+        // 이전 랭킹 항목 지우기
+        foreach (Transform child in contentTransform)
+        {
+            Destroy(child.gameObject);
+        }
+
         List<RankData> rankList = GameManager.Instance.GetRankDataList();
         if (rankList != null && rankList.Count > 0)
         {
-            string rankText = "";
-            for (int i = 0; i < Mathf.Min(10, rankList.Count); i++) // 상위 10명만 표시
+            // 랭킹 데이터 표시
+            for (int i = 0; i < rankList.Count; i++)
             {
-                rankText += $"{rankList[i].rank_Rank}. {rankList[i].rank_Name} - {rankList[i].rank_Score} 점\n";
+                // 프리팹을 인스턴스화하여 Content에 추가
+                GameObject rankItem = Instantiate(rankingTextPrefab, contentTransform);
+                TextMeshProUGUI rankText = rankItem.GetComponent<TextMeshProUGUI>();
+                
+                // 텍스트 설정 (랭킹, 이름, 점수 표시)
+                rankText.text = $"{rankList[i].rank_Rank}. {rankList[i].rank_Name} - {rankList[i].rank_Score} Score";
             }
-            RankingText.text = rankText;
         }
         else
         {
-            RankingText.text = "랭킹 데이터를 불러올 수 없습니다.";
+            // 데이터가 없을 경우
+            GameObject rankItem = Instantiate(rankingTextPrefab, contentTransform);
+            TextMeshProUGUI rankText = rankItem.GetComponent<TextMeshProUGUI>();
+            rankText.text = "랭킹 데이터를 불러올 수 없습니다.";
         }
     }
 
