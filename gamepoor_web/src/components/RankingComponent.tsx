@@ -4,6 +4,7 @@ import {db} from '../FirebaseConfig'
 import '../styles/ranking.css'
 
 interface Ranking {
+  rank: number
   name: string
   playerID: string
   score: number
@@ -25,22 +26,33 @@ const RankingComponent: React.FC = () => {
         // const rankingList: Ranking[] = Object.values(data) as Ranking[]
         const rankingList: Ranking[] = Object.entries(data).map(
           ([key, value]: [string, any]) => ({
-            name: key,
+            rank: -1, // 이거 없어도 에러 없게 만들기
+            name: value.name || key,
             playerID: key,
             score: value?.sumScore ?? 0
           })
         )
 
         rankingList.sort((a: Ranking, b: Ranking) => b.score - a.score)
-        setRankings(rankingList)
+
+        // 랭킹 순서대로 'rank' 부여
+        const rankedListWithRank: Ranking[] = rankingList.map((rank, index) => ({
+          ...rank,
+          rank: index + 1 // 1부터 시작하는 순위 부여
+        }))
+
+        //상태 업데이트
+        // setRankings(rankingList)
+        setRankings(rankedListWithRank)
 
         // 정렬된 데이터를 Firebase에 다시 저장
-        saveSortedRankings(rankingList)
+        // saveSortedRankings(rankingList)
+        saveSortedRankings(rankedListWithRank)
       }
     })
 
     //페이지 들어갈때만 데이터가져오기
-    /*     const fetchRankings = async () => {
+    /* const fetchRankings = async () => {
       const playerRef = ref(db)
       try {
         // Firebase에서 특정 위치의 데이터를 가져옴
@@ -52,18 +64,26 @@ const RankingComponent: React.FC = () => {
           // 데이터를 변환하고 정렬
           const rankingList: Ranking[] = Object.entries(data).map(
             ([key, value]: [string, any]) => ({
+              rank: -1, // 이거 없어도 에러 없게 만들기
               name: key,
               playerID: key,
               score: value?.sumScore ?? 0
             })
           )
 
-          // 점수 기준 내림차순 정렬
-          rankingList.sort((a, b) => b.score - a.score)
-          setRankings(rankingList)
+          // 랭킹 순서대로 'rank' 부여
+          const rankedListWithRank: Ranking[] = rankingList.map((rank, index) => ({
+            ...rank,
+            rank: index + 1 // 1부터 시작하는 순위 부여
+          }))
 
-          // 정렬된 데이터를 Firebase에 저장
-          saveSortedRankings(rankingList)
+          //상태 업데이트
+          // setRankings(rankingList)
+          setRankings(rankedListWithRank)
+
+          // 정렬된 데이터를 Firebase에 다시 저장
+          // saveSortedRankings(rankingList)
+          saveSortedRankings(rankedListWithRank)
         } else {
           console.log('No player data found')
         }
@@ -104,8 +124,8 @@ const RankingComponent: React.FC = () => {
       <h1 className="title">Top Rankings</h1>
       <ul className="list">
         {rankings.map((rank, index) => (
-          <li key={index}>
-            {index + 1}. {rank.name} - {rank.score} points
+          <li key={rank.playerID}>
+            {rank.rank}. {rank.name} - {rank.score} score
           </li>
         ))}
       </ul>
