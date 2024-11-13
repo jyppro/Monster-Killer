@@ -120,7 +120,8 @@ const RankingComponent: React.FC = () => {
   } */
 
   return (
-    <div className="container">
+    <div className='bg-container'>
+      <div className="container">
       <h1 className="title">Top Rankings</h1>
       <ul className="list">
         {rankings.map((rank, index) => (
@@ -129,7 +130,6 @@ const RankingComponent: React.FC = () => {
           </li>
         ))}
       </ul>
-
       {/* <h3>Submit a Score</h3>
       <input
         type="text"
@@ -144,6 +144,7 @@ const RankingComponent: React.FC = () => {
         onChange={e => setScore(Number(e.target.value))}
       />
       <button onClick={saveScore}>Save Score</button> */}
+      </div>
     </div>
   )
 }
