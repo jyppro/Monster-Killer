@@ -1,59 +1,66 @@
-/* ranking.css */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-image: url('../images/bg.11.13.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
 .container {
-  max-width: 400px;
   margin: 0 auto;
-  padding: 20px;
-  background-color: #cccc; 
+  padding: 10px;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   position: relative;
+  max-width: 600px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  
 }
+
 
 .title {
-  font-size: 1.8em;
+  font-size: 2.5em;
   font-weight: bold;
-  color: #000;
+  color: white;
   text-align: center;
-  margin-bottom: 20px;
-  padding: 10px 0;
-  background-color: #ffff; 
+  padding: 20px;
+  background-color: rgba(56, 142, 60, 0.6);
+
   border-radius: 8px;
-  position: relative;
-}
-
-.title:before {
-  content: "Top Ranking";
-}
-
-.close-btn {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 1.2em;
-  color: #fff;
-  cursor: pointer;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .list {
   list-style: none;
   padding: 0;
+  width: 100%;
   margin: 0;
+  margin-bottom: 20px;
+  overflow-y: auto;
 }
 
 .list li {
   font-size: 1.2em;
-  color: #fff;
-  padding: 10px 15px;
-  background-color: #fff; 
-  border-bottom: 1px solid #fb8c00;
+  color: #333;
+  padding: 15px 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  margin: 10px 0;
+  border-bottom: 2px solid #e65100;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .list li:nth-child(odd) {
-  background-color: #ffe0b2; 
+  background-color: #ffe0b2;
 }
 
 .list li:first-child {
@@ -64,14 +71,3 @@
 .list li:last-child {
   border-bottom: none;
 }
-
-.rank-number {
-  font-weight: bold;
-  font-size: 1em;
-  background-color: #e65100; /* 번호 배경색 */
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-right: 10px;
-}
-
