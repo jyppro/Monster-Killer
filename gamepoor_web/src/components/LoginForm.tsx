@@ -44,7 +44,7 @@ const LoginForm: React.FC = () => {
       <Header />
       <Main>
         <form onSubmit={handleSubmit} className="loginForm">
-          <h1 className="login_title">로그인</h1>
+          {/* <h1 className="login_title">로그인</h1> */}
           <div className="login_subtitle">계정 이름으로 로그인</div>
           <div className="input">
             <input

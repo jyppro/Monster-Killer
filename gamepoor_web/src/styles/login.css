@@ -34,9 +34,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: -66px auto; 
+  margin: -60px auto; 
   position: relative; 
-  z-index: 1;
 }
 
 .login_title {
@@ -75,7 +74,6 @@
 }
 
 .loginBut {
-
   color: black;
   font-size: 18px;
   font-weight: bold;
@@ -88,11 +86,11 @@
 }
 
 .loginBut:hover {
-  background-color: red;
+  background-color: white;
 }
 
 .loginBut:active {
-  background-color: red;
+  background-color: white;
   box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 

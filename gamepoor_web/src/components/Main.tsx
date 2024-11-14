@@ -17,10 +17,10 @@ const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         </video>
       </div>
       <section className="m">
-        <h1 className="fade-in12">Monster Killer</h1>
-        <h2 className="fade-in22">HUNT, COMPETITION</h2>
-        <p className="fade-in22">"MONSTER HUNT"</p>
-        <p className="fade-in22">NEW MONSTERS, NEW SKILLS</p>
+        <h1 className="fade-in1">Monster Killer</h1>
+        <h2 className="fade-in2">HUNT, COMPETITION</h2>
+        <p className="fade-in3">"MONSTER HUNT"</p>
+        <p className="fade-in4">NEW MONSTERS, NEW SKILLS</p>
       </section>
 
 

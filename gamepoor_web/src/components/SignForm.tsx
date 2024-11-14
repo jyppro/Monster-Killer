@@ -46,7 +46,7 @@ const SignUpForm: React.FC = () => {
       <Header />
       <Main children={undefined} />
       <form onSubmit={handleSubmit} className="signupForm">
-        <h1 className="signup_title">회원가입</h1>
+        {/* <h1 className="signup_title">회원가입</h1> */}
         <div className="signup_subtitle">신규입력</div>
         <div className="signup_input">
           <input

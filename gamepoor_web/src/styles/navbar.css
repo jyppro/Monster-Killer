@@ -18,7 +18,7 @@
 
 .logo a {
   font-size: 25px;
-  color: #ff0000;
+  background-image: url('../images/rough-architect-structure-stonewall-superb.jpg') repeat;
   text-decoration: none;
   font-family: 'SignupFont';
 }

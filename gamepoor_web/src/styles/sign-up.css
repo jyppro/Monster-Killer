@@ -16,13 +16,13 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  margin-top: 350px;
+  margin-top: 390px;
 }
 
 .signup_title {
   color: white;
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   text-align: center;
 }
 

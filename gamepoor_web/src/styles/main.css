@@ -13,7 +13,7 @@ html, body {
 
 .bg-video {
   position: fixed; 
-  top: 49px;
+  top: -60px;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -24,7 +24,7 @@ html, body {
   height: 100%;
   width: 100%;
   object-fit: contain;
-  background-color: black; /* 비디오 비율로 생기는 빈 공간을 채움 */
+  background-color: black;
 }
 
 @font-face {
@@ -35,28 +35,67 @@ html, body {
 
 
 .m {
-  margin-top: 210px;
+  margin-top: 250px;
   text-align: center;
   position: relative;
 }
 
-.fade-in12 {
+
+.fade-in1 {
   opacity: 0;
-  animation: fadeInAnimation 2s forwards;
+  /* animation: fadeInOutAnimation 4s forwards; */
+  animation: fadeInAnimation 4s forwards;
   font-family: 'SignupFont', sans-serif;
   font-size: 100px;
-  color: red
+  /* background: url('../images/ground-rock-texture2.jpg') repeat; */
+  background: url('../images/rough-architect-structure-stonewall-superb.jpg') repeat;
+  /* background: url('../images/stone-wall.jpg') repeat; */
+  /* background: url('../images/whitish-pale-stone-wall.jpg') repeat; */
+  -webkit-background-clip: text; /* 글자에 텍스처 적용 */
+  background-clip: text;
+  color: transparent;
+  
 }
 
-.fade-in22 {
+.fade-in2 {
   opacity: 0;
-  animation: fadeInAnimation 2s forwards;
+  /* animation: fadeInOutAnimation 3s forwards; */
+  animation: fadeInAnimation 4s forwards;
+  color: white;
+}
+
+.fade-in3 {
+  opacity: 0;
+  animation: fadeInAnimation 4s forwards;
+  /* animation: fadeInOutAnimation 2s forwards; */
+  color: white;
+}
+
+.fade-in4 {
+  opacity: 0;
+  /* animation: fadeInOutAnimation 1s forwards; */
+  animation: fadeInAnimation 4s forwards;
   color: white;
 }
 
 @keyframes fadeInAnimation {
   to {
     opacity: 1;
+  }
+}
+
+@keyframes fadeInOutAnimation {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
