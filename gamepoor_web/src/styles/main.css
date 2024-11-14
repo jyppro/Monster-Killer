@@ -47,10 +47,7 @@ html, body {
   animation: fadeInAnimation 1s forwards;
   font-family: 'SignupFont', sans-serif;
   font-size: 100px;
-  /* background: url('../images/ground-rock-texture2.jpg') repeat; */
-  background: url('../images/rough-architect-structure-stonewall-superb.jpg') repeat;
-  /* background: url('../images/stone-wall.jpg') repeat; */
-  /* background: url('../images/whitish-pale-stone-wall.jpg') repeat; */
+  background: url('../images/stone6.jpg') repeat;
   -webkit-background-clip: text; /* 글자에 텍스처 적용 */
   background-clip: text;
   color: transparent;
