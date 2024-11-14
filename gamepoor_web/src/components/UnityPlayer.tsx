@@ -31,6 +31,9 @@ export function UnityPlayer() {
     productVersion: '0.2'
   })
 
+  // 로딩 진행도를 백분율로 변환
+  const loadingPercentage = Math.round(loadingProgression * 100)
+
   const handleloadGameData = useCallback(() => {
     let playerID = state.playerID
     console.log(
@@ -84,16 +87,19 @@ export function UnityPlayer() {
 
   return (
     <div id="unity-container" className="unity-desktop">
-      <div className="unity-loading-bar" style={{display: isLoaded ? 'none' : 'block'}}>
-        <div id="unity-logo"></div>
-        <div id="unity-progress-bar-empty">
-          <div
-            id="unity-progress-bar-full"
-            style={{width: `${loadingProgression * 100}%`}}></div>
+      {isLoaded === false && (
+        <div id="unity-loading-bar" style={{display: isLoaded ? 'none' : 'block'}}>
+          <div id="unity-logo"></div>
+          <div id="unity-progress-bar-empty">
+            <div
+              id="unity-progress-bar-full"
+              style={{width: `${loadingPercentage}%`}}></div>
+          </div>
         </div>
-      </div>
+      )}
       <div id="unity-warning"></div>
       <Unity
+        id="unity-canvas"
         unityProvider={unityProvider}
         style={{width: '960px', height: '600px', border: '0px solid black'}}
       />
