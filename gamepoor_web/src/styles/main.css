@@ -44,7 +44,7 @@ html, body {
 .fade-in1 {
   opacity: 0;
   /* animation: fadeInOutAnimation 4s forwards; */
-  animation: fadeInAnimation 4s forwards;
+  animation: fadeInAnimation 1s forwards;
   font-family: 'SignupFont', sans-serif;
   font-size: 100px;
   /* background: url('../images/ground-rock-texture2.jpg') repeat; */
@@ -59,22 +59,22 @@ html, body {
 
 .fade-in2 {
   opacity: 0;
-  /* animation: fadeInOutAnimation 3s forwards; */
-  animation: fadeInAnimation 4s forwards;
+  animation: fadeInOutAnimation 3s forwards;
+  /* animation: fadeInAnimation 4s forwards; */
   color: white;
 }
 
 .fade-in3 {
   opacity: 0;
-  animation: fadeInAnimation 4s forwards;
-  /* animation: fadeInOutAnimation 2s forwards; */
+  animation: fadeInOutAnimation 2s forwards;
+  /* animation: fadeInAnimation 4s forwards; */
   color: white;
 }
 
 .fade-in4 {
   opacity: 0;
-  /* animation: fadeInOutAnimation 1s forwards; */
-  animation: fadeInAnimation 4s forwards;
+  animation: fadeInOutAnimation 1s forwards;
+  /* animation: fadeInAnimation 4s forwards; */
   color: white;
 }
 
