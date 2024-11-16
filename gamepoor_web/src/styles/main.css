@@ -13,7 +13,7 @@ html, body {
 
 .bg-video {
   position: fixed; 
-  top: -60px;
+  top: -57px;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -43,15 +43,11 @@ html, body {
 
 .fade-in1 {
   opacity: 0;
-  /* animation: fadeInOutAnimation 4s forwards; */
   animation: fadeInAnimation 1s forwards;
   font-family: 'SignupFont', sans-serif;
   font-size: 100px;
-  /* background: url('../images/ground-rock-texture2.jpg') repeat; */
   background: url('../images/rough-architect-structure-stonewall-superb.jpg') repeat;
-  /* background: url('../images/stone-wall.jpg') repeat; */
-  /* background: url('../images/whitish-pale-stone-wall.jpg') repeat; */
-  -webkit-background-clip: text; /* 글자에 텍스처 적용 */
+  -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   
@@ -60,21 +56,18 @@ html, body {
 .fade-in2 {
   opacity: 0;
   animation: fadeInOutAnimation 3s forwards;
-  /* animation: fadeInAnimation 4s forwards; */
   color: white;
 }
 
 .fade-in3 {
   opacity: 0;
   animation: fadeInOutAnimation 2s forwards;
-  /* animation: fadeInAnimation 4s forwards; */
   color: white;
 }
 
 .fade-in4 {
   opacity: 0;
   animation: fadeInOutAnimation 1s forwards;
-  /* animation: fadeInAnimation 4s forwards; */
   color: white;
 }
 
