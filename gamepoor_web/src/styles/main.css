@@ -46,29 +46,28 @@ html, body {
   animation: fadeInAnimation 1s forwards;
   font-family: 'SignupFont', sans-serif;
   font-size: 100px;
-  background: url('../images/rough-architect-structure-stonewall-superb.jpg') repeat;
-  -webkit-background-clip: text;
-  background-clip: text;
+  background: url('../images/stone6.jpg') repeat;
+  background-clip: text; /* 글자에 텍스처 적용 */
   color: transparent;
-  
 }
+
 
 .fade-in2 {
   opacity: 0;
   animation: fadeInOutAnimation 3s forwards;
-  color: white;
+  color: whitesmoke;
 }
 
 .fade-in3 {
   opacity: 0;
   animation: fadeInOutAnimation 2s forwards;
-  color: white;
+  color: whitesmoke;
 }
 
 .fade-in4 {
   opacity: 0;
   animation: fadeInOutAnimation 1s forwards;
-  color: white;
+  color: whitesmoke;
 }
 
 @keyframes fadeInAnimation {
