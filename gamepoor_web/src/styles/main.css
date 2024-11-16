@@ -47,7 +47,7 @@ html, body {
   font-family: 'SignupFont', sans-serif;
   font-size: 100px;
   background: url('../images/stone6.jpg') repeat;
-  background-clip: text; /* 글자에 텍스처 적용 */
+  background-clip: text;
   color: transparent;
 }
 
