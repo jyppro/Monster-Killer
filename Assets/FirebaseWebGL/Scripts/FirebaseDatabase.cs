@@ -23,5 +23,11 @@ namespace FirebaseWebGL.Scripts.FirebaseBridge
 
         [DllImport("__Internal")]
         public static extern void LoadRankingsData(string objectName, string callback, string fallback);
+
+        [DllImport("__Internal")]
+        public static extern void SaveStagesClearedData(string playerID, string stagesClearedJSON, string objectName, string callback, string fallback);
+
+        [DllImport("__Internal")]
+        public static extern void LoadStagesClearedData(string playerID, string objectName, string callback, string fallback);
     }
 }

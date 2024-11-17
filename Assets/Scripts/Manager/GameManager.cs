@@ -1,4 +1,6 @@
 using System;
+using System.Text;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using FirebaseWebGL.Scripts.FirebaseBridge;
@@ -43,6 +45,11 @@ public class PlayerData{
     public int currentHP;
     public int sumScore;
 }
+[System.Serializable]
+public class StagesClearedData{
+    public int[] stagesClearedData;
+}
+
 
 [System.Serializable]
 public class BaseStageData
@@ -116,12 +123,21 @@ public class GameManager : MonoBehaviour
         //     LoadGameData();
         // }
         // LoadGameData("100");
+        Debug.Log("[1]게임 매니져 Awake 실행 순서 확인용");
+        // 파이어베이스에서 관리가 될려면은 이 부분은 실행이 안되는 것이 좋으나
+        // 그냥 두고 덮어씌우는 방식으로 진행
         StageClear();
         
+        // 이부분은 로드을 했을 때 실행이 되어야 하지만 (초기 데이터 설정)
+        // Awake가 먼저 실행이 되므로 그냥 두고 (로컬 저장)
+        // TODO: 초기에 로드를 했을 때 초기 데이터 저장을 스테이지 클리어 데이터도 함깨저장 밑에 코드 활용
+        // TODO: 데이터를 저장을 할때 스테이지 클리어도 저장 배열 주의
+        // 로컬저장과 데이터베이스에 같이 저장이 되어 있지만 덮어씌으면 데이터베이스에서 관리 되는 것 처럼
         if (stagesCleared == null || stagesCleared.Length == 0)
         {
             stagesCleared = new int[30]; // 30개의 스테이지 클리어 상태 초기화
         }
+        Debug.Log("[2]게임 매니져 Awake 실행 순서 확인용");
     }
 
     public bool IsStageCleared(int modeIndex, int stageIndex)
@@ -257,6 +273,7 @@ public class GameManager : MonoBehaviour
         sumScore,
         time, 
         gameObject.name, "onSaveSuccess", "OnSaveError");
+        SaveStagesClearedData();
 
         // PlayerPrefsX.SetIntArray("StagesCleared", stagesCleared);
 
@@ -294,6 +311,7 @@ public class GameManager : MonoBehaviour
             maxHP = 100;
             currentHP = 100;
             sumScore = 0;
+            LoadStagesClearedData();
             Debug.Log("저장함수 실행");
             SaveGameData();
         }else{
@@ -305,6 +323,8 @@ public class GameManager : MonoBehaviour
             maxHP = data.maxHP;
             currentHP = data.currentHP;
             sumScore = data.sumScore;
+            LoadStagesClearedData();
+            Debug.Log("로드 완료");
         }
 
 
@@ -335,10 +355,10 @@ public class GameManager : MonoBehaviour
 
     public void LoadRankingsData()
     {
-        FirebaseDatabase.LoadRankingsData(gameObject.name, "onLoadSuccessRankings", "OnLoadErrorRankings");
+        FirebaseDatabase.LoadRankingsData(gameObject.name, "OnLoadSuccessRankings", "OnLoadErrorRankings");
     }
 
-    public void onLoadSuccessRankings(string jsonData)
+    public void OnLoadSuccessRankings(string jsonData)
     {
         Debug.Log("Rankings Loaded: " + jsonData);
         
@@ -372,6 +392,75 @@ public class GameManager : MonoBehaviour
     public List<RankData> GetRankDataList()
     {
         return rankingsList;
+    }
+
+    public void SaveStagesClearedData()
+    {
+        // string stagesClearedJSON = JsonUtility.ToJson(new { stages = stagesCleared });
+        string stagesClearedJSON = ConvertArrayToJson(stagesCleared);
+        Debug.Log("stagesClearedJSON:" + stagesClearedJSON);
+        FirebaseDatabase.SaveStagesClearedData(playerID , stagesClearedJSON, gameObject.name, "OnSaveStagesClearedDataSuccess", "OnSaveStagesClearedDataError");
+    }
+
+    // 배열을 단순 JSON 배열로 변환하는 함수
+    private string ConvertArrayToJson(int[] array)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("[");
+        for (int i = 0; i < array.Length; i++)
+        {
+            sb.Append(array[i]);
+            if (i < array.Length - 1) sb.Append(",");
+        }
+        sb.Append("]");
+        return sb.ToString();
+    }
+
+    public void OnSaveStagesClearedDataSuccess(string info)
+    {
+        Debug.Log("onSaveStagesClearedDataSuccess: " + info);
+    }
+
+    public void OnSaveStagesClearedDataError(string error)
+    {
+        Debug.LogError("Error onSaveStagesClearedData: " + error);
+    }
+
+    public void LoadStagesClearedData()
+    {
+        FirebaseDatabase.LoadStagesClearedData(playerID, gameObject.name, "OnLoadStagesClearedDataSuccess", "OnLoadStagesClearedDataError");
+    }
+
+    public void OnLoadStagesClearedDataSuccess(string jsonStagesClearedData)
+    {
+        // jsonStagesClearedData는 "[1,0,0,1,...]" 형식의 순수 배열 JSON 문자열 이어야 함
+        int[] intStagesClearedData = ConvertJsonToIntArray(jsonStagesClearedData);
+        Debug.Log("int[ ]로 변환 확인용 : " + string.Join(",", intStagesClearedData));
+        // 데이터의 길이가 올바르지 않으면 새로운 배열을 초기화
+        if(intStagesClearedData.Length != 30){
+            stagesCleared = new int[30];
+        }else{
+            stagesCleared = intStagesClearedData;
+        }
+        // ScoreCal();
+    }
+
+    public void OnLoadStagesClearedDataError(string error)
+    {
+        Debug.LogError("Error onLoadStagesClearedData: " + error);
+    }
+
+    // JSON 문자열 배열을 int[] 배열로 변환하는 함수
+    private int[] ConvertJsonToIntArray(string jsonArray)
+    {
+        // JSON 배열 문자열의 양쪽 대괄호 제거
+        jsonArray = jsonArray.Trim('[', ']');
+
+        // 빈 문자열이면 빈 배열 반환
+        if (string.IsNullOrEmpty(jsonArray)) return new int[30];
+
+        // 문자열을 콤마로 분리하고 int로 변환
+        return jsonArray.Split(',').Select(int.Parse).ToArray();
     }
 
     // public int GetPlayerID() { return playerID; }

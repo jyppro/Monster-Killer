@@ -52,6 +52,7 @@ mergeInto(LibraryManager.library, {
       );
     }
   },
+
   SaveGameData: function (
     playerID,
     rank,
@@ -168,6 +169,141 @@ mergeInto(LibraryManager.library, {
         parsedObjectName,
         parsedFallback,
         JSON.stringify({ message: error.message, code: "Unknown" })
+      );
+    }
+  },
+
+  SaveStagesClearedData: function (
+    playerID,
+    stagesClearedJSON,
+    objectName,
+    callback,
+    fallback
+  ) {
+    var playerIDStr = UTF8ToString(playerID);
+    var parsedObjectName = UTF8ToString(objectName);
+    var parsedCallback = UTF8ToString(callback);
+    var parsedFallback = UTF8ToString(fallback);
+    var stagesCleared;
+
+    try{
+      stagesCleared = JSON.parse(UTF8ToString(stagesClearedJSON)); // 배열 파싱
+      console.log("[Save]StagesCleared: " + stagesCleared);
+      console.log("[Save]StagesClearedJSON: " + UTF8ToString(stagesClearedJSON));
+    } catch (error){
+      window.unityInstance.SendMessage(
+        parsedObjectName,
+        parsedFallback,
+        "Failed to parse stagesCleared: " + error
+      );
+      return;
+    }
+
+    // 배열을 객체 형식으로 변환
+    var stagesClearedObject = stagesCleared.reduce(function (obj, value, index) {
+      obj[index] = value;
+      return obj;
+    }, {});
+
+    // 데이터 구조 생성
+    var data = {
+      stagesClearedList: stagesClearedObject, // 객체 형태로 저장
+    };
+
+    var parsedPath = "players/" + playerIDStr;
+    // var parsedValue = JSON.stringify(data);
+
+    try {
+      firebase
+        .database()
+        .ref(parsedPath)
+        .update(data)
+        .then(function () {
+          window.unityInstance.SendMessage(
+            parsedObjectName,
+            parsedCallback,
+            "Success: " + JSON.stringify(data) + "Data saved to stagesClearList : " + parsedPath
+          );
+        })
+        .catch(function (error) {
+          window.unityInstance.SendMessage(
+            parsedObjectName,
+            parsedFallback,
+            JSON.stringify(error, Object.getOwnPropertyNames(error))
+          );
+        });
+    } catch (error) {
+      window.unityInstance.SendMessage(
+        parsedObjectName,
+        parsedFallback,
+        JSON.stringify(error, Object.getOwnPropertyNames(error))
+      );
+    }
+  },
+
+  LoadStagesClearedData: function (
+    playerID,
+    objectName,
+    callback,
+    fallback
+  ) {
+    var playerIDStr = UTF8ToString(playerID);
+    var parsedObjectName = UTF8ToString(objectName);
+    var parsedCallback = UTF8ToString(callback);
+    var parsedFallback = UTF8ToString(fallback);
+
+    var parsedPath = "players/" + playerIDStr + "/stagesClearedList";
+
+    try {
+      firebase
+        .database()
+        .ref(parsedPath)
+        .once("value")
+        .then(function (snapshot) {
+          // 배열 데이터 가져오기
+          var stagesClearedList = snapshot.val();
+          console.log("stagesClearedList : ", stagesClearedList);
+
+          if (stagesClearedList === null) {
+            console.log("경로에 데이터가 없습니다." + parsedPath);
+            stagesClearedList = []; // 데이터가 없으면 빈 배열
+          } else {
+            console.log("데이터가 있습니다. stagesClearedList:", stagesClearedList);
+          }
+
+          // 데이터가 객체 형식으로 되어 있을 경우 배열로 변환
+          if (stagesClearedList && typeof stagesClearedList === 'object') {
+            // 객체를 배열로 변환
+            stagesClearedList = Object.values(stagesClearedList);
+            console.log("Converted to array:", stagesClearedList);
+          }
+
+          var data = {
+            stagesCleared: stagesClearedList
+          };
+
+          // JSON 데이터를 Unity로 보내기 전에 문자열로 변환
+          var jsonString = JSON.stringify(data);
+          console.log("스테이지 데이터 변환 확인용:: ", jsonString);
+
+          window.unityInstance.SendMessage(
+            parsedObjectName,
+            parsedCallback,
+            jsonString
+          );
+        })
+        .catch(function (error) {
+          window.unityInstance.SendMessage(
+            parsedObjectName,
+            parsedFallback,
+            JSON.stringify(error, Object.getOwnPropertyNames(error))
+          );
+        });
+    } catch (error) {
+      window.unityInstance.SendMessage(
+        parsedObjectName,
+        parsedFallback,
+        JSON.stringify(error, Object.getOwnPropertyNames(error))
       );
     }
   },
