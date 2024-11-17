@@ -63,8 +63,10 @@ export function UnityPlayer() {
     document.head.appendChild(unityCss)
 
     if (isLoaded && UNSAFE__unityInstance !== null) {
-      console.log('window.unityInstance' + window.unityInstance)
+      console.log('window.unityInstance : ' + window.unityInstance)
+      console.log('isLoaded = ' + isLoaded)
       window.unityInstance = UNSAFE__unityInstance
+      console.log('window.unityInstance_2nd : ' + window.unityInstance)
       if (state?.playerID) {
         sendMessage('GameManager', 'LoadGameData', state.playerID)
         console.log('전송하기 성공!!' + state.playerID)
