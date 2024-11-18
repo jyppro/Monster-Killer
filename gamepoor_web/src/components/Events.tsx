@@ -4,6 +4,7 @@ import '../styles/events.css'; // 스타일 파일 추가
 
 const Events: React.FC = () => {
   return (
+    <div className='main-event'>
     <div className="events-container">
       <h1>이벤트</h1>
       <div className="event">
@@ -21,6 +22,7 @@ const Events: React.FC = () => {
         <p>날짜: 2024년 12월 1일 - 2024년 12월 7일</p>
         <p>설명: 게임 내에서 특별한 보상을 획득할 수 있는 기회를 놓치지 마세요!</p>
       </div>
+    </div>
     </div>
   );
 };

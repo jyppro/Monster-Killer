@@ -1,9 +1,20 @@
+.main-overview {
+  margin: 0;
+  padding: 5px;
+  height: 100vh;
+  background-image: url('../images/bg.11.13.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .overview-container {
   padding: 20px;
   margin-top: 250px;
   width: 1500px;
   margin-left: 200px;
-  background-color: whitesmoke;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -11,7 +22,7 @@
 .overview-title {
   font-size: 2rem;
   margin-bottom: 2rem;
-  color: #333;
+  color: white;
 }
 
 .overview-content {
@@ -24,7 +35,7 @@
   font-size: 1.5rem;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  color: #555;
+  color: white;
 }
 
 .overview-features {
@@ -35,5 +46,5 @@
 
 .overview-footer {
   font-size: 1rem;
-  color: #666;
+  color: white;
 }

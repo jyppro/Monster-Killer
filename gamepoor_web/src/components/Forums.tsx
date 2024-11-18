@@ -4,6 +4,7 @@ import '../styles/forums.css'; // 스타일 파일 추가
 
 const Forums: React.FC = () => {
   return (
+    <div className='main-forums'>
     <div className="forums-container">
       <h1>포럼</h1>
       <div className="forum-post">
@@ -32,6 +33,7 @@ const Forums: React.FC = () => {
           다음 몬스터 헌트 대회에 대한 정보를 공유해주세요! 참가하고 싶어요.
         </p>
       </div>
+    </div>
     </div>
   );
 };

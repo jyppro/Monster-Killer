@@ -4,6 +4,7 @@ import '../styles/groups.css'; // 스타일 파일 추가
 
 const Groups: React.FC = () => {
   return (
+    <div className='main-groups'>
     <div className="groups-container">
       <h1>그룹</h1>
       <div className="group">
@@ -21,6 +22,7 @@ const Groups: React.FC = () => {
         <p>설명: 다양한 게임 관련 이벤트를 계획하고 실행하는 팀입니다. 이벤트에 참여하고 싶다면 연락주세요!</p>
         <p>참여 인원: 10명</p>
       </div>
+    </div>
     </div>
   );
 };

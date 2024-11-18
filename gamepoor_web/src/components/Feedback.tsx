@@ -1,7 +1,5 @@
 import React, {useState} from 'react'
 import '../styles/feedback.css'
-// import video1 from "../videos/bg_gameplay.mp4";
-import video1 from '../video/bg.mp4'
 
 const Feedback: React.FC = () => {
   const [message, setMessage] = useState('')
@@ -16,13 +14,8 @@ const Feedback: React.FC = () => {
   }
 
   return (
+    <div className='main-feedback'>
     <div className="feedback-container">
-      <div className="bg-video">
-        <video className="bg-video__content" autoPlay muted loop>
-          <source src={video1} type="video/mp4" />
-        </video>
-      </div>
-
       <div className="feedback-content">
         <h1>Monster Killer 이용 피드백</h1>
         <p>게임에 대한 추가의견을 남겨주세요!</p>
@@ -51,6 +44,7 @@ const Feedback: React.FC = () => {
           )}
         </div>
       </div>
+    </div>
     </div>
   )
 }

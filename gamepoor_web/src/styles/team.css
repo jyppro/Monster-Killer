@@ -1,3 +1,13 @@
+.main-team{
+  margin: 0;
+  padding: 5px;
+  height: 100vh;
+  background-image: url('../images/bg.11.13.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .team-container {
   padding: 20px;
   text-align: left;
@@ -7,6 +17,12 @@
   margin: auto;
   max-width: 900px;
 }
+
+.team-container h1 {
+  text-align: center;
+  margin-top: 30px;
+}
+
 
 .team-member {
   margin-bottom: 10px;

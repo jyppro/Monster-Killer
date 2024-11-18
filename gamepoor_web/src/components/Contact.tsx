@@ -4,6 +4,7 @@ import '../styles/contact.css'; // 스타일 파일 추가
 
 const Contact: React.FC = () => {
   return (
+    <div className='main-contact'>
     <div className="contact-container">
       <h1>연락처</h1>
       <p>궁금한 사항이 있으시면 아래 정보를 참고해주세요.</p>
@@ -18,6 +19,7 @@ const Contact: React.FC = () => {
         <a href="https://twitter.com/MonsterKiller">Twitter</a><br />
         <a href="https://facebook.com/MonsterKiller">Facebook</a>
       </p>
+    </div>
     </div>
   );
 };

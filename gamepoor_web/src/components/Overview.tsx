@@ -1,17 +1,10 @@
 import React from 'react'
 import '../styles/overview.css'
 
-// import video1 from '../videos/bg_gameplay.mp4';
-import video1 from '../video/bg.mp4'
-
 const Overview: React.FC = () => {
   return (
+    <div className='main-overview'>
     <div className="overview-container">
-            <div className="bg-video1">
-        <video className="bg-video__content1" autoPlay muted loop>
-          <source src={video1} type="video/mp4" />
-        </video>
-      </div>
       <div className="overview-content">
         <h1 className="overview-title">게임 개요</h1>
         <p className="overview-content">
@@ -28,6 +21,7 @@ const Overview: React.FC = () => {
           설계되었습니다.
         </p>
       </div>
+    </div>
     </div>
   )
 }

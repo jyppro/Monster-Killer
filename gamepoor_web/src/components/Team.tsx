@@ -1,15 +1,10 @@
 import React from 'react'
 import '../styles/team.css'
-import video1 from '../video/bg.mp4'
 
 const Team: React.FC = () => {
   return (
+    <div className='main-team'>
     <div className="team-container">
-      <div className="bg-video1">
-        <video className="bg-video__content1" autoPlay muted loop>
-          <source src={video1} type="video/mp4" />
-        </video>
-      </div>
       <div className="content">
         <h1>팀 소개</h1>
         <div className="team-member">
@@ -31,6 +26,7 @@ const Team: React.FC = () => {
           <p>역할: 프론트엔드, 백엔드</p>
         </div>
       </div>
+    </div>
     </div>
   )
 }

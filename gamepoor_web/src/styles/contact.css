@@ -1,9 +1,19 @@
+.main-contact{
+  margin: 0;
+  padding: 5px;
+  height: 100vh;
+  background-image: url('../images/bg.11.13.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .contact-container {
   padding: 20px;
-  text-align: left;
+  text-align: center;
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
   border-radius: 10px;
-  margin: 20px auto;
+  margin: 150px auto;
   max-width: 800px; 
 }

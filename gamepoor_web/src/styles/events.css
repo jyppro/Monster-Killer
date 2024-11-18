@@ -1,3 +1,15 @@
+.main-event{
+  margin: 0;
+  padding: 20px;
+  height: 100vh;
+  background-image: url('../images/bg.11.13.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+
 .events-container {
   padding: 20px;
   text-align: left;
@@ -6,6 +18,10 @@
   border-radius: 10px;
   margin: 20px auto;
   max-width: 800px;
+}
+
+.events-container h1{
+  text-align: center;
 }
 
 .event {
