@@ -141,7 +141,7 @@ public class MonsterController : MonoBehaviour
         ClearDamageTextObjects();
         stageBar.value += 0.33f;
 
-        GameManager.Instance.ScoreCal();
+        GameManager.Instance.SaveScoreData();
 
         if (stageBarCopy.value >= 1.0f)
         {

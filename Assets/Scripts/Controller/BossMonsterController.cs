@@ -6,176 +6,244 @@ using TMPro;
 
 public class BossMonsterController : MonoBehaviour
 {
-    // UI 및 사운드 관련 변수들
-    [SerializeField] private Slider healthSlider; // 보스 체력바 UI
-    [SerializeField] private TextMeshProUGUI healthText; // 체력바 텍스트 UI
-    [SerializeField] private GameObject damageTextPrefab; // 데미지 텍스트 UI
-    [SerializeField] private AudioClip[] audioClips; // 사용할 오디오 클립의 배열 <0 : 소환, 1 : 공격, 2 : 피격, 3 : 사망>
-    [SerializeField] private int maxHealth = 1000; // 보스 최대 체력
-    [SerializeField] private int currentHealth = 1000; // 보스 현재 체력
-    [SerializeField] private int attackInterval = 10; // 공격 간격
-    [SerializeField] public int attackPower = 50; // 보스 공격력
+    [Header("UI & Audio")]
+    [SerializeField] private Slider healthSlider;
+    [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private GameObject damageTextPrefab;
+    [SerializeField] private AudioClip[] audioClips;
 
-    // 내부 상태 및 설정 변수들
-    private AudioSource monsterAudio; // 보스 사운드
-    private Animator animator; // 애니메이터
-    private Canvas canvas; // 캔버스
-    private bool isAlive = true; // 보스 생사 여부
+    [Header("Boss Stats")]
+    [SerializeField] private int maxHealth = 1000;
+    [SerializeField] private int attackPower = 50;
+    [SerializeField] private float attackInterval = 5f;
+    [SerializeField] private float detectionRange = 10f;
+    [SerializeField] private float attackRange = 2.0f; // 인스펙터에서 조정 가능
+    [SerializeField] private float sizeOffset = 1.5f;
+
+    private int currentHealth;
+    private bool isAlive = true;
+
+    private AudioSource monsterAudio;
+    private Animator animator;
+    private Canvas canvas;
+    private Transform target;
     private MonsterMovement monsterMovement;
     private MonsterSpawner spawner;
-    private List<GameObject> damageTextObjects = new List<GameObject>(); // 데미지 텍스트 리스트
+    protected BossMonsterFSM fsm;
+    [SerializeField] protected GameObject summonPrefab;  // 외부 접근은 막되 자식에서 사용 가능하도록
+    public Transform player;
 
     private void Start()
     {
         InitializeComponents();
+
+        if (monsterMovement != null)
+            monsterMovement.SetStoppingDistance(attackRange);
+
+        currentHealth = maxHealth;
         UpdateHealthSlider();
-        InvokeRepeating("MonsterAttack", attackInterval, attackInterval);
-        AssignSpawner();
+
+        fsm = gameObject.AddComponent<BossMonsterFSM>();
+        InitializeFSM(); // ← virtual로 오버라이드 가능
     }
 
-    // 컴포넌트 초기화
+    private void OnEnable()
+    {
+        currentHealth = maxHealth;
+        isAlive = true;
+
+        EnableColliders();
+        UpdateHealthSlider();
+
+        InitializeComponents();
+
+        if (fsm == null)
+            fsm = gameObject.AddComponent<BossMonsterFSM>();
+
+        InitializeFSM(); // ← 오버라이드 가능
+
+        animator?.SetBool("Death", false);
+    }
+
+    /// 상태 머신 초기화: 기본 Idle 상태로 시작. 서브클래스에서 오버라이드 가능.
+    protected virtual void InitializeFSM()
+    {
+        fsm.InitializeFSM(this);
+    }
+
+
+    private void EnableColliders()
+    {
+        foreach (Collider col in GetComponentsInChildren<Collider>())
+            col.enabled = true;
+    }
+
+
     private void InitializeComponents()
     {
         monsterMovement = GetComponent<MonsterMovement>();
-        healthSlider = FindObjectOfType<Slider>(); // 씬의 존재하는 슬라이더 찾아서 넣어주기
-        if (healthSlider != null) healthText = healthSlider.GetComponentInChildren<TextMeshProUGUI>(); // 체력바 하위의 TextMeshProUGUI 찾기
-        canvas = FindObjectOfType<Canvas>(); // Canvas 연결
-        animator = GetComponent<Animator>(); // 애니메이터 연결
-        monsterAudio = GetComponent<AudioSource>(); // 오디오 소스 연결
-        
-        if (audioClips.Length > 0 && monsterAudio != null && audioClips[0] != null) // 오디오 클립 존재 여부와 오디오 소스 체크
+        animator = GetComponent<Animator>();
+        monsterAudio = GetComponent<AudioSource>();
+        canvas = FindObjectOfType<Canvas>();
+        healthSlider = FindObjectOfType<Slider>();
+        if (healthSlider != null) healthText = healthSlider.GetComponentInChildren<TextMeshProUGUI>();
+        target = GameObject.FindGameObjectWithTag("Player")?.transform;
+        spawner = FindObjectOfType<MonsterSpawner>();
+
+        if (audioClips.Length > 0 && monsterAudio != null && audioClips[0] != null)
         {
-            monsterAudio.clip = audioClips[0]; // 몬스터 소환 효과음
+            monsterAudio.clip = audioClips[0]; // 소환 음성
             monsterAudio.Play();
         }
+
+        if (monsterMovement != null && target != null)
+            monsterMovement.SetTarget(target); // ★ 타겟 지정
     }
 
-    // 몬스터 공격 로직
-    private void MonsterAttack()
-    {
-        PlayerHP playerHP = FindObjectOfType<PlayerHP>();
-        if (playerHP && animator != null && isAlive)
-        {
-            animator.SetTrigger("Attack");
-            PlayAudioClip(1); // 몬스터 공격 효과음
-            playerHP.TakeDamage_P(attackPower);
-        }
-    }
-
-    // 몬스터가 데미지를 받는 로직
     public void TakeDamage_M(int damage)
     {
-        if (!isAlive) return; // 몬스터가 죽었다면 함수를 종료
+        if (!isAlive) return;
 
         currentHealth -= damage;
-        PlayAudioClip(2); // 몬스터 피격 효과음
+        PlayAudioClip(2); // 피격 사운드
+        UpdateHealthSlider();
 
         if (currentHealth <= 0)
         {
-            OnDeath();
+            currentHealth = 0;
+            isAlive = false;
+            fsm.ChangeState(new DieState(fsm, this));
         }
-        UpdateHealthSlider();
     }
 
-    // 몬스터 사망 처리
-    private void OnDeath()
+    public void AttackPlayer()
     {
-        isAlive = false;
-        currentHealth = 0;
-        animator.SetBool("Death", true);
-        PlayAudioClip(3); // 몬스터 사망 효과음
+        if (!IsAlive || Target == null) return;
 
+        //float distance = Vector3.Distance(transform.position, Target.position);
+        //if (distance > attackRange + sizeOffset) return; // 너무 멀면 무효 공격
+
+        animator.SetTrigger("Attack");
+        PlayAudioClip(1); // 공격 사운드
+
+        Debug.Log("Attack Play!");
+
+        PlayerHP playerHP = FindObjectOfType<PlayerHP>();
+        if (playerHP == null)
+        {
+            Debug.LogError("Target에 PlayerHP 컴포넌트가 없습니다!");
+        }
+        else
+        {
+            Debug.Log($"Attack Damage: {attackPower}");
+            playerHP.TakeDamage_P(attackPower);
+        }
+
+
+        // if (playerHP != null)
+        // {
+        //     playerHP.TakeDamage_P(attackPower);
+        //     Debug.Log("Attack Damage Apply!");
+        // }
+    }
+
+
+    public void OnDeathFSM()
+    {
+        animator.SetBool("Death", true);
+        PlayAudioClip(3);
         monsterMovement?.StopMoving();
         DisableColliders();
         StartCoroutine(Die());
     }
 
-    // 모든 자식 콜라이더 비활성화
     private void DisableColliders()
     {
         foreach (Collider col in GetComponentsInChildren<Collider>())
-        {
             col.enabled = false;
-        }
     }
 
-    // 체력바 업데이트
-    private void UpdateHealthSlider()
+    private IEnumerator Die()
     {
-        healthSlider.value = (float)currentHealth / maxHealth;
-        healthText.text = $"{currentHealth} / {maxHealth}";
+        yield return new WaitForSeconds(5f);
+        if (spawner != null)
+        {
+            spawner.MonsterDied(gameObject);
+        }
+        Destroy(gameObject);
     }
 
-    // 데미지 텍스트 생성 및 애니메이션 적용
     public void ShowDamageText(float damage, Vector3 position)
     {
-        Vector3 randomPosition = position + new Vector3(Random.Range(-2.0f, 2.0f), Random.Range(1.0f, 2.0f), 0);
-        GameObject damageTextObject = Instantiate(damageTextPrefab, randomPosition, Quaternion.identity, canvas.transform);
-        RectTransform rt = damageTextObject.GetComponent<RectTransform>();
-        rt.position = Camera.main.WorldToScreenPoint(randomPosition);
-
-        TextMeshProUGUI textComponent = damageTextObject.GetComponent<TextMeshProUGUI>();
-        textComponent.text = "-" + damage.ToString();
-
-        damageTextObjects.Add(damageTextObject);
-
-        StartCoroutine(AnimateDamageText(textComponent));
+        Vector3 randomPos = position + new Vector3(Random.Range(-2.0f, 2.0f), Random.Range(1.0f, 2.0f), 0);
+        GameObject damageObj = Instantiate(damageTextPrefab, randomPos, Quaternion.identity, canvas.transform);
+        RectTransform rt = damageObj.GetComponent<RectTransform>();
+        rt.position = Camera.main.WorldToScreenPoint(randomPos);
+        TextMeshProUGUI text = damageObj.GetComponent<TextMeshProUGUI>();
+        text.text = "-" + damage.ToString();
+        StartCoroutine(AnimateDamageText(text));
     }
 
-    // 데미지 텍스트 애니메이션 코루틴
-    private IEnumerator AnimateDamageText(TextMeshProUGUI textComponent)
+    private IEnumerator AnimateDamageText(TextMeshProUGUI text)
     {
         float duration = 1.5f;
-        float elapsedTime = 0f;
-
-        Vector3 startPosition = textComponent.transform.position;
-        Vector3 endPosition = startPosition + Vector3.up * 50.0f;
-        Color startColor = textComponent.color;
+        float elapsed = 0f;
+        Vector3 start = text.transform.position;
+        Vector3 end = start + Vector3.up * 50f;
+        Color startColor = text.color;
         Color endColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
 
-        while (elapsedTime < duration)
+        while (elapsed < duration)
         {
-            if (textComponent == null) yield break;
-
-            float progress = elapsedTime / duration;
-            textComponent.transform.position = Vector3.Lerp(startPosition, endPosition, progress);
-            textComponent.color = Color.Lerp(startColor, endColor, progress);
-
-            elapsedTime += Time.deltaTime;
+            if (text == null) yield break;
+            float t = elapsed / duration;
+            text.transform.position = Vector3.Lerp(start, end, t);
+            text.color = Color.Lerp(startColor, endColor, t);
+            elapsed += Time.deltaTime;
             yield return null;
         }
     }
 
-    // 오디오 클립 재생
+    private void UpdateHealthSlider()
+    {
+        if (healthSlider == null || healthText == null) return;
+        healthSlider.value = (float)currentHealth / maxHealth;
+        healthText.text = $"{currentHealth} / {maxHealth}";
+    }
+
     private void PlayAudioClip(int index)
     {
-        if (audioClips.Length > index && monsterAudio != null && audioClips[index] != null && monsterAudio.isActiveAndEnabled)
+        if (audioClips.Length > index && audioClips[index] != null && monsterAudio != null)
         {
             monsterAudio.clip = audioClips[index];
             monsterAudio.Play();
         }
     }
 
-    // 몬스터 사망 후 처리
-    private IEnumerator Die()
+    private void OnDrawGizmosSelected()
     {
-        yield return new WaitForSeconds(5f);
-        Destroy(gameObject);
+        // 보스의 위치 기준
+        Vector3 bossPosition = transform.position;
 
-        if (spawner != null)
-        {
-            spawner.MonsterDied(gameObject);
-        }
+        // detectionRange: 파란색 원
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(bossPosition, detectionRange);
+
+        // attackRange: 빨간색 원
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(bossPosition, attackRange);
     }
 
-    // 스포너 할당
-    private void AssignSpawner()
-    {
-        spawner = FindObjectOfType<MonsterSpawner>();
-    }
-
-    public void SetIsIdle()
-    {
-        animator.SetBool("IsIdle", true);
-    }
+    // FSM 접근용 프로퍼티들
+    public Animator Animator => animator;
+    public Transform Target => target;
+    public MonsterMovement MonsterMovement => monsterMovement;
+    public GameObject SummonPrefab => summonPrefab;
+    public float AttackInterval => attackInterval;
+    public bool IsAlive => isAlive;
+    public float DetectionRange => detectionRange;
+    public int CurrentHealth => currentHealth;
+    public float AttackRange => attackRange;
+    public float SizeOffset => sizeOffset;
+    public int MaxHealth => maxHealth;
 }

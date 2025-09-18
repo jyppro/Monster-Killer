@@ -98,35 +98,37 @@ public class WeaponController : MonoBehaviour
 
     private void ApplyDamageToSpecificMonster(Collision collision, int totalDamage)
     {
-        // 각 몬스터의 컨트롤러에 대해 개별적으로 처리
-        var monsterController = collision.gameObject.transform.root.GetComponent<MonsterController>();
-        var huntMonsterController = collision.gameObject.transform.root.GetComponent<HuntMonsterController>();
-        var defenseMonsterController = collision.gameObject.transform.root.GetComponent<DefenseMonsterController>();
-        var bossMonsterController = collision.gameObject.transform.root.GetComponent<BossMonsterController>();
+        Component[] monsterControllers = collision.gameObject.GetComponentsInParent<Component>();
 
-        if (monsterController != null)
+        foreach (var comp in monsterControllers)
         {
-            // MonsterController에 데미지 적용
-            monsterController.TakeDamage_M(totalDamage);
-            monsterController.ShowDamageText(totalDamage, collision.GetContact(0).point);
+            if (comp is HuntMonsterController hunt)
+            {
+                hunt.TakeDamage_M(totalDamage);
+                hunt.ShowDamageText(totalDamage, collision.GetContact(0).point);
+                return;
+            }
+            else if (comp is MonsterController monster)
+            {
+                monster.TakeDamage_M(totalDamage);
+                monster.ShowDamageText(totalDamage, collision.GetContact(0).point);
+                return;
+            }
+            else if (comp is DefenseMonsterController defense)
+            {
+                defense.TakeDamage_M(totalDamage);
+                defense.ShowDamageText(totalDamage, collision.GetContact(0).point);
+                return;
+            }
+            else if (comp is BossMonsterController boss)
+            {
+                boss.TakeDamage_M(totalDamage);
+                boss.ShowDamageText(totalDamage, collision.GetContact(0).point);
+                return;
+            }
         }
-        else if (huntMonsterController != null)
-        {
-            // HuntMonsterController에 데미지 적용
-            huntMonsterController.TakeDamage_M(totalDamage);
-            huntMonsterController.ShowDamageText(totalDamage, collision.GetContact(0).point);
-        }
-        else if (defenseMonsterController != null)
-        {
-            // DefenseMonsterController에 데미지 적용
-            defenseMonsterController.TakeDamage_M(totalDamage);
-            defenseMonsterController.ShowDamageText(totalDamage, collision.GetContact(0).point);
-        }
-        else if (bossMonsterController != null)
-        {
-            // BossMonsterController에 데미지 적용
-            bossMonsterController.TakeDamage_M(totalDamage);
-            bossMonsterController.ShowDamageText(totalDamage, collision.GetContact(0).point);
-        }
+
+        Debug.LogWarning("충돌 대상에서 몬스터 컨트롤러를 찾지 못했습니다: " + collision.gameObject.name);
     }
+
 }

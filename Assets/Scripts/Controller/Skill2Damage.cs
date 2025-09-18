@@ -69,41 +69,58 @@ public class Skill2Damage : MonoBehaviour
         damageCoroutine = null; // 데미지 완료 후 코루틴 해제
     }
 
+    // private void ApplyDamageToMonsterPart(Collider monsterPart, float damage)
+    // {
+    //     int partDamage = CalculateDamage(monsterPart); // 부위에 따라 데미지 계산
+
+    //     // 몬스터 부위가 속한 몬스터의 컨트롤러를 가져옴
+    //     MonsterController monsterController = monsterPart.transform.root.GetComponent<MonsterController>();
+    //     if (monsterController != null)
+    //     {
+    //         monsterController.TakeDamage_M(partDamage);
+    //         monsterController.ShowDamageText(partDamage, monsterPart.transform.position);
+    //         return; // 이미 몬스터 컨트롤러가 처리되었으므로 나가기
+    //     }
+
+    //     // 다른 몬스터 컨트롤러도 확인
+    //     HuntMonsterController huntMonsterController = monsterPart.transform.root.GetComponent<HuntMonsterController>();
+    //     if (huntMonsterController != null)
+    //     {
+    //         huntMonsterController.TakeDamage_M(partDamage);
+    //         huntMonsterController.ShowDamageText(partDamage, monsterPart.transform.position);
+    //         return;
+    //     }
+
+    //     DefenseMonsterController defenseMonsterController = monsterPart.transform.root.GetComponent<DefenseMonsterController>();
+    //     if (defenseMonsterController != null)
+    //     {
+    //         defenseMonsterController.TakeDamage_M(partDamage);
+    //         defenseMonsterController.ShowDamageText(partDamage, monsterPart.transform.position);
+    //         return;
+    //     }
+
+    //     BossMonsterController bossMonsterController = monsterPart.transform.root.GetComponent<BossMonsterController>();
+    //     if (bossMonsterController != null)
+    //     {
+    //         bossMonsterController.TakeDamage_M(partDamage);
+    //         bossMonsterController.ShowDamageText(partDamage, monsterPart.transform.position);
+    //     }
+    // }
+
     private void ApplyDamageToMonsterPart(Collider monsterPart, float damage)
     {
-        int partDamage = CalculateDamage(monsterPart); // 부위에 따라 데미지 계산
+        int partDamage = CalculateDamage(monsterPart);
 
-        // 몬스터 부위가 속한 몬스터의 컨트롤러를 가져옴
-        MonsterController monsterController = monsterPart.transform.root.GetComponent<MonsterController>();
-        if (monsterController != null)
+        IMonsterDamageable monster = monsterPart.GetComponentInParent<IMonsterDamageable>();
+
+        if (monster != null)
         {
-            monsterController.TakeDamage_M(partDamage);
-            monsterController.ShowDamageText(partDamage, monsterPart.transform.position);
-            return; // 이미 몬스터 컨트롤러가 처리되었으므로 나가기
+            monster.TakeDamage_M(partDamage);
+            monster.ShowDamageText(partDamage, monsterPart.transform.position);
         }
-
-        // 다른 몬스터 컨트롤러도 확인
-        HuntMonsterController huntMonsterController = monsterPart.transform.root.GetComponent<HuntMonsterController>();
-        if (huntMonsterController != null)
+        else
         {
-            huntMonsterController.TakeDamage_M(partDamage);
-            huntMonsterController.ShowDamageText(partDamage, monsterPart.transform.position);
-            return;
-        }
-
-        DefenseMonsterController defenseMonsterController = monsterPart.transform.root.GetComponent<DefenseMonsterController>();
-        if (defenseMonsterController != null)
-        {
-            defenseMonsterController.TakeDamage_M(partDamage);
-            defenseMonsterController.ShowDamageText(partDamage, monsterPart.transform.position);
-            return;
-        }
-
-        BossMonsterController bossMonsterController = monsterPart.transform.root.GetComponent<BossMonsterController>();
-        if (bossMonsterController != null)
-        {
-            bossMonsterController.TakeDamage_M(partDamage);
-            bossMonsterController.ShowDamageText(partDamage, monsterPart.transform.position);
+            Debug.LogWarning($"데미지 가능한 몬스터를 찾지 못했습니다: {monsterPart.transform.name}");
         }
     }
 

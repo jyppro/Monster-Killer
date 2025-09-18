@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 6279343219945565117}
   - component: {fileID: 6084152269055515747}
   - component: {fileID: 3001594079207885286}
+  - component: {fileID: 3477096263236599490}
   m_Layer: 0
   m_Name: Dragon1
   m_TagString: Untagged
@@ -308,9 +309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d49460cca2e67e741ad15764aa17fd0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMoving: 0
-  minMoveDelay: 1
-  maxMoveDelay: 3
 --- !u!114 &6084152269055515747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,9 +330,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a577c2325268be54488591a486be171a, type: 3}
   - {fileID: 8300000, guid: 49633201f9c137a46a22d01b399b938f, type: 3}
   maxHealth: 1000
-  currentHealth: 1000
-  attackInterval: 10
   attackPower: 50
+  attackInterval: 10
+  detectionRange: 70
+  attackRange: 65
+  sizeOffset: 1.5
 --- !u!65 &3001594079207885286
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -356,6 +356,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.6883995, y: 0.56458867, z: 0.7013769}
   m_Center: {x: 0.12501974, y: 0.21770494, z: 0.0062932586}
+--- !u!114 &3477096263236599490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460098901970961165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e89eec94d0beec64382238e88d455514, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &460865001234603612
 GameObject:
   m_ObjectHideFlags: 0

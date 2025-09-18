@@ -4776,6 +4776,7 @@ GameObject:
   - component: {fileID: -3682297339584150188}
   - component: {fileID: 6365967823729804598}
   - component: {fileID: 625614503721352061}
+  - component: {fileID: -5024197443829373099}
   m_Layer: 0
   m_Name: Dragon6
   m_TagString: Untagged
@@ -4953,8 +4954,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d49460cca2e67e741ad15764aa17fd0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minMoveDelay: 1
-  maxMoveDelay: 3
 --- !u!114 &6365967823729804598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4976,9 +4975,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a577c2325268be54488591a486be171a, type: 3}
   - {fileID: 8300000, guid: 49633201f9c137a46a22d01b399b938f, type: 3}
   maxHealth: 50000
-  currentHealth: 50000
-  attackInterval: 10
   attackPower: 2500
+  attackInterval: 10
+  detectionRange: 10
+  attackRange: 2
+  sizeOffset: 1.5
 --- !u!65 &625614503721352061
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5000,6 +5001,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 20.060728, y: 3.9008527, z: 5.856218}
   m_Center: {x: 11.306953, y: 3.266536, z: 0.56824076}
+--- !u!114 &-5024197443829373099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456720385751675724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e89eec94d0beec64382238e88d455514, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2494091344890354584
 GameObject:
   m_ObjectHideFlags: 0

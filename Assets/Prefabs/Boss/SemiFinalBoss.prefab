@@ -7734,9 +7734,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9015837868810878382}
   - component: {fileID: -4230685558484823521}
-  - component: {fileID: 8550572856002074212}
   - component: {fileID: 2342804601677242956}
-  - component: {fileID: 7027321389361993817}
+  - component: {fileID: 767908158038468282}
+  - component: {fileID: -6387801771564171819}
   m_Layer: 0
   m_Name: SemiFinalBoss
   m_TagString: Body
@@ -7793,26 +7793,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8550572856002074212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3791188024623526531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec36036fe6c6e02409fdde3c03ef3793, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 0}
-  healthText: {fileID: 0}
-  damageTextPrefab: {fileID: 3433391998738348564, guid: e065d6633001a4e4b82dd454d28f03a9, type: 3}
-  audioClips: []
-  maxHealth: 371108
-  currentHealth: 371108
-  attackInterval: 10
-  attackPower: 0
 --- !u!65 &2342804601677242956
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7834,7 +7814,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.014923819, y: 0.03718102, z: 0.015552156}
   m_Center: {x: -0.000047958492, y: 0.016473237, z: 0.00021653771}
---- !u!114 &7027321389361993817
+--- !u!114 &767908158038468282
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7843,10 +7823,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 3791188024623526531}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad638f954706cf64c8e35d1d9910b46c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e440257aeb4a114889ef982d442a042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterPrefab: {fileID: 1297029129040627618, guid: d9208043371a48048b05b558e555bd28, type: 3}
+  healthSlider: {fileID: 0}
+  healthText: {fileID: 0}
+  damageTextPrefab: {fileID: 3433391998738348564, guid: e065d6633001a4e4b82dd454d28f03a9, type: 3}
+  audioClips: []
+  maxHealth: 200000
+  attackPower: 50
+  attackInterval: 5
+  detectionRange: 10
+  attackRange: 2
+  sizeOffset: 1.5
+  summonPrefab: {fileID: 1297029129040627618, guid: d9208043371a48048b05b558e555bd28, type: 3}
+  player: {fileID: 0}
+--- !u!114 &-6387801771564171819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791188024623526531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e2e74531bbe8674ebae1ef767c85484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3818042582238282502
 GameObject:
   m_ObjectHideFlags: 0

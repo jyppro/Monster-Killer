@@ -3557,6 +3557,7 @@ GameObject:
   - component: {fileID: -2044222796521647275}
   - component: {fileID: -1986918212151534452}
   - component: {fileID: -1731582519038031176}
+  - component: {fileID: 4785500814301928030}
   m_Layer: 0
   m_Name: Dragon5
   m_TagString: Untagged
@@ -3719,9 +3720,23 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a577c2325268be54488591a486be171a, type: 3}
   - {fileID: 8300000, guid: 49633201f9c137a46a22d01b399b938f, type: 3}
   maxHealth: 33333
-  currentHealth: 33333
-  attackInterval: 10
   attackPower: 3333
+  attackInterval: 10
+  detectionRange: 10
+  attackRange: 2
+  sizeOffset: 1.5
+--- !u!114 &4785500814301928030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7106241705816717486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e89eec94d0beec64382238e88d455514, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7132164746906972477
 GameObject:
   m_ObjectHideFlags: 0

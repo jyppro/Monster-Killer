@@ -1344,6 +1344,7 @@ GameObject:
   - component: {fileID: -1649970603756019329}
   - component: {fileID: 4989176399650115495}
   - component: {fileID: 3613888012838360863}
+  - component: {fileID: 7733617088758019466}
   m_Layer: 0
   m_Name: Dragon7
   m_TagString: Untagged
@@ -1519,8 +1520,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d49460cca2e67e741ad15764aa17fd0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minMoveDelay: 1
-  maxMoveDelay: 3
 --- !u!114 &3613888012838360863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1542,9 +1541,23 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a577c2325268be54488591a486be171a, type: 3}
   - {fileID: 8300000, guid: 49633201f9c137a46a22d01b399b938f, type: 3}
   maxHealth: 77777
-  currentHealth: 77777
-  attackInterval: 10
   attackPower: 5000
+  attackInterval: 10
+  detectionRange: 10
+  attackRange: 2
+  sizeOffset: 1.5
+--- !u!114 &7733617088758019466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3736208178540633263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e89eec94d0beec64382238e88d455514, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3815497096764866959
 GameObject:
   m_ObjectHideFlags: 0
