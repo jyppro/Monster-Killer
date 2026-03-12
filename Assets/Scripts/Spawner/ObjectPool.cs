@@ -3,61 +3,71 @@ using UnityEngine;
 
 public class ObjectPool
 {
-    private Queue<GameObject> poolQueue = new Queue<GameObject>();
-    private GameObject prefab;
-    private Transform parent;
+    private readonly Stack<PoolableObject> _poolStack = new Stack<PoolableObject>();
+    private readonly GameObject _prefab;
+    private readonly Transform _parent;
 
     public ObjectPool(GameObject prefab, int initialSize, Transform parent = null)
     {
-        this.prefab = prefab;
-        this.parent = parent;
+        _prefab = prefab;
+        _parent = parent;
 
         for (int i = 0; i < initialSize; i++)
         {
-            GameObject obj = GameObject.Instantiate(prefab, parent);
-            obj.SetActive(false);
-            poolQueue.Enqueue(obj);
+            _poolStack.Push(CreateNew());
         }
+    }
+
+    private PoolableObject CreateNew()
+    {
+        GameObject obj = Object.Instantiate(_prefab, _parent);
+        var po = obj.GetOrAddComponent<PoolableObject>(); // 확장 메서드 사용 권장
+        po.OriginPrefab = _prefab;
+        obj.SetActive(false);
+        return po;
     }
 
     public GameObject Get(Vector3 position, Quaternion rotation)
     {
-        GameObject obj = null;
+        PoolableObject po = _poolStack.Count > 0 ? _poolStack.Pop() : CreateNew();
+        
+        // 큐 내부에 파괴된 오브젝트가 있을 경우 대비
+        if (po == null) return Get(position, rotation);
 
-        // 유효한 오브젝트가 나올 때까지 큐에서 꺼내기
-        while (poolQueue.Count > 0)
-        {
-            obj = poolQueue.Dequeue();
-            if (obj != null) break;
-        }
-
-        // 파괴되었거나 큐가 비어 있었다면 새로 생성
-        if (obj == null) obj = GameObject.Instantiate(prefab, parent);
-        obj.transform.SetPositionAndRotation(position, rotation);
-        obj.SetActive(true);
-        IPoolable poolable = obj.GetComponent<IPoolable>();
-        poolable?.OnSpawned();
-        return obj;
+        Transform t = po.transform;
+        t.SetPositionAndRotation(position, rotation);
+        po.gameObject.SetActive(true);
+        po.OnSpawned();
+        
+        return po.gameObject;
     }
 
     public void Return(GameObject obj)
     {
-        if (obj == null) return;
-        IPoolable poolable = obj.GetComponent<IPoolable>();
-        poolable?.OnDespawned();
-        obj.SetActive(false);
-
-        // 이미 Destroy 되었는지 확인 (비정상 상황 방지)
-        if (obj != null) poolQueue.Enqueue(obj);
+        if (obj.TryGetComponent<PoolableObject>(out var po))
+        {
+            po.OnDespawned();
+            po.gameObject.SetActive(false);
+            _poolStack.Push(po);
+        }
     }
 
     public void Clear()
     {
-        while (poolQueue.Count > 0)
+        while (_poolStack.Count > 0)
         {
-            var obj = poolQueue.Dequeue();
-            if (obj != null)
-                GameObject.Destroy(obj);
+            var po = _poolStack.Pop();
+            if (po != null) Object.Destroy(po.gameObject);
         }
+    }
+}
+
+// 유틸리티 확장 메서드
+public static class GameObjectExtensions
+{
+    public static T GetOrAddComponent<T>(this GameObject obj) where T : Component
+    {
+        T component = obj.GetComponent<T>();
+        return component != null ? component : obj.AddComponent<T>();
     }
 }
