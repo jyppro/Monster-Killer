@@ -12,16 +12,27 @@ public class MonsterSpawner : MonoBehaviour
     private GameObject[] monsterPrefabs;
     private const int maxMonster = 20;
     private int currentMonsterCount = 0;
-    public int targetKillCount = 0;
-    public int currentKillCount = 0;
+    
+    [HideInInspector] public int targetKillCount = 0;
+    [HideInInspector] public int currentKillCount = 0;
+    
     private bool bossSpawned = false;
     private bool isSpawning = true;
-    private List<GameObject> spawnedMonsters = new List<GameObject>();
+    
+    // 리스트 타입을 GameObject에서 PoolableObject로 관리하면 반환 시 유리합니다.
+    private List<GameObject> spawnedMonsters = new List<GameObject>(maxMonster);
 
     private Coroutine spawnCoroutine;
+    
+    // 최적화: 가비지 컬렉션을 방지하기 위한 캐싱
+    private WaitForSeconds _waitSpawnInterval;
+    private WaitForEndOfFrame _waitForEndOfFrame;
+    private WaitForSeconds _waitClearPage = new WaitForSeconds(0.1f);
 
     private void Awake()
     {
+        _waitSpawnInterval = new WaitForSeconds(spawnInterval);
+        _waitForEndOfFrame = new WaitForEndOfFrame();
         LoadStageData();
     }
 
@@ -54,7 +65,8 @@ public class MonsterSpawner : MonoBehaviour
 
         foreach (var prefab in monsterPrefabs)
         {
-            ObjectPoolManager.Instance.CreatePool(prefab, 10, this.transform); // 풀 사이즈 설정
+            // 각 프리팹별로 풀 생성 (초기 사이즈 10)
+            ObjectPoolManager.Instance.CreatePool(prefab, 10, this.transform);
         }
     }
 
@@ -77,18 +89,25 @@ public class MonsterSpawner : MonoBehaviour
                     SpawnMonster();
                 }
             }
-            yield return new WaitForSeconds(spawnInterval);
+            yield return _waitSpawnInterval; // 캐싱된 객체 사용으로 GC 방지
         }
     }
 
     private void SpawnMonster()
     {
+        if (spawnPoints.Length == 0 || monsterPrefabs.Length == 0) return;
+
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
         GameObject prefab = monsterPrefabs[Random.Range(0, monsterPrefabs.Length)];
+        
+        // 풀에서 가져오기
         GameObject monster = ObjectPoolManager.Instance.GetFromPool(prefab, spawnPoint.position, spawnPoint.rotation);
 
-        spawnedMonsters.Add(monster);
-        currentMonsterCount++;
+        if (monster != null)
+        {
+            spawnedMonsters.Add(monster);
+            currentMonsterCount++;
+        }
     }
 
     public void SpawnBoss()
@@ -96,16 +115,19 @@ public class MonsterSpawner : MonoBehaviour
         if (bossSpawned || monsterPrefabs.Length == 0) return;
 
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        GameObject boss = ObjectPoolManager.Instance.GetFromPool(monsterPrefabs[0], spawnPoint.position, spawnPoint.rotation);
+        ObjectPoolManager.Instance.GetFromPool(monsterPrefabs[0], spawnPoint.position, spawnPoint.rotation);
         bossSpawned = true;
     }
 
     private IEnumerator SpawnBossAfterInit()
     {
-        yield return new WaitForEndOfFrame();
+        yield return _waitForEndOfFrame;
         SpawnBoss();
     }
 
+    /// <summary>
+    /// 몬스터 사망 시 외부(Monster 스크립트 등)에서 호출
+    /// </summary>
     public void MonsterDied(GameObject monster)
     {
         currentMonsterCount--;
@@ -113,14 +135,9 @@ public class MonsterSpawner : MonoBehaviour
 
         spawnedMonsters.Remove(monster);
 
-        foreach (var prefab in monsterPrefabs)
-        {
-            if (monster.name.Contains(prefab.name)) // 정확한 방식이 필요하면 Monster 컴포넌트로 추적 가능
-            {
-                ObjectPoolManager.Instance.ReturnToPool(prefab, monster);
-                break;
-            }
-        }
+        // [최적화 핵심] 복잡한 반복문과 문자열 비교(Contains) 제거!
+        // PoolableObject가 자기의 태생 프리팹을 알고 있으므로 바로 반환 가능합니다.
+        ObjectPoolManager.Instance.ReturnToPool(monster);
 
         if (targetKillCount > 0 && currentKillCount >= targetKillCount)
         {
@@ -129,12 +146,9 @@ public class MonsterSpawner : MonoBehaviour
             currentKillCount = targetKillCount;
             StartCoroutine(ShowClearPageAfterRemovingMonsters());
         }
-        else
+        else if (isSpawning && currentMonsterCount < maxMonster)
         {
-            if (isSpawning && currentMonsterCount < maxMonster)
-            {
-                StartSpawningMonsters();
-            }
+            StartSpawningMonsters();
         }
     }
 
@@ -150,36 +164,31 @@ public class MonsterSpawner : MonoBehaviour
     private IEnumerator ShowClearPageAfterRemovingMonsters()
     {
         RemoveAllMonsters();
-        yield return new WaitForSeconds(0.1f);
+        yield return _waitClearPage;
         StageController.Instance.ShowClearPage();
     }
 
     private void RemoveAllMonsters()
     {
+        // 역순 순회로 리스트에서 안전하게 제거 및 풀 반환
         for (int i = spawnedMonsters.Count - 1; i >= 0; i--)
         {
-            var monster = spawnedMonsters[i];
+            GameObject monster = spawnedMonsters[i];
             if (monster != null)
             {
-                foreach (var prefab in monsterPrefabs)
-                {
-                    if (monster.name.Contains(prefab.name))
-                    {
-                        ObjectPoolManager.Instance.ReturnToPool(prefab, monster);
-                        break;
-                    }
-                }
+                // 마찬가지로 여기서도 복잡한 조건문 없이 즉시 반환
+                ObjectPoolManager.Instance.ReturnToPool(monster);
             }
-            spawnedMonsters.RemoveAt(i);
         }
+        spawnedMonsters.Clear();
     }
 
     private void OnDestroy()
     {
+        // 씬 전환 시 싱글톤 매니저가 살아있다면 풀 정리
         if (ObjectPoolManager.Instance != null)
         {
             ObjectPoolManager.Instance.ClearAllPools();
         }
     }
-
 }
